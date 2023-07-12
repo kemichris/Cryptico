@@ -22,6 +22,7 @@ nav {
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 1;
 }
 
 nav ul, .nav-items{
@@ -56,7 +57,7 @@ nav ul li {
     padding-bottom: 0.2rem;
 }
 
-.nav-items button, .top-container button {
+.nav-items button {
     padding: 0.5rem 2rem;
     font-size: 1rem;
     background-color: #D1DDEB;
@@ -105,3 +106,235 @@ nav ul li {
     color: #D1DDEB;
     width: 70%;
 }
+
+.top-container button {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    background-color: #D1DDEB;
+    color: #141928;
+    border-radius: 0.3rem;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ////// SECURITY SECTION ////// */
+.security-container {
+    margin: 8rem 8rem 0;
+
+}
+
+.security-container h2, .services-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.security-flex {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.security-flex div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.security-flex img {
+    width: 25%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    /* mix-blend-mode: color-burn; */
+}
+
+.security-flex div h3 {
+    font-size: 1.2rem;
+}
+
+.security-flex div p {
+    text-align: center;
+    color: #8492a6;
+    margin: 0;
+}
+
+/* ////// SERVICE SECTION ////// */
+.services-section {
+    margin: 14rem 8rem 0;
+}
+
+.services-section h2 {
+    margin-bottom: 1rem;
+}
+
+.service-p {
+    color: #8492a6;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+.img-and-services {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 8rem;
+}
+
+.services-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.services-grid i {
+    font-size: 2rem;
+    color: #8492a6;
+}
+
+.services-grid h3 {
+    margin: 0.3rem 0 1rem;
+}
+
+.services-grid p {
+    font-size: 1rem;
+    margin: 0;
+    color: #8492a6;
+}
+
+
+/* ////// MARKET OVERVIEW SECTION ////// */
+.market-overview-section {
+    margin: 16rem 8rem 0;
+    display: flex;
+    gap: 3rem;
+}
+
+.market-overview-text h2 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.market-overview-text p {
+    margin: 0;
+    line-height: 1.8rem;
+    color: #8492a6;
+}
+
+/* ////// ALWAYS ON SECTION ////// */
+.always-container {
+    margin: 8rem 0 0;
+    background-color: #16122C;
+    display: flex;
+    gap: 2rem;
+    padding: 8rem 8rem 3rem;
+}
+
+.always-container h2 {
+    font-size: 2.5rem;
+    color: #D1DDEB;
+}
+
+.always-container p {
+    color: #8492a6;
+    margin: 0 0 1rem;
+
+}
+
+.find-more {
+    color: #D1DDEB;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.find-more:hover {
+    filter: brightness(.8);
+}
+
+/* ////// TRADING PACKAGE SECTION ////// */
+.plan-container {
+    margin: 16rem 8rem 0;
+}
+
+.plan-container h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.select-p {
+    color: #8492a6;
+    text-align: center;
+    margin: 0;
+}
+
+.plan-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4rem;
+    margin-top: 5rem;
+}
+
+.plan-cards > * {
+    border: 1px solid #D1DDEB;
+    border-radius: 0.6rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    transition: transform 0.3s;
+}
+
+.plan-cards > *:hover {
+    transform: scale(1.05); 
+}
+
+.plan-cards h4 {
+    margin: 0;
+    background-color: #16122C;
+    padding: 0.5rem 1rem;
+    color: #D1DDEB;
+    width: fit-content;
+    border-radius: 1.5rem;
+}
+
+.plan-price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.plan-duration {
+    color: #8492a6;
+    font-weight: bold;
+}
+
+.plan-perks {
+    border-top: 1px solid #D1DDEB;
+    margin-top: 1rem;
+}
+
+.plan-perks p {
+    color: #8492a6;
+    font-size: 1rem;
+}
+
+.plan-cards button {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #16122C;
+    color: #D1DDEB;
+    border: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    cursor: pointer;
+}
+
+.plan-cards button:hover {
+    filter: opacity(.9);
+}
+
+/* ////// EXCHAGE SECTION ////// */
