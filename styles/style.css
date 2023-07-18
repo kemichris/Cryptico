@@ -338,3 +338,218 @@ nav ul li {
 }
 
 /* ////// EXCHAGE SECTION ////// */
+.exchage-crypto {
+    background-color: #16122C;
+    padding: 8rem 8rem 5rem;
+    margin-top: 8rem;
+}
+
+
+
+.exchage-crypto h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
+    color: #D1DDEB;
+}
+
+.exchage-p {
+    text-align: center;
+    font-size: 1rem;
+    color: #8492a6;
+    width: 70%;
+    margin: 1rem auto;
+}
+
+.crypto-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 4rem;
+    gap: 3rem;
+}
+
+/* ////// REVIEW SECTION ////// */
+.review-section {
+    margin: 16rem 8rem 0;
+}
+
+.review-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
+
+}
+
+.review-p {
+    text-align: center;
+    font-size: 1rem;
+    color: #8492a6;
+}
+
+.testimony-container {
+    display: flex;
+    margin-top: 3rem;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+.testimony {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    width: inherit;
+    gap: 1rem;
+}
+
+.testimony img {
+    width: 40%;
+}
+
+.testimony-text {
+    width: 100%;
+}
+
+.testimony-text h5 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #8492a6;
+}
+
+.testimony-text small {
+    color: #D1DDEB;
+    margin: 0.5rem 0;
+}
+
+.stars {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.8rem;
+    color: #F17425;
+}
+
+.testimony-text p {
+    font-size: 1rem;
+    color: #8492a6;
+}
+
+/* ////// CALL TO ACTION ////// */
+.call-to-action {
+    background-color: #16122C;
+    margin-top: 6rem;
+    padding: 8rem;
+}
+
+.call-action {
+    background-color: #D1DDEB;
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.call-action div {
+    width: 60%;
+}
+
+.call-action h2 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #141928;
+}
+
+.call-action p {
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.call-action button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    background-color: #16122C;
+    color: #D1DDEB;
+    border-radius: 0.5rem 0.5rem 0 0;
+    cursor: pointer;
+}
+
+/* ////// FOOTER SECTION ////// */
+footer {
+    background-color: #D1DDEB;
+    padding: 3rem 8rem 2rem;
+}
+
+.footer-flex {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.footer-flex h4 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+    color: #141928;
+}
+
+.logo-socials p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #16122C;
+    margin-top: 0;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.socials a{
+    font-size: 2.5rem;
+    color: #16122C;
+    cursor: pointer;
+}
+
+.useful-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.useful-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #16122C;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+.useful-links a:hover {
+    filter: brightness(.9);
+}
+
+.contact-details h5 {
+    margin: 1rem 0 0;
+    font-size: 1rem;
+}
+
+.contact-details p {
+    margin: 0;
+}
+
+.copyright {
+    margin-top: 4rem;
+    font-size: 0.8rem;
+    color: #16122C;
+}
+
+@media (max-width:1290px) {
+    /* ////// TRADING PACKAGE SECTION ////// */
+    .plan-perks p {
+        font-size: 0.8rem;
+    }
+    
+}
