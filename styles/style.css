@@ -89,11 +89,6 @@ nav ul li {
     width: 40%;
 }
 
-/* .top-container-text {
-    width: 100%;
-
-} */
-
 .top-container h1 {
     font-size: 4rem;
     line-height: 4rem;
@@ -124,9 +119,12 @@ nav ul li {
 
 }
 
+h2 {
+    font-size: 2.5rem;
+}
+
 .security-container h2, .services-section h2 {
     text-align: center;
-    font-size: 2.5rem;
 }
 
 .security-flex {
@@ -182,6 +180,10 @@ nav ul li {
     margin-top: 8rem;
 }
 
+.img-and-services img {
+    width: 100%;
+}
+
 .services-grid {
     display: grid;
     width: 100%;
@@ -214,7 +216,6 @@ nav ul li {
 
 .market-overview-text h2 {
     text-align: center;
-    font-size: 2.5rem;
 }
 
 .market-overview-text p {
@@ -233,7 +234,6 @@ nav ul li {
 }
 
 .always-container h2 {
-    font-size: 2.5rem;
     color: #D1DDEB;
 }
 
@@ -259,7 +259,6 @@ nav ul li {
 }
 
 .plan-container h2 {
-    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -347,7 +346,6 @@ nav ul li {
 
 
 .exchage-crypto h2 {
-    font-size: 2.5rem;
     text-align: center;
     margin: 0;
     color: #D1DDEB;
@@ -374,7 +372,6 @@ nav ul li {
 }
 
 .review-section h2 {
-    font-size: 2.5rem;
     text-align: center;
     margin: 0;
 
@@ -456,7 +453,6 @@ nav ul li {
 
 .call-action h2 {
     margin: 0;
-    font-size: 2.5rem;
     color: #141928;
 }
 
@@ -551,5 +547,436 @@ footer {
     .plan-perks p {
         font-size: 0.8rem;
     }
+}
+
+@media (max-width:1200px) {
+    /* ////// TOP CONTAINER ////// */
+    .top-container h1 {
+        font-size: 3rem;
+    }
     
+    .top-container button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* ////// SERVICE SECTION ////// */
+    .img-and-services {
+        gap: 2rem;
+    }
+
+    .services-grid {
+        gap: 1rem;
+    }
+    
+    .services-grid i {
+        font-size: 1.5rem;
+    }
+    
+    .services-grid h3 {
+        font-size: 1rem;
+    }
+    
+    .services-grid p {
+        font-size: 0.8rem;
+        margin: 0;
+        color: #8492a6;
+    }
+}
+
+@media (max-width:1100px) {
+    /* ////// TOP CONTAINER ////// */
+    .top-container {    
+        padding:5rem 2rem 0;
+        gap: 2rem;
+    }
+
+    .top-container h1 {
+        font-size: 2.5rem;
+    }
+
+    /* ////// SECURITY SECTION ////// */
+    .security-container {
+        margin: 8rem 3rem 0;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* ////// SERVICE SECTION ////// */
+    .services-section {
+        margin: 14rem 3rem 0;
+    }
+
+    /* ////// MARKET OVERVIEW SECTION ////// */
+    .market-overview-section {
+        margin: 16rem 3rem 0;
+    }
+
+    /* ////// ALWAYS ON SECTION ////// */
+    .always-container {
+        padding: 8rem 3rem 3rem;
+    }
+
+
+    /* ////// TRADING PACKAGE SECTION ////// */
+    .plan-container {
+        margin: 16rem 3rem 0;
+    }
+
+    /* ////// EXCHAGE SECTION ////// */
+    .exchage-crypto {
+        padding: 8rem 3rem 5rem;
+    }
+
+    .crypto-cards {
+        margin: 4rem 0;
+        gap: 2rem;
+    }
+
+    /* ////// REVIEW SECTION ////// */
+    .review-section {
+        margin: 16rem 3rem 0;
+    }
+
+    /* ////// CALL TO ACTION ////// */
+    .call-to-action {
+        padding: 8rem 3rem;
+    }
+
+    /* ////// FOOTER SECTION ////// */
+    footer {
+        padding: 3rem 3rem 2rem;
+    }
+
+
+}
+
+@media (max-width:1000px) {
+    /* ////// NAV BAR SECTION ////// */
+    .nav-items {
+        gap: 1rem;
+    }
+
+    .nav-items a {
+        font-size: 0.8rem;
+    }
+
+    .nav-items button {
+        padding: 0.5rem 2rem;
+        font-size: 0.8rem;
+    }
+
+    /* ////// SERVICE SECTION ////// */
+    .services-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width:850px) {
+    /* ////// NAV BAR SECTION ////// */
+    .nav-items {
+        display: none;
+    }
+
+    .nav-menu-icon {
+        margin-right: 6rem;
+        font-size: 2rem;
+        color: #D1DDEB;
+        cursor: pointer;
+    }
+
+    /* ////// TOP CONTAINER ////// */
+    .top-container, .img-and-services, .market-overview-section, .always-container {
+        flex-direction: column;
+    }
+
+    .top-container h1 {
+        width: 70%;
+    }
+
+    .top-container img {
+        width: 50%;
+    }
+
+    /* ////// SERVICE SECTION ////// */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    /* ////// MARKET OVERVIEW SECTION ////// */
+    .market-overview-section, .always-container {
+        align-items: center;
+    }
+
+    .market-overview-text p {
+        text-align: center;
+    }
+
+    /* ////// ALWAYS ON SECTION ////// */
+    .always-container {
+        gap: 0;
+    }
+
+    .always-container h2 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .always-container p {
+        text-align: center;
+    }
+
+    /* .find-more {
+        text-align: end;
+    } */
+
+    /* ////// TRADING PACKAGE SECTION ////// */
+    .plan-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ////// EXCHAGE SECTION ////// */ 
+    .crypto-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ////// FOOTER SECTION ////// */
+    .footer-flex h4 {
+        font-size: 1.2rem;
+    }
+    
+    .logo-socials p {
+        font-size: 0.8rem;
+    }
+    
+    .socials a{
+        font-size: 1.5rem;
+    }
+    
+    
+    .useful-links a {
+        font-size: 0.8rem;
+    }
+    
+    .contact-details h5 {
+        margin: 1rem 0 0;
+        font-size: 0.8rem;
+    }
+
+    .contact-details p {
+        font-size: 0.8rem;
+    }
+
+
+    
+}
+
+@media (max-width:750px) {
+    /* ////// TOP CONTAINER ////// */
+    .top-container {    
+        padding:5rem 1.5rem 0;
+        gap: 2rem;
+    }
+
+    .top-container h1 {
+        font-size: 2.5rem;
+    }
+
+    /* ////// SECURITY SECTION ////// */
+    .security-container {
+        margin: 8rem 1.5rem 0;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* ////// SERVICE SECTION ////// */
+    .services-section {
+        margin: 10rem 1.5rem 0;
+    }
+
+    /* ////// MARKET OVERVIEW SECTION ////// */
+    .market-overview-section {
+        margin: 5rem 1.5rem 0;
+    }
+
+    /* ////// ALWAYS ON SECTION ////// */
+    .always-container {
+        padding: 8rem 1.5rem 3rem;
+    }
+
+
+    /* ////// TRADING PACKAGE SECTION ////// */
+    .plan-container {
+        margin: 10rem 1.5rem 0;
+    }
+
+    /* ////// EXCHAGE SECTION ////// */
+    .exchage-crypto {
+        padding: 5rem 1.5rem 3rem;
+    }
+
+    .crypto-cards {
+        margin: 4rem 0;
+        gap: 2rem;
+    }
+
+    /* ////// REVIEW SECTION ////// */
+    .review-section {
+        margin: 8rem 1.5rem 0;
+    }
+
+    /* ////// CALL TO ACTION ////// */
+    .call-to-action {
+        padding: 5rem 1.5rem;
+    }
+
+    .call-action button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* ////// FOOTER SECTION ////// */
+    footer {
+        padding: 3rem 1.5rem 2rem;
+    }
+}
+
+@media (max-width:550px) {
+    /* ////// NAV BAR SECTION ////// */
+    nav {
+        padding: 0.6rem 1rem;
+    }
+
+    .nav-menu-icon {
+        margin-right: 2rem;
+        font-size: 1.5rem;
+    }
+
+    /* ////// TOP CONTAINER ////// */
+    .top-container h1 {
+        font-size: 2rem;
+        width: 90%;
+    }
+
+    /* ////// SECURITY SECTION ////// */
+    .security-container {
+        margin: 8rem 1rem 0;
+    }
+
+    .security-flex {
+        flex-direction: column;
+        margin-top: 3rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    /* ////// SERVICE SECTION ////// */
+    .services-section {
+        margin: 8rem 1rem 0;
+    }
+
+    .img-and-services {
+        margin-top: 3rem;
+    }
+
+    /* ////// MARKET OVERVIEW SECTION ////// */
+    .market-overview-section {
+        margin: 5rem 1rem 0;
+    }
+
+    .market-overview-text p {
+        font-size: 0.8rem;
+    }
+
+    /* ////// ALWAYS ON SECTION ////// */
+    .always-container {
+        padding: 8rem 1rem 3rem;
+    }
+
+    .always-container img {
+        width: 80%;
+    }
+
+    /* .find-more {
+        margin: 3rem 0 0 2rem;
+    } */
+
+    /* ////// TRADING PACKAGE SECTION ////// */
+    .plan-container {
+        margin: 8rem 1.5rem 0;
+    }
+
+    .plan-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* ////// EXCHAGE SECTION ////// */
+    .exchage-crypto {
+        padding: 3rem 1rem 1.5rem;
+    }
+
+    .crypto-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* ////// REVIEW SECTION ////// */
+    .review-section {
+        margin: 8rem 1rem 0;
+    }
+
+    .testimony-text h5 {
+        font-size: 1rem;
+    }
+
+    .testimony-text small {
+        font-size: 0.7rem;
+    }
+
+    .testimony-text p {
+        font-size: 0.8rem;
+    }
+
+    /* ////// CALL TO ACTION ////// */
+    .call-to-action {
+        padding: 5rem 1rem;
+    }
+
+    .call-action {
+        flex-direction: column;
+        align-items: center;
+        justify-content:  center;
+        gap: 2rem;
+    }
+
+    .call-action div {
+        width: 100%;
+        text-align: center;
+    }
+
+    .call-action p {
+        margin-top: 0.5rem;
+    }
+
+    .call-action button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* ////// FOOTER SECTION ////// */
+    footer {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .footer-flex {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 3rem;
+    }
 }
