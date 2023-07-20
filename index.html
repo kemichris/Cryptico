@@ -221,155 +221,157 @@
       <!-- ////// MARKET OVERVIEW SECTION ////// -->
       <div class="market-overview-section">
         <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script
-            type="text/javascript"
-            src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
-            async
-          >
-              {
-              "colorTheme": "dark",
-              "dateRange": "12M",
-              "showChart": true,
-              "locale": "en",
-              "largeChartUrl": "",
-              "isTransparent": false,
-              "showSymbolLogo": true,
-              "showFloatingTooltip": true,
-              "width": "400",
-              "height": "660",
-              "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-              "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-              "gridLineColor": "rgba(240, 243, 250, 0)",
-              "scaleFontColor": "rgba(106, 109, 120, 1)",
-              "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-              "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-              "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-              "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-              "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
-              "tabs": [
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
+              async
+            >
                 {
-                  "title": "Indices",
-                  "symbols": [
-                    {
-                      "s": "FOREXCOM:SPXUSD",
-                      "d": "S&P 500"
-                    },
-                    {
-                      "s": "FOREXCOM:NSXUSD",
-                      "d": "US 100"
-                    },
-                    {
-                      "s": "FOREXCOM:DJI",
-                      "d": "Dow 30"
-                    },
-                    {
-                      "s": "INDEX:NKY",
-                      "d": "Nikkei 225"
-                    },
-                    {
-                      "s": "INDEX:DEU40",
-                      "d": "DAX Index"
-                    },
-                    {
-                      "s": "FOREXCOM:UKXGBP",
-                      "d": "UK 100"
-                    }
-                  ],
-                  "originalTitle": "Indices"
-                },
-                {
-                  "title": "Futures",
-                  "symbols": [
-                    {
-                      "s": "CME_MINI:ES1!",
-                      "d": "S&P 500"
-                    },
-                    {
-                      "s": "CME:6E1!",
-                      "d": "Euro"
-                    },
-                    {
-                      "s": "COMEX:GC1!",
-                      "d": "Gold"
-                    },
-                    {
-                      "s": "NYMEX:CL1!",
-                      "d": "Crude Oil"
-                    },
-                    {
-                      "s": "NYMEX:NG1!",
-                      "d": "Natural Gas"
-                    },
-                    {
-                      "s": "CBOT:ZC1!",
-                      "d": "Corn"
-                    }
-                  ],
-                  "originalTitle": "Futures"
-                },
-                {
-                  "title": "Forex",
-                  "symbols": [
-                    {
-                      "s": "FX:EURUSD",
-                      "d": "EUR/USD"
-                    },
-                    {
-                      "s": "FX:GBPUSD",
-                      "d": "GBP/USD"
-                    },
-                    {
-                      "s": "FX:USDJPY",
-                      "d": "USD/JPY"
-                    },
-                    {
-                      "s": "FX:USDCHF",
-                      "d": "USD/CHF"
-                    },
-                    {
-                      "s": "FX:AUDUSD",
-                      "d": "AUD/USD"
-                    },
-                    {
-                      "s": "FX:USDCAD",
-                      "d": "USD/CAD"
-                    }
-                  ],
-                  "originalTitle": "Forex"
-                },
-                {
-                  "title": "crypto",
-                  "symbols": [
-                    {
-                      "s": "BITSTAMP:BTCUSD",
-                      "d": "BTC/USD"
-                    },
-                    {
-                      "s": "BITSTAMP:ETHUSD",
-                      "d": "ETH/USD"
-                    },
-                    {
-                      "s": "BITSTAMP:LTCUSD",
-                      "d": "LTC/USD"
-                    },
-                    {
-                      "s": "BITSTAMP:DOGEUSD",
-                      "d": "DOGE/USD"
-                    },
-                    {
-                      "s": "BITSTAMP:XRPUSD",
-                      "d": "XRP/USD"
-                    },
-                    {
-                      "s": "BITSTAMP:ADAUSD",
-                      "d": "ADA/USD"
-                    }
-                  ]
-                }
-              ]
-            }
-          </script>
+                "colorTheme": "dark",
+                "dateRange": "1D",
+                "showChart": true,
+                "locale": "en",
+                "width": "100%",
+                "height": "100%",
+                "largeChartUrl": "",
+                "isTransparent": false,
+                "showSymbolLogo": true,
+                "showFloatingTooltip": false,
+                "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+                "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                "gridLineColor": "rgba(42, 46, 57, 0)",
+                "scaleFontColor": "rgba(134, 137, 147, 1)",
+                "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+                "tabs": [
+                  {
+                    "title": "Indices",
+                    "symbols": [
+                      {
+                        "s": "FOREXCOM:SPXUSD",
+                        "d": "S&P 500"
+                      },
+                      {
+                        "s": "FOREXCOM:NSXUSD",
+                        "d": "US 100"
+                      },
+                      {
+                        "s": "FOREXCOM:DJI",
+                        "d": "Dow 30"
+                      },
+                      {
+                        "s": "INDEX:NKY",
+                        "d": "Nikkei 225"
+                      },
+                      {
+                        "s": "INDEX:DEU40",
+                        "d": "DAX Index"
+                      },
+                      {
+                        "s": "FOREXCOM:UKXGBP",
+                        "d": "UK 100"
+                      }
+                    ],
+                    "originalTitle": "Indices"
+                  },
+                  {
+                    "title": "Futures",
+                    "symbols": [
+                      {
+                        "s": "CME_MINI:ES1!",
+                        "d": "S&P 500"
+                      },
+                      {
+                        "s": "CME:6E1!",
+                        "d": "Euro"
+                      },
+                      {
+                        "s": "COMEX:GC1!",
+                        "d": "Gold"
+                      },
+                      {
+                        "s": "NYMEX:CL1!",
+                        "d": "Crude Oil"
+                      },
+                      {
+                        "s": "NYMEX:NG1!",
+                        "d": "Natural Gas"
+                      },
+                      {
+                        "s": "CBOT:ZC1!",
+                        "d": "Corn"
+                      }
+                    ],
+                    "originalTitle": "Futures"
+                  },
+                  {
+                    "title": "Forex",
+                    "symbols": [
+                      {
+                        "s": "FX:EURUSD",
+                        "d": "EUR/USD"
+                      },
+                      {
+                        "s": "FX:GBPUSD",
+                        "d": "GBP/USD"
+                      },
+                      {
+                        "s": "FX:USDJPY",
+                        "d": "USD/JPY"
+                      },
+                      {
+                        "s": "FX:USDCHF",
+                        "d": "USD/CHF"
+                      },
+                      {
+                        "s": "FX:AUDUSD",
+                        "d": "AUD/USD"
+                      },
+                      {
+                        "s": "FX:USDCAD",
+                        "d": "USD/CAD"
+                      }
+                    ],
+                    "originalTitle": "Forex"
+                  },
+                  {
+                    "title": "Crypto",
+                    "symbols": [
+                      {
+                        "s": "BITSTAMP:BTCUSD",
+                        "d": "Bitcoin"
+                      },
+                      {
+                        "s": "BITSTAMP:ETHUSDT",
+                        "d": "Ethereum"
+                      },
+                      {
+                        "s": "BITSTAMP:LTCUSD",
+                        "d": "Litecoin"
+                      },
+                      {
+                        "s": "BINANCE:ADAUSDT",
+                        "d": "Cardano"
+                      },
+                      {
+                        "s": "BITSTAMP:DOGEUSD",
+                        "d": "Doge coin"
+                      },
+                      {
+                        "s": "BITSTAMP:XRPUSDT",
+                        "d": "Ripple"
+                      }
+                    ]
+                  }
+                ]
+              }
+            </script>
+          </div>
         </div>
 
         <div class="market-overview-text">
@@ -742,7 +744,7 @@
             </p>
           </div>
           <a href=""><button>Create free account</button></a>
-        </div>   
+        </div>
       </div>
     </main>
 

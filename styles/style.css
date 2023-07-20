@@ -4,6 +4,7 @@ body {
     font-family: 'Nunito Sans', sans-serif;
     overflow-x: hidden;
     margin: 0;
+    box-sizing: border-box;
 }
 
 button {
@@ -34,7 +35,7 @@ nav ul, .nav-items{
 nav ul {
     justify-content: space-between;
     margin: 0;
-    padding: 0;
+    padding: 0 4rem 0 0;
 }
 
 nav ul li {
@@ -43,7 +44,7 @@ nav ul li {
 
 .nav-items {
     gap: 2rem;
-    margin-right: 6rem;
+    /* margin-right: 6rem; */
 }
 
 .nav-items a {
@@ -74,6 +75,10 @@ nav ul li {
     border-right: 1px solid #D1DDEB;
     border-left: 1px solid #D1DDEB;
     box-shadow: 0 4px 8px #fff8f84d;
+}
+
+.nav-menu-icon {
+    display: none;
 }
 
 /* ////// TOP CONTAINER ////// */
@@ -212,6 +217,7 @@ h2 {
     margin: 16rem 8rem 0;
     display: flex;
     gap: 3rem;
+    height: fit-content;
 }
 
 .market-overview-text h2 {
@@ -222,6 +228,11 @@ h2 {
     margin: 0;
     line-height: 1.8rem;
     color: #8492a6;
+}
+
+.tradingview-widget-container {
+    width: 200rem;
+    height: 37.5rem;
 }
 
 /* ////// ALWAYS ON SECTION ////// */
@@ -682,7 +693,7 @@ footer {
     }
 
     .nav-menu-icon {
-        margin-right: 6rem;
+        display: inline;
         font-size: 2rem;
         color: #D1DDEB;
         cursor: pointer;
@@ -710,6 +721,10 @@ footer {
     /* ////// MARKET OVERVIEW SECTION ////// */
     .market-overview-section, .always-container {
         align-items: center;
+    }
+
+    .tradingview-widget-container {
+        width: 100%;
     }
 
     .market-overview-text p {
@@ -854,7 +869,7 @@ footer {
     }
 
     .nav-menu-icon {
-        margin-right: 2rem;
+        /* margin-right: 2rem; */
         font-size: 1.5rem;
     }
 
