@@ -1,74 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cryptico</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="assets/icons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/icons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/icons/favicon-16x16.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="manifest" href="assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="styles/style.css" />
-  </head>
-  <body>
-    <header>
-      <!-- ////// NAV BAR SECTION ////// -->
-      <nav>
-        <ul>
-          <li class="logo">
-            <a href="index.html">
-              <img src="assets/icons/crypt-logo.jpg" alt="" />
-            </a>
-          </li>
-          <div class="nav-items">
-            <li>
-              <a class="a-links" href="">About Us</a>
-            </li>
-            <li>
-              <a class="a-links" href="">Trading Plans</a>
-            </li>
-            <li>
-              <a class="a-links" href="">FAQ</a>
-            </li>
-            <li>
-              <a class="a-links" href="">Contact</a>
-            </li>
-            <li>
-              <a class="a-links" href="">Market Watch</a>
-            </li>
-            <a href="">
-              <button>Get started</button>
-            </a>
-          </div>
-          <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
-          <i class="fa-solid fa-x remove-nav-icon inactive" ></i>
-        </ul>
-      </nav>
-      <div class="mobile-menu inactive">
-        <ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryptico</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="manifest" href="assets/icons/site.webmanifest" />
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+  <header>
+    <!-- ////// NAV BAR SECTION ////// -->
+    <nav>
+      <ul>
+        <li class="logo">
+          <a href="index.html">
+            <img src="assets/icons/crypt-logo.jpg" alt="" />
+          </a>
+        </li>
+        <div class="nav-items">
           <li>
-            <a class="a-links" href="">About Us</a>
+            <a class="a-links" href="about.html">About Us</a>
           </li>
           <li>
             <a class="a-links" href="">Trading Plans</a>
@@ -85,34 +44,56 @@
           <a href="">
             <button>Get started</button>
           </a>
-        </ul>
-      </div>
-    </header>
-    <main>
-      <!-- ////// TOP CONTAINER ////// -->
-      <div class="top-container">
-        <div class="top-container-text">
-          <h1>Discover a superior approach to trading and investing.</h1>
-          <p>
-            Cryptico helps it's users trade the financial market and giving them
-            financial freedom seamlessly
-          </p>
-          <a href="">
-            <button>Get started</button>
-          </a>
         </div>
-        <img src="assets/images/phone-img.webp" alt="" />
+        <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+        <i class="fa-solid fa-x remove-nav-icon inactive"></i>
+      </ul>
+    </nav>
+    <div class="mobile-menu inactive">
+      <ul>
+        <li>
+          <a class="a-links" href="about.html">About Us</a>
+        </li>
+        <li>
+          <a class="a-links" href="">Trading Plans</a>
+        </li>
+        <li>
+          <a class="a-links" href="">FAQ</a>
+        </li>
+        <li>
+          <a class="a-links" href="">Contact</a>
+        </li>
+        <li>
+          <a class="a-links" href="">Market Watch</a>
+        </li>
+        <a href="">
+          <button>Get started</button>
+        </a>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <!-- ////// TOP CONTAINER ////// -->
+    <div class="top-container">
+      <div class="top-container-text">
+        <h1>Discover a superior approach to trading and investing.</h1>
+        <p>
+          Cryptico helps it's users trade the financial market and giving them
+          financial freedom seamlessly
+        </p>
+        <a href="">
+          <button>Get started</button>
+        </a>
       </div>
+      <img src="assets/images/phone-img.webp" alt="" />
+    </div>
 
-      <!-- TradingView Widget -->
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script
-          type="text/javascript"
-          src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-          async
-        >
-            {
+    <!-- TradingView Widget -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+        async>
+          {
             "symbols": [
               {
                 "proName": "FOREXCOM:SPXUSD",
@@ -155,661 +136,643 @@
                 "proName": "OANDA:GBPJPY"
               }
             ],
-            "showSymbolLogo": true,
-            "colorTheme": "dark",
-            "isTransparent": false,
-            "displayMode": "adaptive",
-            "locale": "en"
+              "showSymbolLogo": true,
+                "colorTheme": "dark",
+                  "isTransparent": false,
+                    "displayMode": "adaptive",
+                      "locale": "en"
           }
         </script>
-      </div>
+    </div>
 
-      <!-- ////// SECURITY SECTION ////// -->
-      <div class="security-container">
-        <h2>Prioritized security</h2>
-        <div class="security-flex">
-          <div class="security">
-            <img src="assets/images/security.png" alt="" />
-            <h3>Security</h3>
+    <!-- ////// SECURITY SECTION ////// -->
+    <div class="security-container">
+      <h2>Prioritized security</h2>
+      <div class="security-flex">
+        <div class="security">
+          <img src="assets/images/security.png" alt="" />
+          <h3>Security</h3>
+          <p>
+            To ensure the utmost protection against fraud, our company employs
+            the highest levels of Internet security, utilizing 256-bit SSL
+            security encryption. This robust encryption safeguards your
+            information, providing complete assurance of its security.
+          </p>
+        </div>
+        <div class="two-fa">
+          <img src="assets/images/twoFA.svg" alt="" />
+          <h3>Two Factor Auth</h3>
+          <p>
+            Two-factor authentication (2FA) by default on all trading
+            accounts, to securely protect you from unauthorised access and
+            impersonation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ////// SERVICES SECTION ////// -->
+    <div class="services-section">
+      <h2>Our Services</h2>
+      <p class="service-p">
+        It's our duty to provide you with a swift and a successful trading
+        experience!
+      </p>
+      <div class="img-and-services">
+        <img src="assets/images/service-img.png" alt="" />
+        <div class="services-grid">
+          <div class="high-leverage">
+            <i class="fa-solid fa-wallet"></i>
+            <h3>High leverage</h3>
             <p>
-              To ensure the utmost protection against fraud, our company employs
-              the highest levels of Internet security, utilizing 256-bit SSL
-              security encryption. This robust encryption safeguards your
-              information, providing complete assurance of its security.
+              Chance to magnify your trading investment and really win big
+              with super-low spreads to further up your profits
             </p>
           </div>
-          <div class="two-fa">
-            <img src="assets/images/twoFA.svg" alt="" />
-            <h3>Two Factor Auth</h3>
+          <div class="fast-execution">
+            <i class="fa-sharp fa-solid fa-bolt"></i>
+            <h3>Fast execution</h3>
             <p>
-              Two-factor authentication (2FA) by default on all trading
-              accounts, to securely protect you from unauthorised access and
-              impersonation.
+              We use super fast tradin algorithms, so you never suffer
+              slippage
             </p>
+          </div>
+          <div class="powerful-trading">
+            <i class="fa-brands fa-superpowers"></i>
+            <h3>Powerful trading platform</h3>
+            <p>
+              Cryptico offers multiple trading options to cover the needs of
+              each type of trader and investors .
+            </p>
+          </div>
+          <div class="ultimate-securiy">
+            <i class="fa-sharp fa-solid fa-shield"></i>
+            <h3>Ultimate Security</h3>
+            <p>
+              With advanced security systems, we keep your account always
+              protected.
+            </p>
+          </div>
+          <div class="live-support">
+            <i class="fa-solid fa-message"></i>
+            <h3>24/7 live chat support</h3>
+            <p>Connect with our 24/7 support and market analyst on demand</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ////// SERVICES SECTION ////// -->
-      <div class="services-section">
-        <h2>Our Services</h2>
-        <p class="service-p">
-          It's our duty to provide you with a swift and a successful trading
-          experience!
-        </p>
-        <div class="img-and-services">
-          <img src="assets/images/service-img.png" alt="" />
-          <div class="services-grid">
-            <div class="high-leverage">
-              <i class="fa-solid fa-wallet"></i>
-              <h3>High leverage</h3>
-              <p>
-                Chance to magnify your trading investment and really win big
-                with super-low spreads to further up your profits
-              </p>
-            </div>
-            <div class="fast-execution">
-              <i class="fa-sharp fa-solid fa-bolt"></i>
-              <h3>Fast execution</h3>
-              <p>
-                We use super fast tradin algorithms, so you never suffer
-                slippage
-              </p>
-            </div>
-            <div class="powerful-trading">
-              <i class="fa-brands fa-superpowers"></i>
-              <h3>Powerful trading platform</h3>
-              <p>
-                Cryptico offers multiple trading options to cover the needs of
-                each type of trader and investors .
-              </p>
-            </div>
-            <div class="ultimate-securiy">
-              <i class="fa-sharp fa-solid fa-shield"></i>
-              <h3>Ultimate Security</h3>
-              <p>
-                With advanced security systems, we keep your account always
-                protected.
-              </p>
-            </div>
-            <div class="live-support">
-              <i class="fa-solid fa-message"></i>
-              <h3>24/7 live chat support</h3>
-              <p>Connect with our 24/7 support and market analyst on demand</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ////// MARKET OVERVIEW SECTION ////// -->
-      <div class="market-overview-section">
+    <!-- ////// MARKET OVERVIEW SECTION ////// -->
+    <div class="market-overview-section">
+      <div class="tradingview-widget-container">
         <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script
-              type="text/javascript"
-              src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
-              async
-            >
-                {
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+              {
                 "colorTheme": "dark",
-                "dateRange": "1D",
-                "showChart": true,
-                "locale": "en",
-                "width": "100%",
-                "height": "100%",
-                "largeChartUrl": "",
-                "isTransparent": false,
-                "showSymbolLogo": true,
-                "showFloatingTooltip": false,
-                "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-                "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-                "gridLineColor": "rgba(42, 46, 57, 0)",
-                "scaleFontColor": "rgba(134, 137, 147, 1)",
-                "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-                "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-                "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-                "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-                "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
-                "tabs": [
-                  {
-                    "title": "Indices",
-                    "symbols": [
-                      {
-                        "s": "FOREXCOM:SPXUSD",
-                        "d": "S&P 500"
-                      },
-                      {
-                        "s": "FOREXCOM:NSXUSD",
-                        "d": "US 100"
-                      },
-                      {
-                        "s": "FOREXCOM:DJI",
-                        "d": "Dow 30"
-                      },
-                      {
-                        "s": "INDEX:NKY",
-                        "d": "Nikkei 225"
-                      },
-                      {
-                        "s": "INDEX:DEU40",
-                        "d": "DAX Index"
-                      },
-                      {
-                        "s": "FOREXCOM:UKXGBP",
-                        "d": "UK 100"
-                      }
-                    ],
-                    "originalTitle": "Indices"
-                  },
-                  {
-                    "title": "Futures",
-                    "symbols": [
-                      {
-                        "s": "CME_MINI:ES1!",
-                        "d": "S&P 500"
-                      },
-                      {
-                        "s": "CME:6E1!",
-                        "d": "Euro"
-                      },
-                      {
-                        "s": "COMEX:GC1!",
-                        "d": "Gold"
-                      },
-                      {
-                        "s": "NYMEX:CL1!",
-                        "d": "Crude Oil"
-                      },
-                      {
-                        "s": "NYMEX:NG1!",
-                        "d": "Natural Gas"
-                      },
-                      {
-                        "s": "CBOT:ZC1!",
-                        "d": "Corn"
-                      }
-                    ],
-                    "originalTitle": "Futures"
-                  },
-                  {
-                    "title": "Forex",
-                    "symbols": [
-                      {
-                        "s": "FX:EURUSD",
-                        "d": "EUR/USD"
-                      },
-                      {
-                        "s": "FX:GBPUSD",
-                        "d": "GBP/USD"
-                      },
-                      {
-                        "s": "FX:USDJPY",
-                        "d": "USD/JPY"
-                      },
-                      {
-                        "s": "FX:USDCHF",
-                        "d": "USD/CHF"
-                      },
-                      {
-                        "s": "FX:AUDUSD",
-                        "d": "AUD/USD"
-                      },
-                      {
-                        "s": "FX:USDCAD",
-                        "d": "USD/CAD"
-                      }
-                    ],
-                    "originalTitle": "Forex"
-                  },
-                  {
-                    "title": "Crypto",
-                    "symbols": [
-                      {
-                        "s": "BITSTAMP:BTCUSD",
-                        "d": "Bitcoin"
-                      },
-                      {
-                        "s": "BITSTAMP:ETHUSDT",
-                        "d": "Ethereum"
-                      },
-                      {
-                        "s": "BITSTAMP:LTCUSD",
-                        "d": "Litecoin"
-                      },
-                      {
-                        "s": "BINANCE:ADAUSDT",
-                        "d": "Cardano"
-                      },
-                      {
-                        "s": "BITSTAMP:DOGEUSD",
-                        "d": "Doge coin"
-                      },
-                      {
-                        "s": "BITSTAMP:XRPUSDT",
-                        "d": "Ripple"
-                      }
-                    ]
-                  }
-                ]
+                  "dateRange": "1D",
+                    "showChart": true,
+                      "locale": "en",
+                        "width": "100%",
+                          "height": "100%",
+                            "largeChartUrl": "",
+                              "isTransparent": false,
+                                "showSymbolLogo": true,
+                                  "showFloatingTooltip": false,
+                                    "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+                                      "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                                        "gridLineColor": "rgba(42, 46, 57, 0)",
+                                          "scaleFontColor": "rgba(134, 137, 147, 1)",
+                                            "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                                              "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                                                "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                                                  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                                                    "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+                                                      "tabs": [
+                                                        {
+                                                          "title": "Indices",
+                                                          "symbols": [
+                                                            {
+                                                              "s": "FOREXCOM:SPXUSD",
+                                                              "d": "S&P 500"
+                                                            },
+                                                            {
+                                                              "s": "FOREXCOM:NSXUSD",
+                                                              "d": "US 100"
+                                                            },
+                                                            {
+                                                              "s": "FOREXCOM:DJI",
+                                                              "d": "Dow 30"
+                                                            },
+                                                            {
+                                                              "s": "INDEX:NKY",
+                                                              "d": "Nikkei 225"
+                                                            },
+                                                            {
+                                                              "s": "INDEX:DEU40",
+                                                              "d": "DAX Index"
+                                                            },
+                                                            {
+                                                              "s": "FOREXCOM:UKXGBP",
+                                                              "d": "UK 100"
+                                                            }
+                                                          ],
+                                                          "originalTitle": "Indices"
+                                                        },
+                                                        {
+                                                          "title": "Futures",
+                                                          "symbols": [
+                                                            {
+                                                              "s": "CME_MINI:ES1!",
+                                                              "d": "S&P 500"
+                                                            },
+                                                            {
+                                                              "s": "CME:6E1!",
+                                                              "d": "Euro"
+                                                            },
+                                                            {
+                                                              "s": "COMEX:GC1!",
+                                                              "d": "Gold"
+                                                            },
+                                                            {
+                                                              "s": "NYMEX:CL1!",
+                                                              "d": "Crude Oil"
+                                                            },
+                                                            {
+                                                              "s": "NYMEX:NG1!",
+                                                              "d": "Natural Gas"
+                                                            },
+                                                            {
+                                                              "s": "CBOT:ZC1!",
+                                                              "d": "Corn"
+                                                            }
+                                                          ],
+                                                          "originalTitle": "Futures"
+                                                        },
+                                                        {
+                                                          "title": "Forex",
+                                                          "symbols": [
+                                                            {
+                                                              "s": "FX:EURUSD",
+                                                              "d": "EUR/USD"
+                                                            },
+                                                            {
+                                                              "s": "FX:GBPUSD",
+                                                              "d": "GBP/USD"
+                                                            },
+                                                            {
+                                                              "s": "FX:USDJPY",
+                                                              "d": "USD/JPY"
+                                                            },
+                                                            {
+                                                              "s": "FX:USDCHF",
+                                                              "d": "USD/CHF"
+                                                            },
+                                                            {
+                                                              "s": "FX:AUDUSD",
+                                                              "d": "AUD/USD"
+                                                            },
+                                                            {
+                                                              "s": "FX:USDCAD",
+                                                              "d": "USD/CAD"
+                                                            }
+                                                          ],
+                                                          "originalTitle": "Forex"
+                                                        },
+                                                        {
+                                                          "title": "Crypto",
+                                                          "symbols": [
+                                                            {
+                                                              "s": "BITSTAMP:BTCUSD",
+                                                              "d": "Bitcoin"
+                                                            },
+                                                            {
+                                                              "s": "BITSTAMP:ETHUSDT",
+                                                              "d": "Ethereum"
+                                                            },
+                                                            {
+                                                              "s": "BITSTAMP:LTCUSD",
+                                                              "d": "Litecoin"
+                                                            },
+                                                            {
+                                                              "s": "BINANCE:ADAUSDT",
+                                                              "d": "Cardano"
+                                                            },
+                                                            {
+                                                              "s": "BITSTAMP:DOGEUSD",
+                                                              "d": "Doge coin"
+                                                            },
+                                                            {
+                                                              "s": "BITSTAMP:XRPUSDT",
+                                                              "d": "Ripple"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
               }
             </script>
-          </div>
-        </div>
-
-        <div class="market-overview-text">
-          <h2>Market overview</h2>
-          <p>
-            Take a brief overview of the most recent market movements spanning
-            different sectors. The foreign exchange (forex) market serves as a
-            platform where individuals can engage in buying, selling, hedging,
-            and speculating on currency pair exchange rates. Recognized as the
-            most fluid market globally, the forex market exhibits high liquidity
-            due to the cash nature of its assets. With a staggering daily
-            transaction volume surpassing $5 trillion, it outperforms both the
-            futures and equity markets combined. Similar to over-the-counter
-            (OTC) markets, the forex market operates in a decentralized manner,
-            incorporating a worldwide network of computers and brokers.
-          </p>
         </div>
       </div>
 
-      <!-- ////// ALWAYS ON THE GO SECTION ////// -->
-      <div class="always-container">
-        <img src="assets/images/allways-img.png" alt="" />
-        <div class="always-text">
-          <h2>
-            Always on the go? Mobile trading is always easy with Cryptico!
-          </h2>
-          <p>
-            Experience the true freedom of trading by accessing our advanced
-            trading system, allowing you to trade effortlessly on the go.
-          </p>
-          <a class="find-more" href="">Find out more ></a>
-        </div>
-      </div>
-
-      <!-- ////// PLAN SECTION ////// -->
-      <div class="plan-container">
-        <h2>Trading Plan</h2>
-        <p class="select-p">Select your preferred investment method with us.</p>
-        <div class="plan-cards">
-          <div class="starter">
-            <h4>Starter</h4>
-            <p class="plan-price">$ 500</p>
-            <small class="plan-duration">7 days</small>
-            <div class="plan-perks">
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
-                $500
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Maximum possible
-                deposit: $999
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Minimum return:
-                $2250
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> maximum return:
-                $4500
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $0
-              </p>
-            </div>
-            <button>Buy Plan</button>
-          </div>
-
-          <div class="intermediate">
-            <h4>Intermediate</h4>
-            <p class="plan-price">$ 1000</p>
-            <small class="plan-duration">7 days</small>
-            <div class="plan-perks">
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
-                $1000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Maximum possible
-                deposit: $2499
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Minimum return:
-                $3000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> maximum return:
-                $6000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $200
-              </p>
-            </div>
-            <button>Buy Plan</button>
-          </div>
-
-          <div class="basic">
-            <h4>Basic</h4>
-            <p class="plan-price">$ 2500</p>
-            <small class="plan-duration">7 days</small>
-            <div class="plan-perks">
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
-                $2500
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Maximum possible
-                deposit: $4999
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Minimum return:
-                $6000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> maximum return:
-                $14000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $400
-              </p>
-            </div>
-            <button>Buy Plan</button>
-          </div>
-
-          <div class="pro">
-            <h4>Pro</h4>
-            <p class="plan-price">$ 5000</p>
-            <small class="plan-duration">7 days</small>
-            <div class="plan-perks">
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
-                $5000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Maximum possible
-                deposit: $9999
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Minimum return:
-                $15000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> maximum return:
-                $30000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $600
-              </p>
-            </div>
-            <button>Buy Plan</button>
-          </div>
-
-          <div class="executive">
-            <h4>Executive</h4>
-            <p class="plan-price">$ 10000</p>
-            <small class="plan-duration">7 days</small>
-            <div class="plan-perks">
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
-                $10000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Maximum possible
-                deposit: $24999
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Minimum return:
-                $35000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> maximum return:
-                $84000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $800
-              </p>
-            </div>
-            <button>Buy Plan</button>
-          </div>
-
-          <div class="silver">
-            <h4>Silver</h4>
-            <p class="plan-price">$ 25000</p>
-            <small class="plan-duration">7 days</small>
-            <div class="plan-perks">
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
-                $25000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Maximum possible
-                deposit: $150000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Minimum return:
-                $100000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> maximum return:
-                $900000
-              </p>
-              <p>
-                <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $1200
-              </p>
-            </div>
-            <button>Buy Plan</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ////// EXCHANGE CRYPTO SECTION ////// -->
-      <div class="exchage-crypto">
-        <h2>Cryptocurrency Exchange</h2>
-        <p class="exchage-p">
-          In addition to Forex, stocks, and commodities, we offer you the
-          opportunity to directly trade and exchange leading cryptocurrencies
-          through Cryptico.
+      <div class="market-overview-text">
+        <h2>Market overview</h2>
+        <p>
+          Take a brief overview of the most recent market movements spanning
+          different sectors. The foreign exchange (forex) market serves as a
+          platform where individuals can engage in buying, selling, hedging,
+          and speculating on currency pair exchange rates. Recognized as the
+          most fluid market globally, the forex market exhibits high liquidity
+          due to the cash nature of its assets. With a staggering daily
+          transaction volume surpassing $5 trillion, it outperforms both the
+          futures and equity markets combined. Similar to over-the-counter
+          (OTC) markets, the forex market operates in a decentralized manner,
+          incorporating a worldwide network of computers and brokers.
         </p>
-        <div class="crypto-cards">
-          <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
-          <coingecko-coin-ticker-widget
-            coin-id="bitcoin"
-            currency="usd"
-            locale="en"
-            background-color="#D1DDEB"
-          ></coingecko-coin-ticker-widget>
-          <coingecko-coin-ticker-widget
-            coin-id="ethereum"
-            currency="usd"
-            locale="en"
-            background-color="#D1DDEB"
-          ></coingecko-coin-ticker-widget>
-          <coingecko-coin-ticker-widget
-            coin-id="litecoin"
-            currency="usd"
-            locale="en"
-            background-color="#D1DDEB"
-          ></coingecko-coin-ticker-widget>
-        </div>
       </div>
+    </div>
 
-      <!-- ////// REVIEW SECTION ////// -->
-      <div class="review-section">
-        <h2 class="btn1">What other people say about us</h2>
-        <p class="review-p">
-          Allow our clients testimonials to speak for themselves - here's what a
-          few of them have to say about us.
+    <!-- ////// ALWAYS ON THE GO SECTION ////// -->
+    <div class="always-container">
+      <img src="assets/images/allways-img.png" alt="" />
+      <div class="always-text">
+        <h2>
+          Always on the go? Mobile trading is always easy with Cryptico!
+        </h2>
+        <p>
+          Experience the true freedom of trading by accessing our advanced
+          trading system, allowing you to trade effortlessly on the go.
         </p>
-        <div class="testimony-container">
-          <div class="testimony">
-            <img src="assets/images/testimony-img1.jpg" alt="" />
-            <div class="testimony-text">
-              <h5>Alfonso C. Johnson</h5>
-              <small>2097 Bombardier Way Westerville, OH 43081</small>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "I wanted to express my appreciation for the outstanding quality
-                of your website, content, and daily analysis. Throughout my
-                trading journey, I've encountered several price action Forex
-                investment sites, but your trading plans surpass them all in
-                terms of value and offerings. Bravo to you!"
-              </p>
-            </div>
-          </div>
-
-          <div class="testimony">
-            <img src="assets/images/testimony-img1.jpg" alt="" />
-            <div class="testimony-text">
-              <h5>Alfonso C. Johnson</h5>
-              <small>2097 Bombardier Way Westerville, OH 43081</small>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "I wanted to express my appreciation for the outstanding quality
-                of your website, content, and daily analysis. Throughout my
-                trading journey, I've encountered several price action Forex
-                investment sites, but your trading plans surpass them all in
-                terms of value and offerings. Bravo to you!"
-              </p>
-            </div>
-          </div>
-
-          <div class="testimony">
-            <img src="assets/images/testimony-img1.jpg" alt="" />
-            <div class="testimony-text">
-              <h5>Alfonso C. Johnson</h5>
-              <small>2097 Bombardier Way Westerville, OH 43081</small>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "I wanted to express my appreciation for the outstanding quality
-                of your website, content, and daily analysis. Throughout my
-                trading journey, I've encountered several price action Forex
-                investment sites, but your trading plans surpass them all in
-                terms of value and offerings. Bravo to you!"
-              </p>
-            </div>
-          </div>
-
-          <div class="testimony">
-            <img src="assets/images/testimony-img1.jpg" alt="" />
-            <div class="testimony-text">
-              <h5>Alfonso C. Johnson</h5>
-              <small>2097 Bombardier Way Westerville, OH 43081</small>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "I wanted to express my appreciation for the outstanding quality
-                of your website, content, and daily analysis. Throughout my
-                trading journey, I've encountered several price action Forex
-                investment sites, but your trading plans surpass them all in
-                terms of value and offerings. Bravo to you!"
-              </p>
-            </div>
-          </div>
-
-          <div class="testimony">
-            <img src="assets/images/testimony-img1.jpg" alt="" />
-            <div class="testimony-text">
-              <h5>Alfonso C. Johnson</h5>
-              <small>2097 Bombardier Way Westerville, OH 43081</small>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "I wanted to express my appreciation for the outstanding quality
-                of your website, content, and daily analysis. Throughout my
-                trading journey, I've encountered several price action Forex
-                investment sites, but your trading plans surpass them all in
-                terms of value and offerings. Bravo to you!"
-              </p>
-            </div>
-          </div>
-        </div>
+        <a class="find-more" href="">Find out more ></a>
       </div>
+    </div>
 
-      <!-- ////// CALL TO ACTION ////// -->
-      <div class="call-to-action">
-        <div class="call-action">
-          <div>
-            <h2>Get started now</h2>
+    <!-- ////// PLAN SECTION ////// -->
+    <div class="plan-container">
+      <h2>Trading Plan</h2>
+      <p class="select-p">Select your preferred investment method with us.</p>
+      <div class="plan-cards">
+        <div class="starter">
+          <h4>Starter</h4>
+          <p class="plan-price">$ 500</p>
+          <small class="plan-duration">7 days</small>
+          <div class="plan-perks">
             <p>
-              Cryptico assists more than 1 million customers in realizing their
-              financial objectives by providing seamless trading and investment
-              solutions.
+              <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
+              $500
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Maximum possible
+              deposit: $999
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Minimum return:
+              $2250
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> maximum return:
+              $4500
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $0
             </p>
           </div>
-          <a href=""><button>Create free account</button></a>
+          <button>Buy Plan</button>
+        </div>
+
+        <div class="intermediate">
+          <h4>Intermediate</h4>
+          <p class="plan-price">$ 1000</p>
+          <small class="plan-duration">7 days</small>
+          <div class="plan-perks">
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
+              $1000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Maximum possible
+              deposit: $2499
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Minimum return:
+              $3000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> maximum return:
+              $6000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $200
+            </p>
+          </div>
+          <button>Buy Plan</button>
+        </div>
+
+        <div class="basic">
+          <h4>Basic</h4>
+          <p class="plan-price">$ 2500</p>
+          <small class="plan-duration">7 days</small>
+          <div class="plan-perks">
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
+              $2500
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Maximum possible
+              deposit: $4999
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Minimum return:
+              $6000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> maximum return:
+              $14000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $400
+            </p>
+          </div>
+          <button>Buy Plan</button>
+        </div>
+
+        <div class="pro">
+          <h4>Pro</h4>
+          <p class="plan-price">$ 5000</p>
+          <small class="plan-duration">7 days</small>
+          <div class="plan-perks">
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
+              $5000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Maximum possible
+              deposit: $9999
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Minimum return:
+              $15000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> maximum return:
+              $30000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $600
+            </p>
+          </div>
+          <button>Buy Plan</button>
+        </div>
+
+        <div class="executive">
+          <h4>Executive</h4>
+          <p class="plan-price">$ 10000</p>
+          <small class="plan-duration">7 days</small>
+          <div class="plan-perks">
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
+              $10000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Maximum possible
+              deposit: $24999
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Minimum return:
+              $35000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> maximum return:
+              $84000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $800
+            </p>
+          </div>
+          <button>Buy Plan</button>
+        </div>
+
+        <div class="silver">
+          <h4>Silver</h4>
+          <p class="plan-price">$ 25000</p>
+          <small class="plan-duration">7 days</small>
+          <div class="plan-perks">
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Mininum deposit:
+              $25000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Maximum possible
+              deposit: $150000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Minimum return:
+              $100000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> maximum return:
+              $900000
+            </p>
+            <p>
+              <i class="fa-brands fa-galactic-republic"></i> Gift bonus: $1200
+            </p>
+          </div>
+          <button>Buy Plan</button>
         </div>
       </div>
-    </main>
+    </div>
 
-    <footer>
-      <div class="footer-flex">
-        <div class="logo-socials">
-          <h4>Cryptico</h4>
-          <p>
-            Trading while on the move has been streamlined and made incredibly
-            convenient.
-          </p>
-          <div class="socials">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><i class="fa-brands fa-whatsapp"></i
-            ></a>
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><i class="fa-brands fa-telegram"></i
-            ></a>
+    <!-- ////// EXCHANGE CRYPTO SECTION ////// -->
+    <div class="exchage-crypto">
+      <h2>Cryptocurrency Exchange</h2>
+      <p class="exchage-p">
+        In addition to Forex, stocks, and commodities, we offer you the
+        opportunity to directly trade and exchange leading cryptocurrencies
+        through Cryptico.
+      </p>
+      <div class="crypto-cards">
+        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
+        <coingecko-coin-ticker-widget coin-id="bitcoin" currency="usd" locale="en"
+          background-color="#D1DDEB"></coingecko-coin-ticker-widget>
+        <coingecko-coin-ticker-widget coin-id="ethereum" currency="usd" locale="en"
+          background-color="#D1DDEB"></coingecko-coin-ticker-widget>
+        <coingecko-coin-ticker-widget coin-id="litecoin" currency="usd" locale="en"
+          background-color="#D1DDEB"></coingecko-coin-ticker-widget>
+      </div>
+    </div>
+
+    <!-- ////// REVIEW SECTION ////// -->
+    <div class="review-section">
+      <h2 class="btn1">What other people say about us</h2>
+      <p class="review-p">
+        Allow our clients testimonials to speak for themselves - here's what a
+        few of them have to say about us.
+      </p>
+      <div class="testimony-container">
+        <div class="testimony">
+          <img src="assets/images/testimony-img1.jpg" alt="" />
+          <div class="testimony-text">
+            <h5>Alfonso C. Johnson</h5>
+            <small>2097 Bombardier Way Westerville, OH 43081</small>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p>
+              "I wanted to express my appreciation for the outstanding quality
+              of your website, content, and daily analysis. Throughout my
+              trading journey, I've encountered several price action Forex
+              investment sites, but your trading plans surpass them all in
+              terms of value and offerings. Bravo to you!"
+            </p>
           </div>
         </div>
 
-        <div class="useful-links">
-          <h4>Useful links</h4>
-          <a href="">Home</a>
-          <a href="">About us</a>
-          <a href="">Contact us</a>
-          <a href="">Faq</a>
+        <div class="testimony">
+          <img src="assets/images/testimony-img1.jpg" alt="" />
+          <div class="testimony-text">
+            <h5>Alfonso C. Johnson</h5>
+            <small>2097 Bombardier Way Westerville, OH 43081</small>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p>
+              "I wanted to express my appreciation for the outstanding quality
+              of your website, content, and daily analysis. Throughout my
+              trading journey, I've encountered several price action Forex
+              investment sites, but your trading plans surpass them all in
+              terms of value and offerings. Bravo to you!"
+            </p>
+          </div>
         </div>
 
-        <div class="contact-details">
-          <h4>Contact details</h4>
-          <h5><i class="fa-solid fa-house"></i> Head office</h5>
-          <p>9 Manor Close DINNINGTON TA17 5JG</p>
-          <h5><i class="fa-solid fa-envelope"></i> Email address</h5>
-          <p>HaydenBarker@armyspy.com</p>
-          <h5><i class="fa-solid fa-phone"></i> Phone number</h5>
-          <p>+1 (605) 832-6310</p>
+        <div class="testimony">
+          <img src="assets/images/testimony-img1.jpg" alt="" />
+          <div class="testimony-text">
+            <h5>Alfonso C. Johnson</h5>
+            <small>2097 Bombardier Way Westerville, OH 43081</small>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p>
+              "I wanted to express my appreciation for the outstanding quality
+              of your website, content, and daily analysis. Throughout my
+              trading journey, I've encountered several price action Forex
+              investment sites, but your trading plans surpass them all in
+              terms of value and offerings. Bravo to you!"
+            </p>
+          </div>
+        </div>
+
+        <div class="testimony">
+          <img src="assets/images/testimony-img1.jpg" alt="" />
+          <div class="testimony-text">
+            <h5>Alfonso C. Johnson</h5>
+            <small>2097 Bombardier Way Westerville, OH 43081</small>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p>
+              "I wanted to express my appreciation for the outstanding quality
+              of your website, content, and daily analysis. Throughout my
+              trading journey, I've encountered several price action Forex
+              investment sites, but your trading plans surpass them all in
+              terms of value and offerings. Bravo to you!"
+            </p>
+          </div>
+        </div>
+
+        <div class="testimony">
+          <img src="assets/images/testimony-img1.jpg" alt="" />
+          <div class="testimony-text">
+            <h5>Alfonso C. Johnson</h5>
+            <small>2097 Bombardier Way Westerville, OH 43081</small>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p>
+              "I wanted to express my appreciation for the outstanding quality
+              of your website, content, and daily analysis. Throughout my
+              trading journey, I've encountered several price action Forex
+              investment sites, but your trading plans surpass them all in
+              terms of value and offerings. Bravo to you!"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ////// CALL TO ACTION ////// -->
+    <div class="call-to-action">
+      <div class="call-action">
+        <div>
+          <h2>Get started now</h2>
+          <p>
+            Cryptico assists more than 1 million customers in realizing their
+            financial objectives by providing seamless trading and investment
+            solutions.
+          </p>
+        </div>
+        <a href=""><button>Create free account</button></a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-flex">
+      <div class="logo-socials">
+        <h4>Cryptico</h4>
+        <p>
+          Trading while on the move has been streamlined and made incredibly
+          convenient.
+        </p>
+        <div class="socials">
+          <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a>
         </div>
       </div>
 
-      <p class="copyright">© Copyright 2023 Cryptico AllRights Reserved.</p>
-    </footer>
-    <script src="scripts/main.js"></script>
-  </body>
+      <div class="useful-links">
+        <h4>Useful links</h4>
+        <a href="">Home</a>
+        <a href="">About us</a>
+        <a href="">Contact us</a>
+        <a href="">Faq</a>
+      </div>
+
+      <div class="contact-details">
+        <h4>Contact details</h4>
+        <h5><i class="fa-solid fa-house"></i> Head office</h5>
+        <p>9 Manor Close DINNINGTON TA17 5JG</p>
+        <h5><i class="fa-solid fa-envelope"></i> Email address</h5>
+        <p>HaydenBarker@armyspy.com</p>
+        <h5><i class="fa-solid fa-phone"></i> Phone number</h5>
+        <p>+1 (605) 832-6310</p>
+      </div>
+    </div>
+
+    <p class="copyright">© Copyright 2023 Cryptico AllRights Reserved.</p>
+  </footer>
+  <script src="scripts/main.js"></script>
+</body>
+
 </html>

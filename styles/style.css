@@ -53,6 +53,10 @@ nav ul li {
     font-size: 1rem;
 }
 
+.nav-items .a-links.active {
+    border-bottom: 1px solid #D1DDEB;
+}
+
 .nav-items .a-links:hover {
     border-bottom: 1px solid #D1DDEB;
     padding-bottom: 0.2rem;
@@ -379,7 +383,7 @@ h2 {
 
 /* ////// REVIEW SECTION ////// */
 .review-section {
-    margin: 16rem 8rem 0;
+    margin: 16rem 8rem 6rem;
 }
 
 .review-section h2 {
@@ -445,7 +449,6 @@ h2 {
 /* ////// CALL TO ACTION ////// */
 .call-to-action {
     background-color: #16122C;
-    margin-top: 6rem;
     padding: 8rem;
 }
 
@@ -553,6 +556,102 @@ footer {
     color: #16122C;
 }
 
+
+/* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
+
+/* ////// ABOUT TOP CONTAINER SECTION ////// */
+.about-top-container {
+    padding:5rem 5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D1DDEB;
+    height: 50vh;
+}
+
+.about-top-container h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+/* ////// WO WE ARE ////// */
+.who-we-are {
+    margin: 8rem 8rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.who-we-are img {
+    width: 100%;
+    height: auto;
+}
+
+.who-we-are h2 {
+    margin: 0;
+}
+
+.who-we-are p {
+    color: #8492a6;
+    font-size: 1rem;
+}
+
+.who-we-are button {
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    background-color: #16122C;
+    color: #D1DDEB;
+    border-radius: 0.3rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.who-we-are button:hover {
+    filter: brightness(0.9);
+}
+
+/* ////// HOW TO GET STARTED ////// */
+.how-to-get-started {
+    background-color: #D1DDEB;
+    padding: 5rem 8rem 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.how-to-get-started h2 {
+    text-align: center;
+}
+
+.get-started-flex {
+    display: flex;
+    gap: 3rem;
+    margin-top: 5rem;
+}
+
+.get-started-flex div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.get-started-flex i {
+    background-color: #16122C;
+    padding: 1rem;
+    color: #D1DDEB;
+}
+
+.get-started-flex h3 {
+    color: #16122C;
+    text-align: center;
+}
+
+.get-started-flex div p {
+    text-align: center;
+    margin: 0;
+}
+
 @media (max-width:1290px) {
     /* ////// TRADING PACKAGE SECTION ////// */
     .plan-perks p {
@@ -592,6 +691,14 @@ footer {
         font-size: 0.8rem;
         margin: 0;
         color: #8492a6;
+    }
+
+
+    /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
+
+    /* ////// WO WE ARE ////// */
+    .who-we-are img {
+        width: 50%;
     }
 }
 
@@ -661,6 +768,22 @@ footer {
         padding: 3rem 3rem 2rem;
     }
 
+    /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
+
+    /* ////// ABOUT TOP CONTAINER SECTION ////// */
+    .about-top-container h1 {
+        font-size: 2.5rem;
+    }
+
+    /* ////// WO WE ARE ////// */
+    .who-we-are {
+        margin: 8rem 3rem;
+    }
+
+    /* ////// HOW TO GET STARTED ////// */
+    .how-to-get-started {
+        padding: 5rem 3rem 8rem;
+    }
 
 }
 
@@ -784,10 +907,6 @@ footer {
         text-align: center;
     }
 
-    /* .find-more {
-        text-align: end;
-    } */
-
     /* ////// TRADING PACKAGE SECTION ////// */
     .plan-cards {
         grid-template-columns: repeat(2, 1fr);
@@ -809,8 +928,7 @@ footer {
     
     .socials a{
         font-size: 1.5rem;
-    }
-    
+    }    
     
     .useful-links a {
         font-size: 0.8rem;
@@ -823,6 +941,32 @@ footer {
 
     .contact-details p {
         font-size: 0.8rem;
+    }
+
+    /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
+
+    /* ////// WO WE ARE ////// */
+    .who-we-are {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .who-we-are img {
+        width: 100%;
+    }
+    
+    .who-we-are-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .who-we-are h2, .who-we-are p {
+        text-align: center;
+    }
+
+    .who-we-are button {
+        margin: 1rem;
     }
 
 
@@ -898,6 +1042,29 @@ footer {
     /* ////// FOOTER SECTION ////// */
     footer {
         padding: 3rem 1.5rem 2rem;
+    }
+
+    /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
+
+    /* ////// ABOUT TOP CONTAINER SECTION ////// */
+    .about-top-container {
+        padding:5rem 1.5rem 0;
+    }
+
+    /* ////// WO WE ARE ////// */
+    .who-we-are {
+        margin: 8rem 1.5rem;
+    }
+
+    /* ////// HOW TO GET STARTED ////// */
+    .how-to-get-started {
+        padding: 5rem 1.5rem 8rem;
+    }
+
+    .get-started-flex {
+        display: flex;
+        flex-direction: column;
+        margin-top: 3rem;
     }
 }
 
@@ -1031,5 +1198,22 @@ footer {
     .footer-flex {
         grid-template-columns: repeat(1, 1fr);
         gap: 3rem;
+    }
+
+    /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
+
+    /* ////// ABOUT TOP CONTAINER SECTION ////// */
+    .about-top-container h1 {
+        font-size: 2rem;
+    }
+
+    /* ////// WO WE ARE ////// */
+    .who-we-are {
+        margin: 8rem 1rem;
+    }
+
+    /* ////// HOW TO GET STARTED ////// */
+    .how-to-get-started {
+        padding: 5rem 1rem 8rem;
     }
 }
