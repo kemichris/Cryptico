@@ -749,6 +749,10 @@ footer {
     cursor: pointer;
 }
 
+.contact-form button:hover {
+    filter: brightness(.9);
+}
+
 
 @media (max-width:1290px) {
     /* ////// TRADING PACKAGE SECTION ////// */
@@ -869,7 +873,7 @@ footer {
     /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
 
     /* ////// ABOUT TOP CONTAINER SECTION ////// */
-    .about-top-container h1 {
+    .about-top-container h1, .contact-top-container h1 {
         font-size: 2.5rem;
     }
 
@@ -881,6 +885,19 @@ footer {
     /* ////// HOW TO GET STARTED ////// */
     .how-to-get-started {
         padding: 5rem 3rem 8rem;
+    }
+
+
+
+    /* ////////////////////////////// CONTACT PAGE /////////////////////////////////////// */
+
+    /* ////// CONTACT FORM ////// */
+    .contact-form {
+        margin: 0 3rem;
+    }
+
+    .contact-info h2 {
+        font-size: 1.5rem;
     }
 
 }
@@ -1164,6 +1181,25 @@ footer {
         flex-direction: column;
         margin-top: 3rem;
     }
+
+
+
+    /* ////////////////////////////// CONTACT PAGE /////////////////////////////////////// */
+
+    /* ////// CONTACT FORM ////// */
+    .contact-form {
+        flex-direction: column;
+        /* margin: 0 1.5rem; */
+    }
+
+    .contact-info, .contact-form form {
+        width: 90%;
+    }
+
+    .contact-form button {
+        font-size: 1rem;
+        padding: 0.5rem 2rem;
+    }
 }
 
 @media (max-width:550px) {
@@ -1313,5 +1349,36 @@ footer {
     /* ////// HOW TO GET STARTED ////// */
     .how-to-get-started {
         padding: 5rem 1rem 8rem;
+    }
+
+
+    /* ////////////////////////////// CONTACT PAGE /////////////////////////////////////// */
+
+    /* ////// CONTACT FORM ////// */
+    .contact-info, .contact-form form {
+        padding: 2rem 1.5rem;
+    }
+    .contact-info h2 {
+        font-size: 1.3rem;
+    }
+    .contact-info, .contact-form form {
+        width: 80%;
+    }
+
+    .contact-info i {
+        font-size: 0.7rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1rem;
+    }
+
+    .contact-info p {
+        font-size: 0.8rem;
+    }
+
+    .contact-form form input {
+        height: 2.5rem;
+        font-size: 0.8rem;
     }
 }
