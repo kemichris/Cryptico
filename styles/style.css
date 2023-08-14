@@ -560,7 +560,7 @@ footer {
 /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
 
 /* ////// ABOUT TOP CONTAINER SECTION ////// */
-.about-top-container {
+.about-top-container, .contact-top-container {
     padding:5rem 5rem 0;
     display: flex;
     align-items: center;
@@ -569,7 +569,7 @@ footer {
     height: 50vh;
 }
 
-.about-top-container h1 {
+.about-top-container h1, .contact-top-container h1 {
     margin: 0;
     font-size: 3rem;
 }
@@ -651,6 +651,104 @@ footer {
     text-align: center;
     margin: 0;
 }
+
+
+/* ////////////////////////////// CONTACT PAGE /////////////////////////////////////// */
+
+/* ////// CONTACT FORM ////// */
+.contact-form {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    margin: 0 8rem;
+    padding: 8rem 0;
+}
+
+.contact-info {
+    border: 1px solid #D1DDEB;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    width: 70%;
+}
+
+.contact-info h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #16122C;
+}
+
+.address, .email, .tel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-info i {
+    background-color: #16122C;
+    padding: 0.5rem;
+    /* border-radius: 100%; */
+    color: #D1DDEB;
+}
+
+.contact-info h3 {
+    margin: 0;
+    color: #141928;
+}
+
+.contact-info p {
+    margin: 0.5rem 0 0;
+    color: #8492a6;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid #D1DDEB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.contact-form form input, .contact-form form textarea {
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #D1DDEB;
+    border-radius: 0.5rem;
+    color: #16122C;
+    cursor: pointer;
+}
+
+.contact-form form input:focus, .contact-form form textarea:focus {
+    outline: none;
+}
+
+.contact-form form input {
+    height: 3rem;
+}
+
+.contact-form form textarea {
+    height: 8rem;
+    padding-top: 0.5rem;
+}
+
+.contact-form button {
+    padding: 0.8rem 2rem;
+    font-size: 1.5rem;
+    width: 100%;
+    background-color: #16122C;
+    color: #D1DDEB;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 
 @media (max-width:1290px) {
     /* ////// TRADING PACKAGE SECTION ////// */
@@ -1047,7 +1145,7 @@ footer {
     /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
 
     /* ////// ABOUT TOP CONTAINER SECTION ////// */
-    .about-top-container {
+    .about-top-container, .contact-top-container {
         padding:5rem 1.5rem 0;
     }
 
@@ -1203,7 +1301,7 @@ footer {
     /* ////////////////////////////// ABOUT PAGE /////////////////////////////////////// */
 
     /* ////// ABOUT TOP CONTAINER SECTION ////// */
-    .about-top-container h1 {
+    .about-top-container h1, .contact-top-container h1 {
         font-size: 2rem;
     }
 
