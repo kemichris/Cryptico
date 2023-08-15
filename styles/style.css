@@ -969,6 +969,7 @@ footer {
         width: fit-content;
         background-color: #141928;
         position: fixed;
+        z-index: 1;
         top: 4.3rem;
         padding: 2rem 5rem 4rem 1.5rem ;
     }
