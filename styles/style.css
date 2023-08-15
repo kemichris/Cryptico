@@ -572,6 +572,7 @@ footer {
 .about-top-container h1, .contact-top-container h1 {
     margin: 0;
     font-size: 3rem;
+    color: #141928;
 }
 
 /* ////// WO WE ARE ////// */
@@ -754,6 +755,32 @@ footer {
 }
 
 
+/* ////////////////////////////// MARKET WATCH PAGE /////////////////////////////////////// */
+
+/* ////// MARKET WATCH ////// */
+.market-watch {
+    margin: 0 8rem;
+    padding: 8rem 0 15rem;
+    height: 50rem;
+
+}
+
+.market-watch h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.market-watch p {
+    text-align: center;
+    color: #8492a6;
+    margin-bottom: 3rem;
+}
+
+.market {
+    height: inherit;
+}
+
+
 @media (max-width:1290px) {
     /* ////// TRADING PACKAGE SECTION ////// */
     .plan-perks p {
@@ -898,6 +925,13 @@ footer {
 
     .contact-info h2 {
         font-size: 1.5rem;
+    }
+
+    /* ////////////////////////////// MARKET WATCH PAGE /////////////////////////////////////// */
+
+    /* ////// MARKET WATCH ////// */
+    .market-watch {
+        margin: 0 3rem;
     }
 
 }
@@ -1200,6 +1234,13 @@ footer {
         font-size: 1rem;
         padding: 0.5rem 2rem;
     }
+
+    /* ////////////////////////////// MARKET WATCH PAGE /////////////////////////////////////// */
+
+    /* ////// MARKET WATCH ////// */
+    .market-watch {
+        margin: 0 1.5rem;
+    }
 }
 
 @media (max-width:550px) {
@@ -1380,5 +1421,12 @@ footer {
     .contact-form form input {
         height: 2.5rem;
         font-size: 0.8rem;
+    }
+
+    /* ////////////////////////////// MARKET WATCH PAGE /////////////////////////////////////// */
+
+    /* ////// MARKET WATCH ////// */
+    .market-watch {
+        margin: 0 1rem;
     }
 }

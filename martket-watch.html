@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Watch</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+    <header>
+        <!-- ////// NAV BAR SECTION ////// -->
+        <nav>
+            <ul>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="assets/icons/crypt-logo.jpg" alt="" />
+                    </a>
+                </li>
+                <div class="nav-items">
+                    <li>
+                        <a class="a-links" href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a class="a-links" href="index.html#plan-card">Trading Plans</a>
+                    </li>
+                    <!-- <li>
+                        <a class="a-links" href="">FAQ</a>
+                    </li> -->
+                    <li>
+                        <a class="a-links" href="contact.html">Contact</a>
+                    </li>
+                    <li>
+                        <a class="a-links active" href="martket-watch.html">Market Watch</a>
+                    </li>
+                    <a href="">
+                        <button>Get started</button>
+                    </a>
+                </div>
+                <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+                <i class="fa-solid fa-x remove-nav-icon inactive"></i>
+            </ul>
+        </nav>
+        <div class="mobile-menu inactive">
+            <ul>
+                <li>
+                    <a class="a-links" href="about.html">About Us</a>
+                </li>
+                <li>
+                    <a class="a-links" href="index.html#plan-card">Trading Plans</a>
+                </li>
+                <!-- <li>
+                    <a class="a-links" href="">FAQ</a>
+                </li> -->
+                <li>
+                    <a class="a-links" href="contact.html">Contact</a>
+                </li>
+                <li>
+                    <a class="a-links active" href="martket-watch.html">Market Watch</a>
+                </li>
+                <a href="">
+                    <button>Get started</button>
+                </a>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- ////// CONTACT TOP CONTAINER ////// -->
+        <div class="contact-top-container">
+            <h1>Market Watch</h1>
+        </div>
+
+
+        <!-- ////// MARKET WATCH ////// -->
+        <div class="market-watch">
+            <h2>Fundamental Data of the Financial Market</h2>
+            <p>Instantaneous currency quotes for specific currencies as compared to other primary currencies,
+                all conveniently visible in one place.
+            </p>
+
+            <div class="market">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript"
+                        src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+                            {
+                                "width": "100%",
+                                    "height": "100%",
+                                        "currencies": [
+                                            "EUR",
+                                            "USD",
+                                            "JPY",
+                                            "GBP",
+                                            "CHF",
+                                            "AUD",
+                                            "CAD",
+                                            "NZD",
+                                            "CNY",
+                                            "TRY",
+                                            "SEK",
+                                            "NOK",
+                                            "DKK",
+                                            "ZAR",
+                                            "HKD",
+                                            "SGD",
+                                            "THB",
+                                            "MXN",
+                                            "IDR",
+                                            "KRW",
+                                            "PLN",
+                                            "ISK",
+                                            "KWD",
+                                            "PHP",
+                                            "MYR",
+                                            "INR",
+                                            "TWD",
+                                            "SAR",
+                                            "AED",
+                                            "RUB",
+                                            "ILS",
+                                            "ARS",
+                                            "CLP",
+                                            "COP",
+                                            "PEN",
+                                            "UYU"
+                                        ],
+                                            "isTransparent": false,
+                                                "colorTheme": "light",
+                                                    "locale": "en"
+                            }
+                        </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
+        </div>
+
+
+        <!-- ////// CALL TO ACTION ////// -->
+        <div class="call-to-action">
+            <div class="call-action">
+                <div>
+                    <h2>Get started now</h2>
+                    <p>
+                        Cryptico assists more than 1 million customers in realizing their
+                        financial objectives by providing seamless trading and investment
+                        solutions.
+                    </p>
+                </div>
+                <a href=""><button>Create free account</button></a>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer>
+        <div class="footer-flex">
+            <div class="logo-socials">
+                <h4>Cryptico</h4>
+                <p>
+                    Trading while on the move has been streamlined and made incredibly
+                    convenient.
+                </p>
+                <div class="socials">
+                    <a href="http://" target="_blank" rel="noopener noreferrer"><i
+                            class="fa-brands fa-whatsapp"></i></a>
+                    <a href="http://" target="_blank" rel="noopener noreferrer"><i
+                            class="fa-brands fa-telegram"></i></a>
+                </div>
+            </div>
+
+            <div class="useful-links">
+                <h4>Useful links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About us</a>
+                <a href="contact.html">Contact us</a>
+                <a href="martket-watch.html">Market Watch</a>
+            </div>
+
+            <div class="contact-details">
+                <h4>Contact details</h4>
+                <h5><i class="fa-solid fa-house"></i> Head office</h5>
+                <p>9 Manor Close DINNINGTON TA17 5JG</p>
+                <h5><i class="fa-solid fa-envelope"></i> Email address</h5>
+                <p>HaydenBarker@armyspy.com</p>
+                <h5><i class="fa-solid fa-phone"></i> Phone number</h5>
+                <p>+1 (605) 832-6310</p>
+            </div>
+        </div>
+
+        <p class="copyright">© Copyright 2023 Cryptico AllRights Reserved.</p>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
