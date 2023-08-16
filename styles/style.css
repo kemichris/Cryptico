@@ -839,14 +839,14 @@ footer {
     margin-bottom: 1.5rem;
 }
 
-.terms-privacy {
+.terms-privacy, .remember-me {
     display: flex;
     align-items: center;
     gap: 0.2rem;
     margin: 1rem 0;
 }
 
-.terms-privacy input {
+.terms-privacy input, .remember-me input {
     width: 1rem;
     height: 1rem;
     cursor: pointer;
@@ -854,9 +854,10 @@ footer {
     border: none;
 }
 
-.terms-privacy p {
+.terms-privacy p, .remember-me p {
     margin: 0;
     color: #16122C;
+    font-weight: bold;
 }
 
 .reg-btn {
@@ -880,6 +881,19 @@ footer {
     color: #16122C;
     font-weight: bold;
 }
+
+.remeber-forget {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remeber-forget a {
+    text-decoration: none;
+    color: #16122C;
+}
+
+
 
 
 
@@ -1580,11 +1594,15 @@ footer {
         padding: 0.5rem;
     }
 
-    .terms-privacy p {
+    .terms-privacy p, .remember-me p {
         font-size: 0.8rem;
     }
 
     .already-have-acc {
+        font-size: 0.8rem;
+    }
+
+    .remeber-forget a {
         font-size: 0.8rem;
     }
 }
