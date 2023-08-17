@@ -398,19 +398,24 @@ h2 {
     color: #8492a6;
 }
 
+.testimony-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
 .testimony-container {
     display: flex;
     margin-top: 3rem;
     width: 100%;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s ease-in-out;
     
 }
 
 .testimony {
     display: flex;
     align-items: center;
-    flex: 0 0 auto;
+    flex: 0 0 100%;
     width: inherit;
     gap: 1rem;
 }

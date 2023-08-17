@@ -27,4 +27,25 @@ removeNav.addEventListener("click", ()=> {
 const testimonyContainer = document.querySelector(".testimony-container");
 const testimonys = document.querySelectorAll(".testimony");
 
+let currentSlide = 0;
+
+function updateSlide() {
+    testimonyContainer.style.transform = `translateX(${-currentSlide * testimonys[0].clientWidth}px)`;
+    
+}
+
+function nextSlide() {
+    if (currentSlide < testimonys.length - 1) {
+        currentSlide++;
+    } else {
+        currentSlide = 0;
+    }
+    updateSlide();
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateSlide();
+    setInterval(nextSlide, 5000); // Run autoSlide every 3 seconds (3000 milliseconds)
+});
 
