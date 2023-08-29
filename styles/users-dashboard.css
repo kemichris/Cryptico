@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900;1000&display=swap');
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #141928;
+}
+
+button {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* ////// NAV BAR SECTION ////// */
+nav {
+    background-color: #141928;
+    padding: 0.8rem 3rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    border-bottom: 1px solid #D1DDEB;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0 4rem 0 0;
+}
+
+.welcome {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #D1DDEB;
+}
+
+.sign-out-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #D1DDEB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ////// SIDE AND MAIN SECTION ////// */
+.side-main-flex {
+    padding-top: 4.9rem;
+    display: flex;
+}
+
+/* ////// SIDE BAR ////// */
+.user-side-bar {
+    padding: 1rem 0.3rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    /* gap: 1.5rem; */
+    border-right: 1px solid #D1DDEB;
+    position: fixed;
+    overflow: auto;
+    background-color: #141928;
+    height: 82vh;
+    z-index: 1;
+}
+
+.user-side-bar::-webkit-scrollbar{
+    display: none;
+}
+
+.user-side-bar a, .user-side-bar span {
+    text-decoration: none;
+    color: #8492a6;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.user-side-bar i {
+    color: #8492a6;
+}
+
+.user-div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.user-div:hover {
+    background-color: #16122C;
+}
+
+.user-div.active {
+    background-color: #D1DDEB;
+}
+
+.user-side-bar a.active, .user-side-bar span.active, .user-side-bar i.active {
+    color: #141928;
+}
+
+.account-dropdown li::marker, .dep-with-dropdown li::marker, .packages-dropdown li::marker {
+    color: #8492a6;
+}
+
+.account-dropdown ul, .dep-with-dropdown ul, .packages-dropdown ul {
+    margin: 0;
+    padding-left: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.account-dropdown, .dep-with-dropdown, .packages-dropdown {
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.account-dropdown.inactive, .dep-with-dropdown.inactive, .packages-dropdown.inactive {
+    display: none;
+}
+
+/* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
+.dashboard-overview {
+    margin-left: 13.75rem;
+    padding: 2rem 2rem 5rem 3rem;
+    width: 100%;
+    background-color: #141928;
+}
+
+/* ////// DASHBOARD////// */
+.dashboard-main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 0.2rem 1.5rem;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.dep-bal, .prof-tpack, .bon-apack {
+    border-right: 1px solid #8492a6;
+}
+
+.dep-bal > *, .prof-tpack > *, .bon-apack > *, .ref > * {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 0;
+}
+
+.dashboard-main i {
+    font-size: 2rem;
+    /* color: #F7931A; */
+}
+
+.deposit i {
+    color: #FFAD46;
+}
+
+.profit i, .balance i {
+    color: #2EBE36;
+}
+
+.total-package i, .bonus i {
+    color: #F25961;
+}
+
+.active-package i, .referral i {
+    color: #1572E8;
+}
+
+.dashboard-main h5 {
+    color: #8492a6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.dashboard-main p {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+
+/* ////// PERSONAL CHART ////// */
+.personal-chart {
+    height: 38rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    margin: 0;
+    color: #D1DDEB;
+    font-size: 1.5rem;
+}
+
+#tradingview_d3e64 {
+    height: 33rem;
+}
+
+.tradingview-widget-container {
+    margin-top: 2rem;
+    height: inherit;
+}
+
+.rights {
+    color: #8492a6;
+}

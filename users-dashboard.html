@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="styles/users-dashboard.css" />
+</head>
+
+<body>
+    <header>
+        <!-- ////// NAV BAR SECTION ////// -->
+        <nav>
+            <ul>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="assets/icons/crypt-logo.jpg" alt="" />
+                    </a>
+                </li>
+                <li class="welcome"> Welcome <span>Chris</span>!</li>
+                <a href="">
+                    <button class="sign-out-btn">Sign out</button>
+                </a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="side-main-flex">
+            <!-- ////// SIDE BAR ////// -->
+            <div class="user-side-bar">
+                <a class="active" href="">
+                    <div class="dashboard user-div active">
+                        <i class="fa-solid fa-house active"></i>
+                        <span class="active">Dashboard</span>
+                    </div>
+                </a>
+                <div class="account user-div">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Account <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="account-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Account setting</a>
+                        </li>
+                        <li>
+                            <a href="">Notifications</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="">
+                    <div class="profitl/loss user-div">
+                        <i class="fa-solid fa-signal"></i>
+                        <span>P/L record</span>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="account-history user-div">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Transaction history</span>
+                    </div>
+                </a>
+                <div class="dep-with user-div">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Deposti/Withdraw <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="dep-with-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Deposit</a>
+                        </li>
+                        <li>
+                            <a href="">Withdrawal</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="packages user-div">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Packages <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="packages-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="">My Packages</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="">
+                    <div class="refer user-div">
+                        <i class="fa-solid fa-recycle"></i>
+                        <span>Refer Users</span>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="support user-div">
+                        <i class="fa-solid fa-circle-radiation"></i>
+                        <span>Support</span>
+                    </div>
+                </a>
+
+
+            </div>
+
+            <!-- ////// DASHBOARD ////// -->
+            <div class="dashboard-overview">
+                <div class="dashboard-main">
+                    <div class="dep-bal">
+                        <div class="deposit">
+                            <i class="fa-solid fa-download"></i>
+                            <div class="dep-text">
+                                <h5>Deposit</h5>
+                                <p>$ <span>0.00</span></p>
+                            </div>
+                        </div>
+                        <div class="balance">
+                            <i class="fa-solid fa-coins"></i>
+                            <div class="bal-text">
+                                <h5>Balance</h5>
+                                <p>$ <span>0.00</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prof-tpack">
+                        <div class="profit">
+                            <i class="fa-solid fa-coins"></i>
+                            <div class="prof-text">
+                                <h5>Profit</h5>
+                                <p>$ <span>0.00</span></p>
+                            </div>
+                        </div>
+                        <div class="total-package">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="tpack-text">
+                                <h5>Total Packages</h5>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bon-apack">
+                        <div class="bonus">
+                            <i class="fa-solid fa-gift"></i>
+                            <div class="bon-text">
+                                <h5>Bonus</h5>
+                                <p>$ <span>0.00</span></p>
+                            </div>
+                        </div>
+                        <div class="active-package">
+                            <i class="fa-solid fa-envelope-open"></i>
+                            <div class="apack-text">
+                                <h5>Active Packages</h5>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref">
+                        <div class="referral">
+                            <i class="fa-solid fa-repeat"></i>
+                            <div class="ref-text">
+                                <h5>Ref. Bonus</h5>
+                                <p>$ <span>0.00</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ////// PERSONAL CHART ////// -->
+                <div class="personal-chart">
+                    <h2>Personal Trading Chart</h2>
+
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                        <div id="tradingview_d3e64"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/"
+                                rel="noopener nofollow" target="_blank"><span class="blue-text">Personal trading
+                                    chart</span></a></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "BITSTAMP:BTCUSD",
+                                    "interval": "D",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "enable_publishing": false,
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": true,
+                                    "container_id": "tradingview_d3e64"
+                                }
+                            );
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+                <p class="rights">All Rights Reserved © Cryptico 2023</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/users-dashboard.js"></script>
+</body>
+
+</html>
