@@ -131,7 +131,7 @@ nav ul {
 }
 
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-.dashboard-overview {
+.dashboard-overview, .user-account {
     margin-left: 13.75rem;
     padding: 2rem 2rem 5rem 3rem;
     width: 100%;
@@ -219,6 +219,70 @@ h2 {
     color: #8492a6;
 }
 
+/* ////////////////////////////// ACCOUNT SETTING /////////////////////////////////////// */
+
+h1 {
+    color: #D1DDEB ;
+    font-size: 2.5rem;
+}
+
+/* ////// USER FORM INFO ////// */
+.profile-form {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-form form {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 3rem;
+    border-radius: 1rem;
+    width: 70%;
+    background-color: #141928;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.profile-form span {
+    font-size: 1rem;
+    color: #D1DDEB;
+    margin-bottom: 0.5rem;
+}
+
+.profile-form input {
+    height: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid #8492a6;
+    color: #D1DDEB;
+    margin-bottom: 2rem;
+    border-radius: 0.25rem;
+}
+
+.profile-form input:focus {
+    outline: none;
+}
+
+.save-info-btn, .mgn-acc-btn {
+    padding: 0.5rem 2rem;
+    border: none;
+    font-size: 1.5rem;
+    background: #8492a6;
+    color: #141928;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.save-info-btn {
+    margin-bottom: 2rem;
+}
+
+
+
+
 /* MEDIA RESPONSIVENESS  */
 
 @media (max-width:1000px) {
@@ -245,7 +309,7 @@ h2 {
     }
 
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-    .dashboard-overview {
+    .dashboard-overview, .user-account {
         margin-left: 0;
     }
 }
@@ -254,6 +318,15 @@ h2 {
     .dashboard-main {
         grid-template-columns: repeat(2, 1fr);
         row-gap: 0;
+    }
+}
+
+@media (max-width:600px) {
+    /* ////////////////////////////// ACCOUNT SETTING /////////////////////////////////////// */
+
+    /* ////// USER FORM INFO ////// */
+    .profile-form form {
+        width: 90%;
     }
 }
 
@@ -277,12 +350,17 @@ h2 {
         height: auto;
     }
 
+    .nav-menu-icon,.remove-nav-icon {
+        font-size: 1.5rem;
+    }
+
+
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
     .dashboard-main {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .dashboard-overview {
+    .dashboard-overview, .user-account {
         padding: 2rem 1.5rem 5rem;
     }
 
@@ -292,5 +370,25 @@ h2 {
 
     .dep-bal > *, .prof-tpack > *, .bon-apack > *, .bon-apack {
         border-bottom: 1px solid #8492a6;
+    }
+
+    /* ////////////////////////////// ACCOUNT SETTING /////////////////////////////////////// */
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    /* ////// USER FORM INFO ////// */
+    .profile-form form {
+        padding: 3rem 1.5rem;
+    }
+
+    .profile-form span, .profile-form input {
+        font-size: 0.9rem;
+    }
+
+    .save-info-btn, .mgn-acc-btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
     }
 }
