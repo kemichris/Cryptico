@@ -47,6 +47,10 @@ nav ul {
     cursor: pointer;
 }
 
+.nav-menu-icon, .remove-nav-icon {
+    display: none;
+}
+
 
 /* ////// SIDE AND MAIN SECTION ////// */
 .side-main-flex {
@@ -56,7 +60,7 @@ nav ul {
 
 /* ////// SIDE BAR ////// */
 .user-side-bar {
-    padding: 1rem 0.3rem 1rem 1rem;
+    padding: 2rem 0.3rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     /* gap: 1.5rem; */
@@ -66,6 +70,7 @@ nav ul {
     background-color: #141928;
     height: 82vh;
     z-index: 1;
+    top: 9%;
 }
 
 .user-side-bar::-webkit-scrollbar{
@@ -212,4 +217,80 @@ h2 {
 
 .rights {
     color: #8492a6;
+}
+
+/* MEDIA RESPONSIVENESS  */
+
+@media (max-width:1000px) {
+    /* ////// NAV BAR SECTION ////// */
+    .sign-out-btn {
+        display: none;
+    }
+
+    .nav-menu-icon, .remove-nav-icon {
+        display: inline;
+        font-size: 2rem;
+        color: #D1DDEB;
+        cursor: pointer;
+    }
+
+    .nav-menu-icon.inactive, .remove-nav-icon.inactive {
+        display: none;
+    }
+
+    /* ////// SIDE BAR ////// */
+    .user-side-bar.active {
+        display: none;
+        transition: ease-in-out 5ms;
+    }
+
+    /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
+    .dashboard-overview {
+        margin-left: 0;
+    }
+}
+
+@media (max-width:800px) {
+    .dashboard-main {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 0;
+    }
+}
+
+@media (max-width:560px) {
+     /* ////// SIDE BAR ////// */
+     .user-side-bar {
+        top: 8%;
+    }
+
+    /* ////// NAV BAR SECTION ////// */
+    nav {
+        padding: 0.8rem 1.5rem;
+    }
+
+    .welcome {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        width: 6rem;
+        height: auto;
+    }
+
+    /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
+    .dashboard-main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .dashboard-overview {
+        padding: 2rem 1.5rem 5rem;
+    }
+
+    .dep-bal, .prof-tpack, .bon-apack {
+        border-right: none;
+    }
+
+    .dep-bal > *, .prof-tpack > *, .bon-apack > *, .bon-apack {
+        border-bottom: 1px solid #8492a6;
+    }
 }
