@@ -63,7 +63,6 @@ nav ul {
     padding: 2rem 0.3rem 1rem 1rem;
     display: flex;
     flex-direction: column;
-    /* gap: 1.5rem; */
     border-right: 1px solid #D1DDEB;
     position: fixed;
     overflow: auto;
