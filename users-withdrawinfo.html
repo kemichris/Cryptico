@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Withdrawal Info</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
@@ -119,105 +119,71 @@
 
             </div>
 
-            <!-- ////// DASHBOARD ////// -->
-            <div class="dashboard-overview">
-                <div class="dashboard-main">
-                    <div class="dep-bal">
-                        <div class="deposit">
-                            <i class="fa-solid fa-download"></i>
-                            <div class="dep-text">
-                                <h5>Deposit</h5>
-                                <p>$ <span>0.00</span></p>
-                            </div>
-                        </div>
-                        <div class="balance">
-                            <i class="fa-solid fa-coins"></i>
-                            <div class="bal-text">
-                                <h5>Balance</h5>
-                                <p>$ <span>0.00</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prof-tpack">
-                        <div class="profit">
-                            <i class="fa-solid fa-coins"></i>
-                            <div class="prof-text">
-                                <h5>Profit</h5>
-                                <p>$ <span>0.00</span></p>
-                            </div>
-                        </div>
-                        <div class="total-package">
-                            <i class="fa-solid fa-envelope"></i>
-                            <div class="tpack-text">
-                                <h5>Total Packages</h5>
-                                <p>0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bon-apack">
-                        <div class="bonus">
-                            <i class="fa-solid fa-gift"></i>
-                            <div class="bon-text">
-                                <h5>Bonus</h5>
-                                <p>$ <span>0.00</span></p>
-                            </div>
-                        </div>
-                        <div class="active-package">
-                            <i class="fa-solid fa-envelope-open"></i>
-                            <div class="apack-text">
-                                <h5>Active Packages</h5>
-                                <p>0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ref">
-                        <div class="referral">
-                            <i class="fa-solid fa-repeat"></i>
-                            <div class="ref-text">
-                                <h5>Ref. Bonus</h5>
-                                <p>$ <span>0.00</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- ////// WIThDRAWAL INFO ////// -->
+            <div class="Withdraw-info">
+                <h1>Add withdrawal info</h1>
 
-                <!-- ////// PERSONAL CHART ////// -->
-                <div class="personal-chart">
-                    <h2>Personal Trading Chart</h2>
+                <div class="withdrawal-type">
+                    <form action="" class="withdrawal-form">
+                        <div class="bank-info-cont">
+                            <div class="bank-info">
+                                <div class="bank">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <p>Bank transfer</p>
+                                </div>
+                                <i class="fa-solid fa-plus open-info-dropdown"></i>
+                                <i class="fa-solid fa-minus close-info-dropdown inactive"></i>
+                            </div>
+                            <div class="bank-form inactive">
+                                <span>Bank Name</span>
+                                <input type="text"  id="">
+                                <span>Account Name</span>
+                                <input type="text" name="" id="">
+                                <span>Account Number</span>
+                                <input type="text" name="" id="">
+                            </div>
+                        </div>
 
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div id="tradingview_d3e64"></div>
-                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/"
-                                rel="noopener nofollow" target="_blank"><span class="blue-text">Personal trading
-                                    chart</span></a></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                        <script type="text/javascript">
-                            new TradingView.widget(
-                                {
-                                    "autosize": true,
-                                    "symbol": "BITSTAMP:BTCUSD",
-                                    "interval": "D",
-                                    "timezone": "Etc/UTC",
-                                    "theme": "dark",
-                                    "style": "1",
-                                    "locale": "en",
-                                    "enable_publishing": false,
-                                    "hide_side_toolbar": false,
-                                    "allow_symbol_change": true,
-                                    "container_id": "tradingview_d3e64"
-                                }
-                            );
-                        </script>
-                    </div>
-                    <!-- TradingView Widget END -->
+                        <div class="btc-info-cont">
+                            <div class="btc-info">
+                                <div class="btc">
+                                    <i class="fa-brands fa-bitcoin"></i>
+                                    <p>Bitcoin</p>
+                                </div>
+                                <i class="fa-solid fa-plus open-info-dropdown"></i>
+                                <i class="fa-solid fa-minus close-info-dropdown inactive"></i>
+                            </div>
+                            <div class="btc-form inactive">
+                                <span>BTC Address</span>
+                                <input type="text" id="">
+                            </div>
+                        </div>
+
+                        <div class="eth-info-cont">
+                            <div class="eth-info">
+                                <div class="eth">
+                                    <i class="fa-brands fa-ethereum"></i>
+                                    <p>Ethereum</p>
+                                </div>
+                                <i class="fa-solid fa-plus open-info-dropdown"></i>
+                                <i class="fa-solid fa-minus close-info-dropdown inactive"></i>
+                            </div>
+                            <div class="eth-form inactive">
+                                <span>ETH Address</span>
+                                <input type="text" id="">
+                            </div>
+                        </div>
+
+                        <a href="">
+                            <button class="save-info-btn" type="submit">Submit</button>
+                        </a>
+                    </form>
                 </div>
-                <p class="rights">All Rights Reserved © Cryptico 2023</p>
             </div>
         </div>
     </main>
 
-    <script src="scripts/users-dashboard.js"></script>
+    <script src="scripts/users-withdrawinfo.js"></script>
 </body>
 
 </html>

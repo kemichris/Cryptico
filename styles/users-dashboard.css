@@ -131,9 +131,9 @@ nav ul {
 }
 
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-.dashboard-overview, .user-account {
+.dashboard-overview, .user-account, .Withdraw-info {
     margin-left: 13.75rem;
-    padding: 2rem 2rem 5rem 3rem;
+    padding: 2rem 2rem 5rem;
     width: 100%;
     background-color: #141928;
 }
@@ -281,7 +281,86 @@ h1 {
 }
 
 
+/* ////////////////////////////// WITHDRAWAL INFO /////////////////////////////////////// */
 
+/* ////// withdaw info form cont ////// */
+.withdrawal-form {
+    padding: 3rem 1rem 0;
+    background-color: #141928;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bank-info, .btc-info, .eth-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+
+.bank, .btc, .eth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bank i, .btc i, .eth i {
+    font-size: 2rem;
+    color: #8492a6;
+}
+
+.withdrawal-form p {
+    color: #D1DDEB;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.open-info-dropdown, .close-info-dropdown {
+    font-size: 1.5rem;
+    color: #8492a6;
+    cursor: pointer;
+}
+
+.bank-form, .btc-form, .eth-form {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 3rem 1rem;
+    border-top: 1px solid #D1DDEB;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bank-form.inactive, .btc-form.inactive, .eth-form.inactive {
+    display: none;
+}
+
+.withdrawal-form span {
+    font-size: 1rem;
+    color: #D1DDEB;
+    margin-bottom: 0.5rem;
+}
+
+.withdrawal-form input {
+    height: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid #8492a6;
+    color: #D1DDEB;
+    margin-bottom: 2rem;
+    border-radius: 0.25rem;
+}
+
+.withdrawal-form input:focus {
+    outline: none;
+}
+
+.close-info-dropdown.inactive, .open-info-dropdown.inactive {
+    display: none;
+}
 
 /* MEDIA RESPONSIVENESS  */
 
@@ -309,7 +388,7 @@ h1 {
     }
 
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-    .dashboard-overview, .user-account {
+    .dashboard-overview, .user-account, .Withdraw-info {
         margin-left: 0;
     }
 }
@@ -383,12 +462,31 @@ h1 {
         padding: 3rem 1.5rem;
     }
 
-    .profile-form span, .profile-form input {
+    .profile-form span, .profile-form input, .withdrawal-form span, .withdrawal-form input {
         font-size: 0.9rem;
     }
 
     .save-info-btn, .mgn-acc-btn {
         font-size: 1rem;
         padding: 0.5rem 1rem;
+    }
+
+    /* ////////////////////////////// WITHDRAWAL INFO /////////////////////////////////////// */
+    .bank-info, .btc-info, .eth-info {
+        padding: 1.5rem 1rem;
+    }
+    .withdrawal-form p {
+        font-size: 1rem;
+    }
+
+    .bank-form, .btc-form, .eth-form {
+        padding: 2rem 1.5rem 1rem;
+    }
+    .bank i, .btc i, .eth i {
+        font-size: 1.5rem;
+    }
+
+    .open-info-dropdown, .close-info-dropdown {
+        font-size: 1rem;
     }
 }
