@@ -52,34 +52,34 @@ packages.addEventListener("click", ()=> {
 
 // open dropdowns 
 openWithdrawInfo[0].addEventListener("click", ()=>{
-    bankForm.classList.remove("inactive");
+    bankForm.classList.add("active");
     openWithdrawInfo[0].classList.add("inactive");
     closeWithdrawInfo[0].classList.remove("inactive");
 });
 openWithdrawInfo[1].addEventListener("click", ()=>{
-    btcForm.classList.remove("inactive");
+    btcForm.classList.add("active");
     openWithdrawInfo[1].classList.add("inactive");
     closeWithdrawInfo[1].classList.remove("inactive");
 });
 openWithdrawInfo[2].addEventListener("click", ()=>{
-    ethForm.classList.remove("inactive");
+    ethForm.classList.add("active");
     openWithdrawInfo[2].classList.add("inactive");
     closeWithdrawInfo[2].classList.remove("inactive");
 });
 
 // close dropdowns
 closeWithdrawInfo[0].addEventListener("click", ()=>{
-    bankForm.classList.add("inactive");
+    bankForm.classList.remove("active");
     closeWithdrawInfo[0].classList.add("inactive");
     openWithdrawInfo[0].classList.remove("inactive");
 });
 closeWithdrawInfo[1].addEventListener("click", ()=>{
-    btcForm.classList.add("inactive");
+    btcForm.classList.remove("active");
     closeWithdrawInfo[1].classList.add("inactive");
     openWithdrawInfo[1].classList.remove("inactive");
 });
 closeWithdrawInfo[2].addEventListener("click", ()=>{
-    ethForm.classList.add("inactive");
+    ethForm.classList.remove("active");
     closeWithdrawInfo[2].classList.add("inactive");
     openWithdrawInfo[2].classList.remove("inactive");
 });

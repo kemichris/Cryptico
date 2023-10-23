@@ -130,7 +130,7 @@ nav ul {
 }
 
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-.dashboard-overview, .user-account, .Withdraw-info {
+.dashboard-overview, .user-account, .Withdraw-info, .user-support {
     margin-left: 13.75rem;
     padding: 2rem 2rem 5rem;
     width: 100%;
@@ -233,7 +233,7 @@ h1 {
     align-items: center;
 }
 
-.profile-form form {
+.profile-form form, .support-form form {
     display: flex;
     flex-direction: column;
     padding: 4rem 3rem;
@@ -243,13 +243,13 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.profile-form span {
+.profile-form span, .support-form span {
     font-size: 1rem;
     color: #D1DDEB;
     margin-bottom: 0.5rem;
 }
 
-.profile-form input {
+.profile-form input, .support-form input,.support-form textarea {
     height: 2rem;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -260,11 +260,11 @@ h1 {
     border-radius: 0.25rem;
 }
 
-.profile-form input:focus {
+input:focus, textarea:focus {
     outline: none;
 }
 
-.save-info-btn, .mgn-acc-btn {
+.save-info-btn, .mgn-acc-btn, .support-btn {
     padding: 0.5rem 2rem;
     border: none;
     font-size: 1.5rem;
@@ -330,10 +330,18 @@ h1 {
     border-top: 1px solid #D1DDEB;
     border-radius: 0.25rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    max-height: 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
 }
 
-.bank-form.inactive, .btc-form.inactive, .eth-form.inactive {
-    display: none;
+.bank-form.active, .btc-form.active, .eth-form.active {
+    visibility: visible;
+    max-height: fit-content;
+    transition: opacity 0.5s ease;
+    transform: translateY(0);
+    transition: transform 0.5s ease;
 }
 
 .withdrawal-form span {
@@ -361,6 +369,37 @@ h1 {
     display: none;
 }
 
+/* ////////////////////////////// SUPPORT /////////////////////////////////////// */
+
+.user-support h1, .user-support h4, .user-support p {
+    text-align: center;
+}
+
+.user-support h4 {
+    color: #D1DDEB;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.user-support p {
+    color: #D1DDEB;
+    font-size: 1.2rem;
+}
+
+.support-form {
+    display: flex;
+    justify-content: center;
+}
+
+.support-form textarea {
+    height: 10rem;
+}
+
+
+
+
+
+
 /* MEDIA RESPONSIVENESS  */
 
 @media (max-width:1000px) {
@@ -387,7 +426,7 @@ h1 {
     }
 
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-    .dashboard-overview, .user-account, .Withdraw-info {
+    .dashboard-overview, .user-account, .Withdraw-info, .user-support {
         margin-left: 0;
     }
 }
@@ -403,7 +442,7 @@ h1 {
     /* ////////////////////////////// ACCOUNT SETTING /////////////////////////////////////// */
 
     /* ////// USER FORM INFO ////// */
-    .profile-form form {
+    .profile-form form, .support-form form {
         width: 90%;
     }
 }
@@ -457,15 +496,16 @@ h1 {
     }
 
     /* ////// USER FORM INFO ////// */
-    .profile-form form {
+    .profile-form form, .user-support form {
         padding: 3rem 1.5rem;
     }
 
-    .profile-form span, .profile-form input, .withdrawal-form span, .withdrawal-form input {
+    .profile-form span, .profile-form input, .withdrawal-form span,
+     .withdrawal-form input, .user-support span, .user-support input {
         font-size: 0.9rem;
     }
 
-    .save-info-btn, .mgn-acc-btn {
+    .save-info-btn, .mgn-acc-btn, .support-btn {
         font-size: 1rem;
         padding: 0.5rem 1rem;
     }
@@ -487,5 +527,15 @@ h1 {
 
     .open-info-dropdown, .close-info-dropdown {
         font-size: 1rem;
+    }
+
+    /* ////////////////////////////// SUPPORT /////////////////////////////////////// */
+
+    .user-support h4, .user-support p {
+        font-size: 1.2rem;
+    }
+
+    .user-support textarea {
+        height: 8rem;
     }
 }
