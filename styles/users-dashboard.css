@@ -130,8 +130,9 @@ nav ul {
 }
 
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-.dashboard-overview, .user-account, .Withdraw-info, .user-support {
-    margin-left: 13.75rem;
+.dashboard-overview, .user-account, .Withdraw-info, .user-support,
+ .transaction-history {
+    margin-left: 15rem;
     padding: 2rem 2rem 5rem;
     width: 100%;
     background-color: #141928;
@@ -396,6 +397,112 @@ input:focus, textarea:focus {
 }
 
 
+/* ////////////////////////////// TRANSACTION HISTORY/DEPOSTI /////////////////////////////////////// */
+
+.history-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.history-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid #D1DDEB;
+}
+
+.history-section a {
+    text-decoration: none;
+}
+
+.history-section p {
+    text-decoration: none;
+    color: #8492a6;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.history-section div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.history-section div:hover {
+    border: 1px solid #D1DDEB;
+    border-bottom: none;
+}
+
+.deposit-history.active, .withdraw-history.active, .other-history.active {
+    background-color: #D1DDEB;
+}
+
+table {
+    padding: 3rem 1rem 0;
+    color: #D1DDEB;
+    width: 100%;
+    border-spacing: 0;
+    box-sizing: content-box;
+    overflow-x: scroll;
+}
+
+th {
+    font-size: 1.2rem;
+    border-bottom: 1px solid #8492a6;
+    padding: 1.5rem 0;
+}
+
+td {
+    border-bottom: 1px solid #8492a6;
+    text-align: center;
+    font-size: 1rem;
+    padding: 1.5rem 0;
+}
+
+.entries {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.entries p {
+    font-size: 1rem;
+    margin: 0;
+    color: #8492a6;
+    font-weight: bold;
+}
+
+.entries-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.prev-btn, .next-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #8492a6;
+    color: #D1DDEB;
+    border: none;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.pg-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #D1DDEB;
+    color: #141928;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+
 
 
 
@@ -426,7 +533,8 @@ input:focus, textarea:focus {
     }
 
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
-    .dashboard-overview, .user-account, .Withdraw-info, .user-support {
+    .dashboard-overview, .user-account, .Withdraw-info, .user-support,
+     .transaction-history {
         margin-left: 0;
     }
 }
@@ -435,6 +543,53 @@ input:focus, textarea:focus {
     .dashboard-main {
         grid-template-columns: repeat(2, 1fr);
         row-gap: 0;
+    }
+}
+
+@media (max-width:760px) {
+    /* ////////////////////////////// TRANSACTION HISTORY/DEPOSTI /////////////////////////////////////// */
+    /* .history-container{
+        white-space: nowrap;
+        overflow-x: scroll;
+    } */
+
+    .history-section div {
+        padding: 1rem 0;
+        /* white-space: nowrap; */
+    }
+
+    .history-section p {
+        font-size: 1.2rem;
+    }
+
+    table {
+        padding: 2rem 1rem 0;
+        
+    }
+
+    th {
+        font-size: 1rem;
+        /* min-width: 100% !important; */
+        /* white-space: nowrap; */
+    }
+
+    td {
+        font-size: 0.8rem;
+        /* min-width: 100% !important; */
+        /* white-space: nowrap; */
+    }
+
+    .entries {
+        padding: 1rem;
+        /* white-space: nowrap; */
+    }
+
+    .prev-btn, .next-btn {
+        font-size: 1rem;
+    }
+
+    .pg-btn {
+        font-size: 0.8rem;
     }
 }
 
@@ -477,7 +632,7 @@ input:focus, textarea:focus {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .dashboard-overview, .user-account {
+    .dashboard-overview, .user-account, .transaction-history {
         padding: 2rem 1.5rem 5rem;
     }
 
@@ -537,5 +692,31 @@ input:focus, textarea:focus {
 
     .user-support textarea {
         height: 8rem;
+    }
+
+    /* ////////////////////////////// TRANSACTION HISTORY/DEPOSTI /////////////////////////////////////// */
+
+    .history-section div {
+        padding: 1rem 0;
+    }
+
+    .history-section p {
+        font-size: 1rem;
+    }
+
+    th {
+        font-size: 0.8rem;
+    }
+
+    td {
+        font-size: 0.6rem;
+    }
+
+    .prev-btn, .next-btn {
+        font-size: 0.8rem;
+    }
+
+    .pg-btn {
+        font-size: 0.6rem;
     }
 }
