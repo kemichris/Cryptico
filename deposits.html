@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction History</title>
+    <title>Deposits</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
@@ -70,9 +70,9 @@
                     </div>
                 </a>
                 <a href="transact-history.html">
-                    <div class="account-history user-div active">
-                        <i class="fa-solid fa-briefcase active"></i>
-                        <span class="active">Transaction history</span>
+                    <div class="account-history user-div">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Transaction history</span>
                     </div>
                 </a>
                 <div class="dep-with user-div">
@@ -82,10 +82,10 @@
                 <div class="dep-with-dropdown inactive">
                     <ul>
                         <li>
-                            <a href="deposits.html">Deposit</a>
+                            <a href="">Deposit</a>
                         </li>
                         <li>
-                            <a href="withdrawal.html">Withdrawal</a>
+                            <a href="">Withdrawal</a>
                         </li>
                     </ul>
                 </div>
@@ -110,97 +110,86 @@
                     </div>
                 </a>
                 <a href="users-support.html">
-                    <div class="support user-div">
-                        <i class="fa-solid fa-circle-radiation"></i>
-                        <span>Support</span>
+                    <div class="support user-div active">
+                        <i class="fa-solid fa-circle-radiation active"></i>
+                        <span class="active">Support</span>
                     </div>
                 </a>
 
 
             </div>
 
-            <!-- ////// TRANSACTION HISTORY ////// -->
-            <div class="transaction-history">
-                <h1>Account Transactions</h1>
-                
-                <div class="history-container">
-                    <div class="history-section">
-                        <a href="transact-history.html">
-                            <div class="deposit-history active">
-                                <p>Deposits</p>
-                            </div>
-                        </a>
-                        <a href="transact-withdraw-history.html">
-                            <div class="withdraw-history">
-                                <p>Withdrawals</p>
-                            </div>
-                        </a>
-                        <a href="transact-others-history.html">
-                            <div class="other-history">
-                                <p>Others</p>
-                            </div>
-                        </a>
-                    </div>
+            <!-- ////// USER DEPOSIT ////// -->
+            <div class="user-deposits">
+                <h1>Your deposits</h1>
+                <button class="new-deposit-btn"><i class="fa-solid fa-plus"></i> New Deposit</button>
 
-                    
-                    <table class="deposit-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Amount</th>
-                                <th>Payment Mode</th>
-                                <th>Status</th>
-                                <th>Date Created</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody">
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-
-                    <div class="entries">
-                        <p>showing <span id="startIdx">1</span> to <span id="endIdx">5</span> of <span id="totalEntries">5</span> entries </p>
-                        <div class="entries-buttons">
-                            <button class="prev-btn">Prev</button>
-                            <button class="pg-btn">1</button>
-                            <button class="next-btn">Next</button>
-                        </div>
+                <div class="deposit-popup inactive">
+                    <div class="popup-title">
+                        <h3>Make new deposit</h3>
+                        <i class="fa-solid fa-xmark"></i>
                     </div>
-                    
+                    <input type="text" placeholder="Enter amount here" name="" id="">
+                    <button>Continue</button>
+                </div>
+
+
+                <table class="deposit-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Amount</th>
+                            <th>Payment Mode</th>
+                            <th>Status</th>
+                            <th>Date Created</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr class="tr">
+                            <td>1</td>
+                            <td>$<span>1000</span></td>
+                            <td>Bitcoion</td>
+                            <td>Pending</td>
+                            <td>Mon, Oct 23, 2023 3:50 PM</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>1</td>
+                            <td>$<span>1000</span></td>
+                            <td>Bitcoion</td>
+                            <td>Pending</td>
+                            <td>Mon, Oct 23, 2023 3:50 PM</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>1</td>
+                            <td>$<span>1000</span></td>
+                            <td>Bitcoion</td>
+                            <td>Pending</td>
+                            <td>Mon, Oct 23, 2023 3:50 PM</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>1</td>
+                            <td>$<span>1000</span></td>
+                            <td>Bitcoion</td>
+                            <td>Pending</td>
+                            <td>Mon, Oct 23, 2023 3:50 PM</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+                <div class="entries">
+                    <p>showing <span id="startIdx">1</span> to <span id="endIdx">5</span> of <span id="totalEntries">5</span> entries </p>
+                    <div class="entries-buttons">
+                        <button class="prev-btn">Prev</button>
+                        <button class="pg-btn">1</button>
+                        <button class="next-btn">Next</button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <script src="scripts/transaction-history.js"></script>
+    <script src="scripts/users-withdrawinfo.js"></script>
 </body>
 
 </html>

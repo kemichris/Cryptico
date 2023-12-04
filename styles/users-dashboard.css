@@ -10,6 +10,11 @@ body {
 
 button {
     font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer;
+}
+
+i {
+    cursor: pointer;
 }
 
 /* ////// NAV BAR SECTION ////// */
@@ -131,7 +136,7 @@ nav ul {
 
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
 .dashboard-overview, .user-account, .Withdraw-info, .user-support,
- .transaction-history {
+ .transaction-history, .user-deposits {
     margin-left: 15rem;
     padding: 2rem 2rem 5rem;
     width: 100%;
@@ -265,7 +270,7 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-.save-info-btn, .mgn-acc-btn, .support-btn {
+.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button {
     padding: 0.5rem 2rem;
     border: none;
     font-size: 1.5rem;
@@ -397,7 +402,7 @@ input:focus, textarea:focus {
 }
 
 
-/* ////////////////////////////// TRANSACTION HISTORY/DEPOSTI /////////////////////////////////////// */
+/* ////////////////////////////// TRANSACTION HISTORY/DEPOSIT /////////////////////////////////////// */
 
 .history-container {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -441,7 +446,7 @@ input:focus, textarea:focus {
 table {
     padding: 3rem 1rem 0;
     color: #D1DDEB;
-    width: 100%;
+    width: 95%;
     border-spacing: 0;
     box-sizing: content-box;
     overflow-x: scroll;
@@ -501,8 +506,63 @@ td {
     cursor: pointer;
 }
 
+/* ////////////////////////////// DEPOSIT/WITHDRAWAL /////////////////////////////////////// */
 
+.deposit-popup {
+    padding: 1rem 0;
+    background-color: #16122C;
+    width: 36%;
+    max-width: 100%;
+    border-radius: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
 
+.popup-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    border-bottom: 1px solid #D1DDEB;
+    padding-bottom: 1rem;
+}
+
+.popup-title h3 {
+    color: #D1DDEB;
+    font-size: 1.0375rem;
+    margin: 0;
+}
+
+.popup-title i {
+    color: #8492a6;
+    font-size: 1.5rem;
+}
+
+.deposit-popup input {
+    margin: 1rem;
+    height: 1.5rem;
+    padding: 0.3125rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #8492a6;
+    border: 1px solid #8492a6;
+    background-color: transparent;
+}
+
+.deposit-popup button {
+    width: fit-content;
+    margin: 0 1rem;
+    font-size: 0.875rem;
+}
+
+.deposit-popup.inactive {
+    display: none;
+}
 
 
 
