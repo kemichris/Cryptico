@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction History</title>
+    <title>Deposits</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
@@ -70,19 +70,19 @@
                     </div>
                 </a>
                 <a href="transact-history.html">
-                    <div class="account-history user-div active">
-                        <i class="fa-solid fa-briefcase active"></i>
-                        <span class="active">Transaction history</span>
+                    <div class="account-history user-div">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Transaction history</span>
                     </div>
                 </a>
-                <div class="dep-with user-div">
-                    <i class="fa-solid fa-credit-card"></i>
-                    <span>Deposti/Withdraw <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="dep-with user-div active">
+                    <i class="fa-solid fa-credit-card active"></i>
+                    <span class="active">Deposti/Withdraw <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="dep-with-dropdown inactive">
                     <ul>
                         <li>
-                            <a href="deposits.html">Deposit</a>
+                            <a href="">Deposit</a>
                         </li>
                         <li>
                             <a href="">Withdrawal</a>
@@ -119,87 +119,50 @@
 
             </div>
 
-            <!-- ////// TRANSACTION HISTORY ////// -->
-            <div class="transaction-history">
-                <h1>Account Transactions</h1>
-                
-                <div class="history-container">
-                    <div class="history-section">
-                        <a href="transact-history.html">
-                            <div class="deposit-history">
-                                <p>Deposits</p>
+            <!-- ////// USER DEPOSIT ////// -->
+            <div class="user-deposits">
+                <h1>Make Payment</h1>
+                <div class="payment-section">
+                    <p class="payment-p">You are to make payment of $<span>1000</span> using your preferred mode of payment below. Screenshot the proof of payment</p>
+                    <div class="payment-mode">
+                        <div class="bank-mode">
+                            <h3>Bank Deposti/Transfer</h3>
+                            <div class="bank-details">
+                                <p><strong>Bank Name:</strong> <Span>International Bank</Span></p>
+                                <p><strong>Account Name:</strong> <Span>charles</Span></p>
+                                <p><strong>Account Number:</strong> <Span>8479398393k</Span></p>
                             </div>
-                        </a>
-                        <a href="transact-withdraw-history.html">
-                            <div class="withdraw-history">
-                                <p>Withdrawals</p>
+                        </div>
+                        <div class="crypto-mode">
+                            <h3>Bitcoin</h3>
+                            <div class="crypto-details ">
+                                <p><strong>BTC Address:</strong> <Span>bcksdsjldfdj8393kdjfdkdk</Span></p>
                             </div>
-                        </a>
-                        <a href="transact-others-history.html">
-                            <div class="other-history active">
-                                <p>Others</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <table class="withdrawal-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Amount</th>
-                                <th>Type</th>
-                                <th>Plan/Narration</th>
-                                <th>Date Created</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody">
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-
-                    <div class="entries">
-                        <p>showing <span id="startIdx">1</span> to <span id="endIdx">5</span> of <span id="totalEntries">5</span> entries </p>
-                        <div class="entries-buttons">
-                            <button class="prev-btn">Prev</button>
-                            <button class="pg-btn">1</button>
-                            <button class="next-btn">Next</button>
                         </div>
                     </div>
-                    
+
+                    <form action="" class="deposit-form">
+                        <label for="">Upload Payment proof after payment. (Ignore if paid with card).</label>
+                        <input type="file" name="" id="">
+                        <label for="">Payment mode used</label>
+                        <select name="" id="" required >
+                            <option selected disabled ="">Select payment method</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Bitcoin">Bitcoin</option>
+                            <option value="Etheereum">Ethereum</option>
+                            <option value="Litecoin">Litecoin</option>
+                        </select>
+
+                        <button class="payment-btn" type="submit">Submit Payment</button>
+                    </form>
                 </div>
+
+                
             </div>
         </div>
     </main>
     <script src="../scripts/users-dashboard.js"></script>
-    <script src="../scripts/transaction-history.js"></script>
+    <script src="../scripts/payment.js"></script>
 </body>
 
 </html>
