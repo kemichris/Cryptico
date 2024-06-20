@@ -679,7 +679,7 @@ td {
 
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
     .dashboard-overview, .user-account, .Withdraw-info, .user-support,
-     .transaction-history {
+     .transaction-history, .user-deposits {
         margin-left: 0;
     }
 }
@@ -735,6 +735,14 @@ td {
 
     .pg-btn {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 700px) {
+    /* ////////////////////////////// DEPOSIT/WITHDRAWAL /////////////////////////////////////// */
+    .payment-mode {
+        display: flex;
+        flex-direction: column;
     }
 }
 
