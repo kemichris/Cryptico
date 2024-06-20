@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptico | Withdrawal</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="../styles/users-dashboard.css" />
+</head>
+
+<body>
+    <header>
+        <!-- ////// NAV BAR SECTION ////// -->
+        <nav>
+            <ul>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="assets/icons/crypt-logo.jpg" alt="" />
+                    </a>
+                </li>
+                <li class="welcome"> Welcome <span>Chris</span>!</li>
+                <a href="">
+                    <button class="sign-out-btn">Sign out</button>
+                </a>
+                <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+                <i class="fa-solid fa-x remove-nav-icon inactive"></i>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="side-main-flex">
+            <!-- ////// SIDE BAR ////// -->
+            <div class="user-side-bar active">
+                <a class="active" href="users-dashboard.html">
+                    <div class="dashboard user-div">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+                <div class="account user-div">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Account <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="account-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="users-account-setting.html">Account setting</a>
+                        </li>
+                        <li>
+                            <a href="users-withdrawinfo.html">Withdrawal info</a>
+                        </li>
+                        <li>
+                            <a href="">Notifications</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="">
+                    <div class="profitl/loss user-div">
+                        <i class="fa-solid fa-signal"></i>
+                        <span>P/L record</span>
+                    </div>
+                </a>
+                <a href="transact-history.html">
+                    <div class="account-history user-div">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Transaction history</span>
+                    </div>
+                </a>
+                <div class="dep-with user-div active">
+                    <i class="fa-solid fa-credit-card active"></i>
+                    <span class="active">Deposti/Withdraw <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="dep-with-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Deposit</a>
+                        </li>
+                        <li>
+                            <a href="">Withdrawal</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="packages user-div">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Packages <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="packages-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="">My Packages</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="">
+                    <div class="refer user-div">
+                        <i class="fa-solid fa-recycle"></i>
+                        <span>Refer Users</span>
+                    </div>
+                </a>
+                <a href="users-support.html">
+                    <div class="support user-div">
+                        <i class="fa-solid fa-circle-radiation"></i>
+                        <span>Support</span>
+                    </div>
+                </a>
+
+
+            </div>
+
+            <!-- ////// USER DEPOSIT ////// -->
+            <div class="user-deposits">
+                <h1>Request for Withdrawal</h1>
+                
+                <div class="withdrawal-cards">
+                    <div class="bank-withdrawal withdraw-card">
+                        <h3>Bank Transfer</h3>
+                        <div>
+                            <p>Minimum amount:</p>
+                            <p><strong>$100</strong></p>
+                        </div>
+                        <div>
+                            <p>Maximum amount:</p>
+                            <p><strong>$10000000</strong></p>
+                        </div>
+                        <div>
+                            <p>charges (Fixed)</p>
+                            <p><strong>0%</strong></p>
+                        </div>
+                        <div>
+                            <p>Charges</p>
+                            <p><strong>2%</strong></p>
+                        </div>
+                        <div>
+                            <p>Duration</p>
+                            <p><strong>3 hours</strong></p>
+                        </div>
+                        <button class="request-btn"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+                    </div>
+                    <div class="btc-withdrawal withdraw-card">
+                        <h3>Bitcoin</h3>
+                        <div>
+                            <p>Minimum amount:</p>
+                            <p><strong>$100</strong></p>
+                        </div>
+                        <div>
+                            <p>Maximum amount:</p>
+                            <p><strong>$10000000</strong></p>
+                        </div>
+                        <div>
+                            <p>charges (Fixed)</p>
+                            <p><strong>0%</strong></p>
+                        </div>
+                        <div>
+                            <p>Charges</p>
+                            <p><strong>2%</strong></p>
+                        </div>
+                        <div>
+                            <p>Duration</p>
+                            <p><strong>Instant</strong></p>
+                        </div>
+                        <button class="request-btn"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+                    </div>
+                    <div class="eth-withdrawal withdraw-card">
+                        <h3>Ethereum</h3>
+                        <div>
+                            <p>Minimum amount:</p>
+                            <p><strong>$100</strong></p>
+                        </div>
+                        <div>
+                            <p>Maximum amount:</p>
+                            <p><strong>$10000000</strong></p>
+                        </div>
+                        <div>
+                            <p>charges (Fixed)</p>
+                            <p><strong>0%</strong></p>
+                        </div>
+                        <div>
+                            <p>Charges</p>
+                            <p><strong>2%</strong></p>
+                        </div>
+                        <div>
+                            <p>Duration</p>
+                            <p><strong>3 hours</strong></p>
+                        </div>
+                        <button class="request-btn"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </main>
+    <script src="../scripts/users-dashboard.js"></script>
+    <script src="../scripts/payment.js"></script>
+</body>
+
+</html>

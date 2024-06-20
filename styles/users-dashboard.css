@@ -270,7 +270,7 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, .payment-btn {
+.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, .payment-btn, .request-btn {
     padding: 0.5rem 2rem;
     border: none;
     font-size: 1.2rem;
@@ -587,7 +587,7 @@ td {
     margin: 1rem 0 5rem;
 }
 
-.bank-mode, .crypto-mode {
+.bank-mode, .crypto-mode, .withdraw-card {
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -652,6 +652,37 @@ td {
 }
 
 
+.withdrawal-cards {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.withdraw-card {
+    width: inherit;
+   
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.withdraw-card div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.withdraw-card h3 {
+    color: #8492a6;
+    margin: 0;
+}
+
+.withdraw-card p {
+    color: #D1DDEB;
+    margin: 0;
+}
+
 /* MEDIA RESPONSIVENESS  */
 
 @media (max-width:1000px) {
@@ -681,6 +712,11 @@ td {
     .dashboard-overview, .user-account, .Withdraw-info, .user-support,
      .transaction-history, .user-deposits {
         margin-left: 0;
+    }
+
+    /* ////////////////////////////// DEPOSIT/WITHDRAWAL /////////////////////////////////////// */
+    .withdrawal-cards {
+        flex-direction: column;
     }
 }
 
