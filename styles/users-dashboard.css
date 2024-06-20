@@ -270,7 +270,7 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, .payment-btn, .request-btn {
+.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, .payment-btn, .request-btn, .withdraw-popup button {
     padding: 0.5rem 2rem;
     border: none;
     font-size: 1.2rem;
@@ -508,10 +508,10 @@ td {
 
 /* ////////////////////////////// DEPOSIT/WITHDRAWAL /////////////////////////////////////// */
 
-.deposit-popup {
+.deposit-popup, .withdraw-popup {
     padding: 1rem 0;
     background-color: #16122C;
-    width: 36%;
+    width: 50%;
     max-width: 100%;
     border-radius: 0.4rem;
     display: flex;
@@ -543,7 +543,7 @@ td {
     font-size: 1.5rem;
 }
 
-.deposit-popup input {
+.deposit-popup input, .withdraw-popup input {
     margin: 1rem;
     height: 1.5rem;
     padding: 0.3125rem;
@@ -554,13 +554,13 @@ td {
     background-color: transparent;
 }
 
-.deposit-popup button {
+.deposit-popup button, .withdraw-popup button {
     width: fit-content;
     margin: 0 1rem;
     font-size: 0.875rem;
 }
 
-.deposit-popup.inactive {
+.deposit-popup.inactive, .withdraw-popup.inactive {
     display: none;
 }
 
@@ -661,8 +661,7 @@ td {
 }
 
 .withdraw-card {
-    width: inherit;
-   
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -717,6 +716,10 @@ td {
     /* ////////////////////////////// DEPOSIT/WITHDRAWAL /////////////////////////////////////// */
     .withdrawal-cards {
         flex-direction: column;
+    }
+
+    .withdraw-card {
+        width: inherit;
     }
 }
 
@@ -779,6 +782,10 @@ td {
     .payment-mode {
         display: flex;
         flex-direction: column;
+    }
+
+    .deposit-popup, .withdraw-popup {
+        width: 70%;
     }
 }
 
@@ -907,5 +914,10 @@ td {
 
     .pg-btn {
         font-size: 0.6rem;
+    }
+
+    /* ////////////////////////////// DEPOSIT/WITHDRAWAL /////////////////////////////////////// */
+    .deposit-popup, .withdraw-popup {
+        width: 90%;
     }
 }

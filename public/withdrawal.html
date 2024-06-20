@@ -22,7 +22,7 @@
             <ul>
                 <li class="logo">
                     <a href="index.html">
-                        <img src="assets/icons/crypt-logo.jpg" alt="" />
+                        <img src="../assets/icons/crypt-logo.jpg" alt="" />
                     </a>
                 </li>
                 <li class="welcome"> Welcome <span>Chris</span>!</li>
@@ -146,7 +146,7 @@
                             <p>Duration</p>
                             <p><strong>3 hours</strong></p>
                         </div>
-                        <button class="request-btn"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+                        <button class="request-btn" value="Bank Transfer"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
                     </div>
                     <div class="btc-withdrawal withdraw-card">
                         <h3>Bitcoin</h3>
@@ -170,7 +170,7 @@
                             <p>Duration</p>
                             <p><strong>Instant</strong></p>
                         </div>
-                        <button class="request-btn"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+                        <button class="request-btn" value="Bitcoin"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
                     </div>
                     <div class="eth-withdrawal withdraw-card">
                         <h3>Ethereum</h3>
@@ -194,8 +194,18 @@
                             <p>Duration</p>
                             <p><strong>3 hours</strong></p>
                         </div>
-                        <button class="request-btn"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+                        <button class="request-btn" value="Ethereum"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
                     </div>
+                </div>
+
+                <div class="withdraw-popup inactive">
+                    <div class="popup-title">
+                        <h3>Payment will be sent through your Selected method</h3>
+                        <i class="fa-solid fa-xmark close-deposit-popup"></i>
+                    </div>
+                    <input type="text" placeholder="Enter amount here" name="" id="">
+                    <input type="text" readonly value="" id="payment-option">
+                    <button>Continue</button>
                 </div>
 
                 
@@ -203,7 +213,7 @@
         </div>
     </main>
     <script src="../scripts/users-dashboard.js"></script>
-    <script src="../scripts/payment.js"></script>
+    <script src="../scripts/withdrawal.js"></script>
 </body>
 
 </html>
