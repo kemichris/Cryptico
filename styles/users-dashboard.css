@@ -136,7 +136,7 @@ nav ul {
 
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
 .dashboard-overview, .user-account, .Withdraw-info, .user-support,
- .transaction-history, .user-deposits {
+ .transaction-history, .user-deposits, .user-packages {
     margin-left: 15rem;
     padding: 2rem 2rem 5rem;
     width: 100%;
@@ -680,6 +680,29 @@ td {
 .withdraw-card p {
     color: #D1DDEB;
     margin: 0;
+}
+
+
+/* ////////////////////////////// USER PLANS /////////////////////////////////////// */
+
+.available-plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4rem;
+    margin-top: 5rem;
+}
+
+.plan-cards > * {
+    border: 1px solid #D1DDEB;
+    border-radius: 0.6rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    transition: transform 0.3s;
+}
+
+.plan-cards > *:hover {
+    transform: scale(1.05); 
 }
 
 /* MEDIA RESPONSIVENESS  */
