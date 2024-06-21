@@ -742,7 +742,7 @@ td {
     border: 1px solid #8492a6;
     background-color: transparent;
     border-radius: 0.3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .join-plan-btn {
@@ -780,7 +780,7 @@ td {
 
     /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
     .dashboard-overview, .user-account, .Withdraw-info, .user-support,
-     .transaction-history, .user-deposits {
+     .transaction-history, .user-deposits, .user-packages {
         margin-left: 0;
     }
 
@@ -792,6 +792,12 @@ td {
     .withdraw-card {
         width: inherit;
     }
+
+    /* ////////////////////////////// USER PLANS /////////////////////////////////////// */
+    .available-plans {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media (max-width:800px) {
@@ -845,6 +851,11 @@ td {
 
     .pg-btn {
         font-size: 0.8rem;
+    }
+
+    /* ////////////////////////////// USER PLANS /////////////////////////////////////// */
+    .available-plans {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
