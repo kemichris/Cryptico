@@ -270,7 +270,8 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, .payment-btn, .request-btn, .withdraw-popup button {
+.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, 
+    .payment-btn, .request-btn, .withdraw-popup button, .join-plan-btn {
     padding: 0.5rem 2rem;
     border: none;
     font-size: 1.2rem;
@@ -693,15 +694,62 @@ td {
     margin-top: 5rem;
 }
 
-.plan-cards > * {
+.available-plans > * {
     border: 1px solid #D1DDEB;
     border-radius: 0.6rem;
     padding: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
     transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.plan-cards > *:hover {
+.available-plans p {
+    margin: 0;
+    color: #D1DDEB;
+}
+
+.available-plans .card-name {
+    font-size: 1.5rem;
+    color: #8492a6;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.available-plans .card-amount {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.package-card div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.available-plans .invested-amount {
+    margin-top: 2rem;
+}
+
+.available-plans input {
+    padding: 0.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    color: #8492a6;
+    border: 1px solid #8492a6;
+    background-color: transparent;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.join-plan-btn {
+    color: #D1DDEB;
+}
+
+.available-plans > *:hover {
     transform: scale(1.05); 
 }
 
