@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="../styles/admin.css" />
+</head>
+
+<body>
+    <header>
+        <!-- NAV SECTION  -->
+         <nav>
+            <a href="../index.html">Cryptico</a>
+            <button>
+                font-awesome user icon
+            </button>
+         </nav>
+         <div class="user-setting-dropdown">
+            <a href="">Account setting</a>
+            <a href="">Change password</a>
+            <a href="">Logout</a>
+         </div>
+    </header>
+
+    <main>
+        <div class="side_menu-main">
+            <div class="side-menu">
+                <div class="">
+                    <p class="admin-name">Admin Name</p>
+                    <small class="admin-title">Admin</small>
+                </div>
+                <a class="active" href="dashboard.html">
+                    <div class="dashboard admin-div active">
+                        <i class="fa-solid fa-house active"></i>
+                        <span class="active">Dashboard</span>
+                    </div>
+                </a>
+                <div class="investment admin-div">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <span>Investment <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="investment-dropdown inactive">                  
+                    <ul>
+                        <li>
+                            <a href="">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="">Active Investment</a>
+                        </li>
+                            
+                    </ul>
+                </div>
+                <a href="">
+                    <div class="manage-users admin-div">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Manage Users</span>
+                    </div>
+                </a>
+
+                <a href="">
+                    <div class="manage-dep admin-div">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Manage Deposit</span>
+                    </div>
+                </a>
+               
+            </div>
+        </div>
+    </main>
+   
+</body>
+
+</html>
