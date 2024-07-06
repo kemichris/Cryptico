@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900;1000&display=swap');
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #FAFBFD;
+}
+
+button {
+    font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer;
+}
+
+i {
+    cursor: pointer;
+}
+
+p {
+    margin: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.block {
+    display: block;
+}
+
+/* ////// NAV BAR SECTION ////// */
+nav {
+    background-color: #0D4152;
+    padding: 1rem 3rem;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    z-index: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+nav a {
+    font-size: 1.68rem;
+    text-decoration: none;
+    color: white;
+}
+
+nav i {
+    color: white;
+    font-size: 1.125rem;
+}
+
+/* ////// SIDE AND MAIN SECTION ////// */
+.side_menu-main {
+    padding-top: 3rem;
+}
+
+/* ////// SIDE BAR ////// */
+.side-menu {
+    padding: 2rem 0.3rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    /* border-right: 1px solid #D1DDEB; */
+    position: fixed;
+    overflow: auto;
+    background-color: #FFFFFF;
+    height: 100vh;
+    z-index: 1;
+    top: 7%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+}
+
+.user-side-bar::-webkit-scrollbar{
+    display: none;
+}

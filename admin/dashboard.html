@@ -18,21 +18,20 @@
 <body>
     <header>
         <!-- NAV SECTION  -->
-         <nav>
+        <nav class="flex">
             <a href="../index.html">Cryptico</a>
-            <button>
-                font-awesome user icon
-            </button>
-         </nav>
-         <div class="user-setting-dropdown">
+            <i class="fa-solid fa-user"></i>
+
+        </nav>
+        <div class="user-setting-dropdown">
             <a href="">Account setting</a>
             <a href="">Change password</a>
             <a href="">Logout</a>
-         </div>
+        </div>
     </header>
 
     <main>
-        <div class="side_menu-main">
+        <div class="side_menu-main flex">
             <div class="side-menu">
                 <div class="">
                     <p class="admin-name">Admin Name</p>
@@ -48,7 +47,7 @@
                     <i class="fa-solid fa-money-bill-transfer"></i>
                     <span>Investment <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
-                <div class="investment-dropdown inactive">                  
+                <div class="investment-dropdown inactive">
                     <ul>
                         <li>
                             <a href="">Investment Plans</a>
@@ -56,7 +55,7 @@
                         <li>
                             <a href="">Active Investment</a>
                         </li>
-                            
+
                     </ul>
                 </div>
                 <a href="">
@@ -93,7 +92,7 @@
                     <i class="fa-solid fa-user"></i>
                     <span>Administrator <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
-                <div class="administrator-dropdown inactive">                  
+                <div class="administrator-dropdown inactive">
                     <ul>
                         <li>
                             <a href="">Add Manager</a>
@@ -101,14 +100,14 @@
                         <li>
                             <a href="">Manage Admins</a>
                         </li>
-                            
+
                     </ul>
                 </div>
                 <div class="setting admin-div">
                     <i class="fa-solid fa-gear"></i>
                     <span>Setting <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
-                <div class="setting-dropdown inactive">                  
+                <div class="setting-dropdown inactive">
                     <ul>
                         <li>
                             <a href="">Payment Setting</a>
@@ -119,102 +118,149 @@
                         <li>
                             <a href="">Terms and Privacy</a>
                         </li>
-                            
+
                     </ul>
                 </div>
 
-               
-            </div>
-        </div>
-
-        <div class="main-dashboard">
-            <div class="welcome">
-                <h1>Welcome back <span>Admin name</span></h1>
-                <p>Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.</p>
-            </div>
-            
-
-            <div class="dashboard-overview">
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="total-users">
-                        <p>Total users</p>
-                        <span>0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-solid fa-building-circle-check"></i>
-                    </div>
-                    <div class="active-subscribers">
-                        <p>Active Subscribers</p>
-                        <span>0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-solid fa-money-bill-trend-up"></i>
-                    </div>
-                    <div class=total-withdrawals">
-                        <p>Total withdrawals</p>
-                        <span>0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-regular fa-circle-check"></i>
-                    </div>
-                    <div class="total-deposits">
-                        <p>Total deposits</p>
-                        <span>0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="blocked-users">
-                        <p>Blocked users</p>
-                        <span>0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-solid fa-building-circle-check"></i>
-                    </div>
-                    <div class="active-users">
-                        <p>Active Users</p>
-                        <span>0</span>
-                    </div>
-                </div>
                 
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-solid fa-money-bill-trend-up"></i>
-                    </div>
-                    <div class="pending-withdrawals">
-                        <p>Pending withdrawals</p>
-                        <span>0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="icon-img">
-                        <i class="fa-regular fa-circle-check"></i>
-                    </div>
-                    <div class="pending-deposits">
-                        <p>Pending deposits</p>
-                        <span>0</span>
-                    </div>
-                </div>
+
 
             </div>
 
 
-        </div>
+            <div class="main-dashboard">
+                <div class="welcome">
+                    <h1>Welcome back <span>Admin name</span></h1>
+                    <p>Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing
+                        myself.</p>
+                </div>
+
+                <!-- DASHBOARD OVERVIEW  -->
+                <div class="dashboard-overview">
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="total-users">
+                            <p>Total users</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-solid fa-building-circle-check"></i>
+                        </div>
+                        <div class="active-subscribers">
+                            <p>Active Subscribers</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
+                        </div>
+                        <div class=total-withdrawals">
+                            <p>Total withdrawals</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-regular fa-circle-check"></i>
+                        </div>
+                        <div class="total-deposits">
+                            <p>Total deposits</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="blocked-users">
+                            <p>Blocked users</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-solid fa-building-circle-check"></i>
+                        </div>
+                        <div class="active-users">
+                            <p>Active Users</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
+                        </div>
+                        <div class="pending-withdrawals">
+                            <p>Pending withdrawals</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon-img">
+                            <i class="fa-regular fa-circle-check"></i>
+                        </div>
+                        <div class="pending-deposits">
+                            <p>Pending deposits</p>
+                            <span>0</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- LATEST USER SECTION  -->
+                <div class="latest-user">
+                    <h2>Lastes users</h2>
+                    <div class="latest-users-container">
+                        <div class="user">
+                            <div class="user-name-email">
+                                <p>Test name</p>
+                                <p>textemail@example.com</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user-name-email">
+                                <p>Test name</p>
+                                <p>textemail@example.com</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user-name-email">
+                                <p>Test name</p>
+                                <p>textemail@example.com</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user-name-email">
+                                <p>Test name</p>
+                                <p>textemail@example.com</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user-name-email">
+                                <p>Test name</p>
+                                <p>textemail@example.com</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
     </main>
-   
+
 </body>
 
 </html>
