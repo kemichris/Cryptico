@@ -77,7 +77,10 @@ nav i {
 .user-side-bar::-webkit-scrollbar{
     display: none;
 }
-
+.admin-user {
+    border-bottom:  1px solid #f1f1f1;
+    padding-bottom: 0.75rem;
+}
 .admin-name {
     color: #777;
     font-size: 0.875rem;
@@ -86,5 +89,6 @@ nav i {
 .admin-title {
     color: #555;
     font-size: 0.75rem;
+    font-weight: 600;
 }
 
