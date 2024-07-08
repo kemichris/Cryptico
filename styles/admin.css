@@ -61,10 +61,10 @@ nav i {
 
 /* ////// SIDE BAR ////// */
 .side-menu {
-    padding: 2rem 0.3rem 1rem 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
-    /* border-right: 1px solid #D1DDEB; */
+    gap: 1.5rem;
     position: fixed;
     overflow: auto;
     background-color: #FFFFFF;
@@ -77,3 +77,6 @@ nav i {
 .user-side-bar::-webkit-scrollbar{
     display: none;
 }
+
+
+
