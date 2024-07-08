@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900;1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 body {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Lato", sans-serif;
     overflow-x: hidden;
     margin: 0;
     box-sizing: border-box;
@@ -9,7 +9,7 @@ body {
 }
 
 button {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Lato", sans-serif;
     cursor: pointer;
 }
 
@@ -148,4 +148,31 @@ nav i {
 
 .dropdown.inactive {
     display: none;
+}
+
+/* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
+.main-dashboard {
+    margin-left: 14rem;
+    padding: 2rem 2rem 5rem;
+    width: 100%;
+    background-color: #FAFBFD;
+}
+
+/* ////// DASHBOARD////// */
+.welcome {
+    margin-bottom: 4rem;
+}
+h1 {
+    font-size: 1.725rem;
+    color: #575962;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.welcome p {
+    margin-top: 0.5rem;
+    font-size: 0.9125rem;
+    color: #575962;
+    opacity: .7;
 }
