@@ -68,7 +68,7 @@ nav i {
     position: fixed;
     overflow: auto;
     background-color: #FFFFFF;
-    height: 100vh;
+    height: 90vh;
     z-index: 1;
     top: 7%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
@@ -92,3 +92,60 @@ nav i {
     font-weight: 600;
 }
 
+.side-menu a, .side-menu span {
+    text-decoration: none;
+    color: #8d9498;
+    font-size: 0.875rem;
+   
+}
+
+.side-menu i {
+    color: #8d9498;
+}
+
+.admin-div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    border-radius: 6px 6px 6px 0;
+}
+
+.admin-div:hover {
+    background-color: #F4F4F4;
+}
+
+.side-menu a:hover, .admin-div span:hover, .admin-div i:hover {
+    font-weight: bold;
+}
+
+.admin-div.active {
+    background-color: #0D4152;
+}
+
+.side-menu a.active, .side-menu span.active, .side-menu i.active {
+    color: white;
+    font-weight: bold;
+}
+
+.dropdown li::marker {
+    color: #8d9498;
+}
+
+.dropdown ul {
+    margin: 0;
+    padding-left: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.account-dropdown, .dep-with-dropdown, .packages-dropdown {
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dropdown.inactive {
+    display: none;
+}
