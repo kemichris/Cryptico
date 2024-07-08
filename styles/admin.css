@@ -78,5 +78,13 @@ nav i {
     display: none;
 }
 
+.admin-name {
+    color: #777;
+    font-size: 0.875rem;
+}
 
+.admin-title {
+    color: #555;
+    font-size: 0.75rem;
+}
 
