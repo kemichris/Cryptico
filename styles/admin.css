@@ -25,8 +25,8 @@ p {
     display: flex;
 }
 
-.block {
-    display: block;
+.grid {
+    display: grid;
 }
 
 /* ////// NAV BAR SECTION ////// */
@@ -158,7 +158,6 @@ nav i {
     background-color: #FAFBFD;
 }
 
-/* ////// DASHBOARD////// */
 .welcome {
     margin-bottom: 4rem;
 }
@@ -175,4 +174,70 @@ h1 {
     font-size: 0.9125rem;
     color: #575962;
     opacity: .7;
+}
+
+/* ////// DASHBOARD////// */
+.dashboard-overview {
+   grid-template-columns: repeat(4, 1fr);
+   column-gap: 1.5rem;
+   row-gap: 2.5rem;
+   margin-bottom: 5rem;
+}
+
+.dashboard-overview >* {
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9375rem;
+    border-radius: 0.3rem;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
+
+.icon-img {
+    width: 4rem;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3125rem;
+}
+
+.icon-img i {
+    font-size: 2.2rem;
+    color: #fff;
+}
+
+.dashboard-overview > * p {
+    font-size: .875rem;
+    color: #8d9498;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-overview > * span {
+    font-size: 1.25rem;
+    color: #8d9498;
+   font-weight: 600;
+}
+
+.total-users-icon {
+    background-color: #0e4152;
+}
+
+.active-subs-icon {
+    background-color: #48abf7;
+}
+
+.total-withdrawals-icon, .total-deposits-icon {
+    background-color: #6861ce;
+}
+
+.blocked-users-icon, .pending-withdrawals-icon {
+    background-color: #f25961;
+}
+
+.active-users-icon {
+    background-color: #ffad46;
+}
+
+.pending-deposits-icon {
+    background-color: #0e4152;
 }
