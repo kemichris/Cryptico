@@ -241,3 +241,44 @@ h1 {
 .pending-deposits-icon {
     background-color: #0e4152;
 }
+
+
+/* ////// LATEST USER SECTION ////// */
+.latest-user {
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
+
+.latest-user h2 {
+    margin: 0;
+    color: #575962;
+    font-size: 1.25rem;
+}
+
+.latest-users-container {
+    margin-top: 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.latest-users-container .user {
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.latest-users-container .user:hover {
+    text-decoration: underline;
+}
+
+.latest-user-name {
+    color: #0e4152;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    margin-bottom: 0.5rem;
+}
+
+.latest-user-mail {
+    font-size: 0.6875rem;
+    color: #7d7b7b;
+}
