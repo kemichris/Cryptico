@@ -1,3 +1,5 @@
+
+// profile setting 
 const profile = document.getElementById("account");
 
 const profileDropdown = document.querySelector(".user-setting-dropdown");
@@ -8,12 +10,6 @@ profile.addEventListener("click", ()=> {
 
 
 
-
-
-
-
-
-
 // script for the side menu functionality 
 const investment = document.querySelector(".investment");
 const investmentDropdown = document.querySelector(".investment-dropdown");
@@ -21,6 +17,8 @@ const administrator = document.querySelector(".administrator");
 const administratorDropdown = document.querySelector(".administrator-dropdown");
 const setting = document.querySelector(".setting");
 const settingDropdown = document.querySelector(".setting-dropdown");
+const navMenuIcon = document.querySelector(".nav-menu-icon")
+const sieMenu = document.getElementById("side-menu")
 
 
 investment.addEventListener("click", ()=>{
@@ -32,6 +30,10 @@ administrator.addEventListener("click", ()=>{
 setting.addEventListener("click", ()=>{
     toggleDropdown(settingDropdown);
 });
+
+navMenuIcon.addEventListener("click", ()=> {
+    sieMenu.classList.toggle("active")
+})
 
 
 function toggleDropdown(dropdown) {

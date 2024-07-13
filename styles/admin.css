@@ -53,10 +53,17 @@ nav i {
     color: white;
     font-size: 1.125rem;
 }
+.nav-menu-icon {
+    display: none;
+}
+
+.nav-menu-icon.active {
+    display: none;
+}
 
 .user-setting-dropdown {
     position: fixed;
-    top: 7%;
+    top: 4rem;
     right: 1rem;
     padding: 1.5rem 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
@@ -68,6 +75,7 @@ nav i {
     width: 15rem;
     transition: opacity 0.5s ease-in-out;
     opacity: 0;
+    z-index: 2;
 }
 
 .user-setting-dropdown a {
@@ -113,8 +121,10 @@ nav i {
     background-color: #FFFFFF;
     height: 90vh;
     z-index: 1;
-    top: 7%;
+    top: 4rem;
+    left: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    transition: left 0.5s ease-in-out;
 }
 
 .user-side-bar::-webkit-scrollbar{
@@ -196,7 +206,7 @@ nav i {
 /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
 .main-dashboard {
     margin-left: 14rem;
-    padding: 2rem 2rem 5rem;
+    padding: 7rem 2rem 5rem;
     width: 100%;
     background-color: #FAFBFD;
 }
@@ -330,3 +340,35 @@ h1 {
 
 
 /* ////////////////////////////// MEDIA RESPONSIVENESS /////////////////////////////////////// */
+
+@media (max-width: 1000px) {
+    /* ////// NAV BAR SECTION ////// */
+    .nav-menu-icon {
+        display: block;
+    }
+
+    .side-menu.active {  
+        left: -15rem;
+    }
+
+    /* ////////////////////////////// DASHBOARD OVERVIEW /////////////////////////////////////// */
+    .main-dashboard {
+        margin-left: 0;
+    
+    }
+
+}
+
+@media (max-width:800px) {
+    /* ////// DASHBOARD////// */
+    .dashboard-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:500px) {
+    /* ////// DASHBOARD////// */
+    .dashboard-overview {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
