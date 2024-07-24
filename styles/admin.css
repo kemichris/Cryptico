@@ -119,7 +119,7 @@ nav i {
     position: fixed;
     overflow: auto;
     background-color: #FFFFFF;
-    height: 90vh;
+    height: 80vh;
     z-index: 1;
     top: 4rem;
     left: 0;
@@ -338,6 +338,97 @@ h1 {
 
 
 
+/* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+
+/* ////// PLAN TOP ////// */
+.plan-top {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-top button {
+    background-color: #0e4152;
+    border-color: #0e4152;
+    padding: 0.65rem 1.4rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem 0.25rem 0.25rem 0;
+    color: white;
+}
+
+/* ////// PLAN CONTAINER ////// */
+.plan-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4rem;
+    margin-top: 5rem;
+}
+
+.plan-container > * {
+    border: 1px solid #D1DDEB;
+    border-radius: 0.6rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.plan-container p {
+    margin: 0;
+    color: #343a40;
+}
+
+.plan-container .card-name {
+    font-size: 1.5rem;
+    color: #0e4152;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.plan-container .card-amount {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #627afe;
+}
+
+.package-card div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.plan-container .invested-amount {
+    margin-top: 2rem;
+}
+
+.package-card .plan-setting {
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.plan-setting button {
+    padding: 0.4375rem 0.8125rem;
+    border-radius: 0.25rem 0.25rem 0.25rem 0;
+    font-size: 0.675rem;
+    border: none;
+    color: white;
+}
+
+.edit-btn {
+    background-color: #0e4152;
+}
+
+.del-btn {
+    background-color: #f25961;
+}
+
+
 
 /* ////////////////////////////// MEDIA RESPONSIVENESS /////////////////////////////////////// */
 
@@ -357,6 +448,11 @@ h1 {
     
     }
 
+   /* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+    .plan-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media (max-width:800px) {
@@ -366,9 +462,26 @@ h1 {
     }
 }
 
+@media (max-width:760px) {
+    /* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+    .plan-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 @media (max-width:500px) {
     /* ////// DASHBOARD////// */
     .dashboard-overview {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+
+
+    .plan-top {
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2rem;
     }
 }
