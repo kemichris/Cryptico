@@ -347,7 +347,7 @@ h1 {
     align-items: center;
 }
 
-.plan-top button {
+.plan-top button, .add-plan-btn {
     background-color: #0e4152;
     border-color: #0e4152;
     padding: 0.65rem 1.4rem;
@@ -428,6 +428,58 @@ h1 {
 .del-btn {
     background-color: #f25961;
 }
+
+/* ////// ADD PLAN ////// */
+.plan-form {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+}
+
+.form-container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+}
+
+.form-container > * {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-container span {
+    font-size: 0.9125rem;
+    color: #575962;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-container input, .form-container select {
+    font-size: 0.875rem;
+    border: 1px solid #ebedf2;
+    padding: 0.6rem 1rem;
+    border-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+    height: 1.5rem;
+}
+
+.form-container select {
+    height: 2.5rem;
+}
+
+.form-container small {
+    margin-top: 0.5rem;
+    font-size: 0.8175rem;
+    color: #575962;
+}
+
+.add-plan-btn {
+    margin-top: 2rem;
+}
+
 
 
 

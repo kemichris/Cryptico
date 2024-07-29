@@ -137,7 +137,7 @@
                 <div class="plan-top flex">
                     <h1>Add Investment Plan</h1>
                     <a href="new-plan.html">
-                        <button><i class="fa-solid fa-plus"></i> Back</button>
+                        <button><i class="fa-solid fa-arrow-left"></i> Back</button>
                     </a>
                 </div>
 
@@ -145,7 +145,7 @@
                 <!-- PLAN CONTAINER  -->
                 <div class="plan-form">             
                     <form action="">
-                        <div class="form-container">
+                        <div class="form-container grid">
                             <div class="plan-name">
                                 <span>Plan Name</span>
                                 <input type="text" name="" placeholder="enter plan name" id="">
@@ -196,21 +196,19 @@
                             <div>
                                 <span>Top up Amount (%)</span>
                                 <input type="number" name="" placeholder="top up amount" id="">
-                                <small>his is the amount the system will add to users account as profit, based on the percentage and interval</small>
+                                <small>This is the amount the system will add to users account as profit, based on the percentage and interval</small>
                             </div>
                             <div>
                                 <span>Investment Duration</span>
                                 <input type="text" name="" placeholder="" id="">
-                                <small>This specifies how long the investment plan will run. Please strictly follow the guide on how to setup investment duration else it may not work.</small>
-                                <p>FIRSTLY, Always preceed the time frame with a digit, that is do not write the number in letters,
-
-                                    SECONDLY, always add space after the number,
-                                    
+                                <small>This specifies how long the investment plan will run. Please strictly follow the guide below on how to setup investment duration else it may not work.</small>
+                                <small>FIRSTLY, Always preceed the time frame with a digit, that is do not write the number in letters,
+                                    SECONDLY, always add space after the number, 
                                     LASTLY, the first letter of the timeframe should be in CAPS and always add 's' to the timeframe even if your duration is just a day, month or year.
-                                    Eg, 1 Days, 3 Weeks, 1 Hours, 48 Hours, 4 Months, 1 Years, 9 Months</p>
+                                    Eg, 1 Days, 3 Weeks, 1 Hours, 48 Hours, 4 Months, 1 Years, 9 Months</small>
                             </div>
                         </div>
-                        <button type="submit">Add Plan</button>
+                        <button class="add-plan-btn" type="submit">Add Plan</button>
                     </form>
                 </div>
 
