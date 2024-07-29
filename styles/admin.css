@@ -513,6 +513,12 @@ h1 {
     .dashboard-overview {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+    .form-container {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
 }
 
 @media (max-width:760px) {
