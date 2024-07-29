@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="../styles/admin.css" />
+</head>
+
+<body>
+    <header>
+        <!-- NAV SECTION  -->
+        <nav class="flex">
+            <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+            <a href="../index.html">Cryptico</a>
+            <i class="fa-solid fa-user" id="account"></i>
+
+        </nav>
+        <div class="user-setting-dropdown">
+            <a href="">Account setting</a>
+            <a href="">Change password</a>
+            <div class="logout">
+                <a href="">Logout</a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        
+        <div class="side-menu-main flex">
+            <!-- SIDE MENU  -->
+            <div class="side-menu active" id="side-menu">
+                <div class="admin-user">
+                    <p class="admin-name">Admin Name</p>
+                    <small class="admin-title">Admin</small>
+                </div>
+                <a href="dashboard.html">
+                    <div class="dashboard admin-div">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+                <div class="active investment admin-div">
+                    <i class="fa-solid fa-money-bill-transfer active"></i>
+                    <span class="active">Investment <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="investment-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="plans.html">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="active-investment.html">Active Investment</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <a href="">
+                    <div class="manage-users admin-div">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Manage Users</span>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="manage-dep admin-div">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Manage Deposits</span>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="manage-with admin-div">
+                        <i class="fa-solid fa-circle-arrow-up"></i>
+                        <span>Manage Withdrawal</span>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="kyc-application admin-div">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span>KYC Applications</span>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="email-services admin-div">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Email Services</span>
+                    </div>
+                </a>
+                <div class="administrator admin-div">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Administrator <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="administrator-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Add Manager</a>
+                        </li>
+                        <li>
+                            <a href="">Manage Admins</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="setting admin-div">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Setting <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="setting-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="">Payment Setting</a>
+                        </li>
+                        <li>
+                            <a href="">Frontend setting</a>
+                        </li>
+                        <li>
+                            <a href="">Terms and Privacy</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+
+            </div>
+
+            <!-- MAIN DASHBOARD  -->
+            <div class="main-dashboard">
+                <h1>Active user Investment</h1>
+
+                <div class="active-users-table">
+                    <div class="user-search">
+                        <span>Search</span>
+                        <input type="search" name="" id="">
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client name</th>
+                                <th>Plan</th>
+                                <th>Amount Invested</th>
+                                <th>Duration</th>
+                                <th>ROI</th>
+                                <th>Start date</th>
+                                <th>Expiration date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <script src="../scripts/admin-main.js"></script>
+
+</body>
+
+</html>
