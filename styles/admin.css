@@ -73,9 +73,9 @@ nav i {
     background-color: #F4F4F4;
     border-radius: 0.2rem;
     width: 15rem;
-    transition: opacity 0.5s ease-in-out;
     opacity: 0;
-    z-index: 2;
+    z-index: -1;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .user-setting-dropdown a {
@@ -103,6 +103,7 @@ nav i {
 
 .user-setting-dropdown.inactive {
     opacity: 1;
+    z-index: 2;
 }
 
 /* ////// SIDE AND MAIN SECTION ////// */
