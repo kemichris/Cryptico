@@ -210,6 +210,7 @@ nav i {
     padding: 7rem 2rem 5rem;
     width: 100%;
     background-color: #FAFBFD;
+    box-sizing: border-box;
 }
 
 .welcome {
@@ -481,6 +482,91 @@ h1 {
 }
 
 
+/* ////// ACTIVE PLAN ////// */
+.active-users-table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    padding: 2rem 1.5rem;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+}
+
+.user-search {
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+}
+
+.user-search input {
+    padding: 0.5rem;
+}
+
+table {
+    padding: 3rem 1rem 0;
+    width: 100%;
+    border-spacing: 0;
+    table-layout: fixed;
+    min-width: 800px;
+    overflow-x: scroll;
+}
+
+th {
+    font-size: 1.2rem;
+    border-bottom: 1px solid #8492a6;
+    padding: 1.5rem 0;
+    min-width: 7rem;
+    
+    white-space: nowrap;
+}
+
+td {
+    border-bottom: 1px solid #8492a6;
+    text-align: center;
+    font-size: 1rem;
+    padding: 1.5rem 0;
+    min-width: 7rem;
+    white-space: nowrap;
+}
+
+.entries {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.entries p {
+    font-size: 1rem;
+    margin: 0;
+    color: #8492a6;
+    font-weight: bold;
+}
+
+.entries-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.prev-btn, .next-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #8492a6;
+    color: #D1DDEB;
+    border: none;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.pg-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #D1DDEB;
+    color: #141928;
+    font-weight: 500;
+    cursor: pointer;
+}
 
 
 /* ////////////////////////////// MEDIA RESPONSIVENESS /////////////////////////////////////// */
@@ -526,6 +612,35 @@ h1 {
     .plan-container {
         grid-template-columns: repeat(1, 1fr);
     }
+
+
+    /* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+    /* ////// ACTIVE PLAN ////// */
+    table {
+        padding: 2rem 1rem 0;
+        
+    }
+
+    th {
+        font-size: 1rem;   
+    }
+
+    td {
+        font-size: 0.8rem;
+    }
+
+    .entries {
+        padding: 1rem;
+        /* white-space: nowrap; */
+    }
+
+    .prev-btn, .next-btn {
+        font-size: 1rem;
+    }
+
+    .pg-btn {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width:500px) {
@@ -542,5 +657,22 @@ h1 {
         align-items: flex-start;
         flex-direction: column;
         gap: 2rem;
+    }
+
+    /* ////// ACTIVE PLAN ////// */
+    th {
+        font-size: 0.8rem;
+    }
+
+    td {
+        font-size: 0.6rem;
+    }
+
+    .prev-btn, .next-btn {
+        font-size: 0.8rem;
+    }
+
+    .pg-btn {
+        font-size: 0.6rem;
     }
 }
