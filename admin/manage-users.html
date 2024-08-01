@@ -49,9 +49,9 @@
                         <span>Dashboard</span>
                     </div>
                 </a>
-                <div class="active investment admin-div">
-                    <i class="fa-solid fa-money-bill-transfer active"></i>
-                    <span class="active">Investment <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="investment admin-div">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <span >Investment <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="investment-dropdown dropdown inactive">
                     <ul>
@@ -65,9 +65,9 @@
                     </ul>
                 </div>
                 <a href="manage-users.html">
-                    <div class="manage-users admin-div">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span>Manage Users</span>
+                    <div class="manage-users admin-div active">
+                        <i class="fa-solid fa-circle-user active"></i>
+                        <span class="active">Manage Users</span>
                     </div>
                 </a>
                 <a href="">
@@ -135,28 +135,33 @@
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
-                <h1>Active user Investment</h1>
+                <h1>Cryptico users list</h1>
 
-                <div class="active-users-table">
-                    <div class="user-search flex">
-                        <span>Search</span>
+                <div class="users-list-table">
+                    <div class="user-search-add flex">
                         <input type="search" name="" id="">
+                        <button class="send-msg-btn"><i class="fa-solid fa-envelope"></i> Send Message</button>
+                        <button class="new-user-btn"><i class="fa-solid fa-user-plus"></i> New User</button>
                     </div>
 
                     <table>
                         <thead>
                             <tr>
-                                <th>Client name</th>
-                                <th>Plan</th>
-                                <th>Amount Invested</th>
-                                <th>Duration</th>
-                                <th>ROI</th>
-                                <th>Start date</th>
-                                <th>Expiration date</th>
+                                <th><input type="checkbox" name="" id=""></th>
+                                <th>Fullname</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Account Balance</th>
+                                <th>Country</th>
+                                <th>Status</th>
+                                <th>Registered</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody class="tbody">
                             <tr class="tr">
+                                <td><input type="checkbox" name="" id=""></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -164,6 +169,8 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td><button class="manage-btn">Manage</button></td>
                             </tr>
                         </tbody>
                     </table>
