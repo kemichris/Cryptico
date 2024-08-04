@@ -582,6 +582,10 @@ td {
     border-radius: 0.25rem;
 }
 
+.checkbox {
+    cursor: pointer;
+}
+
 .send-msg-btn {
     background-color: #51AEF7;
 }
