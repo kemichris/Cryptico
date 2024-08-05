@@ -574,7 +574,7 @@ td {
     align-items: center;
 }
 
-.user-search-add button, .manage-btn, .deposit-action button {
+.user-search-add button, .manage-btn, .deposit-action button, .manage-admins-action {
     padding: 0.4375rem 0.8125rem ;
     font-size: 0.6875rem;
     border: none;
@@ -594,7 +594,7 @@ td {
    background-color: #0e4152;
 }
 
-.manage-btn {
+.manage-btn, .manage-admins-action {
     background-color: #6861ce;
 }
 
