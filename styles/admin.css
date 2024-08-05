@@ -681,8 +681,8 @@ td {
     background-color: #0e4152;
 }
 
-/* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
-.email-form {
+/* ////////////////////////////// EMAIL SERVICES /////////////////////////////////////// */
+.email-form, .admin-form {
     margin-top: 2.5rem;
     background-color: white;
     padding: 2rem;
@@ -715,6 +715,37 @@ td {
 .ck.ck-reset {
     height: 8rem !important;
 }
+
+/* ////////////////////////////// ADMINISTRATION SECTION /////////////////////////////////////// */
+.admin-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-form span {
+    font-size: 1rem;
+    color: #575962;
+    margin-bottom: 0.5rem;
+}
+
+.admin-form select, .admin-form input {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #D1DDEB;
+    margin-bottom: 1.5rem;
+}
+
+.admin-form button {
+    padding: 0.75rem 1.6rem;
+    width: fit-content;
+    background-color: #0e4152;
+    font-size: 0.9375rem;
+    color: white;
+    border-radius: 0.25rem;
+}
+
+
 
 
 

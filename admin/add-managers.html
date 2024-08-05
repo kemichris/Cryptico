@@ -12,6 +12,8 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" />
+
     <link rel="stylesheet" href="../styles/admin.css" />
 </head>
 
@@ -30,14 +32,13 @@
             <div class="logout">
                 <a href="">Logout</a>
             </div>
-
+            
         </div>
     </header>
 
     <main>
-
+        <!-- SIDE MENU  -->
         <div class="side-menu-main flex">
-            <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
                     <p class="admin-name">Admin Name</p>
@@ -65,9 +66,9 @@
                     </ul>
                 </div>
                 <a href="manage-users.html">
-                    <div class="manage-users admin-div active">
-                        <i class="fa-solid fa-circle-user active"></i>
-                        <span class="active">Manage Users</span>
+                    <div class="manage-users admin-div">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Manage Users</span>
                     </div>
                 </a>
                 <a href="manage-deposits.html">
@@ -94,9 +95,9 @@
                         <span>Email Services</span>
                     </div>
                 </a>
-                <div class="administrator admin-div">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Administrator <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="administrator admin-div active">
+                    <i class="fa-solid fa-user active"></i>
+                    <span class="active">Administrator <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="administrator-dropdown dropdown inactive">
                     <ul>
@@ -128,98 +129,50 @@
                     </ul>
                 </div>
 
-
+                
 
 
             </div>
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
-                <div class="username-action flex">
-                    <h1>User Name</h1>
-                    <div class="user-action">
-                        <a href="manage-users.html">
-                            <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> back</button>
-                        </a>
-                        <button class="action-btn">Action <i class="fa-solid fa-caret-down"></i></button>
-                    </div>
+                
+                <h1>Add New Manager</h1>
 
+                <!-- ADMIN FORM  -->
+                <div class="admin-form">
+                   <form action="">
+                    <span>First name</span>
+                    <input type="text" name="" id="">
+                    <span>Last name</span>
+                    <input type="text" name="" id="">
+                    <span>Email address</span>
+                    <input type="email" name="" id="">
+                    <span>Phone number</span>
+                    <input type="tel" name="" id="">
+                    <span>Type</span>
+                    <select name="" id="">
+                        <option value="">Super admin</option>
+                        <option value="">Admin</option>
+                        <option value="">Conversion Agent</option>
+                    </select>
+                    <span>Password</span>
+                    <input type="password" name="" id="" required>
+                    <span>Confirm password</span>
+                    <input type="password" name="" id="" required>
+
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Save user</button>
+
+                   </form>
                 </div>
-                <div class="user-account-dashboard grid">
-                    <div>
-                        <h3>Account balance</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Profit</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Referral bonus</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Bonus</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Account Status</h3>
-                        <p class="status-display">Active</p>
-                    </div>
-                    <div>
-                        <h3>Inv. Plans</h3>
-                        <a href="user-investment-plans.html">
-                            <button class="view-plans-btn">View plans</button>
-                        </a>
-                    </div>
-                    <div>
-                        <h3>KYC</h3>
-                        <p class="kyc-display">verified</p>
-                    </div>
-                    <div>
-                        <h3>ROI Mode</h3>
-                        <p class="roi-display">On</p>
-
-                    </div>
-                </div>
-
-                <h2 class="user-info-h2">User Information</h2>
-
-                <div class="user-information">
-                    <div>
-                        <p class="user-info-title">Fullname</p>
-                        <p class="user-info-p">User name</p>
-                    </div>
-                    <div>
-                        <p class="user-info-title">Email Address</p>
-                        <p class="user-info-p">dkakl@example.com</p>
-                    </div>
-                    <div>
-                        <p class="user-info-title">Mobile number</p>
-                        <p class="user-info-p">3958930850348</p>
-                    </div>
-                    <div>
-                        <P class="user-info-title">Nationality</P>
-                        <p class="user-info-p">User state</p>
-                    </div>
-                    <div>
-                        <p class="user-info-title">Registered</p>
-                        <p class="user-info-p"> reg date</p>
-                    </div>
-                </div>
-
 
 
 
 
             </div>
-
-
-        </div>
     </main>
-
+    
     <script src="../scripts/admin-main.js"></script>
-
 
 </body>
 
