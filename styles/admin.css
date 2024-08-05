@@ -740,6 +740,11 @@ td {
     .pg-btn {
         font-size: 0.8rem;
     }
+
+    /* ////////////////////////////// MANAGE USERS /////////////////////////////////////// */
+    .user-account-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width:500px) {
@@ -782,5 +787,32 @@ td {
         justify-content: flex-start;
         gap: 2rem;
     
+    }
+
+    .username-action {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .user-account-dashboard {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .user-information > * {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.5rem;   
+    }
+
+    .user-info-title {
+        width: 100%;
+        border-right: none;
+    
+    }
+
+    .user-info-p {
+        padding-left: 0;
     }
 }
