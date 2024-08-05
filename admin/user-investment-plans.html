@@ -35,7 +35,7 @@
     </header>
 
     <main>
-
+        
         <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
@@ -49,9 +49,9 @@
                         <span>Dashboard</span>
                     </div>
                 </a>
-                <div class="investment admin-div">
-                    <i class="fa-solid fa-money-bill-transfer"></i>
-                    <span>Investment <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="active investment admin-div">
+                    <i class="fa-solid fa-money-bill-transfer active"></i>
+                    <span class="active">Investment <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="investment-dropdown dropdown inactive">
                     <ul>
@@ -65,9 +65,9 @@
                     </ul>
                 </div>
                 <a href="manage-users.html">
-                    <div class="manage-users admin-div active">
-                        <i class="fa-solid fa-circle-user active"></i>
-                        <span class="active">Manage Users</span>
+                    <div class="manage-users admin-div">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Manage Users</span>
                     </div>
                 </a>
                 <a href="">
@@ -135,83 +135,55 @@
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
-                <div class="username-action flex">
-                    <h1>User Name</h1>
-                    <div class="user-action">
-                        <a href="">
-                            <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> back</button>
-                        </a>
-                        <button class="action-btn">Action <i class="fa-solid fa-caret-down"></i></button>
-                    </div>
-
+                <div class="plan-top flex">
+                    <h1><span>User name </span>  Investment plans</h1>
+                    <a href="user-details.html">
+                        <button><i class="fa-solid fa-arrow-left"></i> New Plan</button>
+                    </a>
+                    
                 </div>
-                <div class="user-account-dashboard grid">
-                    <div>
-                        <h3>Account balance</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Profit</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Referral bonus</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Bonus</h3>
-                        <p>$<span>0</span></p>
-                    </div>
-                    <div>
-                        <h3>Account Status</h3>
-                        <p class="status-display">Active</p>
-                    </div>
-                    <div>
-                        <h3>Inv. Plans</h3>
-                        <a href="user-investment-plans.html">
-                            <button class="view-plans-btn">View plans</button>
-                        </a>
-                    </div>
-                    <div>
-                        <h3>KYC</h3>
-                        <p class="kyc-display">verified</p>
-                    </div>
-                    <div>
-                        <h3>ROI Mode</h3>
-                        <p class="roi-display">On</p>
+                
 
+                <div class="active-users-table">
+                    <div class="user-search flex">
+                        <span>Search</span>
+                        <input type="search" name="" id="">
                     </div>
-                </div>
 
-                <h2 class="user-info-h2">User Information</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Amount</th>
+                                <th>Active</th>
+                                <th>Duration</th>
+                                <th>Created on</th>
+                                <th>Expire at</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr class="tr">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <div class="user-information">
-                    <div>
-                        <p class="user-info-title">Fullname</p>
-                        <p class="user-info-p">User name</p>
-                    </div>
-                    <div>
-                        <p class="user-info-title">Email Address</p>
-                        <p class="user-info-p">dkakl@example.com</p>
-                    </div>
-                    <div>
-                        <p class="user-info-title">Mobile number</p>
-                        <p class="user-info-p">3958930850348</p>
-                    </div>
-                    <div>
-                        <P class="user-info-title">Nationality</P>
-                        <p class="user-info-p">User state</p>
-                    </div>
-                    <div>
-                        <p class="user-info-title">Registered</p>
-                        <p class="user-info-p"> reg date</p>
+                    <div class="entries">
+                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span id="totalEntries">0</span> entries </p>
+                        <div class="entries-buttons">
+                            <button class="prev-btn">Prev</button>
+                            <button class="pg-btn">1</button>
+                            <button class="next-btn">Next</button>
+                        </div>
                     </div>
                 </div>
-
-
-
-
-
             </div>
 
 
@@ -219,7 +191,7 @@
     </main>
 
     <script src="../scripts/admin-main.js"></script>
-
+    <script src="../scripts/transaction-history.js"></script>
 
 </body>
 
