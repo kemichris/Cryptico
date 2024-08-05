@@ -12,6 +12,8 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" />
+
     <link rel="stylesheet" href="../styles/admin.css" />
 </head>
 
@@ -30,14 +32,13 @@
             <div class="logout">
                 <a href="">Logout</a>
             </div>
-
+            
         </div>
     </header>
 
     <main>
-
+        <!-- SIDE MENU  -->
         <div class="side-menu-main flex">
-            <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
                     <p class="admin-name">Admin Name</p>
@@ -73,7 +74,7 @@
                 <a href="manage-deposits.html">
                     <div class="manage-dep admin-div">
                         <i class="fa-solid fa-download"></i>
-                        <span >Manage Deposits</span>
+                        <span>Manage Deposits</span>
                     </div>
                 </a>
                 <a href="">
@@ -83,15 +84,15 @@
                     </div>
                 </a>
                  <a href="kyc.html">
-                    <div class="kyc-application admin-div active">
-                        <i class="fa-solid fa-user-check active"></i>
-                        <span class="active">KYC Applications</span>
+                    <div class="kyc-application admin-div">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span>KYC Applications</span>
                     </div>
                 </a>
                 <a href="email-service.html">
-                    <div class="email-services admin-div">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Email Services</span>
+                    <div class="email-services admin-div active">
+                        <i class="fa-solid fa-envelope active"></i>
+                        <span class="active">Email Services</span>
                     </div>
                 </a>
                 <div class="administrator admin-div">
@@ -128,64 +129,84 @@
                     </ul>
                 </div>
 
-
+                
 
 
             </div>
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
+                
+                <h1>Send Email to users</h1>
 
-                <h1>KYC Application List</h1>
-
-
-                <div class="active-users-table">
-                    <div class="user-search flex">
-                        <span>Search</span>
+                <!-- EMAIL FORM  -->
+                <div class="email-form">
+                    <form action="">
+                        <span>Category</span>
+                        <select name="" id="">
+                            <option value="all users">All Users</option>
+                            <option value="without investment">Users without investment plan</option>
+                            <option value="without deposit">Users without any deposit</option>
+                            <option value="choose user">Choose Users</option>
+                        </select>
+                        <span>Select users (<span>0</span>)</span>
                         <input type="search" name="" id="">
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>KYC Status</th>
-                                <th></th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody class="tbody">
-                            <tr class="tr">
-                                <td></td>
-                                <td></td>
-                                <td class="deposit-action">
-                                    <button class="deposit-action-view"><i class="fa-solid fa-eye"></i></button>
-                                    <button class="deposit-action-del">Delete</button>
-                                    <button class="deposit-action-confirm">Confirm</button>
-                                </td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="entries">
-                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span
-                                id="totalEntries">0</span> entries </p>
-                        <div class="entries-buttons">
-                            <button class="prev-btn">Prev</button>
-                            <button class="pg-btn">1</button>
-                            <button class="next-btn">Next</button>
+                        <span>Greeting/Title</span>
+                        <div class="greet-title">
+                            <input type="text" name="" id="" value="Hello">
+                            <input type="text" name="" id="" value="Investor">
                         </div>
-                    </div>
+                        <span>Subject</span>
+                        <input type="text" name="" id="" placeholder="Subject">
+                        <div id="editor">
+                        </div>
+                        
+
+                        
+                        
+                    </form>
                 </div>
+
+
+
+
             </div>
-
-
-        </div>
     </main>
+    <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
+                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } from 'ckeditor5';
+    
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                plugins: [ ClassicEditor, Essentials , Bold, Italic, Font, Paragraph ],
+                toolbar: {
+                    items: [
+                        'undo', 'redo', '|', 'bold', 'italic', '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                    ]
+                }
+            } )
+            .then( /* ... */ )
+            .catch( /* ... */ );
+    </script>
+    
 
     <script src="../scripts/admin-main.js"></script>
-    <script src="../scripts/transaction-history.js"></script>
 
 </body>
 
