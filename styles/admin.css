@@ -8,6 +8,10 @@ body {
     background-color: #FAFBFD;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
 button {
     font-family: "Lato", sans-serif;
     cursor: pointer;
@@ -15,10 +19,6 @@ button {
 
 i {
     cursor: pointer;
-}
-
-p {
-    margin: 0;
 }
 
 .flex {
@@ -598,6 +598,75 @@ td {
     background-color: #6861ce;
 }
 
+.username-action {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-action button, .view-plans-btn {
+    padding: 0.65rem 1.4rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem 0.25rem 0.25rem 0;
+    color: white;
+}
+
+.back-btn, .view-plans-btn {
+    background-color: #0e4152;
+    border-color: #0e4152;
+}
+
+.action-btn {
+    background-color: #6861ce;
+    border-color: #6861ce;
+}
+
+.user-account-dashboard {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1.5rem 2.5rem;
+    border: 1px solid #0D4152;
+    border-radius: 1rem;
+    margin-top: 3rem;
+    gap: 1.5rem;
+}
+
+.user-account-dashboard h3 {
+    margin-bottom: 0.8rem;
+    color: #575962;
+}
+
+.status-display, .kyc-display, .roi-display {
+    padding: 0.5rem 1rem;
+    border-radius: 3rem;
+    background-color: #f25961;
+    width: fit-content;
+    color: white;
+}
+
+.user-info-h2 {
+    margin: 2rem 0;
+}
+
+.user-information > * {
+    display: flex;
+    align-items:  center;
+    border: 1px solid #0D4152;
+    padding: 1.5rem;
+    
+}
+
+.user-information div p {
+    color: #0D4152;
+}
+
+.user-info-title {
+    width: 40%;
+    border-right: 1px solid #0D4152;
+
+}
+
+.user-info-p {
+    padding-left: 1rem;
+}
 
 /* ////////////////////////////// MEDIA RESPONSIVENESS /////////////////////////////////////// */
 

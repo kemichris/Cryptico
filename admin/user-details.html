@@ -35,7 +35,7 @@
     </header>
 
     <main>
-        
+
         <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
@@ -51,7 +51,7 @@
                 </a>
                 <div class="investment admin-div">
                     <i class="fa-solid fa-money-bill-transfer"></i>
-                    <span >Investment <i class="fa-solid fa-chevron-down"></i></span>
+                    <span>Investment <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="investment-dropdown dropdown inactive">
                     <ul>
@@ -135,55 +135,83 @@
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
-                <h1>Cryptico users list</h1>
-
-                <div class="users-list-table">
-                    <div class="user-search-add flex">
-                        <input type="search" name="" id="">
-                        <button class="send-msg-btn"><i class="fa-solid fa-envelope"></i> Send Message</button>
-                        <button class="new-user-btn"><i class="fa-solid fa-user-plus"></i> New User</button>
+                <div class="username-action flex">
+                    <h1>User Name</h1>
+                    <div class="user-action">
+                        <a href="">
+                            <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> back</button>
+                        </a>
+                        <button class="action-btn">Action <i class="fa-solid fa-caret-down"></i></button>
                     </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" class="checkbox" name="" id=""></th>
-                                <th>Fullname</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Account Balance</th>
-                                <th>Country</th>
-                                <th>Status</th>
-                                <th>Registered</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody">
-                            <tr class="tr">
-                                <td><input type="checkbox" class="checkbox" name="" id=""></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><a href="user-details.html"><button class="manage-btn">Manage</button></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                </div>
+                <div class="user-account-dashboard grid">
+                    <div>
+                        <h3>Account balance</h3>
+                        <p>$<span>0</span></p>
+                    </div>
+                    <div>
+                        <h3>Profit</h3>
+                        <p>$<span>0</span></p>
+                    </div>
+                    <div>
+                        <h3>Referral bonus</h3>
+                        <p>$<span>0</span></p>
+                    </div>
+                    <div>
+                        <h3>Bonus</h3>
+                        <p>$<span>0</span></p>
+                    </div>
+                    <div>
+                        <h3>Account Status</h3>
+                        <p class="status-display">Active</p>
+                    </div>
+                    <div>
+                        <h3>Inv. Plans</h3>
+                        <a href="">
+                            <button class="view-plans-btn">View plans</button>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>KYC</h3>
+                        <p class="kyc-display">verified</p>
+                    </div>
+                    <div>
+                        <h3>ROI Mode</h3>
+                        <p class="roi-display">On</p>
 
-                    <div class="entries">
-                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span id="totalEntries">0</span> entries </p>
-                        <div class="entries-buttons">
-                            <button class="prev-btn">Prev</button>
-                            <button class="pg-btn">1</button>
-                            <button class="next-btn">Next</button>
-                        </div>
                     </div>
                 </div>
+
+                <h2 class="user-info-h2">User Information</h2>
+
+                <div class="user-information">
+                    <div>
+                        <p class="user-info-title">Fullname</p>
+                        <p class="user-info-p">User name</p>
+                    </div>
+                    <div>
+                        <p class="user-info-title">Email Address</p>
+                        <p class="user-info-p">dkakl@example.com</p>
+                    </div>
+                    <div>
+                        <p class="user-info-title">Mobile number</p>
+                        <p class="user-info-p">3958930850348</p>
+                    </div>
+                    <div>
+                        <P class="user-info-title">Nationality</P>
+                        <p class="user-info-p">User state</p>
+                    </div>
+                    <div>
+                        <p class="user-info-title">Registered</p>
+                        <p class="user-info-p"> reg date</p>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
 
 
@@ -191,7 +219,7 @@
     </main>
 
     <script src="../scripts/admin-main.js"></script>
-    <script src="../scripts/transaction-history.js"></script>
+
 
 </body>
 
