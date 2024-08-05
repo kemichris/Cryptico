@@ -574,7 +574,7 @@ td {
     align-items: center;
 }
 
-.user-search-add button, .manage-btn {
+.user-search-add button, .manage-btn, .deposit-action button {
     padding: 0.4375rem 0.8125rem ;
     font-size: 0.6875rem;
     border: none;
@@ -667,6 +667,23 @@ td {
 .user-info-p {
     padding-left: 1rem;
 }
+
+/* ////////////////////////////// MANAGE DEPOSITS /////////////////////////////////////// */
+.deposit-action-view {
+    background-color: #48abf7;
+}
+
+.deposit-action-del {
+    background-color: #f25961;
+}
+
+.deposit-action-confirm {
+    background-color: #0e4152;
+}
+
+
+
+
 
 /* ////////////////////////////// MEDIA RESPONSIVENESS /////////////////////////////////////// */
 
