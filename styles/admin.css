@@ -681,7 +681,40 @@ td {
     background-color: #0e4152;
 }
 
+/* ////////////////////////////// PLAN SECTION /////////////////////////////////////// */
+.email-form {
+    margin-top: 2.5rem;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
 
+.email-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-form span {
+    font-size: 0.825rem;
+    color: #575962;
+    margin-bottom: 0.5rem;
+}
+
+.email-form select, .email-form input {
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    border: 1px solid #D1DDEB;
+    margin-bottom: 1.5rem;
+}
+
+.greet-title input {
+    width: 100%;
+}
+
+.ck.ck-reset {
+    height: 8rem !important;
+}
 
 
 
