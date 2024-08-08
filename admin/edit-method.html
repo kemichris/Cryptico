@@ -135,41 +135,11 @@
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
-                <h1>Payment Settings</h1>
-
-                <div class="payment-setting">
-                    <div class="payment-method flex">
-                        <p>Payment Methods</p>
-                        <button><i class="fa-solid fa-plus"></i> Add new</button>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Method</th>
-                                <th>Type</th>
-                                <th>Used for</th>
-                                <th>Status</th>
-                                <th>Option</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody">
-                            <tr class="tr">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="deposit-action">
-                                    <a href="edit-method.html">
-                                        <button class="deposit-action-view"><i class="fa-solid fa-pen"></i></button>
-                                    </a> 
-                                    <button class="deposit-action-del">Delete</button>
-                                    <button class="deposit-action-confirm">Enable</button>
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="plan-top flex">
+                    <h1>Update Payment Method</h1>
+                    <a href="payment-setting.html">
+                        <button><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    </a>
                 </div>
 
                 <div class="plan-form">             
@@ -177,7 +147,7 @@
                         <div class="form-container grid">
                             <div class="plan-name">
                                 <span>Name</span>
-                                <input type="text" name="" placeholder="payment method name" id="">
+                                <input type="text" name="" readonly value="Payment Method" id="">
                             </div>
                             <div>
                                 <span>Minimum Amount</span>
@@ -259,7 +229,7 @@
                                 <input type="text" name="" placeholder="Payment may take up to 24hrs" id="">
                             </div>
                         </div>
-                        <button class="add-plan-btn" type="submit">Save Method</button>
+                        <button class="add-plan-btn" type="submit">Save changes</button>
                     </form>
                 </div>
             </div>
