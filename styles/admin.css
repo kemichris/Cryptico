@@ -574,7 +574,7 @@ td {
     align-items: center;
 }
 
-.user-search-add button, .manage-btn, .deposit-action button, .manage-admins-action {
+.user-search-add button, .manage-btn, .deposit-action button, .manage-admins-action, .payment-method button{
     padding: 0.4375rem 0.8125rem ;
     font-size: 0.6875rem;
     border: none;
@@ -682,7 +682,7 @@ td {
 }
 
 /* ////////////////////////////// EMAIL SERVICES /////////////////////////////////////// */
-.email-form, .admin-form {
+.email-form, .admin-form, .payment-setting {
     margin-top: 2.5rem;
     background-color: white;
     padding: 2rem;
@@ -745,7 +745,21 @@ td {
     border-radius: 0.25rem;
 }
 
+.payment-method button {
+    background-color: #0D4152;
+}
 
+
+/* ////////////////////////////// SETTING SECTION /////////////////////////////////////// */
+.payment-method {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-method p {
+    color: #575962;
+    font-size: 1.5rem;
+}
 
 
 
