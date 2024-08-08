@@ -348,7 +348,7 @@ h1 {
     align-items: center;
 }
 
-.plan-top button, .add-plan-btn {
+.plan-top button, .add-plan-btn, .add-user-btn {
     background-color: #0e4152;
     border-color: #0e4152;
     padding: 0.65rem 1.4rem;
@@ -668,6 +668,52 @@ td {
     padding-left: 1rem;
 }
 
+
+
+.add-new-users {
+    border-radius: 0.5rem;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+    width: 30rem;
+    position: fixed;
+    top: 4rem;
+    left: 40%;
+    z-index: 5;
+}
+
+.add-user {
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 2.5rem;
+    border-bottom: 1px solid #8d9498;
+}
+
+.add-new-users form {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.add-new-users span {
+    font-size: 0.825rem;
+    color: #575962;
+    margin-bottom: 0.5rem;
+}
+
+.add-new-users input {
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    border: 1px solid #D1DDEB;
+    margin-bottom: 1.5rem;
+}
+
+.add-user-btn {
+    width: fit-content;
+}
+
+
+
 /* ////////////////////////////// MANAGE DEPOSITS /////////////////////////////////////// */
 .deposit-action-view {
     background-color: #48abf7;
@@ -700,7 +746,7 @@ td {
     margin-bottom: 0.5rem;
 }
 
-.email-form select, .email-form input {
+.email-form select, .email-form input{
     padding: 0.6rem 1rem;
     font-size: 0.875rem;
     border-radius: 0.25rem;
@@ -786,6 +832,13 @@ td {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* ////////////////////////////// MANAGE USERS /////////////////////////////////////// */
+    .add-new-users {
+        left: 30%;
+        width: 20rem;
+    }
+
+
 }
 
 @media (max-width:800px) {
@@ -839,6 +892,14 @@ td {
     /* ////////////////////////////// MANAGE USERS /////////////////////////////////////// */
     .user-account-dashboard {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:600px) {
+    /* ////////////////////////////// MANAGE USERS /////////////////////////////////////// */
+    .add-new-users {
+        left: 20%;
+        width: 15rem;
     }
 }
 
