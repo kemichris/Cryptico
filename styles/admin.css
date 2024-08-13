@@ -679,6 +679,10 @@ td {
     top: 4rem;
     left: 40%;
     z-index: 5;
+    visibility: hidden;
+    max-height: 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
 }
 
 .add-user {
@@ -710,6 +714,14 @@ td {
 
 .add-user-btn {
     width: fit-content;
+}
+
+.add-new-users.active {
+    visibility: visible;
+    max-height: fit-content;
+    transition: opacity 0.5s ease;
+    transform: translateY(0);
+    transition: transform 0.5s ease;
 }
 
 

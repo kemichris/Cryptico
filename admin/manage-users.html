@@ -141,7 +141,7 @@
                     <div class="user-search-add flex">
                         <input type="search" name="" id="">
                         <button class="send-msg-btn"><i class="fa-solid fa-envelope"></i> Send Message</button>
-                        <button class="new-user-btn"><i class="fa-solid fa-user-plus"></i> New User</button>
+                        <button id="new-user-btn" class="new-user-btn"><i class="fa-solid fa-user-plus"></i> New User</button>
                     </div>
 
                     <table>
@@ -187,10 +187,10 @@
                 </div>
 
 
-                <div class="add-new-users">
+                <div class="add-new-users" id="add-new-users">
                     <div class="add-user flex">
                         <h3>Add user</h3>
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x" id="close-add-user"></i>
                     </div>
                     <form action="">
                         <span>Username</span>
@@ -217,6 +217,7 @@
 
     <script src="../scripts/admin-main.js"></script>
     <script src="../scripts/transaction-history.js"></script>
+    <script src="../scripts/manage-users.js"></script>
 
 </body>
 
