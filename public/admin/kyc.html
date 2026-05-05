@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="../styles/admin.css" />
+</head>
+
+<body>
+    <header>
+        <!-- NAV SECTION  -->
+        <nav class="flex">
+            <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+            <a href="../index.html">Cryptico</a>
+            <i class="fa-solid fa-user" id="account"></i>
+
+        </nav>
+        <div class="user-setting-dropdown">
+            <a href="">Account setting</a>
+            <a href="">Change password</a>
+            <div class="logout">
+                <a href="">Logout</a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <div class="side-menu-main flex">
+            <!-- SIDE MENU  -->
+            <div class="side-menu active" id="side-menu">
+                <div class="admin-user">
+                    <p class="admin-name">Admin Name</p>
+                    <small class="admin-title">Admin</small>
+                </div>
+                <a href="dashboard.html">
+                    <div class="dashboard admin-div">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+                <div class="investment admin-div">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <span>Investment <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="investment-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="plans.html">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="active-investment.html">Active Investment</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <a href="manage-users.html">
+                    <div class="manage-users admin-div">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Manage Users</span>
+                    </div>
+                </a>
+                <a href="manage-deposits.html">
+                    <div class="manage-dep admin-div">
+                        <i class="fa-solid fa-download"></i>
+                        <span >Manage Deposits</span>
+                    </div>
+                </a>
+               <a href="manage-withdrawals.html">
+                    <div class="manage-with admin-div">
+                        <i class="fa-solid fa-circle-arrow-up"></i>
+                        <span>Manage Withdrawal</span>
+                    </div>
+                </a>
+                 <a href="kyc.html">
+                    <div class="kyc-application admin-div active">
+                        <i class="fa-solid fa-user-check active"></i>
+                        <span class="active">KYC Applications</span>
+                    </div>
+                </a>
+                <a href="email-service.html">
+                    <div class="email-services admin-div">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Email Services</span>
+                    </div>
+                </a>
+                <div class="administrator admin-div">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Administrator <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="administrator-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="add-managers.html">Add Manager</a>
+                        </li>
+                        <li>
+                            <a href="manage-admins.html">Manage Admins</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="setting admin-div">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Setting <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="setting-dropdown dropdown inactive">
+                    <ul>
+                         <li>
+                            <a href="payment-setting.html">Payment Setting</a>
+                        </li>
+                        <li>
+                            <a href="">Frontend setting</a>
+                        </li>
+                        <li>
+                            <a href="">Terms and Privacy</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+
+            </div>
+
+            <!-- MAIN DASHBOARD  -->
+            <div class="main-dashboard">
+
+                <h1>KYC Application List</h1>
+
+
+                <div class="active-users-table">
+                    <div class="user-search flex">
+                        <span>Search</span>
+                        <input type="search" name="" id="">
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>KYC Status</th>
+                                <th></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr class="tr">
+                                <td></td>
+                                <td></td>
+                                <td class="deposit-action">
+                                    <a href="">
+                                        <button class="deposit-action-confirm">View Application</button>
+                                    </a>
+                                    
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="entries">
+                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span
+                                id="totalEntries">0</span> entries </p>
+                        <div class="entries-buttons">
+                            <button class="prev-btn">Prev</button>
+                            <button class="pg-btn">1</button>
+                            <button class="next-btn">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <script src="../scripts/admin-main.js"></script>
+    <script src="../scripts/transaction-history.js"></script>
+
+</body>
+
+</html>
