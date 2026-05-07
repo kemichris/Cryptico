@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 // ─── PROTECT (any logged in user) ────────────
-exports.protect = async (req, res, next) => {
+const protect = async (req, res, next) => {
   try {
     // 1. Check if token exists in the request header
     const authHeader = req.headers.authorization;
@@ -37,9 +37,14 @@ exports.protect = async (req, res, next) => {
 };
 
 // ─── ADMIN ONLY ───────────────────────────────
-exports.adminOnly = (req, res, next) => {
+const adminOnly = (req, res, next) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ message: 'Access denied, admins only' });
   }
   next();
+};
+
+module.exports = {
+  protect,
+  adminOnly,
 };
