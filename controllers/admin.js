@@ -2,7 +2,6 @@ const User = require('../models/User');
 const Investment = require('../models/Investment');
 const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
-const { response } = require('express');
 
 
 
@@ -97,9 +96,9 @@ const updateUser = async (req, res) => {
 // Delete User
 const deleteUser = async (req, res) => {
   try {
-    const del = await User.findByIdAndDelete(req.params.id)
+    const deletedUser = await User.findByIdAndDelete(req.params.id)
 
-    if (!del) {
+    if (!deletedUser) {
       return res.status(404).json({ message: "User not found" })
     }
 
@@ -297,6 +296,57 @@ const deletePlan = async (req, res) => {
 }
 
 
+//////////////// INV AND KYC SECTION  /////////////////
+
+// Get all investments
+const getAllInvestments = async (req, res) => {
+  try {
+    const allInvestments = await Investment.find()
+      .populate('user', 'fullName email')
+      .populate('plan', 'name price')
+      .sort({ createdAt: -1 });
+    return res.status(200).json({ allInvestments });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get all pending kyc
+const getPendingKyc = async (req, res) => {
+  try {
+    const pendingKyc = await User.find({ kycStatus: 'pending' })
+      .select('-password')
+      .sort({ createdAt: -1 });
+    return res.status(200).json({ pendingKyc });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Approve or reject kyc
+const approveOrRejectKyc = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const { kycStatus } = req.body;
+
+    user.kycStatus = kycStatus;
+    await user.save();
+
+    return res.status(200).json({ 
+      message: `KYC ${kycStatus} successfully`,
+      user 
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 
 module.exports = {
   getDashboard,
@@ -312,5 +362,8 @@ module.exports = {
   createPlan,
   updatePlan,
   deletePlan,
+  getAllInvestments,
+  getPendingKyc,
+  approveOrRejectKyc
 };
 

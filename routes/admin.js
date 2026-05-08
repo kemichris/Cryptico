@@ -6,13 +6,48 @@ const {
   getAllUsers,
   getOneUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getAllDeposits,
+  approveOrRejectDeposit,
+  getAllWithdrawals,
+  approveOrRejectWithdrawal,
+  getPlans,
+  createPlan,
+  updatePlan,
+  deletePlan,
+  getAllInvestments,
+  getPendingKyc,
+  approveOrRejectKyc,
 } = require('../controllers/admin');
 
+// ─── DASHBOARD ────────────────────────────────
 router.get('/dashboard', protect, adminOnly, getDashboard);
-router.get('/users', protect, adminOnly, getAllUsers);
-router.get('./users/:id', protect, adminOnly, getOneUser)
-router.put('./users/:id', protect, adminOnly, updateUser)
-router.delete('./users/:id', protect, adminOnly, deleteUser)
+
+// ─── USERS ───────────────────────────────────
+router.get('/users',        protect, adminOnly, getAllUsers);
+router.get('/users/:id',    protect, adminOnly, getOneUser);
+router.put('/users/:id',    protect, adminOnly, updateUser);
+router.delete('/users/:id', protect, adminOnly, deleteUser);
+
+// ─── DEPOSITS ─────────────────────────────────
+router.get('/deposits',        protect, adminOnly, getAllDeposits);
+router.put('/deposits/:id',    protect, adminOnly, approveOrRejectDeposit);
+
+// ─── WITHDRAWALS ──────────────────────────────
+router.get('/withdrawals',     protect, adminOnly, getAllWithdrawals);
+router.put('/withdrawals/:id', protect, adminOnly, approveOrRejectWithdrawal);
+
+// ─── PLANS ───────────────────────────────────
+router.get('/plans',        protect, adminOnly, getPlans);
+router.post('/plans',       protect, adminOnly, createPlan);
+router.put('/plans/:id',    protect, adminOnly, updatePlan);
+router.delete('/plans/:id', protect, adminOnly, deletePlan);
+
+// ─── INVESTMENTS ──────────────────────────────
+router.get('/investments',  protect, adminOnly, getAllInvestments);
+
+// ─── KYC ─────────────────────────────────────
+router.get('/kyc',          protect, adminOnly, getPendingKyc);
+router.put('/kyc/:id',      protect, adminOnly, approveOrRejectKyc);
 
 module.exports = router;
