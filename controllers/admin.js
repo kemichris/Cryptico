@@ -4,6 +4,10 @@ const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
 const { response } = require('express');
 
+
+
+//////////////// USER SECTION  /////////////////
+
 // Dashboard stats
 const getDashboard = async (req, res) => {
   try {
@@ -106,6 +110,8 @@ const deleteUser = async (req, res) => {
   }
 }
 
+
+//////////////// DEPOSIT AND WITHDRAWAL SECTION   /////////////////
 
 // Get all deposits
 const getAllDeposits = async (req, res) => {
@@ -211,6 +217,8 @@ const approveOrRejectWithdrawal = async (req, res) => {
 }
 
 
+//////////////// PLAN SECTION  /////////////////
+
 // Get plans
 const getPlans = async (req, res) => {
   try {
@@ -219,7 +227,73 @@ const getPlans = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message})
   }
+}
 
+// Create Plan
+const createPlan = async (req, res) =>{
+  try {
+    const {
+      name, price, minAmount, maxAmount, minRoi, maxRoi, giftBonus, topUpInterval, topUpAmount, duration, features
+    } = req.body;
+
+    const plan = await Plan.create({ name, price, minAmount, maxAmount, minRoi, maxRoi, 
+      giftBonus, topUpInterval, topUpAmount, duration, features
+    });
+    return res.status(201).json({ message: "Plan created successfully", data: plan });
+    
+  } catch (err) {
+    res.status(500).json({ message: err.message})
+  }
+}
+
+// update plan
+const updatePlan = async (req, res) => {
+  try {
+    const { name, price, minAmount, maxAmount, minRoi, maxRoi, 
+            giftBonus, topUpInterval, topUpAmount, duration, features } = req.body;
+
+    const plan = await Plan.findById(req.params.id);
+
+    if (!plan) {
+      return res.status(404).json({ message: 'Plan not found' });
+    }
+
+    plan.name          = name          ?? plan.name;
+    plan.price         = price         ?? plan.price;
+    plan.minAmount     = minAmount     ?? plan.minAmount;
+    plan.maxAmount     = maxAmount     ?? plan.maxAmount;
+    plan.minRoi        = minRoi        ?? plan.minRoi;
+    plan.maxRoi        = maxRoi        ?? plan.maxRoi;
+    plan.giftBonus     = giftBonus     ?? plan.giftBonus;
+    plan.topUpInterval = topUpInterval ?? plan.topUpInterval;
+    plan.topUpAmount   = topUpAmount   ?? plan.topUpAmount;
+    plan.duration      = duration      ?? plan.duration;
+    plan.features      = features      ?? plan.features;
+
+    const updatedPlan = await plan.save();
+
+    return res.status(200).json({
+      message: 'Plan updated successfully',
+      plan: updatedPlan,
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Delete plan
+const deletePlan = async (req, res) => {
+  try {
+    const delPlan = await Plan.findByIdAndDelete(req.params.id);
+
+  if(!delPlan) {
+    return res.status(404).json({ message: 'Plan not found'});
+  }
+  res.status(200).json({ message: "Plan deleted successfully" })
+  } catch (err) {
+    res.status(500).json({ message: err.message})
+  }
 }
 
 
@@ -233,6 +307,10 @@ module.exports = {
   getAllDeposits,
   approveOrRejectDeposit,
   getAllWithdrawals,
-  approveOrRejectWithdrawal
-}
+  approveOrRejectWithdrawal,
+  getPlans,
+  createPlan,
+  updatePlan,
+  deletePlan,
+};
 
