@@ -106,6 +106,7 @@ const deleteUser = async (req, res) => {
   }
 }
 
+
 // Get all deposits
 const getAllDeposits = async (req, res) => {
   try {
@@ -210,6 +211,18 @@ const approveOrRejectWithdrawal = async (req, res) => {
 }
 
 
+// Get plans
+const getPlans = async (req, res) => {
+  try {
+    const plans = await Plan.find().sort({ price: 1 })
+    return res.status(200).json({ plans })
+  } catch (err) {
+    res.status(500).json({ message: err.message})
+  }
+
+}
+
+
 
 module.exports = {
   getDashboard,
@@ -218,6 +231,8 @@ module.exports = {
   updateUser,
   deleteUser,
   getAllDeposits,
-  approveOrRejectDeposit
+  approveOrRejectDeposit,
+  getAllWithdrawals,
+  approveOrRejectWithdrawal
 }
 
