@@ -5,30 +5,32 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Setting up the app
 dotenv.config();
 const app = express();
 
-// Middle
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// ─── API Routes ────────────────────────────────
+app.use('/api/auth',  require('./routes/auth'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/admin', require('./routes/admin'));
+
+// ─── Static files ─────────────────────────────
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Routes
-// app.use('/api/auth',         require('./routes/auth'));
-
-
-// Fallback Route
+// ─── Fallback ──────────────────────────────────
 app.get('/{*path}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
 });
 
-// Connect to dataBase MongoDB
+// Connect to database then start server
 mongoose.connect(process.env.MONGO_URI)
-.then(() => {
+  .then(() => {
     console.log('✅ MongoDB connected');
     app.listen(process.env.PORT, () => {
       console.log(`🚀 Server live → http://localhost:${process.env.PORT}`);
     });
   })
-.catch(err => console.error('❌ Connection failed:', err));
+  .catch(err => console.error('❌ Connection failed:', err));
