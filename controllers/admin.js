@@ -296,8 +296,50 @@ const deletePlan = async (req, res) => {
 }
 
 
-//////////////// INV AND KYC SECTION  /////////////////
+//////////////// TRANSACTION SECTION  /////////////////
 
+// Get all transactions
+const getAllTransactions = async (req, res) => {
+  try {
+    const allTransactions = await Transaction.find()
+      .populate('user', 'fullName email')
+      .sort({ createdAt: -1 });
+    return res.status(200).json({ allTransactions });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get single transaction
+const getSingleTransaction = async (req, res) => {
+  try {
+    const transaction = await Transaction.findById(req.params.id)
+      .populate('user', 'fullName email');
+
+    if (!transaction) {
+      return res.status(404).json({ message: 'Transaction not found' });
+    }
+
+    return res.status(200).json({ transaction });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get all transactions for a specific user
+const getUserTransactions = async (req, res) => {
+  try {
+    const userTransactions = await Transaction.find({ user: req.params.id })
+      .populate('user', 'fullName email')
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({ userTransactions });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+//////////////// CANCEL AND COMPLETE INVESTMENT  /////////////////
 // Get all investments
 const getAllInvestments = async (req, res) => {
   try {
@@ -310,6 +352,74 @@ const getAllInvestments = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Cancel investment
+const cancelInvestment = async (req, res) => {
+  try {
+    const investment = await Investment.findById(req.params.id);
+
+    if (!investment) {
+      return res.status(404).json({ message: 'Investment not found' });
+    }
+
+    if (investment.status === 'cancelled' || investment.status === 'completed') {
+      return res.status(400).json({ message: 'Investment already processed' });
+    }
+
+    investment.status = 'cancelled';
+    await investment.save();
+
+    await User.findByIdAndUpdate(investment.user, {
+      $inc: {
+        balance: investment.amountInvested,
+        totalInvested: -investment.amountInvested
+      }
+    });
+
+    return res.status(200).json({
+      message: 'Investment cancelled and amount refunded successfully',
+      investment
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Complete investment
+const completeInvestment = async (req, res) => {
+  try {
+    const investment = await Investment.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        status: { $nin: ['completed', 'cancelled'] }
+      },
+      { status: 'completed' },
+      { new: true }
+    );
+
+    if (!investment) {
+      return res.status(400).json({ message: 'Investment already processed or not found' });
+    }
+
+    await User.findByIdAndUpdate(investment.user, {
+      $inc: {
+        balance: investment.totalExpectedReturn,
+        totalEarnings: investment.totalExpectedReturn
+      }
+    });
+
+    return res.status(200).json({
+      message: 'Investment completed successfully',
+      investment
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+//////////////// INV AND KYC SECTION  /////////////////
 
 // Get all pending kyc
 const getPendingKyc = async (req, res) => {
@@ -363,7 +473,11 @@ module.exports = {
   updatePlan,
   deletePlan,
   getAllInvestments,
+  cancelInvestment, 
+  completeInvestment,   
   getPendingKyc,
-  approveOrRejectKyc
+  approveOrRejectKyc,
+  getAllTransactions,   
+  getSingleTransaction,
+  getUserTransactions, 
 };
-

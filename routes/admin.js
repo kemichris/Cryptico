@@ -16,8 +16,13 @@ const {
   updatePlan,
   deletePlan,
   getAllInvestments,
+  cancelInvestment,
+  completeInvestment,
   getPendingKyc,
   approveOrRejectKyc,
+  getAllTransactions,
+  getSingleTransaction,
+  getUserTransactions,
 } = require('../controllers/admin');
 
 // ─── DASHBOARD ────────────────────────────────
@@ -44,7 +49,14 @@ router.put('/plans/:id',    protect, adminOnly, updatePlan);
 router.delete('/plans/:id', protect, adminOnly, deletePlan);
 
 // ─── INVESTMENTS ──────────────────────────────
-router.get('/investments',  protect, adminOnly, getAllInvestments);
+router.get('/investments',              protect, adminOnly, getAllInvestments);
+router.put('/investments/:id/cancel',   protect, adminOnly, cancelInvestment);
+router.put('/investments/:id/complete', protect, adminOnly, completeInvestment);
+
+// ─── TRANSACTIONS ─────────────────────────────
+router.get('/transactions',            protect, adminOnly, getAllTransactions);
+router.get('/transactions/user/:id',   protect, adminOnly, getUserTransactions);
+router.get('/transactions/:id',        protect, adminOnly, getSingleTransaction);
 
 // ─── KYC ─────────────────────────────────────
 router.get('/kyc',          protect, adminOnly, getPendingKyc);
