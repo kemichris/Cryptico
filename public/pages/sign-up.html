@@ -5,36 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="manifest" href="assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
     <main>
         <div class="sing-up-section">
-            <img src="assets/icons/crypt-logo.jpg" alt="">
+            <img src="/assets/icons/crypt-logo.jpg" alt="">
 
             <div class="form-container">
                 <h2>Create an Account</h2>
-                <form action="">
+                <form id="registration">
                     <span>UserName</span>
-                    <input class="input inp" type="text" placeholder="Enter Username" id="">
+                    <input class="input inp" type="text" name="userName" placeholder="Enter Username" />
+
                     <span>Full name</span>
-                    <input class="input inp" type="text" placeholder="Enter FullName">
+                    <input class="input inp" type="text" name="fullName" placeholder="Enter FullName" />
+
                     <span>Your Email</span>
-                    <input class="input inp" type="email" placeholder="name@example.com" id="">
+                    <input class="input inp" type="email" name="email" placeholder="name@example.com" />
+
                     <span>Phone Number</span>
-                    <input class="input inp" type="tel" placeholder="Enter Phone number" id="">
+                    <input class="input inp" type="tel" name="phoneNumber" placeholder="Enter Phone number" />
+
                     <span>Password</span>
-                    <input class="input inp" type="password" placeholder="Enter Password" id="">
+                    <input class="input inp" type="password" name="password" placeholder="Enter Password" />
+
                     <span>Confirm Password</span>
-                    <input class="input inp" type="password" placeholder="Confirm Password" id="">
+                    <input class="input inp" type="password" name="confirmPassword" placeholder="Confirm Password" />
+
                     <span>Country</span>
                     <select name="country" id="country">
                         <option class="country-title" disabled selected>Select Country</option>
@@ -88,8 +94,7 @@
                         <option value="Colombia">Colombia</option>
                         <option value="Comoros">Comoros</option>
                         <option value="Congo">Congo</option>
-                        <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The
-                        </option>
+                        <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
                         <option value="Cook Islands">Cook Islands</option>
                         <option value="Costa Rica">Costa Rica</option>
                         <option value="Cote D'ivoire">Cote D'ivoire</option>
@@ -154,8 +159,7 @@
                         <option value="Kazakhstan">Kazakhstan</option>
                         <option value="Kenya">Kenya</option>
                         <option value="Kiribati">Kiribati</option>
-                        <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of
-                        </option>
+                        <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
                         <option value="Korea, Republic of">Korea, Republic of</option>
                         <option value="Kuwait">Kuwait</option>
                         <option value="Kyrgyzstan">Kyrgyzstan</option>
@@ -169,8 +173,7 @@
                         <option value="Lithuania">Lithuania</option>
                         <option value="Luxembourg">Luxembourg</option>
                         <option value="Macao">Macao</option>
-                        <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav
-                            Republic of</option>
+                        <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
                         <option value="Madagascar">Madagascar</option>
                         <option value="Malawi">Malawi</option>
                         <option value="Malaysia">Malaysia</option>
@@ -243,8 +246,7 @@
                         <option value="Solomon Islands">Solomon Islands</option>
                         <option value="Somalia">Somalia</option>
                         <option value="South Africa">South Africa</option>
-                        <option value="South Georgia and The South Sandwich Islands">South Georgia and The South
-                            Sandwich Islands</option>
+                        <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
                         <option value="Spain">Spain</option>
                         <option value="Sri Lanka">Sri Lanka</option>
                         <option value="Sudan">Sudan</option>
@@ -273,8 +275,7 @@
                         <option value="United Arab Emirates">United Arab Emirates</option>
                         <option value="United Kingdom">United Kingdom</option>
                         <option value="United States">United States</option>
-                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands
-                        </option>
+                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
                         <option value="Uruguay">Uruguay</option>
                         <option value="Uzbekistan">Uzbekistan</option>
                         <option value="Vanuatu">Vanuatu</option>
@@ -288,22 +289,24 @@
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
+
                     <span>Referral ID</span>
-                    <input class="input" type="text" placeholder="Optional referral id">
+                    <input class="input" type="text" name="referredBy" placeholder="Optional referral id" />
+
                     <div class="terms-privacy">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="terms" id="terms" />
                         <p>I accept the Terms and Privacy Policy</p>
                     </div>
-                    <a href="">
-                        <button class="reg-btn" type="submit">Register</button>
-                    </a>
-                    <p class="already-have-acc">Already have an account? <a href="login.html">Login</a></p>
+
+                    <button class="reg-btn" type="submit">Register</button>
+
+                    <p class="already-have-acc">Already have an account? <a href="/pages/login.html">Login</a></p>
                 </form>
             </div>
         </div>
-
     </main>
 
+    <script src="/scripts/signup.js"></script>
 </body>
 
 </html>
