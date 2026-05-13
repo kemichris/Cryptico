@@ -60,6 +60,7 @@ const loadDashboard = async () => {
     const data = await res.json();
     console.log('Dashboard data:', data);
 
+
     if (!res.ok) {
       localStorage.clear();
       window.location.href = '/pages/login.html';
@@ -67,7 +68,7 @@ const loadDashboard = async () => {
     }
 
     // populate welcome name
-    document.getElementById('welcomeName').textContent = data.user.fullName;
+    document.getElementById('welcomeName').textContent = data.user.userName;
 
     // populate balance and profit
     document.getElementById('balance').textContent = 
