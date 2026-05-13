@@ -14,3 +14,16 @@ cryptoMode.addEventListener("click", ()=> {
 function toggleAttribut(item) {
     item.classList.toggle("inactive");
 }
+
+// Get deposit amount and display
+const amount = localStorage.getItem("depositAmount");
+
+if (!amount) {
+    alert("No deposit amount found");
+    window.location.href = "/dashboard/users-deposits.html";
+}
+
+// display it
+document.getElementById("paymentAmount").textContent = amount;
+
+
