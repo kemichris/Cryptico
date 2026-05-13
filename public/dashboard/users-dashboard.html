@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="manifest" href="assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="../styles/users-dashboard.css" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/users-dashboard.css" />
 </head>
 
 <body>
@@ -22,13 +22,12 @@
             <ul>
                 <li class="logo">
                     <a href="index.html">
-                        <img src="../assets/icons/crypt-logo.jpg" alt="" />
+                        <img src="/assets/icons/crypt-logo.jpg" alt="" />
                     </a>
                 </li>
-                <li class="welcome"> Welcome <span>Chris</span>!</li>
-                <a href="">
-                    <button class="sign-out-btn">Sign out</button>
-                </a>
+                <li class="welcome">Welcome <span id="welcomeName">User</span>!</li>
+                
+                <button class="sign-out-btn" id="logoutBtn">Sign out</button>
                 <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
                 <i class="fa-solid fa-x remove-nav-icon inactive"></i>
             </ul>
@@ -125,14 +124,14 @@
                             <i class="fa-solid fa-download"></i>
                             <div class="dep-text">
                                 <h5>Deposit</h5>
-                                <p>$ <span>0.00</span></p>
+                                <p>$ <span id="totalDeposit">0.00</span></p>
                             </div>
                         </div>
                         <div class="balance">
                             <i class="fa-solid fa-coins"></i>
                             <div class="bal-text">
                                 <h5>Balance</h5>
-                                <p>$ <span>0.00</span></p>
+                                <p>$ <span id="balance">0.00</span></p>
                             </div>
                         </div>
                     </div>
@@ -141,14 +140,14 @@
                             <i class="fa-solid fa-coins"></i>
                             <div class="prof-text">
                                 <h5>Profit</h5>
-                                <p>$ <span>0.00</span></p>
+                                <p>$ <span id="profit">0.00</span></p>
                             </div>
                         </div>
                         <div class="total-package">
                             <i class="fa-solid fa-envelope"></i>
                             <div class="tpack-text">
                                 <h5>Total Packages</h5>
-                                <p>0</p>
+                                <p id="totalPackages">0</p>
                             </div>
                         </div>
                     </div>
@@ -164,7 +163,7 @@
                             <i class="fa-solid fa-envelope-open"></i>
                             <div class="apack-text">
                                 <h5>Active Packages</h5>
-                                <p>0</p>
+                                <p id="activePackages">0</p>
                             </div>
                         </div>
                     </div>
@@ -173,7 +172,7 @@
                             <i class="fa-solid fa-repeat"></i>
                             <div class="ref-text">
                                 <h5>Ref. Bonus</h5>
-                                <p>$ <span>0.00</span></p>
+                                <p>$ <span id="bonus">0.00</span></p>
                             </div>
                         </div>
                     </div>
@@ -215,7 +214,7 @@
         </div>
     </main>
 
-    <script src="../scripts/users-dashboard.js"></script>
+    <script src="/scripts/users-dashboard.js"></script>
 </body>
 
 </html>

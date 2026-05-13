@@ -3,8 +3,8 @@ const form = document.getElementById("login");
 form.addEventListener("submit", async (e) => {
     e.preventDefault()
 
-    const formDate = new FormData(form)
-    const dataObject = Object.fromEntries(formDate.entries())
+    const formData = new FormData(form)
+    const dataObject = Object.fromEntries(formData.entries())
 
     // see exactly what is being sent
     console.log('Sending:', dataObject);
