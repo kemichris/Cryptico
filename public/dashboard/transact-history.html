@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="manifest" href="assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="../styles/users-dashboard.css" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/users-dashboard.css" />
 </head>
 
 <body>
@@ -22,13 +22,12 @@
             <ul>
                 <li class="logo">
                     <a href="index.html">
-                        <img src="../assets/icons/crypt-logo.jpg" alt="" />
+                        <img src="/assets/icons/crypt-logo.jpg" alt="" />
                     </a>
                 </li>
-                <li class="welcome"> Welcome <span>Chris</span>!</li>
-                <a href="">
-                    <button class="sign-out-btn">Sign out</button>
-                </a>
+                <li class="welcome">Welcome <span id="welcomeName">User</span>!</li>
+
+                <button class="sign-out-btn" id="logoutBtn">Sign out</button>
                 <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
                 <i class="fa-solid fa-x remove-nav-icon inactive"></i>
             </ul>
@@ -53,12 +52,12 @@
                 <div class="account-dropdown inactive">
                     <ul>
                         <li>
-                            <a href="users-account-setting.html">Account setting</a>
+                            <a href="/dashboard/users-account-setting.html">Account setting</a>
                         </li>
                         <li>
-                            <a href="users-withdrawinfo.html">Withdrawal info</a>
+                            <a href="/dashboard/users-withdrawinfo.html">Withdrawal info</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <a href="">
@@ -67,7 +66,7 @@
                         <span>P/L record</span>
                     </div>
                 </a>
-                <a href="transact-history.html">
+                <a href="/dashboard/transact-history.html">
                     <div class="account-history user-div active">
                         <i class="fa-solid fa-briefcase active"></i>
                         <span class="active">Transaction history</span>
@@ -80,10 +79,10 @@
                 <div class="dep-with-dropdown inactive">
                     <ul>
                         <li>
-                            <a href="deposits.html">Deposit</a>
+                            <a href="/dashboard/deposits.html">Deposit</a>
                         </li>
                         <li>
-                            <a href="withdrawal.html">Withdrawal</a>
+                            <a href="/dashboard/withdrawal.html">Withdrawal</a>
                         </li>
                     </ul>
                 </div>
@@ -94,7 +93,7 @@
                 <div class="packages-dropdown inactive">
                     <ul>
                         <li>
-                            <a href="users-plans.html">Investment Plans</a>
+                            <a href="/dashboard/users-plans.html">Investment Plans</a>
                         </li>
                         <li>
                             <a href="">My Packages</a>
@@ -107,7 +106,7 @@
                         <span>Refer Users</span>
                     </div>
                 </a>
-                <a href="users-support.html">
+                <a href="/dashboard/users-support.html">
                     <div class="support user-div">
                         <i class="fa-solid fa-circle-radiation"></i>
                         <span>Support</span>
@@ -120,27 +119,27 @@
             <!-- ////// TRANSACTION HISTORY ////// -->
             <div class="transaction-history">
                 <h1>Account Transactions</h1>
-                
+
                 <div class="history-container">
                     <div class="history-section">
-                        <a href="transact-history.html">
+                        <a href="/dashboard/transact-history.html">
                             <div class="deposit-history active">
                                 <p>Deposits</p>
                             </div>
                         </a>
-                        <a href="transact-withdraw-history.html">
+                        <a href="/dashboard/transact-withdraw-history.html">
                             <div class="withdraw-history">
                                 <p>Withdrawals</p>
                             </div>
                         </a>
-                        <a href="transact-others-history.html">
+                        <a href="/dashboard/transact-others-history.html">
                             <div class="other-history">
                                 <p>Others</p>
                             </div>
                         </a>
                     </div>
 
-                    
+
                     <table class="deposit-table">
                         <thead>
                             <tr>
@@ -152,7 +151,7 @@
                             </tr>
                         </thead>
                         <tbody class="tbody">
-                            <tr class="tr">
+                            <!-- <tr class="tr">
                                 <td>1</td>
                                 <td>$<span>1000</span></td>
                                 <td>Bitcoion</td>
@@ -179,26 +178,27 @@
                                 <td>Bitcoion</td>
                                 <td>Pending</td>
                                 <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            
+                            </tr> -->
+
                         </tbody>
                     </table>
 
                     <div class="entries">
-                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span id="totalEntries">0</span> entries </p>
+                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span
+                                id="totalEntries">0</span> entries </p>
                         <div class="entries-buttons">
                             <button class="prev-btn">Prev</button>
                             <button class="pg-btn">1</button>
                             <button class="next-btn">Next</button>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </main>
-    <script src="../scripts/users-dashboard.js"></script>
-    <script src="../scripts/transaction-history.js"></script>
+    <script src="/scripts/dashboard/users-dashboard.js"></script>
+    <script src="/scripts/dashboard/transaction-history.js"></script>
 </body>
 
 </html>
