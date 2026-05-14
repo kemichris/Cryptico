@@ -1,45 +1,61 @@
-const form = document.getElementById("registration");
+const bankMode = document.querySelector(".bank-mode");
+const cryptoMode = document.querySelector(".crypto-mode");
+const bankDetails = document.querySelector(".bank-details");
+const cryptoDetails = document.querySelector(".crypto-details");
 
-form.addEventListener('submit', async (e) => {
+bankMode?.addEventListener("click", () => toggleAttribute(bankDetails));
+cryptoMode?.addEventListener("click", () => toggleAttribute(cryptoDetails));
+
+function toggleAttribute(item) {
+  item.classList.toggle("inactive");
+}
+
+// get deposit amount from localStorage
+const amount = localStorage.getItem("depositAmount");
+if (!amount) {
+  alert("No deposit amount found");
+  window.location.href = "/dashboard/users-deposits.html";
+}
+
+// display amount
+document.getElementById("paymentAmount").textContent = amount;
+document.getElementById("deposit-value").value = amount;
+
+/* ////// SUBMIT DEPOSIT ////// */
+const depositForm = document.getElementById("depositForm");
+
+depositForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const formData = new FormData(form);
-  const dataObject = Object.fromEntries(formData.entries());
+  // use FormData directly — needed for file upload
+  const formData = new FormData(depositForm);
 
-  // check passwords match
-  if (dataObject.password !== dataObject.confirmPassword) {
-    alert('Passwords do not match');
-    return;
-  }
-
-  // remove fields server doesn't need
-  delete dataObject.confirmPassword;
-  delete dataObject.terms;
-
-  // see exactly what is being sent
-  console.log('Sending:', dataObject);
+  console.log('Sending deposit...');
 
   try {
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch('/api/users/deposit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dataObject)
+      headers: { 
+        'Authorization': `Bearer ${token}` 
+        // DO NOT set Content-Type — browser sets it automatically for FormData
+      },
+      body: formData  // send FormData directly
     });
 
     const data = await res.json();
     console.log('Response:', data);
 
     if (res.ok) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      window.location.href = '/dashboard/index.html';
+      // clear amount from localStorage
+      localStorage.removeItem("depositAmount");
+      alert('Deposit submitted successfully! Awaiting approval.');
+      window.location.href = '/dashboard/users-deposits.html';
     } else {
       alert(data.message);
     }
 
-  } catch (err) {
-    // this will show if fetch itself fails
-    console.error('Fetch error:', err);
-    alert('Something went wrong: ' + err.message);
+  } catch (error) {
+    console.error('Deposit error:', error);
+    alert('Something went wrong: ' + error.message);
   }
 });

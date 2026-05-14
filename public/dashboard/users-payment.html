@@ -139,11 +139,13 @@
                         </div>
                     </div>
 
-                    <form action="" class="deposit-form">
+                    <form id="depositForm" class="deposit-form">
+                        <label>Amount</label>
+                        <input id="deposit-value" type="number" name="amount" value="0" readonly>
                         <label for="">Upload Payment proof after payment. (Ignore if paid with card).</label>
-                        <input type="file" name="" id="">
+                        <input type="file" name="proof" id="">
                         <label for="">Payment mode used</label>
-                        <select name="" id="" required >
+                        <select name="method" id="" required >
                             <option selected disabled ="">Select payment method</option>
                             <option value="Bank Transfer">Bank Transfer</option>
                             <option value="Bitcoin">Bitcoin</option>

@@ -1,136 +1,122 @@
-const token = localStorage.getItem('token');
-const user = JSON.parse(localStorage.getItem('user'));
-
-if (!token || !user) {
-    window.location.href = '/pages/login.html';
-}
-
-
-/* ////// LOAD TRANSACTION HISTORY DATA ////// */
-
-const loadTransactionHistory = async () => {
-    try {
-        // fetch transaction history data
-        const res = await fetch('/api/users/transactions', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-
-        const data = await res.json()
-        console.log('transaction history data:', data);
-
-        if (!res.ok) {
-            localStorage.clear();
-            window.location.href = '/pages/login.html';
-            return;
-        }
-
-        // after getting data, filter only deposits
-        const deposits = data.filter(t => t.type === 'deposit');
-
-        // clear the hardcoded rows from tbody
-        tbBody.innerHTML = '';
-
-        // check if no transactions yet
-        if (deposits.length === 0) {
-            tbBody.innerHTML = '<tr><td colspan="5">No deposits found</td></tr>';
-            return;
-        }
-
-        // loop through and build rows
-        deposits.forEach((transaction, index) => {
-            const tr = document.createElement('tr');
-            tr.className = 'tr';
-            tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td>$${transaction.amount}</td>
-            <td>${transaction.method}</td>
-            <td>${transaction.status}</td>
-            <td>${new Date(transaction.createdAt).toLocaleString()}</td>
-            `;
-            tbBody.appendChild(tr);
-        });
-
-
-    } catch (error) {
-        console.error('Transaction history error:', error);
-    }
-}
-
-// Transaction history pagination 
-const rows = document.querySelectorAll(".tr");
+/* ////// DOM ELEMENTS ////// */
 const tbBody = document.querySelector(".tbody");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
-const pgBtn = document.querySelector(".pg-btn");
-
 const startIdxSpan = document.getElementById('startIdx');
 const endIdxSpan = document.getElementById('endIdx');
 const totalEntriesSpan = document.getElementById('totalEntries');
 
 const rowsPerPage = 5;
-
 let currentPage = 1;
 
-const totalRows = rows.length;
+/* ////// PAGINATION ////// */
+function showPage(page, rows) {
+  const totalRows = rows.length;
+  const startIndex = (page - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
 
+  rows.forEach((row, index) => {
+    row.style.display = (index >= startIndex && index < endIndex) ? '' : 'none';
+  });
 
-function showPage(page) {
-    const startIndex = (page - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
+  startIdxSpan.textContent = totalRows === 0 ? 0 : startIndex + 1;
+  endIdxSpan.textContent = Math.min(endIndex, totalRows);
+  totalEntriesSpan.textContent = totalRows;
+}
 
-    rows.forEach((row, index) => {
-        if (index >= startIndex && index < endIndex) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
+function updatePaginationButtons(rows) {
+  const totalRows = rows.length;
+  const totalPages = Math.ceil(totalRows / rowsPerPage);
+  const pgBtnsContainer = document.querySelector('.entries-buttons');
+  pgBtnsContainer.innerHTML = '';
+
+  // prev button
+  prevBtn.style.display = currentPage > 1 ? 'block' : 'none';
+  prevBtn.onclick = () => {
+    currentPage--;
+    showPage(currentPage, rows);
+    updatePaginationButtons(rows);
+  };
+
+  // page number buttons
+  for (let i = 1; i <= totalPages; i++) {
+    const pgBtn = document.createElement('button');
+    pgBtn.className = 'pg-btn';
+    pgBtn.textContent = i;
+    pgBtn.addEventListener('click', () => {
+      currentPage = i;
+      showPage(currentPage, rows);
+      updatePaginationButtons(rows);
+    });
+    pgBtnsContainer.appendChild(pgBtn);
+  }
+
+  // next button
+  nextBtn.style.display = currentPage < totalPages ? 'block' : 'none';
+  nextBtn.onclick = () => {
+    currentPage++;
+    showPage(currentPage, rows);
+    updatePaginationButtons(rows);
+  };
+}
+
+/* ////// LOAD TRANSACTIONS ////// */
+const loadTransactionHistory = async () => {
+  try {
+    const res = await fetch('/api/users/transactions', {
+      headers: { 'Authorization': `Bearer ${token}` }
     });
 
-    startIdxSpan.textContent = startIndex + 1;
-    endIdxSpan.textContent = Math.min(endIndex, totalRows);
-    totalEntriesSpan.textContent = totalRows;
-}
-
-function updatePaginationButtons() {
-    const pgBtnsContainer = document.querySelector('.entries-buttons');
-    pgBtnsContainer.innerHTML = '';
-
-    const totalPages = Math.ceil(totalRows / rowsPerPage);
-
-    for (let i = 1; i <= totalPages; i++) {
-        const pgBtn = document.createElement('button');
-        pgBtn.className = 'pg-btn';
-        pgBtn.textContent = i;
-        pgBtn.addEventListener('click', function () {
-            currentPage = i;
-            showPage(currentPage);
-            updatePaginationButtons();
-        });
-        pgBtnsContainer.appendChild(pgBtn);
+    // check ok BEFORE parsing
+    if (!res.ok) {
+      localStorage.clear();
+      window.location.href = '/pages/login.html';
+      return;
     }
 
-    if (currentPage > 1) {
-        prevBtn.style.display = 'block';
-        prevBtn.addEventListener('click', function () {
-            currentPage--;
-            showPage(currentPage);
-            updatePaginationButtons();
-        });
-    } else {
-        prevBtn.style.display = 'none';
+    const data = await res.json();
+    console.log('Transaction history data:', data);
+
+    // filter only deposits
+    const deposits = data.filter(t => t.type === 'deposit');
+
+    // clear hardcoded rows
+    tbBody.innerHTML = '';
+
+    // handle empty state
+    if (deposits.length === 0) {
+      tbBody.innerHTML = '<tr><td colspan="5" style="text-align:center">No deposits found</td></tr>';
+      startIdxSpan.textContent = 0;
+      endIdxSpan.textContent = 0;
+      totalEntriesSpan.textContent = 0;
+      return;
     }
 
-    if (currentPage < totalPages) {
-        nextBtn.style.display = 'block';
-        nextBtn.addEventListener('click', function () {
-            currentPage++;
-            showPage(currentPage);
-            updatePaginationButtons();
-        });
-    } else {
-        nextBtn.style.display = 'none';
-    }
-}
+    // build rows dynamically
+    deposits.forEach((transaction, index) => {
+      const tr = document.createElement('tr');
+      tr.className = 'tr';
+      tr.innerHTML = `
+        <td>${index + 1}</td>
+        <td>$${transaction.amount}</td>
+        <td>${transaction.method}</td>
+        <td>${transaction.status}</td>
+        <td>${new Date(transaction.createdAt).toLocaleString()}</td>
+      `;
+      tbBody.appendChild(tr);
+    });
 
-showPage(currentPage);
-updatePaginationButtons();
+    // query rows AFTER building them
+    const rows = document.querySelectorAll('.tr');
+
+    // initialize pagination with real rows
+    showPage(currentPage, rows);
+    updatePaginationButtons(rows);
+
+  } catch (error) {
+    console.error('Transaction history error:', error);
+  }
+};
+
+// call the function
+loadTransactionHistory();
