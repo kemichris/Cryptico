@@ -17,6 +17,14 @@ app.use('/api/auth',  require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/admin', require('./routes/admin'));
 
+// add after your routes
+app.use((err, req, res, next) => {
+  if (err.message) {
+    return res.status(400).json({ message: err.message });
+  }
+  next();
+});
+
 // ─── Static files ─────────────────────────────
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -24,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/{*path}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
 });
+
+
 
 // Connect to database then start server
 mongoose.connect(process.env.MONGO_URI)
