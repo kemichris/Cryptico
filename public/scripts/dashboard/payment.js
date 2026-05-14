@@ -30,27 +30,42 @@ depositValue.value = amount;
 
 const depositForm = document.getElementById("depositForm")
 
-depositForm.addEventListener("submit", async (e)  =>{
+depositForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(depositForm);
-    const dataObject = Object.fromEntries(formData.entries());
 
-    // see exactly what is being sent
-    console.log('Sending:', dataObject);
-
+    // 🔥 LOG WHAT YOU ARE SENDING
+    const preview = Object.fromEntries(formData.entries());
+    console.log("📤 Sending to backend:", preview);
 
     try {
-        // fetch deposit data
         const res = await fetch('/api/users/deposit', {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${token}` },
-            body: dataObject
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: formData
         });
 
+        const data = await res.json();
+
+        // 🔥 LOG RESPONSE FROM SERVER
+        console.log("📥 Server response:", data);
+
+        if (!res.ok) {
+            alert(data.message || "Something went wrong");
+            return;
+        }
+
+        // ✅ SUCCESS MESSAGE
+        alert("Deposit submitted successfully");
+
+        // 🚀 REDIRECT TO TRANSACTION HISTORY
+        window.location.href = "/dashboard/transact-history.html";
 
     } catch (error) {
-        
+        console.error("❌ Frontend error:", error);
+        alert("Network error, try again");
     }
-
-})
+});

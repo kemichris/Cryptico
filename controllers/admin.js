@@ -127,40 +127,49 @@ const getAllDeposits = async (req, res) => {
 // Approve or reject Deposit
 const approveOrRejectDeposit = async (req, res) => {
   try {
-    // step 1 — find the transaction
     const deposit = await Transaction.findById(req.params.id);
 
-    // step 2 — check if it exists
     if (!deposit) {
       return res.status(404).json({ message: 'Deposit not found' });
     }
 
-    // step 3 — check if already processed
     if (deposit.status === 'approved' || deposit.status === 'rejected') {
       return res.status(400).json({ message: 'Deposit already processed' });
     }
 
-    // step 4 — get status from request body
     const { status } = req.body;
 
-    // step 5 — if approved, add amount to user balance
+    // validate input
+    if (!['approved', 'rejected'].includes(status)) {
+      return res.status(400).json({ message: 'Invalid status' });
+    }
+
+    // ✅ APPROVE FLOW
     if (status === 'approved') {
       await User.findByIdAndUpdate(deposit.user, {
         $inc: { balance: deposit.amount }
       });
     }
 
-    // step 6 — update the transaction
+    // ❌ REJECT FLOW
+    if (status === 'rejected') {
+      // optional: you can log reason, refund nothing, etc.
+      console.log(`Deposit ${deposit._id} was rejected`);
+    }
+
+    // update transaction status for BOTH cases
     deposit.status = status;
     deposit.approvedBy = req.user._id;
+
     await deposit.save();
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       message: `Deposit ${status} successfully`,
-      deposit 
+      deposit
     });
 
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };

@@ -47,7 +47,11 @@ const updateUserProfile = async (req, res) => {
 
 const createDeposit = async (req, res) => {
   try {
-    const { amount, method, reference, proofImage } = req.body;
+    const { amount, method, reference } = req.body;
+
+    // get file path from multer — req.file is set by upload.single('proof')
+    const proofImage = req.file ? `/assets/uploads/${req.file.filename}` : null;
+
     const transaction = await Transaction.create({
       user: req.user._id,
       type: 'deposit',
@@ -57,6 +61,7 @@ const createDeposit = async (req, res) => {
       proofImage,
       status: 'pending',
     });
+
     res.status(201).json({ 
       message: 'Deposit request submitted, awaiting approval',
       transaction 
