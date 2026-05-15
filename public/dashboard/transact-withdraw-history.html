@@ -36,6 +36,10 @@
     </header>
 
     <main>
+        <!-- PAGE LOADER -->
+        <div id="pageLoader" class="page-loader">
+            <div class="loader-spinner"></div>
+        </div>
 
         <div class="side-main-flex">
             <!-- ////// SIDE BAR ////// -->
@@ -58,7 +62,7 @@
                         <li>
                             <a href="/dashboard/users-withdrawinfo.html">Withdrawal info</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <a href="">
@@ -120,7 +124,7 @@
             <!-- ////// TRANSACTION HISTORY ////// -->
             <div class="transaction-history">
                 <h1>Account Transactions</h1>
-                
+
                 <div class="history-container">
                     <div class="history-section">
                         <a href="/dashboard/transact-history.html">
@@ -169,17 +173,19 @@
                     </table>
 
                     <div class="entries">
-                        <p>showing <span id="startIdx">1</span> to <span id="endIdx">5</span> of <span id="totalEntries">5</span> entries </p>
+                        <p>showing <span id="startIdx">1</span> to <span id="endIdx">5</span> of <span
+                                id="totalEntries">5</span> entries </p>
                         <div class="entries-buttons">
                             <button class="prev-btn">Prev</button>
                             <button class="pg-btn">1</button>
                             <button class="next-btn">Next</button>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
+
     </main>
     <script src="/scripts/dashboard/users-dashboard.js"></script>
     <script src="/scripts/dashboard/transact-withdraw-history.js"></script>

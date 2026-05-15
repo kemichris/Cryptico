@@ -46,18 +46,6 @@ i {
   100%{ transform: rotate(360deg); }
 }
 
-/* hide content until ready */
-.invisible {
-  visibility: hidden;
-  opacity: 0;
-}
-
-/* show content smoothly */
-.visible {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
 
 /* ////// NAV BAR SECTION ////// */
 nav {

@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li class="welcome">Welcome <span id="welcomeName">User</span>!</li>
-                
+
                 <button class="sign-out-btn" id="logoutBtn">Sign out</button>
                 <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
                 <i class="fa-solid fa-x remove-nav-icon inactive"></i>
@@ -36,15 +36,12 @@
 
     <main>
 
-        <!-- add this right after <main> opens -->
-<div id="pageLoader" class="page-loader">
-  <div class="loader-spinner"></div>
-</div>
+        <!-- PAGE LOADER -->
+        <div id="pageLoader" class="page-loader">
+            <div class="loader-spinner"></div>
+        </div>
 
-<!-- wrap your entire dashboard content -->
-<div id="dashboardContent" class="side-main-flex invisible">
-  <!-- all your existing content stays here -->
-    <div class="side-main-flex">
+        <div class="side-main-flex">
             <!-- ////// SIDE BAR ////// -->
             <div class="user-side-bar active">
                 <a class="active" href="/dashboard/users-dashboard.html">
@@ -65,7 +62,7 @@
                         <li>
                             <a href="/dashboardusers-withdrawinfo.html">Withdrawal info</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <a href="">
@@ -220,9 +217,7 @@
                 <p class="rights">All Rights Reserved © Cryptico 2023</p>
             </div>
         </div>
-</div>
 
-       
     </main>
 
     <script src="/scripts/dashboard/users-dashboard.js"></script>
