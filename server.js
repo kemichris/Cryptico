@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const { startCronJobs } = require('./utils/cronJobs');
 
 dotenv.config();
 const app = express();
@@ -42,5 +43,7 @@ mongoose.connect(process.env.MONGO_URI)
     app.listen(process.env.PORT, () => {
       console.log(`🚀 Server live → http://localhost:${process.env.PORT}`);
     });
+    // start cron jobs after DB connects
+    startCronJobs();
   })
   .catch(err => console.error('❌ Connection failed:', err));

@@ -10,13 +10,28 @@ const getUserDashboard = async (req, res) => {
     const activeInvestments = await Investment.find({ 
       user: req.user._id,
       status: 'active'
-    }).populate('plan', 'name roiPercent duration');
+    }).populate('plan', 'name minRoi maxRoi duration topUpInterval topUpAmount');
 
     const recentTransactions = await Transaction.find({ 
       user: req.user._id 
     }).sort({ createdAt: -1 }).limit(5);
 
-    res.status(200).json({ user, activeInvestments, recentTransactions });
+    // calculate live profit from all active investments
+    const liveProfit = activeInvestments.reduce((sum, inv) => {
+      return sum + inv.currentReturns;
+    }, 0);
+
+    // total profit = live returns + completed investment earnings
+    const totalProfit = liveProfit + user.totalEarnings;
+
+    res.status(200).json({ 
+      user, 
+      activeInvestments, 
+      recentTransactions,
+      liveProfit,
+      totalProfit,
+    });
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

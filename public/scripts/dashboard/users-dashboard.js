@@ -74,7 +74,7 @@ const loadDashboard = async () => {
 
     if (welcomeEl) welcomeEl.textContent = data.user.userName;
     if (balanceEl) balanceEl.textContent = data.user.balance.toFixed(2);
-    if (profitEl) profitEl.textContent = data.user.totalEarnings.toFixed(2);
+    if (profitEl) profitEl.textContent = data.totalProfit.toFixed(2);
     if (totalPackagesEl) totalPackagesEl.textContent = data.activeInvestments.length;
     if (activePackagesEl) activePackagesEl.textContent = data.activeInvestments.length;
 
