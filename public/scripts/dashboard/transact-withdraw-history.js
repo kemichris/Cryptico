@@ -85,7 +85,7 @@ const loadWithdrawalHistory = async () => {
 
     // handle empty state
     if (withdrawal.length === 0) {
-      tbBody.innerHTML = '<tr><td colspan="5" style="text-align:center">No deposits found</td></tr>';
+      tbBody.innerHTML = '<tr><td colspan="5" style="text-align:center">No withdrawal found</td></tr>';
       startIdxSpan.textContent = 0;
       endIdxSpan.textContent = 0;
       totalEntriesSpan.textContent = 0;
