@@ -36,7 +36,15 @@
 
     <main>
 
-        <div class="side-main-flex">
+        <!-- add this right after <main> opens -->
+<div id="pageLoader" class="page-loader">
+  <div class="loader-spinner"></div>
+</div>
+
+<!-- wrap your entire dashboard content -->
+<div id="dashboardContent" class="side-main-flex invisible">
+  <!-- all your existing content stays here -->
+    <div class="side-main-flex">
             <!-- ////// SIDE BAR ////// -->
             <div class="user-side-bar active">
                 <a class="active" href="/dashboard/users-dashboard.html">
@@ -212,6 +220,9 @@
                 <p class="rights">All Rights Reserved © Cryptico 2023</p>
             </div>
         </div>
+</div>
+
+       
     </main>
 
     <script src="/scripts/dashboard/users-dashboard.js"></script>
