@@ -300,7 +300,7 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-.save-info-btn, .mgn-acc-btn, .support-btn, .new-deposit-btn, .deposit-popup button, 
+.edit-btn, .save-info-btn, .support-btn, .new-deposit-btn, .deposit-popup button, 
     .payment-btn, .request-btn, .withdraw-popup button, .join-plan-btn {
     padding: 0.5rem 2rem;
     border: none;
@@ -312,7 +312,7 @@ input:focus, textarea:focus {
     cursor: pointer;
 }
 
-.save-info-btn {
+.edit-btn {
     margin-bottom: 2rem;
 }
 
