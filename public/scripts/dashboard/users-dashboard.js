@@ -84,13 +84,8 @@ const loadDashboard = async () => {
     // ALWAYS runs — hide loader and show content
     // whether fetch succeeded or failed
     const loader = document.getElementById('pageLoader');
-    const content = document.getElementById('dashboardContent');
-
     if (loader) loader.style.display = 'none';
-    if (content) {
-      content.classList.remove('invisible');
-      content.classList.add('visible');
-    }
+    
   }
 };
 
@@ -117,6 +112,7 @@ const loadTransactions = async () => {
     console.error('Transactions error:', err);
   }
 };
+
 
 loadDashboard();
 loadTransactions();

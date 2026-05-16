@@ -300,6 +300,17 @@ input:focus, textarea:focus {
     outline: none;
 }
 
+.profile-form input {
+    pointer-events: none;
+}
+
+.profile-form input.editable {
+    pointer-events: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+
 .edit-btn, .save-info-btn, .support-btn, .new-deposit-btn, .deposit-popup button, 
     .payment-btn, .request-btn, .withdraw-popup button, .join-plan-btn {
     padding: 0.5rem 2rem;
@@ -315,6 +326,7 @@ input:focus, textarea:focus {
 .edit-btn {
     margin-bottom: 2rem;
 }
+
 
 
 /* ////////////////////////////// WITHDRAWAL INFO /////////////////////////////////////// */

@@ -48,10 +48,10 @@ const getUserProfile = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
   try {
-    const { fullName, phoneNumber, country } = req.body;
+    const { userName, phoneNumber } = req.body;
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { fullName, phoneNumber, country },
+      { userName, phoneNumber },
       { new: true }
     ).select('-password');
     res.status(200).json(user);

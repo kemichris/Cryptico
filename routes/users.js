@@ -17,7 +17,7 @@ const {
 
 router.get('/dashboard', protect, getUserDashboard);
 router.get('/profile', protect, getUserProfile);
-router.put('/profile', protect, updateUserProfile);
+router.patch('/profile', protect, updateUserProfile);
 router.post('/deposit', protect, upload.single('proof'), createDeposit);
 router.post('/withdraw', protect, createWithdrawal);
 router.get('/transactions', protect, getUserTransactions);
