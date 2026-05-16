@@ -126,25 +126,27 @@
             <div class="user-account">
                <h1>Profile Information</h1>
                <div class="profile-form">
-                <form action="">
+                <form id="user-form">
+                    <span>User Name</span>
+                    <input type="text" name="userName" readonly>
                     <span>Full Name</span>
-                    <input type="text" value="Chris" id="">
+                    <input type="text"  name="fullName" id="fullName" readonly>
                     <span>Date of Birth</span>
-                    <input type="date" name="" id="">
+                    <input type="date" name="dob" id="" readonly>
                     <span>Phone Number</span>
-                    <input type="tel" value="+1983938373" id="">
+                    <input type="tel" name="phoneNumber" id="" readonly>
                     <span>Country</span>
-                    <input type="text" value="Canada" id="" readonly>
+                    <input type="text"  name="country" id="" readonly>
                     <span>Email</span>
-                    <input type="text" value="example@gmail.com" id="" readonly>
+                    <input type="text" name="email" id="" readonly>
                     <span>Address</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="address" id="" readonly>
                     <a href="">
                         <button class="save-info-btn" type="submit">Save</button>
                     </a>
-                    <a href="">
+                    <!-- <a href="">
                         <button class="mgn-acc-btn">Manage Account Security</button>
-                    </a>
+                    </a> -->
                 </form>
                </div>
             </div>
@@ -152,6 +154,7 @@
     </main>
 
     <script src="/scripts/dashboard/users-dashboard.js"></script>
+    <script src="/scripts/dashboard/account-setting.js"></script>
 </body>
 
 </html>
