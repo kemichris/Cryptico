@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Transaction = require('../models/Transaction');
 const Investment = require('../models/Investment');
 const Plan = require('../models/Plan');
+const WithdrawalInfo = require('../models/WithdrawalInfo')
 
 const getUserDashboard = async (req, res) => {
   try {
@@ -55,6 +56,29 @@ const updateUserProfile = async (req, res) => {
       { new: true }
     ).select('-password');
     res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const saveWithdrawalInfo = async (req, res) => {
+  try {
+    const { 
+      bankName, accountName, accountNumber,
+      cryptoType, cryptoNetwork, walletAddress  
+    } = req.body;
+
+    const withdrawalInfo = await WithdrawalInfo.findOneAndUpdate(
+      { user: req.user._id },
+      { bankName, accountName, accountNumber, cryptoType, cryptoNetwork, walletAddress },
+      { new: true, upsert: true }
+    );
+
+    res.status(200).json({ 
+      message: 'Withdrawal info saved successfully',
+      withdrawalInfo 
+    });
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -189,6 +213,7 @@ module.exports = {
   getUserDashboard,
   getUserProfile,
   updateUserProfile,
+  saveWithdrawalInfo,
   createDeposit,
   createWithdrawal,
   getUserTransactions,
