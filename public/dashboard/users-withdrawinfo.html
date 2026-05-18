@@ -12,7 +12,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="../styles/users-dashboard.css" />
+    <link rel="stylesheet" href="/styles/users-dashboard.css" />
 </head>
 
 <body>
@@ -22,13 +22,11 @@
             <ul>
                 <li class="logo">
                     <a href="index.html">
-                        <img src="../assets/icons/crypt-logo.jpg" alt="" />
+                        <img src="/assets/icons/crypt-logo.jpg" alt="" />
                     </a>
                 </li>
                 <li class="welcome">Welcome <span id="welcomeName">User</span>!</li>
-                <a href="">
-                    <button class="sign-out-btn">Sign out</button>
-                </a>
+                <button class="sign-out-btn" id="logoutBtn">Sign out</button>
                 <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
                 <i class="fa-solid fa-x remove-nav-icon inactive"></i>
             </ul>
@@ -186,7 +184,8 @@
         </div>
     </main>
 
-    <script src="../scripts/users-withdrawinfo.js"></script>
+    <script src="/scripts/dashboard/users-dashboard.js"></script>
+    <script src="/scripts/dashboard/users-withdrawinfo.js"></script>
 </body>
 
 </html>
