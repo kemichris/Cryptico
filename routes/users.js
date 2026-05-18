@@ -7,6 +7,7 @@ const {
   getUserDashboard,
   getUserProfile,
   updateUserProfile,
+  saveWithdrawalInfo,
   createDeposit,
   createWithdrawal,
   getUserTransactions,
@@ -18,6 +19,7 @@ const {
 router.get('/dashboard', protect, getUserDashboard);
 router.get('/profile', protect, getUserProfile);
 router.patch('/profile', protect, updateUserProfile);
+router.post('/withdrawal-info', protect, saveWithdrawalInfo);
 router.post('/deposit', protect, upload.single('proof'), createDeposit);
 router.post('/withdraw', protect, createWithdrawal);
 router.get('/transactions', protect, getUserTransactions);
