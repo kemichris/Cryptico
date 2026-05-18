@@ -342,20 +342,20 @@ input:focus, textarea:focus {
     gap: 2rem;
 }
 
-.bank-info, .btc-info, .eth-info {
+.bank-info, .btc-info, .eth-info, .crypto-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
 }
 
-.bank, .btc, .eth {
+.bank, .btc, .eth, .crypto {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.bank i, .btc i, .eth i {
+.bank i, .btc i, .eth i, .crypto i {
     font-size: 2rem;
     color: #8492a6;
 }
@@ -372,7 +372,7 @@ input:focus, textarea:focus {
     cursor: pointer;
 }
 
-.bank-form, .btc-form, .eth-form {
+.bank-form, .crypto-form {
     display: flex;
     flex-direction: column;
     padding: 3rem 3rem 1rem;
@@ -385,7 +385,16 @@ input:focus, textarea:focus {
     transition: transform 0.5s ease;
 }
 
-.bank-form.active, .btc-form.active, .eth-form.active {
+.crypto-form select {
+    font-size: 1.2rem;
+    width: fit-content;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: #D1DDEB;
+}
+
+.bank-form.active, .crypto-form.active {
     visibility: visible;
     max-height: fit-content;
     transition: opacity 0.5s ease;

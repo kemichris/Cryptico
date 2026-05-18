@@ -61,7 +61,7 @@
                         <li>
                             <a href="/dashboard/users-withdrawinfo.html">Withdrawal info</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <a href="">
@@ -125,7 +125,7 @@
                 <h1>Add withdrawal info</h1>
 
                 <div class="withdrawal-type">
-                    <form action="" class="withdrawal-form">
+                    <form id="withdrawal-info" class="withdrawal-form">
                         <div class="bank-info-cont">
                             <div class="bank-info">
                                 <div class="bank">
@@ -135,43 +135,40 @@
                                 <i class="fa-solid fa-plus open-info-dropdown"></i>
                                 <i class="fa-solid fa-minus close-info-dropdown inactive"></i>
                             </div>
-                            <div class="bank-form inactive">
+                            <div class="bank-form">
                                 <span>Bank Name</span>
-                                <input type="text"  id="">
+                                <input type="text" name="bankName" id="">
                                 <span>Account Name</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="accountName" id="">
                                 <span>Account Number</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="accountNumber" id="">
                             </div>
                         </div>
 
-                        <div class="btc-info-cont">
-                            <div class="btc-info">
-                                <div class="btc">
+
+                        <!-- replace separate crypto sections with one flexible section -->
+                        <div class="crypto-info-cont">
+                            <div class="crypto-info">
+                                <div class="crypto">
                                     <i class="fa-brands fa-bitcoin"></i>
-                                    <p>Bitcoin</p>
+                                    <p>Crypto Wallet</p>
                                 </div>
                                 <i class="fa-solid fa-plus open-info-dropdown"></i>
                                 <i class="fa-solid fa-minus close-info-dropdown inactive"></i>
                             </div>
-                            <div class="btc-form inactive">
-                                <span>BTC Address</span>
-                                <input type="text" id="">
-                            </div>
-                        </div>
-
-                        <div class="eth-info-cont">
-                            <div class="eth-info">
-                                <div class="eth">
-                                    <i class="fa-brands fa-ethereum"></i>
-                                    <p>Ethereum</p>
-                                </div>
-                                <i class="fa-solid fa-plus open-info-dropdown"></i>
-                                <i class="fa-solid fa-minus close-info-dropdown inactive"></i>
-                            </div>
-                            <div class="eth-form inactive">
-                                <span>ETH Address</span>
-                                <input type="text" id="">
+                            <div class="crypto-form">
+                                <span>Crypto Type</span>
+                                <select name="cryptoType">
+                                    <option disabled selected>Select crypto</option>
+                                    <option value="Bitcoin">Bitcoin</option>
+                                    <option value="Ethereum">Ethereum</option>
+                                    <option value="Litecoin">Litecoin</option>
+                                    <option value="USDT">USDT</option>
+                                    <option value="BNB">BNB</option>
+                                </select>
+                                <span>Wallet Address</span>
+                                <input type="text" name="cryptoNetwork" placeholder="Network type" />
+                                <input type="text" name="walletAddress" placeholder="Enter wallet address" />
                             </div>
                         </div>
 
