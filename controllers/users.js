@@ -84,6 +84,20 @@ const saveWithdrawalInfo = async (req, res) => {
   }
 };
 
+const getWithdrawalInfo = async (req, res) => {
+  try {
+    const withdrawalInfo = await WithdrawalInfo.findOne({user: req.user._id});
+
+    if(!withdrawalInfo) {
+      return res.status(404).json({message: 'No withdrawal information found'});
+    }
+    res.status(200).json({withdrawalInfo});
+
+  } catch (err) {
+    res.status(500).json({message: err.message})
+  }
+}
+
 const createDeposit = async (req, res) => {
   try {
     const { amount, method, reference } = req.body;
@@ -214,6 +228,7 @@ module.exports = {
   getUserProfile,
   updateUserProfile,
   saveWithdrawalInfo,
+  getWithdrawalInfo,
   createDeposit,
   createWithdrawal,
   getUserTransactions,
