@@ -34,7 +34,7 @@ const profile = async () => {
 // Edit users info 
 const editBtn = document.getElementById('edit-btn');
 const saveBtn = document.getElementById('save-btn');
-const editableFields = ['userName', 'phoneNumber']
+const editableFields = ['userName', 'phoneNumber'];
 
 editBtn.addEventListener('click', () => {
     editableFields.forEach(field => {

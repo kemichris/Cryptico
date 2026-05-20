@@ -35,7 +35,6 @@ closeWithdrawInfo[1].addEventListener("click", () => {
 const withdrawalInfoForm = document.getElementById("withdrawal-info")
 
 // Load withdrawal Info
-
 const loadWithdrawalInfo = async () => {
   try {
     // STEP 1: Call backend API to get withdrawal info
@@ -87,8 +86,24 @@ const loadWithdrawalInfo = async () => {
   }
 };
 
-// STEP 8: Run function when page loads
-loadWithdrawalInfo();
+const editBtn = document.getElementById('edit-btn');
+const saveBtn = document.getElementById('save-btn');
+const editableFields = ['bankName', 'accountName', 'accountNumber', 'cryptoType', 'cryptoNetwork', 'walletAddress']
+
+editBtn.addEventListener('click', () => {
+  editableFields.forEach(field => {
+    const input = userForm.querySelector(`[name="${field}"]`);
+    if (!input) return;
+    // SELECT elements use disabled
+    if (input.tagName === 'SELECT') {
+      input.disabled = false;
+    } else {
+      input.readOnly = false;
+    }
+  });
+  editBtn.hidden = true;
+  saveBtn.hidden = false;
+});
 
 // Add withdrawal Info
 withdrawalInfoForm.addEventListener('submit',  async (e) => {
@@ -128,3 +143,7 @@ withdrawalInfoForm.addEventListener('submit',  async (e) => {
     }
 
 });
+
+
+
+loadWithdrawalInfo();
