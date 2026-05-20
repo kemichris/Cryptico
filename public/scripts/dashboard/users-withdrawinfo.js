@@ -92,7 +92,7 @@ const editableFields = ['bankName', 'accountName', 'accountNumber', 'cryptoType'
 
 editBtn.addEventListener('click', () => {
   editableFields.forEach(field => {
-    const input = userForm.querySelector(`[name="${field}"]`);
+    const input = withdrawalInfoForm.querySelector(`[name="${field}"]`);
     if (!input) return;
     // SELECT elements use disabled
     if (input.tagName === 'SELECT') {
@@ -141,6 +141,9 @@ withdrawalInfoForm.addEventListener('submit',  async (e) => {
         console.error('Error:', err);
         alert('Something went wrong: ' + err.message);
     }
+
+    editBtn.hidden = false;
+    saveBtn.hidden = true;
 
 });
 
