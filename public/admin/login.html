@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="sing-up-section">
+            <img src="/assets/icons/crypt-logo.jpg" alt="">
+
+            <div class="form-container">
+                <h2>User Login</h2>
+                <form id="admin-login" >
+                    <span>Your Email</span>
+                    <input class="input inp" type="email" name="email" placeholder="name@example.com" id="" required>
+                    <span>Password</span>
+                    <input class="input" type="password" name="password" placeholder="Enter Password" id="" required>
+                    <div class="remeber-forget">
+                        <div class="remember-me">
+                            <input type="checkbox" name="" id="">
+                            <p>Remember me</p>
+                        </div>
+                        <a href="">Forgot password?</a>
+                    </div>
+                    <a href="">
+                        <button class="reg-btn" type="submit">Login</button>
+                    </a>
+                    <p class="already-have-acc">Don't have an account? <a href="/pages/sign-up.html">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="/scripts/admin/login.js"></script>
+</body>
+
+</html>

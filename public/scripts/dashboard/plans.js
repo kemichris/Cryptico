@@ -28,6 +28,12 @@ const getPlans = async () => {
     // remove static HTML cards
     planContainer.innerHTML = '';
 
+
+    if(planData.length === 0) {
+        planContainer.innerHTML = `<p>No plan Available</p>`;
+        return
+    }
+
     // loop through all plans
     planData.forEach(plan => {
 
