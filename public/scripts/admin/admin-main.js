@@ -4,11 +4,9 @@ const profile = document.getElementById("account");
 
 const profileDropdown = document.querySelector(".user-setting-dropdown");
 
-profile.addEventListener("click", ()=> {
+profile.addEventListener("click", () => {
     toggleDropdown(profileDropdown)
 })
-
-
 
 // script for the side menu functionality 
 const investment = document.querySelector(".investment");
@@ -21,17 +19,17 @@ const navMenuIcon = document.querySelector(".nav-menu-icon")
 const sieMenu = document.getElementById("side-menu")
 
 
-investment.addEventListener("click", ()=>{
+investment.addEventListener("click", () => {
     toggleDropdown(investmentDropdown);
 });
-administrator.addEventListener("click", ()=>{
+administrator.addEventListener("click", () => {
     toggleDropdown(administratorDropdown);
 });
-setting.addEventListener("click", ()=>{
+setting.addEventListener("click", () => {
     toggleDropdown(settingDropdown);
 });
 
-navMenuIcon.addEventListener("click", ()=> {
+navMenuIcon.addEventListener("click", () => {
     sieMenu.classList.toggle("active")
 })
 
@@ -40,3 +38,60 @@ function toggleDropdown(dropdown) {
     dropdown.classList.toggle("inactive");
 }
 
+
+
+/* ////// ADMIN AUTH CHECK ////// */
+const token = localStorage.getItem('token');
+const user = JSON.parse(localStorage.getItem('user'));
+
+// redirect if not logged in
+if (!token || !user) {
+    window.location.href = '/admin/login.html';
+}
+
+// redirect if not admin
+if (user.role !== 'admin') {
+    window.location.href = '/pages/login.html';
+}
+
+/* ////// ADMIN LOGOUT ////// */
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/admin/login.html';
+    });
+}
+
+
+const loadDashboardData = async () => {
+    try {
+        const res = await fetch('/api/admin/dashboard', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        const data = await res.json()
+        console.log('Dashboard data:', data);
+
+        if (!res.ok) {
+            localStorage.clear();
+            window.location.href = '/admin/login.html';
+            return;
+        }
+
+        const totalUsers = document.getElementById('total-users');
+        const activeSubs = document.getElementById('active-subs');
+        const totalWithdrawals = document.getElementById('total-with');
+        const totalDepostis = document.getElementById('total-deposits');
+        const blockedUsers = document.getElementById('blocked-users');
+        const activeUsers = document.getElementById('active-users');
+        const pendingWithdrawals = document.getElementById('pending-with');
+        const pendingDeposits = document.getElementById('pending-deposits');
+
+        
+    } catch (error) {
+
+    }
+
+}

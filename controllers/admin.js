@@ -11,8 +11,14 @@ const Plan = require('../models/Plan');
 const getDashboard = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
-    const totalInvestments = await Investment.countDocuments();
-    const totalTransactions = await Transaction.countDocuments();
+    const activeSubscribers = await Investment.countDocuments({ status: 'active' });
+    const totalWithdrawals = await Transaction.countDocuments({ type: 'withdrawal' });
+    const totalDeposits = await Transaction.countDocuments({ type: 'deposit' });
+    const blockedUsers = await User.countDocuments({ isActive: false });
+    const activeUsers = await User.countDocuments({ isActive: true });
+    const pendingWithdrawals = await Transaction.countDocuments({ type: 'withdrawal', status: 'pending' });
+    const pendingDeposits = await Transaction.countDocuments({ type: 'deposit', status: 'pending' });
+    
 
     const totalInvested = await Investment.aggregate([
       { $group: { _id: null, total: { $sum: '$amountInvested' } } }
@@ -20,9 +26,13 @@ const getDashboard = async (req, res) => {
 
     res.status(200).json({
       totalUsers,
-      totalInvestments,
-      totalTransactions,
-      totalAmountInvested: totalInvested[0]?.total || 0,
+      activeSubscribers,
+      totalWithdrawals,
+      totalDeposits,
+      blockedUsers,
+      activeUsers,
+      pendingWithdrawals,
+      pendingDeposits,
     });
 
   } catch (err) {
