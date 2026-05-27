@@ -12,13 +12,42 @@ const getDashboard = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
     const activeSubscribers = await Investment.countDocuments({ status: 'active' });
-    const totalWithdrawals = await Transaction.countDocuments({ type: 'withdrawal' });
-    const totalDeposits = await Transaction.countDocuments({ type: 'deposit' });
+    const withdrawals = await Transaction.aggregate([
+      {
+        $match: {
+          type: 'withdrawal',
+          status: 'approved'
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          total: { $sum: '$amount' }
+        }
+      }
+    ]);
+    const totalWithdrawals = withdrawals[0]?.total || 0;
+    
+    const deposits = await Transaction.aggregate([
+      {
+        $match: {
+          type: 'deposit',
+          status: 'approved'
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          total: { $sum: '$amount'}
+        }
+      }
+    ]);
+    const totalDeposits =  deposits[0]?.total || 0;
     const blockedUsers = await User.countDocuments({ isActive: false });
     const activeUsers = await User.countDocuments({ isActive: true });
     const pendingWithdrawals = await Transaction.countDocuments({ type: 'withdrawal', status: 'pending' });
     const pendingDeposits = await Transaction.countDocuments({ type: 'deposit', status: 'pending' });
-    
+
 
     const totalInvested = await Investment.aggregate([
       { $group: { _id: null, total: { $sum: '$amountInvested' } } }
@@ -187,13 +216,13 @@ const approveOrRejectDeposit = async (req, res) => {
 // Get all Withdrawals 
 const getAllWithdrawals = async (req, res) => {
   try {
-    const allWithdrawals = await Transaction.find({type: 'withdrawal'})
-  .populate('user', 'fullName email')
-  .sort({createdAt: -1});
+    const allWithdrawals = await Transaction.find({ type: 'withdrawal' })
+      .populate('user', 'fullName email')
+      .sort({ createdAt: -1 });
 
-  res.status(200).json({ allWithdrawals });
+    res.status(200).json({ allWithdrawals });
   } catch (err) {
-    res.status(500).json({message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
@@ -202,17 +231,17 @@ const approveOrRejectWithdrawal = async (req, res) => {
   try {
     const withdrawal = await Transaction.findById(req.params.id);
 
-    if(!withdrawal) {
-      return res.status(404).json({message: "Withdrawal not found"})
+    if (!withdrawal) {
+      return res.status(404).json({ message: "Withdrawal not found" })
     }
 
-    if(withdrawal.status === 'approved' || withdrawal.status === 'rejected') {
-      return res.status(400).json({ message: 'Withdrawal already processed'})
+    if (withdrawal.status === 'approved' || withdrawal.status === 'rejected') {
+      return res.status(400).json({ message: 'Withdrawal already processed' })
     }
 
     const { status } = req.body
 
-    if(status === 'approved') {
+    if (status === 'approved') {
       await User.findByIdAndUpdate(withdrawal.user, {
         $inc: { balance: -withdrawal.amount }
       })
@@ -222,15 +251,15 @@ const approveOrRejectWithdrawal = async (req, res) => {
     withdrawal.approvedBy = req.user._id;
     await withdrawal.save();
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       message: `Withdrawal ${status} successfully`,
-      withdrawal 
+      withdrawal
     });
 
 
 
   } catch (err) {
-    res.status(500).json({message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
@@ -243,32 +272,33 @@ const getPlans = async (req, res) => {
     const plans = await Plan.find().sort({ price: 1 })
     return res.status(200).json({ plans })
   } catch (err) {
-    res.status(500).json({ message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
 // Create Plan
-const createPlan = async (req, res) =>{
+const createPlan = async (req, res) => {
   try {
     const {
       name, price, minAmount, maxAmount, minRoi, maxRoi, giftBonus, topUpInterval, topUpAmount, duration, features
     } = req.body;
 
-    const plan = await Plan.create({ name, price, minAmount, maxAmount, minRoi, maxRoi, 
+    const plan = await Plan.create({
+      name, price, minAmount, maxAmount, minRoi, maxRoi,
       giftBonus, topUpInterval, topUpAmount, duration, features
     });
     return res.status(201).json({ message: "Plan created successfully", data: plan });
-    
+
   } catch (err) {
-    res.status(500).json({ message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
 // update plan
 const updatePlan = async (req, res) => {
   try {
-    const { name, price, minAmount, maxAmount, minRoi, maxRoi, 
-            giftBonus, topUpInterval, topUpAmount, duration, features } = req.body;
+    const { name, price, minAmount, maxAmount, minRoi, maxRoi,
+      giftBonus, topUpInterval, topUpAmount, duration, features } = req.body;
 
     const plan = await Plan.findById(req.params.id);
 
@@ -276,17 +306,17 @@ const updatePlan = async (req, res) => {
       return res.status(404).json({ message: 'Plan not found' });
     }
 
-    plan.name          = name          ?? plan.name;
-    plan.price         = price         ?? plan.price;
-    plan.minAmount     = minAmount     ?? plan.minAmount;
-    plan.maxAmount     = maxAmount     ?? plan.maxAmount;
-    plan.minRoi        = minRoi        ?? plan.minRoi;
-    plan.maxRoi        = maxRoi        ?? plan.maxRoi;
-    plan.giftBonus     = giftBonus     ?? plan.giftBonus;
+    plan.name = name ?? plan.name;
+    plan.price = price ?? plan.price;
+    plan.minAmount = minAmount ?? plan.minAmount;
+    plan.maxAmount = maxAmount ?? plan.maxAmount;
+    plan.minRoi = minRoi ?? plan.minRoi;
+    plan.maxRoi = maxRoi ?? plan.maxRoi;
+    plan.giftBonus = giftBonus ?? plan.giftBonus;
     plan.topUpInterval = topUpInterval ?? plan.topUpInterval;
-    plan.topUpAmount   = topUpAmount   ?? plan.topUpAmount;
-    plan.duration      = duration      ?? plan.duration;
-    plan.features      = features      ?? plan.features;
+    plan.topUpAmount = topUpAmount ?? plan.topUpAmount;
+    plan.duration = duration ?? plan.duration;
+    plan.features = features ?? plan.features;
 
     const updatedPlan = await plan.save();
 
@@ -305,12 +335,12 @@ const deletePlan = async (req, res) => {
   try {
     const delPlan = await Plan.findByIdAndDelete(req.params.id);
 
-  if(!delPlan) {
-    return res.status(404).json({ message: 'Plan not found'});
-  }
-  res.status(200).json({ message: "Plan deleted successfully" })
+    if (!delPlan) {
+      return res.status(404).json({ message: 'Plan not found' });
+    }
+    res.status(200).json({ message: "Plan deleted successfully" })
   } catch (err) {
-    res.status(500).json({ message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
@@ -466,9 +496,9 @@ const approveOrRejectKyc = async (req, res) => {
     user.kycStatus = kycStatus;
     await user.save();
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       message: `KYC ${kycStatus} successfully`,
-      user 
+      user
     });
 
   } catch (err) {
@@ -492,11 +522,11 @@ module.exports = {
   updatePlan,
   deletePlan,
   getAllInvestments,
-  cancelInvestment, 
-  completeInvestment,   
+  cancelInvestment,
+  completeInvestment,
   getPendingKyc,
   approveOrRejectKyc,
-  getAllTransactions,   
+  getAllTransactions,
   getSingleTransaction,
-  getUserTransactions, 
+  getUserTransactions,
 };
