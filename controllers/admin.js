@@ -47,6 +47,7 @@ const getDashboard = async (req, res) => {
     const activeUsers = await User.countDocuments({ isActive: true });
     const pendingWithdrawals = await Transaction.countDocuments({ type: 'withdrawal', status: 'pending' });
     const pendingDeposits = await Transaction.countDocuments({ type: 'deposit', status: 'pending' });
+    const recentUsers = await User.find().select('fullName email').sort({createdAt: -1}).limit(5)
 
 
     const totalInvested = await Investment.aggregate([
@@ -62,6 +63,7 @@ const getDashboard = async (req, res) => {
       activeUsers,
       pendingWithdrawals,
       pendingDeposits,
+      recentUsers
     });
 
   } catch (err) {

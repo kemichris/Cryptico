@@ -30,13 +30,18 @@
             <div class="logout">
                 <button id="logout-btn" type="button">Logout</button>
             </div>
-            
+
         </div>
     </header>
 
     <main>
-        <!-- SIDE MENU  -->
+        <!-- PAGE LOADER -->
+        <div id="pageLoader" class="page-loader">
+            <div class="loader-spinner"></div>
+        </div>
+
         <div class="side-menu-main flex">
+            <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
                     <p class="admin-name">Admin Name</p>
@@ -75,13 +80,13 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
                     </div>
                 </a>
-                 <a href="/admin/kyc.html">
+                <a href="/admin/kyc.html">
                     <div class="kyc-application admin-div">
                         <i class="fa-solid fa-user-check"></i>
                         <span>KYC Applications</span>
@@ -114,7 +119,7 @@
                 </div>
                 <div class="setting-dropdown dropdown inactive">
                     <ul>
-                         <li>
+                        <li>
                             <a href="/admin/payment-setting.html">Payment Setting</a>
                         </li>
                         <li>
@@ -127,7 +132,7 @@
                     </ul>
                 </div>
 
-                
+
 
 
             </div>
@@ -222,8 +227,8 @@
                 <!-- LATEST USER SECTION  -->
                 <div class="latest-user">
                     <h2>Lastes users</h2>
-                    <div class="latest-users-container flex">
-                        <div class="user flex">
+                    <div class="latest-users-container flex" id="latest-users">
+                        <!-- <div class="user flex">
                             <div class="user-name-email">
                                 <p class="latest-user-name">Test name</p>
                                 <p class="latest-user-mail">textemail@example.com</p>
@@ -236,35 +241,15 @@
                                 <p class="latest-user-mail">textemail@example.com</p>
                             </div>
                             <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                        <div class="user flex">
-                            <div class="user-name-email">
-                                <p class="latest-user-name">Test name</p>
-                                <p class="latest-user-mail">textemail@example.com</p>
-                            </div>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                        <div class="user flex">
-                            <div class="user-name-email">
-                                <p class="latest-user-name">Test name</p>
-                                <p class="latest-user-mail">textemail@example.com</p>
-                            </div>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                        <div class="user flex">
-                            <div class="user-name-email">
-                                <p class="latest-user-name">Test name</p>
-                                <p class="latest-user-mail">textemail@example.com</p>
-                            </div>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
-
-
-
             </div>
+
+
+
+        </div>
     </main>
 
     <script src="/scripts/admin/admin-main.js"></script>
