@@ -89,9 +89,19 @@ const loadDashboardData = async () => {
         const pendingWithdrawals = document.getElementById('pending-with');
         const pendingDeposits = document.getElementById('pending-deposits');
 
-        
-    } catch (error) {
+        if(totalUsers) totalUsers.textContent = data.totalUsers;
+        if(activeSubs) activeSubs.textContent = data.activeSubscribers || 0;
+        if(totalWithdrawals) totalWithdrawals.textContent = data.totalWithdrawals.toFixed(2);
+        if(totalDepostis) totalDepostis.textContent = data.totalDeposits.toFixed(2);
+        if(blockedUsers) blockedUsers.textContent = data.blockedUsers;
+        if(activeUsers) activeUsers.textContent = data.activeUsers;
+        if(pendingWithdrawals) pendingWithdrawals.textContent = data.pendingWithdrawals;
+        if(pendingDeposits) pendingDeposits.textContent = data.pendingDeposits;
 
+    } catch (error) {
+         console.error('Dashboard error:', error);
     }
 
 }
+
+loadDashboardData()
