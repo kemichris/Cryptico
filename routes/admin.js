@@ -45,7 +45,7 @@ router.put('/withdrawals/:id', protect, adminOnly, approveOrRejectWithdrawal);
 // ─── PLANS ───────────────────────────────────
 router.get('/plans',        protect, adminOnly, getPlans);
 router.post('/plans',       protect, adminOnly, createPlan);
-router.put('/plans/:id',    protect, adminOnly, updatePlan);
+router.patch('/plans/:id',    protect, adminOnly, updatePlan);
 router.delete('/plans/:id', protect, adminOnly, deletePlan);
 
 // ─── INVESTMENTS ──────────────────────────────

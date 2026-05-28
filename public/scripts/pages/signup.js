@@ -1,61 +1,43 @@
-const bankMode = document.querySelector(".bank-mode");
-const cryptoMode = document.querySelector(".crypto-mode");
-const bankDetails = document.querySelector(".bank-details");
-const cryptoDetails = document.querySelector(".crypto-details");
+const form = document.getElementById("registration");
 
-bankMode?.addEventListener("click", () => toggleAttribute(bankDetails));
-cryptoMode?.addEventListener("click", () => toggleAttribute(cryptoDetails));
-
-function toggleAttribute(item) {
-  item.classList.toggle("inactive");
-}
-
-// get deposit amount from localStorage
-const amount = localStorage.getItem("depositAmount");
-if (!amount) {
-  alert("No deposit amount found");
-  window.location.href = "/dashboard/users-deposits.html";
-}
-
-// display amount
-document.getElementById("paymentAmount").textContent = amount;
-document.getElementById("deposit-value").value = amount;
-
-/* ////// SUBMIT DEPOSIT ////// */
-const depositForm = document.getElementById("depositForm");
-
-depositForm.addEventListener("submit", async (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  // use FormData directly — needed for file upload
-  const formData = new FormData(depositForm);
+  const formData = new FormData(form);
+  const dataObject = Object.fromEntries(formData.entries());
 
-  console.log('Sending deposit...');
+  // check passwords match before sending to server
+  if (dataObject.password !== dataObject.confirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+
+  // remove confirmPassword and terms — server doesn't need them
+  delete dataObject.confirmPassword;
+  delete dataObject.terms;
+
+  console.log('Sending:', dataObject);
 
   try {
-    const res = await fetch('/api/users/deposit', {
+    const res = await fetch('/api/auth/register', {
       method: 'POST',
-      headers: { 
-        'Authorization': `Bearer ${token}` 
-        // DO NOT set Content-Type — browser sets it automatically for FormData
-      },
-      body: formData  // send FormData directly
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataObject)
     });
 
     const data = await res.json();
     console.log('Response:', data);
 
     if (res.ok) {
-      // clear amount from localStorage
-      localStorage.removeItem("depositAmount");
-      alert('Deposit submitted successfully! Awaiting approval.');
-      window.location.href = '/dashboard/users-deposits.html';
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      window.location.href = '/dashboard/users-dashboard.html';
     } else {
       alert(data.message);
     }
 
-  } catch (error) {
-    console.error('Deposit error:', error);
-    alert('Something went wrong: ' + error.message);
+  } catch (err) {
+    console.error('Fetch error:', err);
+    alert('Something went wrong: ' + err.message);
   }
 });
