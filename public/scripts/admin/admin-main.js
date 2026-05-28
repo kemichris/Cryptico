@@ -84,7 +84,7 @@ const loadDashboardData = async () => {
         const pendingWithdrawals = document.getElementById("pending-with");
         const pendingDeposits = document.getElementById("pending-deposits");
 
-        if(adminName) adminName.textContent = adminName.userName;
+        if(adminName) adminName.textContent = data.adminName;
         if (totalUsers) totalUsers.textContent = data.totalUsers;
         if (activeSubs) activeSubs.textContent = data.activeSubscribers || 0;
         if (totalWithdrawals)
