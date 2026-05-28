@@ -15,7 +15,6 @@ const planSchema = new mongoose.Schema({
     },
     topUpAmount: { type: Number, required: true },
     duration: { type: Number, required: true },
-    features: { type: [String], default: [] },
     isActive: { type: Boolean, default: true },
 }, { timestamps: true });
 
