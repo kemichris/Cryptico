@@ -10,6 +10,7 @@ const Plan = require('../models/Plan');
 // Dashboard stats
 const getDashboard = async (req, res) => {
   try {
+    const admin = await User.findById(req.user._id).select('-password')
     const totalUsers = await User.countDocuments();
     const activeSubscribers = await Investment.countDocuments({ status: 'active' });
     const withdrawals = await Transaction.aggregate([
@@ -55,6 +56,7 @@ const getDashboard = async (req, res) => {
     ]);
 
     res.status(200).json({
+      admin,
       totalUsers,
       activeSubscribers,
       totalWithdrawals,
