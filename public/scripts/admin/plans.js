@@ -92,7 +92,6 @@ const loadPlans = async () => {
     }
 };
 
-
 // handle ALL clicks here
 planContainer.addEventListener("click", async (e) => {
     const editBtn = e.target.closest(".edit-btn");
@@ -142,4 +141,6 @@ planContainer.addEventListener("click", async (e) => {
         }
     };
 });
+
+
 loadPlans();

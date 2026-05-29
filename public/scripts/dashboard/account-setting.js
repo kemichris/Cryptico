@@ -50,7 +50,7 @@ editBtn.addEventListener('click', () => {
 
 })
 
-userForm.addEventListener('submit', async (e) => {   // submit on form, not saveBtn
+userForm.addEventListener('submit', async (e) => { 
     e.preventDefault();
 
     editableFields.forEach(field => {

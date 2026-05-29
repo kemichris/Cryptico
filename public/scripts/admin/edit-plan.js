@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const planId = params.get("id") || sessionStorage.getItem("editPlanId");
+const editPlanForm = document.getElementById('edit-plan-form')
 
 if (!planId) {
     alert("No plan selected");
@@ -25,11 +26,23 @@ const loadPlanEdit = async () => {
         document.querySelector('[name="minRoi"]').value = plan.minRoi;
         document.querySelector('[name="maxRoi"]').value = plan.maxRoi;
         document.querySelector('[name="giftBonus"]').value = plan.giftBonus;
+        document.querySelector('[name="topUpInterval"]').value = plan.topUpInterval;
+        document.querySelector('[name="topUpAmount"]').value = plan.topUpAmount;
         document.querySelector('[name="duration"]').value = plan.duration;
 
     } catch (err) {
         console.error(err);
     }
 };
+
+editPlanForm.addEventListener('submit', async (e)=> {
+    e.preventDefault()
+
+    try {
+        
+    } catch (error) {
+        
+    }
+})
 
 loadPlanEdit();
