@@ -13,6 +13,7 @@ const {
   approveOrRejectWithdrawal,
   getPlans,
   createPlan,
+  getSinglePlan,
   updatePlan,
   deletePlan,
   getAllInvestments,
@@ -44,6 +45,7 @@ router.put('/withdrawals/:id', protect, adminOnly, approveOrRejectWithdrawal);
 
 // ─── PLANS ───────────────────────────────────
 router.get('/plans',        protect, adminOnly, getPlans);
+router.get('/plans/:id', protect, adminOnly, getSinglePlan)
 router.post('/plans',       protect, adminOnly, createPlan);
 router.patch('/plans/:id',    protect, adminOnly, updatePlan);
 router.delete('/plans/:id', protect, adminOnly, deletePlan);

@@ -73,14 +73,12 @@ const loadPlans = async () => {
                 </div>
 
                 <div class="plan-setting flex">
-                    <a href="edit-plan.html">
-                        <button class="edit-btn">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                    </a>
+                    <button class="edit-btn" data-id="${plan._id}">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
 
-                    <button class="del-btn">
-                        <i class="fa-solid fa-xmark"></i>
+                    <button class="del-btn" data-id="${plan._id}">
+                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
             `;
@@ -94,4 +92,54 @@ const loadPlans = async () => {
     }
 };
 
+
+// handle ALL clicks here
+planContainer.addEventListener("click", async (e) => {
+    const editBtn = e.target.closest(".edit-btn");
+
+    if (editBtn) {
+        const planId = editBtn.dataset.id;
+
+        // store fallback
+        sessionStorage.setItem("editPlanId", planId);
+
+        // preferred navigation (clean + REST style)
+        window.location.href = `/admin/edit-plan.html?id=${planId}`;
+    }
+
+    // DELETE
+    const deleteBtn = e.target.closest(".del-btn");
+
+    if (deleteBtn) {
+        const planId = deleteBtn.dataset.id;
+
+        const confirmDelete = confirm("Are you sure you want to delete this plan?");
+        if (!confirmDelete) return;
+
+        try {
+            const res = await fetch(`/api/admin/plans/${planId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.message || "Failed to delete plan");
+                return;
+            }
+
+            // remove from UI instantly
+            deleteBtn.closest(".package-card").remove();
+
+            alert("Plan deleted successfully");
+
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Something went wrong");
+        }
+    };
+});
 loadPlans();

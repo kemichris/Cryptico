@@ -299,39 +299,81 @@ const createPlan = async (req, res) => {
   }
 }
 
-// update plan
-const updatePlan = async (req, res) => {
+// Get single plan (for edit page)
+const getSinglePlan = async (req, res) => {
   try {
-    const { name, price, minAmount, maxAmount, minRoi, maxRoi,
-      giftBonus, topUpInterval, topUpAmount, duration, features } = req.body;
-
     const plan = await Plan.findById(req.params.id);
 
+    // if no plan exists with that ID
     if (!plan) {
       return res.status(404).json({ message: 'Plan not found' });
     }
 
-    plan.name = name ?? plan.name;
-    plan.price = price ?? plan.price;
-    plan.minAmount = minAmount ?? plan.minAmount;
-    plan.maxAmount = maxAmount ?? plan.maxAmount;
-    plan.minRoi = minRoi ?? plan.minRoi;
-    plan.maxRoi = maxRoi ?? plan.maxRoi;
-    plan.giftBonus = giftBonus ?? plan.giftBonus;
-    plan.topUpInterval = topUpInterval ?? plan.topUpInterval;
-    plan.topUpAmount = topUpAmount ?? plan.topUpAmount;
-    plan.duration = duration ?? plan.duration;
-    plan.features = features ?? plan.features;
+    res.status(200).json({ plan });
 
-    const updatedPlan = await plan.save();
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
+// update plan
+const updatePlan = async (req, res) => {
+  try {
+    // 1. Whitelist allowed fields (prevents malicious updates)
+    const allowedUpdates = [
+      'name',
+      'price',
+      'minAmount',
+      'maxAmount',
+      'minRoi',
+      'maxRoi',
+      'giftBonus',
+      'topUpInterval',
+      'topUpAmount',
+      'duration',
+    ];
+
+    // 2. Build safe update object
+    const updates = {};
+
+    allowedUpdates.forEach((field) => {
+      if (req.body[field] !== undefined) {
+        updates[field] = req.body[field];
+      }
+    });
+
+    // 3. If no valid fields were sent
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({
+        message: 'No valid fields provided for update',
+      });
+    }
+
+    // 4. Update document safely in one DB operation
+    const updatedPlan = await Plan.findByIdAndUpdate(
+      req.params.id,
+      { $set: updates },
+      {
+        new: true,          // return updated document
+        runValidators: true // enforce schema rules
+      }
+    );
+
+    // 5. Handle not found
+    if (!updatedPlan) {
+      return res.status(404).json({ message: 'Plan not found' });
+    }
+
+    // 6. Success response
     return res.status(200).json({
       message: 'Plan updated successfully',
       plan: updatedPlan,
     });
 
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 
@@ -524,6 +566,7 @@ module.exports = {
   approveOrRejectWithdrawal,
   getPlans,
   createPlan,
+  getSinglePlan,
   updatePlan,
   deletePlan,
   getAllInvestments,
