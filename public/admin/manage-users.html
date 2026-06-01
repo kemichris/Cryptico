@@ -40,7 +40,7 @@
         <div id="pageLoader" class="page-loader">
             <div class="loader-spinner"></div>
         </div>
-<div class="side-menu-main flex">
+        <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
@@ -80,7 +80,7 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
@@ -145,17 +145,17 @@
                     <div class="user-search-add flex">
                         <input type="search" name="" id="">
                         <button class="send-msg-btn"><i class="fa-solid fa-envelope"></i> Send Message</button>
-                        <button id="new-user-btn" class="new-user-btn"><i class="fa-solid fa-user-plus"></i> New User</button>
+                        <button id="new-user-btn" class="new-user-btn"><i class="fa-solid fa-user-plus"></i> New
+                            User</button>
                     </div>
 
                     <table>
                         <thead>
                             <tr>
-                                <th><input type="checkbox" class="checkbox" name="" id=""></th>
                                 <th>Fullname</th>
-                                <th>Username</th>
+                                <!-- <th>Username</th> -->
                                 <th>Email</th>
-                                <th>Phone</th>
+                                <!-- <th>Phone</th> -->
                                 <th>Account Balance</th>
                                 <th>Country</th>
                                 <th>Status</th>
@@ -165,7 +165,7 @@
                         </thead>
                         <tbody class="tbody">
                             <tr class="tr">
-                                <td><input type="checkbox" class="checkbox" name="" id=""></td>
+                                <!-- <td><input type="checkbox" class="checkbox" name="" id=""></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -174,7 +174,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><a href="user-details.html"><button class="manage-btn">Manage</button></a></td>
+                                <td><a href="user-details.html"><button class="manage-btn">Manage</button></a></td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -218,11 +218,9 @@
 
         </div>
     </main>
-
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-    <script src="../scripts/transaction-history.js"></script>
-    <script src="../scripts/manage-users.js"></script>
+    <script src="/scripts/admin/manage-users.js"></script>
 
 </body>
 
