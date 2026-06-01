@@ -37,31 +37,21 @@ const loadPlans = async () => {
             // fill card content
             planCard.innerHTML = `
                 <p class="card-name">${plan.name}</p>
-
                 <p class="card-amount">
                     $<span>${plan.price}</span>
                 </p>
-
                 <div>
                     <p>Minimum Possible Deposit:</p>
                     <p>${plan.minAmount}</p>
                 </div>
-
                 <div>
                     <p>Maximum Possible Deposit:</p>
                     <p>${plan.maxAmount}</p>
                 </div>
-
                 <div>
-                    <p>Minimum Return:</p>
-                    <p>${plan.minRoi}</p>
+                    <p>Total expected return:</p>
+                    <p>${plan.totalExpectedReturn}</p>
                 </div>
-
-                <div>
-                    <p>Maximum Return:</p>
-                    <p>${plan.maxRoi}</p>
-                </div>
-
                 <div>
                     <p>Gift Bonus:</p>
                     <p>${plan.giftBonus}</p>
@@ -71,7 +61,6 @@ const loadPlans = async () => {
                     <p>Duration:</p>
                     <p>${plan.duration}</p>
                 </div>
-
                 <div class="plan-setting flex">
                     <button class="edit-btn" data-id="${plan._id}">
                         <i class="fa-solid fa-pen"></i>

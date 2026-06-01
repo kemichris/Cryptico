@@ -23,8 +23,7 @@ const loadPlanEdit = async () => {
         document.querySelector('[name="price"]').value = plan.price;
         document.querySelector('[name="minAmount"]').value = plan.minAmount;
         document.querySelector('[name="maxAmount"]').value = plan.maxAmount;
-        document.querySelector('[name="minRoi"]').value = plan.minRoi;
-        document.querySelector('[name="maxRoi"]').value = plan.maxRoi;
+        document.querySelector('[name="totalExpectedReturn"]').value = plan.totalExpectedReturn;
         document.querySelector('[name="giftBonus"]').value = plan.giftBonus;
         document.querySelector('[name="topUpInterval"]').value = plan.topUpInterval;
         document.querySelector('[name="topUpAmount"]').value = plan.topUpAmount;

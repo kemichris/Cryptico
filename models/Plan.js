@@ -5,6 +5,7 @@ const planSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     minAmount: { type: Number, required: true },
     maxAmount: { type: Number, required: true },
+    totalExpectedReturn: { type: Number, required: true },
     giftBonus: { type: Number, default: 0 },
     topUpInterval: {
         type: String,

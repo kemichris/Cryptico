@@ -11,8 +11,7 @@ planForm.addEventListener('submit', async (e) => {
     formObject.price = Number(formObject.price);
     formObject.minAmount = Number(formObject.minAmount);
     formObject.maxAmount = Number(formObject.maxAmount);
-    formObject.minRoi = Number(formObject.minRoi);
-    formObject.maxRoi = Number(formObject.maxRoi);
+    formObject.totalExpectedReturn = Number(formObject.totalExpectedReturn);
     formObject.giftBonus = Number(formObject.giftBonus);
     formObject.topUpAmount = Number(formObject.topUpAmount);
     formObject.duration = Number(formObject.duration);
@@ -23,7 +22,7 @@ planForm.addEventListener('submit', async (e) => {
         const res = await fetch('/api/admin/plans', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${Auth.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formObject)
