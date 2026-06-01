@@ -35,6 +35,13 @@ function toggleDropdown(dropdown) {
     dropdown.classList.toggle("inactive");
 }
 
+function hideLoader() {
+    const loader = document.getElementById("pageLoader");
+    if (loader) loader.style.display = "none";
+}
+
+window.hideLoader = hideLoader;
+
 /* ////// ADMIN AUTH CHECK ////// */
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
@@ -123,8 +130,7 @@ const loadDashboardData = async () => {
     } catch (error) {
         console.error("Dashboard error:", error);
     } finally {
-        const loader = document.getElementById("pageLoader");
-        if (loader) loader.style.display = "none";
+        hideLoader();
     }
 };
 

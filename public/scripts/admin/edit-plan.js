@@ -32,17 +32,44 @@ const loadPlanEdit = async () => {
 
     } catch (err) {
         console.error(err);
+    } finally {
+        hideLoader();
     }
 };
 
-editPlanForm.addEventListener('submit', async (e)=> {
-    e.preventDefault()
+editPlanForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // collect form values
+    const formData = new FormData(editPlanForm);
+    const formObject = Object.fromEntries(formData.entries());
 
     try {
-        
+        const res = await fetch(`/api/admin/plans/${planId}`, {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || 'Failed to update plan');
+            return;
+        }
+
+        alert('Plan updated successfully');
+
+        // optional: go back to plans page
+        window.location.href = '/admin/plans.html';
+
     } catch (error) {
-        
+        console.error('Update plan error:', error);
+        alert('Something went wrong');
     }
-})
+});
 
 loadPlanEdit();

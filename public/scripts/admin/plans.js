@@ -89,6 +89,8 @@ const loadPlans = async () => {
 
     } catch (error) {
         console.error("Plan error:", error);
+    } finally {
+        hideLoader();
     }
 };
 

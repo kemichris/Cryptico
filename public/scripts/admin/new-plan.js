@@ -53,5 +53,7 @@ planForm.addEventListener('submit', async (e) => {
         console.error('Plan error:', error);
 
         alert('Server error');
+    } finally {
+        hideLoader();
     }
 });
