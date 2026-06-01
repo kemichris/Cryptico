@@ -3,7 +3,7 @@ const planContainer = document.getElementById("plan-container");
 const loadPlans = async () => {
     try {
         const res = await fetch("/api/admin/plans", {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${Auth.getToken()}` },
         });
 
         if (!res.ok) {
@@ -121,7 +121,7 @@ planContainer.addEventListener("click", async (e) => {
             const res = await fetch(`/api/admin/plans/${planId}`, {
                 method: "DELETE",
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${Auth.getToken()}`,
                 },
             });
 

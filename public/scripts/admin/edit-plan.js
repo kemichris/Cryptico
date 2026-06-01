@@ -11,7 +11,7 @@ const loadPlanEdit = async () => {
     try {
         const res = await fetch(`/api/admin/plans/${planId}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${Auth.getToken()}`
             }
         });
 
