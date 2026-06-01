@@ -4,16 +4,12 @@ const User = require('../models/User');
 
 /*
 |--------------------------------------------------------------------------
-| MAIN TOP-UP FUNCTION
+| INVESTMENT TOP-UP ENGINE (FIXED PAYOUT VERSION)
 |--------------------------------------------------------------------------
-| This function:
-| 1. Finds all active investments
-| 2. Checks how much time passed since last payout
-| 3. Calculates how many payouts were MISSED
-| 4. Pays all missed profits at once
-| 5. Completes investment if expired
-|
-| This makes your system SAFE even if server stops for days.
+| - Uses fixed topUpAmount per interval
+| - Handles missed payouts safely
+| - Prevents double payouts
+| - Completes investment on expiry
 |--------------------------------------------------------------------------
 */
 
@@ -23,143 +19,149 @@ const runTopUp = async () => {
 
     const now = new Date();
 
-    // get all active investments + their plan info
     const investments = await Investment
       .find({ status: 'active' })
       .populate('plan');
 
     for (const investment of investments) {
-
       const plan = investment.plan;
 
-      // last time this investment received profit
-      const lastTopUp = new Date(investment.lastTopUp);
+      if (!plan) continue;
 
-      /* ---------------------------------------------------------
-         CALCULATE TIME DIFFERENCE
-      --------------------------------------------------------- */
-
+      const lastTopUp = new Date(investment.lastTopUp || investment.startDate);
       const diffMs = now - lastTopUp;
 
       const diffMinutes = diffMs / (1000 * 60);
       const diffHours = diffMs / (1000 * 60 * 60);
       const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
-      /*
-        intervalsPassed = number of profits user should receive
-        Example:
-        Server OFF 3 days → intervalsPassed = 3
-      */
       let intervalsPassed = 0;
 
-      if (plan.topUpInterval === '10 minutes')
-        intervalsPassed = Math.floor(diffMinutes / 10);
+      switch (plan.topUpInterval) {
+        case '10 minutes':
+          intervalsPassed = Math.floor(diffMinutes / 10);
+          break;
 
-      if (plan.topUpInterval === '30 minutes')
-        intervalsPassed = Math.floor(diffMinutes / 30);
+        case '30 minutes':
+          intervalsPassed = Math.floor(diffMinutes / 30);
+          break;
 
-      if (plan.topUpInterval === 'hourly')
-        intervalsPassed = Math.floor(diffHours);
+        case 'hourly':
+          intervalsPassed = Math.floor(diffHours);
+          break;
 
-      if (plan.topUpInterval === 'daily')
-        intervalsPassed = Math.floor(diffDays);
+        case 'daily':
+          intervalsPassed = Math.floor(diffDays);
+          break;
 
-      if (plan.topUpInterval === 'weekly')
-        intervalsPassed = Math.floor(diffDays / 7);
+        case 'weekly':
+          intervalsPassed = Math.floor(diffDays / 7);
+          break;
 
-      if (plan.topUpInterval === 'monthly')
-        intervalsPassed = Math.floor(diffDays / 30);
+        case 'monthly':
+          intervalsPassed = Math.floor(diffDays / 30);
+          break;
+      }
 
-      // nothing to pay yet
+      intervalsPassed = Math.max(0, intervalsPassed);
+
       if (intervalsPassed <= 0) continue;
 
-      /* ---------------------------------------------------------
-         CHECK IF INVESTMENT HAS EXPIRED
-      --------------------------------------------------------- */
+      /*
+      |--------------------------------------------------------------------------
+      | HANDLE EXPIRY FIRST
+      |--------------------------------------------------------------------------
+      */
 
-      if (now >= new Date(investment.endDate)) {
+      const isExpired = now >= new Date(investment.endDate);
 
-        // mark investment completed
+      if (isExpired) {
+        const remaining =
+          investment.totalExpectedReturn - (investment.currentReturns || 0);
+
+        if (remaining > 0) {
+          await User.findByIdAndUpdate(investment.user, {
+            $inc: {
+              balance: remaining,
+              totalEarnings: remaining,
+            }
+          });
+        }
+
         investment.status = 'completed';
+        investment.currentReturns += remaining;
+        investment.lastTopUp = now;
+
         await investment.save();
 
-        // pay remaining expected return
-        await User.findByIdAndUpdate(investment.user, {
-          $inc: {
-            balance: investment.totalExpectedReturn,
-            totalEarnings: investment.totalExpectedReturn,
-          }
-        });
-
-        console.log(`✅ Investment ${investment._id} completed`);
+        console.log(`✅ Investment completed: ${investment._id}`);
         continue;
       }
 
-      /* ---------------------------------------------------------
-         CALCULATE TOTAL PROFIT TO ADD
-      --------------------------------------------------------- */
+      /*
+      |--------------------------------------------------------------------------
+      | FIXED TOP-UP CALCULATION
+      |--------------------------------------------------------------------------
+      | One interval = fixed amount
+      |--------------------------------------------------------------------------
+      */
 
-      // profit for ONE interval
-      const singleTopUp =
-        (investment.amountInvested * plan.topUpAmount) / 100;
-
-      // profit for ALL missed intervals
+      const singleTopUp = plan.topUpAmount;
       const totalTopUp = singleTopUp * intervalsPassed;
 
-      // add returns to investment
-      investment.currentReturns += totalTopUp;
+      investment.currentReturns =
+        (investment.currentReturns || 0) + totalTopUp;
 
-      /* ---------------------------------------------------------
-         MOVE lastTopUp FORWARD CORRECTLY
-         VERY IMPORTANT !!!
-      --------------------------------------------------------- */
+      /*
+      |--------------------------------------------------------------------------
+      | UPDATE LAST TOPUP TIME
+      |--------------------------------------------------------------------------
+      */
 
       const newLastTopUp = new Date(lastTopUp);
 
-      if (plan.topUpInterval === '10 minutes')
-        newLastTopUp.setMinutes(
-          newLastTopUp.getMinutes() + intervalsPassed * 10
-        );
+      switch (plan.topUpInterval) {
+        case '10 minutes':
+          newLastTopUp.setMinutes(newLastTopUp.getMinutes() + intervalsPassed * 10);
+          break;
 
-      if (plan.topUpInterval === '30 minutes')
-        newLastTopUp.setMinutes(
-          newLastTopUp.getMinutes() + intervalsPassed * 30
-        );
+        case '30 minutes':
+          newLastTopUp.setMinutes(newLastTopUp.getMinutes() + intervalsPassed * 30);
+          break;
 
-      if (plan.topUpInterval === 'hourly')
-        newLastTopUp.setHours(
-          newLastTopUp.getHours() + intervalsPassed
-        );
+        case 'hourly':
+          newLastTopUp.setHours(newLastTopUp.getHours() + intervalsPassed);
+          break;
 
-      if (plan.topUpInterval === 'daily')
-        newLastTopUp.setDate(
-          newLastTopUp.getDate() + intervalsPassed
-        );
+        case 'daily':
+          newLastTopUp.setDate(newLastTopUp.getDate() + intervalsPassed);
+          break;
 
-      if (plan.topUpInterval === 'weekly')
-        newLastTopUp.setDate(
-          newLastTopUp.getDate() + intervalsPassed * 7
-        );
+        case 'weekly':
+          newLastTopUp.setDate(newLastTopUp.getDate() + intervalsPassed * 7);
+          break;
 
-      if (plan.topUpInterval === 'monthly')
-        newLastTopUp.setDate(
-          newLastTopUp.getDate() + intervalsPassed * 30
-        );
+        case 'monthly':
+          newLastTopUp.setDate(newLastTopUp.getDate() + intervalsPassed * 30);
+          break;
+      }
 
       investment.lastTopUp = newLastTopUp;
 
       await investment.save();
 
-      /* ---------------------------------------------------------
-         ADD MONEY TO USER BALANCE
-      --------------------------------------------------------- */
+      /*
+      |--------------------------------------------------------------------------
+      | CREDIT USER BALANCE
+      |--------------------------------------------------------------------------
+      */
 
       await User.findByIdAndUpdate(investment.user, {
         $inc: { balance: totalTopUp }
       });
 
       console.log(
-        `💰 Added ${totalTopUp} to investment ${investment._id}`
+        `💰 Paid ${totalTopUp} to investment ${investment._id}`
       );
     }
 
@@ -168,22 +170,16 @@ const runTopUp = async () => {
   }
 };
 
-
 /*
 |--------------------------------------------------------------------------
 | START CRON JOB
 |--------------------------------------------------------------------------
-| Runs every 10 minutes.
-|
-| IMPORTANT:
-| Cron timing DOES NOT control profit.
-| Time difference calculation controls profit.
+| Runs every 10 minutes (safe fallback system)
 |--------------------------------------------------------------------------
 */
 
 const startCronJobs = () => {
   cron.schedule('*/10 * * * *', runTopUp);
-
   console.log('⏰ Cron jobs started...');
 };
 

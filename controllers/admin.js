@@ -29,7 +29,7 @@ const getDashboard = async (req, res) => {
       }
     ]);
     const totalWithdrawals = withdrawals[0]?.total || 0;
-    
+
     const deposits = await Transaction.aggregate([
       {
         $match: {
@@ -40,16 +40,16 @@ const getDashboard = async (req, res) => {
       {
         $group: {
           _id: null,
-          total: { $sum: '$amount'}
+          total: { $sum: '$amount' }
         }
       }
     ]);
-    const totalDeposits =  deposits[0]?.total || 0;
+    const totalDeposits = deposits[0]?.total || 0;
     const blockedUsers = await User.countDocuments({ isActive: false });
     const activeUsers = await User.countDocuments({ isActive: true });
     const pendingWithdrawals = await Transaction.countDocuments({ type: 'withdrawal', status: 'pending' });
     const pendingDeposits = await Transaction.countDocuments({ type: 'deposit', status: 'pending' });
-    const recentUsers = await User.find().select('fullName email').sort({createdAt: -1}).limit(5)
+    const recentUsers = await User.find().select('fullName email').sort({ createdAt: -1 }).limit(5)
 
 
     const totalInvested = await Investment.aggregate([
@@ -285,12 +285,11 @@ const getPlans = async (req, res) => {
 const createPlan = async (req, res) => {
   try {
     const {
-      name, price, minAmount, maxAmount, minRoi, maxRoi, giftBonus, topUpInterval, topUpAmount, duration, features
+      name, price, minAmount, maxAmount, giftBonus, topUpInterval, topUpAmount, duration, features
     } = req.body;
 
     const plan = await Plan.create({
-      name, price, minAmount, maxAmount, minRoi, maxRoi,
-      giftBonus, topUpInterval, topUpAmount, duration, features
+      name, price, minAmount, maxAmount, giftBonus, topUpInterval, topUpAmount, duration, features
     });
     return res.status(201).json({ message: "Plan created successfully", data: plan });
 
@@ -325,8 +324,6 @@ const updatePlan = async (req, res) => {
       'price',
       'minAmount',
       'maxAmount',
-      'minRoi',
-      'maxRoi',
       'giftBonus',
       'topUpInterval',
       'topUpAmount',
@@ -446,6 +443,33 @@ const getAllInvestments = async (req, res) => {
     return res.status(200).json({ allInvestments });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+// Get active investments 
+const getActiveInvestments = async (req, res) => {
+  try {
+    const investments = await Investment.find({ status: 'active' })
+      .populate('user', 'fullName')
+      .populate('plan', 'name duration')
+      .sort({ createdAt: -1 });
+
+    // shape data exactly for frontend table
+    const investmentsData = investments.map(inv => ({
+      id: inv._id,
+      clientName: inv.user?.fullName,
+      planName: inv.plan?.name,
+      amountInvested: inv.amountInvested,
+      duration: inv.plan?.duration,
+      roi: inv.currentReturns,
+      startDate: inv.startDate,
+      endDate: inv.endDate
+    }));
+
+    return res.status(200).json({ activeInvestments: investmentsData });
+
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -570,6 +594,7 @@ module.exports = {
   updatePlan,
   deletePlan,
   getAllInvestments,
+  getActiveInvestments,
   cancelInvestment,
   completeInvestment,
   getPendingKyc,

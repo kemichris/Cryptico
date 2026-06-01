@@ -17,6 +17,7 @@ const {
   updatePlan,
   deletePlan,
   getAllInvestments,
+  getActiveInvestments,
   cancelInvestment,
   completeInvestment,
   getPendingKyc,
@@ -52,6 +53,7 @@ router.delete('/plans/:id', protect, adminOnly, deletePlan);
 
 // ─── INVESTMENTS ──────────────────────────────
 router.get('/investments',              protect, adminOnly, getAllInvestments);
+router.get('/investments/active',      protect, adminOnly, getActiveInvestments);
 router.put('/investments/:id/cancel',   protect, adminOnly, cancelInvestment);
 router.put('/investments/:id/complete', protect, adminOnly, completeInvestment);
 

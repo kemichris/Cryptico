@@ -48,7 +48,7 @@ editPlanForm.addEventListener('submit', async (e) => {
         const res = await fetch(`/api/admin/plans/${planId}`, {
             method: 'PATCH',
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${Auth.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formObject)

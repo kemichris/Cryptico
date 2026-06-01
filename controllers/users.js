@@ -174,8 +174,8 @@ const createInvestment = async (req, res) => {
     if (!plan) return res.status(404).json({ message: 'Plan not found' });
 
     if (amount < plan.minAmount || amount > plan.maxAmount) {
-      return res.status(400).json({ 
-        message: `Amount must be between $${plan.minAmount} and $${plan.maxAmount}` 
+      return res.status(400).json({
+        message: `Amount must be between $${plan.minAmount} and $${plan.maxAmount}`
       });
     }
 
@@ -183,10 +183,31 @@ const createInvestment = async (req, res) => {
       return res.status(400).json({ message: 'Insufficient balance' });
     }
 
+    // -------------------------
+    // calculate number of intervals
+    // -------------------------
+    let intervalMinutes = 0;
+
+    switch (plan.topUpInterval) {
+      case '10 minutes': intervalMinutes = 10; break;
+      case '30 minutes': intervalMinutes = 30; break;
+      case 'hourly': intervalMinutes = 60; break;
+      case 'daily': intervalMinutes = 1440; break;
+      case 'weekly': intervalMinutes = 10080; break;
+      case 'monthly': intervalMinutes = 43200; break;
+    }
+
+    const totalMinutes = plan.duration * 1440; // duration is in days
+    const totalIntervals = Math.floor(totalMinutes / intervalMinutes);
+
+    // -------------------------
+    // FIXED RETURN CALCULATION
+    // -------------------------
+    const totalExpectedReturn =
+      amount + (plan.topUpAmount * totalIntervals);
+
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + plan.duration);
-
-    const totalExpectedReturn = amount + (amount * plan.maxRoi / 100);
 
     const investment = await Investment.create({
       user: req.user._id,
@@ -194,21 +215,23 @@ const createInvestment = async (req, res) => {
       amountInvested: amount,
       totalExpectedReturn,
       endDate,
+      lastTopUp: new Date()
     });
 
     await User.findByIdAndUpdate(req.user._id, {
-      $inc: { 
+      $inc: {
         balance: -amount,
         totalInvested: amount
       }
     });
 
-    res.status(201).json({ 
+    return res.status(201).json({
       message: 'Investment created successfully',
-      investment 
+      investment
     });
+
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
