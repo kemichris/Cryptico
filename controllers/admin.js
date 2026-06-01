@@ -324,6 +324,7 @@ const updatePlan = async (req, res) => {
       'price',
       'minAmount',
       'maxAmount',
+      'totalExpectedReturn',
       'giftBonus',
       'topUpInterval',
       'topUpAmount',
