@@ -137,5 +137,36 @@ closeAddUser.addEventListener("click", ()=> {
     newUserForm.classList.remove("active")
 });
 
+const addUserForm = document.getElementById("add-user-form");
+
+addUserForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(addUserForm);
+    const userData = Object.fromEntries(formData.entries());
+
+    try {
+        const res = await fetch("/api/admin/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${Auth.getToken()}`
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to register user");
+        }
+
+        const data = await res.json();
+        console.log("User registered successfully:", data);
+        newUserForm.classList.remove("active");
+        loadUsers(); // Refresh the users list
+    } catch (error) {
+        console.error("Error registering user:", error);
+    }
+});
+
 
 loadUsers();

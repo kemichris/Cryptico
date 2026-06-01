@@ -27,6 +27,11 @@ const {
   getUserTransactions,
 } = require('../controllers/admin');
 
+const { register } = require('../controllers/auth');
+
+// ─── REGISTER NEW USER ────────────────────────────────
+router.post('/register', protect, adminOnly, register);
+
 // ─── DASHBOARD ────────────────────────────────
 router.get('/dashboard', protect, adminOnly, getDashboard);
 
