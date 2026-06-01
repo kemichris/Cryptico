@@ -3,6 +3,9 @@ const planForm = document.getElementById('plan-form');
 planForm.addEventListener('submit', async (e) => {
 
     e.preventDefault();
+    const submitBtn = planForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
 
     const formData = new FormData(planForm);
     const formObject = Object.fromEntries(formData.entries());
@@ -54,5 +57,7 @@ planForm.addEventListener('submit', async (e) => {
         alert('Server error');
     } finally {
         hideLoader();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save';
     }
 });

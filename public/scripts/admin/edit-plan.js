@@ -39,6 +39,10 @@ const loadPlanEdit = async () => {
 editPlanForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+     const submitBtn = editPlanForm.querySelector('button[type="submit"]');
+     submitBtn.disabled = true;
+     submitBtn.textContent = 'Updating...';
+
     // collect form values
     const formData = new FormData(editPlanForm);
     const formObject = Object.fromEntries(formData.entries());
@@ -68,6 +72,9 @@ editPlanForm.addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Update plan error:', error);
         alert('Something went wrong');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save';
     }
 });
 

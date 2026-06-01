@@ -285,11 +285,11 @@ const getPlans = async (req, res) => {
 const createPlan = async (req, res) => {
   try {
     const {
-      name, price, minAmount, maxAmount, giftBonus, topUpInterval, topUpAmount, duration, features
+      name, price, minAmount, maxAmount, totalExpectedReturn, giftBonus, topUpInterval, topUpAmount, duration, features
     } = req.body;
 
     const plan = await Plan.create({
-      name, price, minAmount, maxAmount, giftBonus, topUpInterval, topUpAmount, duration, features
+      name, price, minAmount, maxAmount, totalExpectedReturn, giftBonus, topUpInterval, topUpAmount, duration, features
     });
     return res.status(201).json({ message: "Plan created successfully", data: plan });
 
