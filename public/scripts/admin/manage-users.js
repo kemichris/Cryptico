@@ -69,6 +69,7 @@ function maskEmail(email) {
     return `${name.slice(0, 2)}•••@${domain}`;
 }
 
+// FETCH USERS AND POPULATE TABLE
 const loadUsers = async ()=> {
     try {
         const res = await fetch("/api/admin/users", {
@@ -83,6 +84,8 @@ const loadUsers = async ()=> {
 
         const data = await res.json();
         const users = data.allUsers;
+
+        console.log("Users data:", users);
 
         tbBody.innerHTML = '';
 
@@ -105,7 +108,7 @@ const loadUsers = async ()=> {
                 <td>${user.country}</td>
                 <td>${user.isActive ? 'Active' : 'Inactive'}</td>
                 <td>${new Date(user.createdAt).toLocaleDateString()}</td>
-                <td><a href="user-details.html"><button class="manage-btn">Manage</button></a></td>
+                <td><button class="manage-btn" data-user-id="${user._id}">Manage</button></td>
             `;
             tbBody.appendChild(tr);
         });
@@ -122,6 +125,17 @@ const loadUsers = async ()=> {
         hideLoader();
     }
 }
+
+// handle manage button click using event delegation
+tbBody.addEventListener('click', (e) => {
+    const manageBtn = e.target.closest('.manage-btn');
+
+    if (manageBtn) {
+        const userId = manageBtn.dataset.userId;
+        sessionStorage.setItem("userId", userId);
+        window.location.href = `/admin/user-details.html?id=${userId}`;
+    }
+});
 
 // ADD NEW USERS POPUP 
 const addUserBtn = document.getElementById("new-user-btn");

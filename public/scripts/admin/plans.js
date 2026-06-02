@@ -1,5 +1,6 @@
 const planContainer = document.getElementById("plan-container");
 
+// Load plans on page load
 const loadPlans = async () => {
     try {
         const res = await fetch("/api/admin/plans", {
