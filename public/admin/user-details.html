@@ -140,7 +140,7 @@
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
                 <div class="username-action flex">
-                    <h1>User Name</h1>
+                    <h1 id="userNameDisplay"></h1>
                     <div class="user-action">
                         <a href="/admin/manage-users.html">
                             <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> back</button>
@@ -152,23 +152,23 @@
                 <div class="user-account-dashboard grid">
                     <div>
                         <h3>Account balance</h3>
-                        <p>$<span>0</span></p>
+                        <p>$<span id="account-balance">0</span></p>
                     </div>
                     <div>
                         <h3>Profit</h3>
-                        <p>$<span>0</span></p>
+                        <p>$<span id="profit">0</span></p>
                     </div>
                     <div>
                         <h3>Referral bonus</h3>
-                        <p>$<span>0</span></p>
+                        <p>$<span id="referral-bonus">0</span></p>
                     </div>
                     <div>
                         <h3>Bonus</h3>
-                        <p>$<span>0</span></p>
+                        <p>$<span id="bonus">0</span></p>
                     </div>
                     <div>
                         <h3>Account Status</h3>
-                        <p class="status-display">Active</p>
+                        <p class="status-display" id="account-status"></p>
                     </div>
                     <div>
                         <h3>Inv. Plans</h3>
@@ -178,12 +178,11 @@
                     </div>
                     <div>
                         <h3>KYC</h3>
-                        <p class="kyc-display">verified</p>
+                        <p class="kyc-display" id="kyc-status"></p>
                     </div>
                     <div>
                         <h3>ROI Mode</h3>
-                        <p class="roi-display">On</p>
-
+                        <p class="roi-display" id="roi-mode">On</p>
                     </div>
                 </div>
 
@@ -192,23 +191,27 @@
                 <div class="user-information">
                     <div>
                         <p class="user-info-title">Fullname</p>
-                        <p class="user-info-p">User name</p>
+                        <p class="user-info-p" id="fullName"></p>
+                    </div>
+                    <div>
+                        <p class="user-info-title">UserName</p>
+                        <p class="user-info-p" id="userName"></p>
                     </div>
                     <div>
                         <p class="user-info-title">Email Address</p>
-                        <p class="user-info-p">dkakl@example.com</p>
+                        <p class="user-info-p" id="email"></p>
                     </div>
                     <div>
-                        <p class="user-info-title">Mobile number</p>
-                        <p class="user-info-p">3958930850348</p>
+                        <p class="user-info-title">Phone number</p>
+                        <p class="user-info-p" id="phoneNumber"></p>
                     </div>
                     <div>
-                        <P class="user-info-title">Nationality</P>
-                        <p class="user-info-p">User state</p>
+                        <P class="user-info-title">Country</P>
+                        <p class="user-info-p" id="country"></p>
                     </div>
                     <div>
                         <p class="user-info-title">Registered</p>
-                        <p class="user-info-p"> reg date</p>
+                        <p class="user-info-p" id="registrationDate"></p>
                     </div>
                 </div>
 
@@ -221,10 +224,9 @@
 
         </div>
     </main>
-
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-
+    <script src="/scripts/admin/user-details.js"></script>
 
 </body>
 
