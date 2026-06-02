@@ -52,6 +52,10 @@ const userSchema = new mongoose.Schema({
         type: Number, 
         default: 0 
     },
+    referralBonus: { 
+        type: Number, 
+        default: 0 
+    },
     kycStatus: { 
         type: String, 
         enum: ['pending', 'verified', 'rejected'], 
