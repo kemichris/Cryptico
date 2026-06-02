@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="../styles/admin.css" />
+    <link rel="stylesheet" href="/styles/admin.css" />
 </head>
 
 <body>
@@ -35,12 +35,13 @@
     </header>
 
     <main>
-        
+
         <!-- PAGE LOADER -->
         <div id="pageLoader" class="page-loader">
             <div class="loader-spinner"></div>
         </div>
-<div class="side-menu-main flex">
+
+        <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
@@ -80,13 +81,13 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
                     </div>
                 </a>
-                 <a href="/admin/kyc.html">
+                <a href="/admin/kyc.html">
                     <div class="kyc-application admin-div">
                         <i class="fa-solid fa-user-check"></i>
                         <span>KYC Applications</span>
@@ -119,7 +120,7 @@
                 </div>
                 <div class="setting-dropdown dropdown inactive">
                     <ul>
-                         <li>
+                        <li>
                             <a href="/admin/payment-setting.html">Payment Setting</a>
                         </li>
                         <li>
@@ -140,13 +141,13 @@
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
                 <div class="plan-top flex">
-                    <h1><span>User name </span>  Investment plans</h1>
+                    <h1><span>User name </span> Investment plans</h1>
                     <a href="user-details.html">
                         <button><i class="fa-solid fa-arrow-left"></i> New Plan</button>
                     </a>
-                    
+
                 </div>
-                
+
 
                 <div class="active-users-table">
                     <div class="user-search flex">
@@ -159,7 +160,7 @@
                             <tr>
                                 <th>Plan</th>
                                 <th>Amount</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Duration</th>
                                 <th>Created on</th>
                                 <th>Expire at</th>
@@ -180,7 +181,8 @@
                     </table>
 
                     <div class="entries">
-                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span id="totalEntries">0</span> entries </p>
+                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span
+                                id="totalEntries">0</span> entries </p>
                         <div class="entries-buttons">
                             <button class="prev-btn">Prev</button>
                             <button class="pg-btn">1</button>
@@ -193,11 +195,9 @@
 
         </div>
     </main>
-
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-    <script src="../scripts/transaction-history.js"></script>
-
+    <script src="/scripts/admin/user-investment-plans.js"></script>
 </body>
 
 </html>

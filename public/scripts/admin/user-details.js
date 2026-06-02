@@ -8,7 +8,6 @@ if (!userId) {
 }
 
 // Get user details and display
-
 const getUserDetails = async () => {
     try {
         const res = await fetch(`/api/admin/users/${userId}`, {
@@ -59,6 +58,16 @@ const getUserDetails = async () => {
     } finally {
         hideLoader();
     }
+}
+
+// view plans button click
+const viewPlansBtn = document.querySelector(".view-plans-btn");
+if (viewPlansBtn) {
+    viewPlansBtn.addEventListener("click", () => {
+        // Store userId in session storage and navigate to plans page
+        sessionStorage.setItem("userId", userId);
+        window.location.href = `/admin/user-investment-plans.html?id=${userId}`;
+    });
 }
 
 getUserDetails();

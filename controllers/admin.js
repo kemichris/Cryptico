@@ -474,6 +474,18 @@ const getActiveInvestments = async (req, res) => {
   }
 };
 
+// Get investments for a specific user
+const getUserInvestments = async (req, res) => {
+  try {
+    const userInvestments = await Investment.find({ user: req.params.id })
+      .populate('plan', 'name price duration')
+      .sort({ createdAt: -1 });
+    return res.status(200).json({ userInvestments });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }   
+};
+
 // Cancel investment
 const cancelInvestment = async (req, res) => {
   try {
@@ -596,6 +608,7 @@ module.exports = {
   deletePlan,
   getAllInvestments,
   getActiveInvestments,
+  getUserInvestments,
   cancelInvestment,
   completeInvestment,
   getPendingKyc,
