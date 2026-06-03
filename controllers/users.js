@@ -6,34 +6,37 @@ const WithdrawalInfo = require('../models/WithdrawalInfo')
 
 const getUserDashboard = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id).select('-password');
+    const user = await User.findById(req.user._id)
+      .select('-password');
 
-    const activeInvestments = await Investment.find({ 
+    const activeInvestments = await Investment.find({
       user: req.user._id,
       status: 'active'
     });
 
-    const totalInvestment = await Investment.find({ user: req.user._id })
+    const allInvestments = await Investment.find({
+      user: req.user._id
+    });
 
+    const runningProfit = activeInvestments.reduce(
+      (sum, inv) => sum + (inv.currentReturns || 0),
+      0
+    );
 
-    // calculate live profit from all active investments
-    const liveProfit = activeInvestments.reduce((sum, inv) => {
-      return sum + inv.currentReturns;
-    }, 0);
-
-    // total profit = live returns + completed investment earnings
-    const totalProfit = liveProfit + user.totalEarnings;
-
-    res.status(200).json({ 
-      user, 
-      activeInvestments,
-      totalInvestment,
-      liveProfit,
-      totalProfit,
+    res.status(200).json({
+      user,
+      totalProfit: user.totalEarnings,      // realized profit only
+      runningProfit,                        // active investment profit
+      totalPackages: allInvestments.length,
+      activePackages: activeInvestments.length,
+      totalInvestment: user.totalInvested,
+      activeInvestments
     });
 
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({
+      message: err.message
+    });
   }
 };
 
@@ -158,7 +161,7 @@ const getUserTransactions = async (req, res) => {
 
 const getPlans = async (req, res) => {
   try {
-    const plans = await Plan.find({ isActive: true });
+    const plans = await Plan.find({ isActive: true }).sort({ price: 1 });
     res.status(200).json(plans);
   } catch (err) {
     res.status(500).json({ message: err.message });

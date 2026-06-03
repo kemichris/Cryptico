@@ -68,15 +68,17 @@ const loadDashboard = async () => {
 
     const welcomeEl = document.getElementById('welcomeName');
     const balanceEl = document.getElementById('balance');
-    const profitEl = document.getElementById('profit');
+    const totalProfit = document.getElementById('total-profit');
+    const runningProfit = document.getElementById('running-profit');
     const totalPackagesEl = document.getElementById('totalPackages');
     const activePackagesEl = document.getElementById('activePackages');
 
     if (welcomeEl) welcomeEl.textContent = data.user.userName;
     if (balanceEl) balanceEl.textContent = data.user.balance.toFixed(2);
-    if (profitEl) profitEl.textContent = data.totalProfit.toFixed(2);
-    if (totalPackagesEl) totalPackagesEl.textContent = data.totalInvestment.length;
-    if (activePackagesEl) activePackagesEl.textContent = data.activeInvestments.length;
+    if (totalProfit) totalProfit.textContent = data.totalProfit.toFixed(2);
+    if (runningProfit) runningProfit.textContent = data.runningProfit.toFixed(2);
+    if (totalPackagesEl) totalPackagesEl.textContent = data.totalPackages;
+    if (activePackagesEl) activePackagesEl.textContent = data.activePackages;
 
   } catch (err) {
     console.error('Dashboard error:', err);
