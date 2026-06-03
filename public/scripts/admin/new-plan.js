@@ -1,11 +1,63 @@
 const planForm = document.getElementById('plan-form');
 
+const totalExpectedInput = document.querySelector('input[name="totalExpectedReturn"]');
+const topUpAmountInput = document.querySelector('input[name="topUpAmount"]');
+const durationInput = document.querySelector('input[name="duration"]');
+const intervalSelect = document.querySelector('select[name="topUpInterval"]');
+
+
+// Convert interval to frequency per day
+function getFrequency(interval) {
+    switch (interval) {
+        case 'hourly':
+            return 24;
+        case 'daily':
+            return 1;
+        case 'weekly':
+            return 1 / 7;
+        case 'monthly':
+            return 1 / 30;
+        case '10 minutes':
+            return 144;
+        case '30 minutes':
+            return 48;
+        default:
+            return 0;
+    }
+}
+
+
+// Calculate expected return
+function calculateExpectedReturn() {
+    const topUpAmount = Number(topUpAmountInput.value) || 0;
+    const duration = Number(durationInput.value) || 0;
+    const interval = intervalSelect.value;
+
+    const frequencyPerDay = getFrequency(interval);
+
+    const total = topUpAmount * duration * frequencyPerDay;
+
+    totalExpectedInput.value = total.toFixed(2);
+}
+
+
+// Live updates
+topUpAmountInput.addEventListener('input', calculateExpectedReturn);
+durationInput.addEventListener('input', calculateExpectedReturn);
+intervalSelect.addEventListener('change', calculateExpectedReturn);
+
+
+// Submit handler
 planForm.addEventListener('submit', async (e) => {
 
     e.preventDefault();
+
     const submitBtn = planForm.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Saving...';
+
+    // ensure final calculation before submit
+    calculateExpectedReturn();
 
     const formData = new FormData(planForm);
     const formObject = Object.fromEntries(formData.entries());
@@ -21,7 +73,6 @@ planForm.addEventListener('submit', async (e) => {
 
     try {
 
-        // send request
         const res = await fetch('/api/admin/plans', {
             method: 'POST',
             headers: {
@@ -31,12 +82,10 @@ planForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(formObject)
         });
 
-        // parse response
         const data = await res.json();
 
         console.log('Response:', data);
 
-        // success
         if (res.ok) {
 
             alert('Plan created successfully');

@@ -480,7 +480,8 @@ const getUserInvestments = async (req, res) => {
     const userInvestments = await Investment.find({ user: req.params.id })
       .populate('plan', 'name price duration')
       .sort({ createdAt: -1 });
-    return res.status(200).json({ userInvestments });
+    const user = await User.findById(req.params.id).select('userName');
+    return res.status(200).json({ userInvestments, user });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }   

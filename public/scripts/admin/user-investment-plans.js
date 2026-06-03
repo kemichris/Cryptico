@@ -83,9 +83,15 @@ const getUserInvestments = async () => {
         }
 
         const data = await res.json();
-        const invData = data.userInvestments; 
+        const invData = data.userInvestments;
+        const investor = data.user.userName || 'User'; 
         
         console.log('User Investments:', invData);
+
+        const investorName = document.getElementById("investor-name");
+        if (investorName) {
+            investorName.textContent = investor;
+        }
 
          tbBody.innerHTML = '';
 
