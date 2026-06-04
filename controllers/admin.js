@@ -553,6 +553,20 @@ const completeInvestment = async (req, res) => {
   }
 };
 
+// Delete user investment (for cleanup of cancelled or completed investments)
+const deleteInvestment = async (req, res) => {
+  try {
+    const delInv = await Investment.findByIdAndDelete(req.params.id);
+
+    if (!delInv) {
+      return res.status(404).json({ message: 'Investment not found' });
+    }
+    res.status(200).json({ message: "Investment deleted successfully" })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+};
+
 //////////////// INV AND KYC SECTION  /////////////////
 
 // Get all pending kyc
@@ -612,6 +626,7 @@ module.exports = {
   getUserInvestments,
   cancelInvestment,
   completeInvestment,
+  deleteInvestment,
   getPendingKyc,
   approveOrRejectKyc,
   getAllTransactions,

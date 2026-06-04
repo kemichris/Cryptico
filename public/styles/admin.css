@@ -627,11 +627,11 @@ td {
     background-color: #51AEF7;
 }
 
-.new-user-btn, .expired-btn {
+.new-user-btn, .complete-btn {
    background-color: #0e4152;
 }
 
-.manage-btn, .manage-admins-action {
+.manage-btn, .manage-admins-action, .cancel-btn {
     background-color: #6861ce;
 }
 

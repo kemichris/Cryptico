@@ -21,6 +21,7 @@ const {
   getUserInvestments,
   cancelInvestment,
   completeInvestment,
+  deleteInvestment,
   getPendingKyc,
   approveOrRejectKyc,
   getAllTransactions,
@@ -63,6 +64,7 @@ router.get('/investments/active',      protect, adminOnly, getActiveInvestments)
 router.get('/users/:id/investments',        protect, adminOnly, getUserInvestments);
 router.put('/investments/:id/cancel',   protect, adminOnly, cancelInvestment);
 router.put('/investments/:id/complete', protect, adminOnly, completeInvestment);
+router.delete('/investments/:id', protect, adminOnly, deleteInvestment);
 
 // ─── TRANSACTIONS ─────────────────────────────
 router.get('/transactions',            protect, adminOnly, getAllTransactions);
