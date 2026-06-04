@@ -113,6 +113,10 @@ const getUserInvestments = async () => {
                 <td>${inv.plan.duration > 1 ? `${inv.plan.duration} days` : `${inv.plan.duration} day`}</td>
                 <td>${new Date(inv.startDate).toLocaleDateString()}</td>
                 <td>${new Date(inv.endDate).toLocaleDateString()}</td>
+                <td class="action-btns"> 
+                    <button class="del-btn" data-id="${inv.id}">Delete Plan</button>
+                    <button class="expired-btn" data-id="${inv.id}">Mark as Expired</button>
+                </td>
             `;
             tbBody.appendChild(tr);
         });

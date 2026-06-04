@@ -555,6 +555,14 @@ td {
     /* white-space: nowrap; */
 }
 
+.action-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
 .entries {
     display: flex;
     justify-content: space-between;
@@ -603,7 +611,7 @@ td {
     align-items: center;
 }
 
-.user-search-add button, .manage-btn, .deposit-action button, .manage-admins-action, .payment-method button{
+.user-search-add button, .manage-btn, .deposit-action button, .manage-admins-action, .payment-method button, .action-btns button {
     padding: 0.4375rem 0.8125rem ;
     font-size: 0.6875rem;
     border: none;
@@ -619,7 +627,7 @@ td {
     background-color: #51AEF7;
 }
 
-.new-user-btn {
+.new-user-btn, .expired-btn {
    background-color: #0e4152;
 }
 
