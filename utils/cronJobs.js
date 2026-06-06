@@ -4,202 +4,359 @@ const User = require('../models/User');
 
 /*
 |--------------------------------------------------------------------------
-| INVESTMENT TOP-UP ENGINE (FINANCIAL-GRADE FIXED VERSION)
+| INVESTMENT TOP-UP ENGINE
 |--------------------------------------------------------------------------
-| RULES:
-| - amountInvested = principal (returned ONLY at maturity)
-| - currentReturns = running profit (NOT paid to user yet)
-| - totalExpectedReturn = total profit expected
+|
+| amountInvested      => Principal
+| totalExpectedReturn => Expected Profit ONLY
+| currentReturns      => Running Profit
+|
+| Example:
+|
+| Principal = 1,000
+| Profit    = 72,000
+|
+| Maturity payout:
+|
+| 1,000 + 72,000 = 73,000
+|
 |--------------------------------------------------------------------------
 */
 
 const runTopUp = async () => {
   try {
+
     console.log('⏰ Running investment top-up job...');
 
+    // current time
     const now = new Date();
+
+    /*
+    |--------------------------------------------------------------------------
+    | FETCH ACTIVE INVESTMENTS
+    |--------------------------------------------------------------------------
+    */
 
     const investments = await Investment
       .find({ status: 'active' })
       .populate('plan');
 
+    /*
+    |--------------------------------------------------------------------------
+    | PROCESS EACH INVESTMENT
+    |--------------------------------------------------------------------------
+    */
+
     for (const investment of investments) {
+
       const plan = investment.plan;
 
+      // skip broken investments
       if (!plan) continue;
 
       /*
       |--------------------------------------------------------------------------
-      | SAFE TIME BASE
+      | DETERMINE LAST TOP-UP TIME
       |--------------------------------------------------------------------------
       */
+
       const lastTopUp = new Date(
         investment.lastTopUp || investment.startDate
       );
 
-      const diffMs = now - lastTopUp;
+      /*
+      |--------------------------------------------------------------------------
+      | CHECK IF INVESTMENT EXPIRED
+      |--------------------------------------------------------------------------
+      */
 
-      const diffMinutes = diffMs / (1000 * 60);
-      const diffHours = diffMs / (1000 * 60 * 60);
-      const diffDays = diffMs / (1000 * 60 * 60 * 24);
+      const isExpired =
+        now >= new Date(investment.endDate);
 
       /*
       |--------------------------------------------------------------------------
-      | CHECK EXPIRY FIRST (IMPORTANT FIX)
+      | MATURITY PROCESS
       |--------------------------------------------------------------------------
       */
-      const isExpired = now >= new Date(investment.endDate);
 
       if (isExpired) {
-        const principal = investment.amountInvested;
 
-        const totalProfit = investment.totalExpectedReturn || 0;
-        const earnedSoFar = investment.currentReturns || 0;
+        const principal =
+          investment.amountInvested;
 
-        const remainingProfit = Math.max(0, totalProfit - earnedSoFar);
+        const finalProfit =
+          investment.totalExpectedReturn;
 
-        const payout = principal + remainingProfit;
+        /*
+        |--------------------------------------------------------------------------
+        | FORCE PROFIT TO EXPECTED VALUE
+        |--------------------------------------------------------------------------
+        |
+        | Handles cases where the last cron
+        | interval didn't run before expiry.
+        |
+        */
 
-        await User.findByIdAndUpdate(investment.user, {
-          $inc: {
-            balance: payout,
-            totalEarnings: totalProfit
+        investment.currentReturns = finalProfit;
+
+        /*
+        |--------------------------------------------------------------------------
+        | TOTAL PAYOUT
+        |--------------------------------------------------------------------------
+        */
+
+        const payout =
+          principal + finalProfit;
+
+        /*
+        |--------------------------------------------------------------------------
+        | CREDIT USER
+        |--------------------------------------------------------------------------
+        */
+
+        await User.findByIdAndUpdate(
+          investment.user,
+          {
+            $inc: {
+              balance: payout,
+              totalEarnings: finalProfit,
+              totalInvested: -principal
+            }
           }
-        });
+        );
+
+        /*
+        |--------------------------------------------------------------------------
+        | COMPLETE INVESTMENT
+        |--------------------------------------------------------------------------
+        */
 
         investment.status = 'completed';
-        investment.currentReturns = totalProfit;
         investment.lastTopUp = now;
 
         await investment.save();
 
-        console.log(`✅ Completed: ${investment._id} | Paid: ${payout}`);
+        console.log(
+          `✅ Completed ${investment._id} | Paid ${payout}`
+        );
+
         continue;
       }
+
+      /*
+      |--------------------------------------------------------------------------
+      | CALCULATE TIME PASSED
+      |--------------------------------------------------------------------------
+      */
+
+      const diffMs = now - lastTopUp;
+
+      const diffMinutes =
+        diffMs / (1000 * 60);
+
+      const diffHours =
+        diffMs / (1000 * 60 * 60);
+
+      const diffDays =
+        diffMs / (1000 * 60 * 60 * 24);
 
       /*
       |--------------------------------------------------------------------------
       | CALCULATE MISSED INTERVALS
       |--------------------------------------------------------------------------
       */
+
       let intervalsPassed = 0;
 
       switch (plan.topUpInterval) {
+
         case '10 minutes':
-          intervalsPassed = Math.floor(diffMinutes / 10);
+          intervalsPassed =
+            Math.floor(diffMinutes / 10);
           break;
 
         case '30 minutes':
-          intervalsPassed = Math.floor(diffMinutes / 30);
+          intervalsPassed =
+            Math.floor(diffMinutes / 30);
           break;
 
         case 'hourly':
-          intervalsPassed = Math.floor(diffHours);
+          intervalsPassed =
+            Math.floor(diffHours);
           break;
 
         case 'daily':
-          intervalsPassed = Math.floor(diffDays);
+          intervalsPassed =
+            Math.floor(diffDays);
           break;
 
         case 'weekly':
-          intervalsPassed = Math.floor(diffDays / 7);
+          intervalsPassed =
+            Math.floor(diffDays / 7);
           break;
 
         case 'monthly':
-          intervalsPassed = Math.floor(diffDays / 30);
+          intervalsPassed =
+            Math.floor(diffDays / 30);
           break;
       }
 
-      intervalsPassed = Math.max(0, intervalsPassed);
-
-      if (intervalsPassed <= 0) continue;
-
-      /*
-      |--------------------------------------------------------------------------
-      | PROFIT CALCULATION (RUNNING ONLY)
-      |--------------------------------------------------------------------------
-      */
-      const remainingProfit = Math.max(
-        0,
-        investment.totalExpectedReturn - (investment.currentReturns || 0)
-      );
-
-      const singleTopUp = plan.topUpAmount;
-
-      let totalTopUp = singleTopUp * intervalsPassed;
-
-      totalTopUp = Math.min(totalTopUp, remainingProfit);
-
-      if (totalTopUp <= 0) continue;
-
-      investment.currentReturns =
-        (investment.currentReturns || 0) + totalTopUp;
+      if (intervalsPassed <= 0)
+        continue;
 
       /*
       |--------------------------------------------------------------------------
-      | UPDATE LAST TOPUP TIME
+      | REMAINING PROFIT
       |--------------------------------------------------------------------------
       */
-      const newLastTopUp = new Date(lastTopUp);
+
+      const remainingProfit =
+        Math.max(
+          0,
+          investment.totalExpectedReturn -
+          investment.currentReturns
+        );
+
+      /*
+      |--------------------------------------------------------------------------
+      | PROFIT FOR THIS RUN
+      |--------------------------------------------------------------------------
+      */
+
+      const singleTopUp =
+        plan.topUpAmount;
+
+      let totalTopUp =
+        singleTopUp * intervalsPassed;
+
+      /*
+      |--------------------------------------------------------------------------
+      | PREVENT OVERPAYMENT
+      |--------------------------------------------------------------------------
+      */
+
+      totalTopUp =
+        Math.min(
+          totalTopUp,
+          remainingProfit
+        );
+
+      if (totalTopUp <= 0)
+        continue;
+
+      /*
+      |--------------------------------------------------------------------------
+      | UPDATE RUNNING PROFIT
+      |--------------------------------------------------------------------------
+      */
+
+      investment.currentReturns += totalTopUp;
+
+      /*
+      |--------------------------------------------------------------------------
+      | MOVE LAST TOPUP FORWARD
+      |--------------------------------------------------------------------------
+      */
+
+      const newLastTopUp =
+        new Date(lastTopUp);
 
       switch (plan.topUpInterval) {
+
         case '10 minutes':
-          newLastTopUp.setMinutes(newLastTopUp.getMinutes() + intervalsPassed * 10);
+          newLastTopUp.setMinutes(
+            newLastTopUp.getMinutes() +
+            (intervalsPassed * 10)
+          );
           break;
 
         case '30 minutes':
-          newLastTopUp.setMinutes(newLastTopUp.getMinutes() + intervalsPassed * 30);
+          newLastTopUp.setMinutes(
+            newLastTopUp.getMinutes() +
+            (intervalsPassed * 30)
+          );
           break;
 
         case 'hourly':
-          newLastTopUp.setHours(newLastTopUp.getHours() + intervalsPassed);
+          newLastTopUp.setHours(
+            newLastTopUp.getHours() +
+            intervalsPassed
+          );
           break;
 
         case 'daily':
-          newLastTopUp.setDate(newLastTopUp.getDate() + intervalsPassed);
+          newLastTopUp.setDate(
+            newLastTopUp.getDate() +
+            intervalsPassed
+          );
           break;
 
         case 'weekly':
-          newLastTopUp.setDate(newLastTopUp.getDate() + intervalsPassed * 7);
+          newLastTopUp.setDate(
+            newLastTopUp.getDate() +
+            (intervalsPassed * 7)
+          );
           break;
 
         case 'monthly':
-          newLastTopUp.setDate(newLastTopUp.getDate() + intervalsPassed * 30);
+          newLastTopUp.setDate(
+            newLastTopUp.getDate() +
+            (intervalsPassed * 30)
+          );
           break;
       }
 
-      investment.lastTopUp = newLastTopUp;
+      investment.lastTopUp =
+        newLastTopUp;
 
       await investment.save();
 
       /*
       |--------------------------------------------------------------------------
-      | NO BALANCE UPDATE HERE (IMPORTANT FIX)
+      | NO BALANCE CREDIT HERE
       |--------------------------------------------------------------------------
-      | Profit stays "unrealized" until maturity
-      |--------------------------------------------------------------------------
+      |
+      | Profit remains unrealized
+      | until maturity.
+      |
       */
 
       console.log(
-        `💰 Accrued ${totalTopUp} (unpaid) | Investment: ${investment._id}`
+        `💰 Accrued ${totalTopUp} profit | Investment ${investment._id}`
       );
     }
 
   } catch (err) {
-    console.error('❌ Cron job error:', err.message);
+
+    console.error(
+      '❌ Cron Job Error:',
+      err.message
+    );
   }
 };
 
 /*
 |--------------------------------------------------------------------------
-| START CRON JOB
+| START CRON JOBS
 |--------------------------------------------------------------------------
 */
-const startCronJobs = () => {
-  runTopUp(); // immediate run on startup
-  cron.schedule('*/10 * * * *', runTopUp);
 
-  console.log('⏰ Cron jobs started...');
+const startCronJobs = () => {
+
+  // run immediately when server starts
+  runTopUp();
+
+  // run every 10 minutes
+  cron.schedule(
+    '*/10 * * * *',
+    runTopUp
+  );
+
+  console.log(
+    '⏰ Cron jobs started successfully'
+  );
 };
 
-module.exports = { startCronJobs };
+module.exports = {
+  startCronJobs
+};
