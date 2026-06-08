@@ -6,6 +6,7 @@ const {
   getAllUsers,
   getOneUser,
   updateUser,
+  toggleUserStatus,
   deleteUser,
   getAllDeposits,
   approveOrRejectDeposit,
@@ -40,7 +41,8 @@ router.get('/dashboard', protect, adminOnly, getDashboard);
 // ─── USERS ───────────────────────────────────
 router.get('/users',        protect, adminOnly, getAllUsers);
 router.get('/users/:id',    protect, adminOnly, getOneUser);
-router.put('/users/:id',    protect, adminOnly, updateUser);
+router.patch('/users/:id',    protect, adminOnly, updateUser);
+router.patch('/users/:id/toggle-status',    protect, adminOnly, toggleUserStatus);
 router.delete('/users/:id', protect, adminOnly, deleteUser);
 
 // ─── DEPOSITS ─────────────────────────────────

@@ -78,6 +78,7 @@ if (viewPlansBtn) {
     });
 }
 
+
 // KYC status update
 const verifyKycBtn = document.getElementById("verify-kyc-btn");
 
@@ -107,6 +108,33 @@ if (verifyKycBtn) {
     });
 }
 
+// Toggle account status 
+
+const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
+
+toggleStatusBtn.addEventListener("click", async () => {
+    try {
+        const res = await fetch(`/api/admin/users/${userId}/toggle-status`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${Auth.getToken()}`
+            }
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            alert(data.message);
+            getUserDetails(); // refresh UI
+        } else {
+            alert(data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 
 

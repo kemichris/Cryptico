@@ -105,7 +105,7 @@ const getOneUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     // pull out only the fields admin is allowed to update
-    const { fullName, phoneNumber, country, role, isActive, balance, kycStatus } = req.body;
+    const { fullName, phoneNumber, country, role, balance, kycStatus } = req.body;
 
     // find the user first to make sure they exist
     const user = await User.findById(req.params.id);
@@ -120,7 +120,6 @@ const updateUser = async (req, res) => {
     user.phoneNumber = phoneNumber ?? user.phoneNumber;
     user.country = country ?? user.country;
     user.role = role ?? user.role;
-    user.isActive = isActive ?? user.isActive;
     user.balance = balance ?? user.balance;
     user.kycStatus = kycStatus ?? user.kycStatus;
 
@@ -134,6 +133,30 @@ const updateUser = async (req, res) => {
 
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+// Toggle user Status
+const toggleUserStatus = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // TOGGLE HAPPENS HERE (backend owns logic)
+    user.isActive = !user.isActive;
+
+    const updatedUser = await user.save();
+
+    return res.status(200).json({
+      message: `User ${updatedUser.isActive ? 'activated' : 'deactivated'} successfully`,
+      user: updatedUser
+    });
+
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -626,6 +649,7 @@ module.exports = {
   getAllUsers,
   getOneUser,
   updateUser,
+  toggleUserStatus,
   deleteUser,
   getAllDeposits,
   approveOrRejectDeposit,
