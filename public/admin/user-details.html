@@ -40,7 +40,7 @@
         <div id="pageLoader" class="page-loader">
             <div class="loader-spinner"></div>
         </div>
-<div class="side-menu-main flex">
+        <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
@@ -80,13 +80,13 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
                     </div>
                 </a>
-                 <a href="/admin/kyc.html">
+                <a href="/admin/kyc.html">
                     <div class="kyc-application admin-div">
                         <i class="fa-solid fa-user-check"></i>
                         <span>KYC Applications</span>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="setting-dropdown dropdown inactive">
                     <ul>
-                         <li>
+                        <li>
                             <a href="/admin/payment-setting.html">Payment Setting</a>
                         </li>
                         <li>
@@ -145,7 +145,7 @@
                         <a href="/admin/manage-users.html">
                             <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> back</button>
                         </a>
-                        <button class="action-btn">Action <i class="fa-solid fa-caret-down"></i></button>
+                        <button class="action-btn" id="users-action-btn">Action <i class="fa-solid fa-caret-down"></i></button>
                     </div>
 
                 </div>
@@ -213,9 +213,37 @@
                     </div>
                 </div>
 
-
-
-
+                <div class="users-action-dropdown">
+                    <ul>
+                        <li>
+                            <button id="toggleAccountStatusBtn">Toggle Account Status</button>
+                        </li>
+                        <li>
+                            <button id="verify-email-btn">Verify Email</button>
+                        </li>
+                        <li>
+                            <button id="verify-kyc-btn">Verify KYC</button>
+                        </li>
+                        <li>
+                            <button id="edit-user">Edit</button>
+                        </li>
+                        <li>
+                            <button id="toggle-roi-mode-btn">Toggle ROI Mode</button>
+                        </li>
+                        <li>
+                            <button id="credit-debit-btn">Credit/Debit</button>
+                        </li>
+                        <li>
+                            <button id="reset-password-btn">Reset Password</button>
+                        </li>
+                        <li>
+                            <button id="login-as-user-btn">Login as {username}</button>
+                        </li>
+                        <li>
+                            <button id="delete-user-btn">Delete User</button>
+                        </li>
+                    </ul>
+                </div>
 
             </div>
 

@@ -1,3 +1,11 @@
+const usersActionDropdown = document.querySelector(".users-action-dropdown");
+const usersActionBtn = document.getElementById("users-action-btn");
+
+// Toggle dropdown visibility
+usersActionBtn.addEventListener("click", () => {
+    usersActionDropdown.classList.toggle("active");
+});
+
 // Get user ID from URL or session storage
 const params = new URLSearchParams(window.location.search);
 const userId = params.get("id") || sessionStorage.getItem("userId");

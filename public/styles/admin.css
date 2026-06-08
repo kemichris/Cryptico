@@ -66,7 +66,7 @@ nav {
     width: 100%;
     box-sizing: border-box;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     align-items: center;
     justify-content: space-between;
     margin: 0;
@@ -761,6 +761,43 @@ td {
     transition: transform 0.5s ease;
 }
 
+.users-action-dropdown {
+    position: absolute;
+    top: 10rem;
+    right: 1rem;
+    background-color: #F4F4F4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
+    z-index: 1;
+    padding: 0 1rem;
+    display: none;
+}
+
+.users-action-dropdown ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.users-action-dropdown ul button {
+    background-color: transparent;
+    border: none;
+    color: #212529;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+
+.users-action-dropdown ul li:hover {
+    background-color: #E9ECEF;
+}
+
+.users-action-dropdown.active {
+    display: block;
+}
+
 
 
 /* ////////////////////////////// MANAGE DEPOSITS /////////////////////////////////////// */
@@ -1019,5 +1056,11 @@ td {
 
     .user-info-p {
         padding-left: 0;
+    }
+
+    .users-action-dropdown {
+        top: 14rem;
+        right: 10rem;
+        left: 1rem;
     }
 }
