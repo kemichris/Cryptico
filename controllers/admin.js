@@ -484,7 +484,7 @@ const getUserInvestments = async (req, res) => {
     return res.status(200).json({ userInvestments, user });
   } catch (err) {
     res.status(500).json({ message: err.message });
-  }   
+  }
 };
 
 // Cancel investment
@@ -591,6 +591,21 @@ const approveOrRejectKyc = async (req, res) => {
     }
 
     const { kycStatus } = req.body;
+
+    // Validate status
+    const validStatuses = ['verified', 'rejected'];
+
+    if (!validStatuses.includes(kycStatus)) {
+      return res.status(400).json({
+        message: 'Invalid KYC status. Must be either verified or rejected.'
+      });
+    }
+
+    if (user.kycStatus === kycStatus) {
+      return res.status(400).json({
+        message: `User KYC is already ${kycStatus}`
+      });
+    }
 
     user.kycStatus = kycStatus;
     await user.save();

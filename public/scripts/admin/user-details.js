@@ -78,5 +78,38 @@ if (viewPlansBtn) {
     });
 }
 
+// KYC status update
+const verifyKycBtn = document.getElementById("verify-kyc-btn");
+
+if (verifyKycBtn) {
+    verifyKycBtn.addEventListener("click", async () => {
+        try {
+            const res = await fetch(`/api/admin/kyc/${userId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${Auth.getToken()}`
+                },
+                body: JSON.stringify({ kycStatus: "verified" })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                alert(data.message || "KYC verified successfully");
+                getUserDetails(); // Refresh user details to show updated KYC status
+            } else {
+                alert(data.message || "Failed to verify KYC");
+            }
+        } catch (error) {
+            console.error("Error verifying KYC:", error);
+            alert("An error occurred while verifying KYC");
+        }
+    });
+}
+
+
+
+
+
 getUserDetails();
 
