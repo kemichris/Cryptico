@@ -109,7 +109,6 @@ if (verifyKycBtn) {
 }
 
 // Toggle account status 
-
 const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
 
 toggleStatusBtn.addEventListener("click", async () => {
@@ -135,6 +134,45 @@ toggleStatusBtn.addEventListener("click", async () => {
         console.error(error);
     }
 });
+
+// Delete User 
+const deleteUserBtn = document.getElementById("delete-user-btn")
+
+if (deleteUserBtn) {
+    deleteUserBtn.addEventListener("click", async () => {
+        const confirmDelete = confirm("Are you sure you want to delete this User?");
+        if (!confirmDelete) {
+            alert("Deletion cancelled");
+            return;
+        }
+
+        try {
+            const res = await fetch(`/api/admin/users/${userId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${Auth.getToken()}`
+                }
+            });
+
+            const data = await res.json()
+
+            if (!res.ok) {
+                alert(data.message || "Failed to delete User");
+                return;
+            }
+
+            alert(data.message)
+
+            window.location.href = '/admin/manage-users.html';
+
+        } catch (error) {
+            console.error(error)
+            alert("Something went wrong");
+        }
+
+
+    })
+}
 
 
 
