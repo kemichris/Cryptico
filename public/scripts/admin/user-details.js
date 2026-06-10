@@ -15,7 +15,7 @@ if (!userId) {
     window.location.href = "/admin/manage-users.html";
 }
 
-// Get user details and display
+//////// Get user details and display ////////
 const getUserDetails = async () => {
     try {
         const res = await fetch(`/api/admin/users/${userId}`, {
@@ -68,7 +68,7 @@ const getUserDetails = async () => {
     }
 }
 
-// view plans button click
+///////// view plans button click ////////
 const viewPlansBtn = document.querySelector(".view-plans-btn");
 if (viewPlansBtn) {
     viewPlansBtn.addEventListener("click", () => {
@@ -78,7 +78,7 @@ if (viewPlansBtn) {
     });
 }
 
-// KYC status update
+//////// KYC status update ////////
 const verifyKycBtn = document.getElementById("verify-kyc-btn");
 if (verifyKycBtn) {
     verifyKycBtn.addEventListener("click", async () => {
@@ -106,7 +106,7 @@ if (verifyKycBtn) {
     });
 }
 
-// Toggle account status 
+//////// Toggle account status //////// 
 const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
 toggleStatusBtn.addEventListener("click", async () => {
     try {
@@ -132,7 +132,7 @@ toggleStatusBtn.addEventListener("click", async () => {
     }
 });
 
-// Edit user
+///////// Edit user ////////
 const editUserBtn  = document.getElementById("edit-user");
 const closeEdit = document.getElementById("close-edit-user");
 const editUserContainer = document.getElementById("edit-user-container")
@@ -203,7 +203,7 @@ editUserForm.addEventListener("submit", async (e)=>{
     }
 })
 
-// Delete User 
+//////// Delete User ////////
 const deleteUserBtn = document.getElementById("delete-user-btn")
 if (deleteUserBtn) {
     deleteUserBtn.addEventListener("click", async () => {
