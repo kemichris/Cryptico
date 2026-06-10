@@ -24,12 +24,19 @@ const getUserDetails = async () => {
             }
         });
 
+        if (!res.ok) {
+            localStorage.clear();
+            window.location.href = "/admin/login.html";
+            return;
+        }
+
         const data = await res.json();
         const user = data.oneUser;
 
         console.log("User details:", user);
 
         // display user details
+        const actionContainerUserName = document.getElementById("account-action-user")
         const userNameDisplayEl = document.getElementById("userNameDisplay");
         const accountBalanceEl = document.getElementById("account-balance");
         const profitEl = document.getElementById("profit");
@@ -45,6 +52,7 @@ const getUserDetails = async () => {
         const countryEl = document.getElementById("country");
         const registrationDateEl = document.getElementById("registrationDate");
 
+        if (actionContainerUserName) actionContainerUserName.textContent = user.userName;
         if (userNameDisplayEl) userNameDisplayEl.textContent = user.userName;
         if (accountBalanceEl) accountBalanceEl.textContent = user.balance.toFixed(2);
         if (profitEl) profitEl.textContent = user.totalEarnings.toFixed(2);
@@ -133,16 +141,16 @@ toggleStatusBtn.addEventListener("click", async () => {
 });
 
 ///////// Edit user ////////
-const editUserBtn  = document.getElementById("edit-user");
+const editUserBtn = document.getElementById("edit-user");
 const closeEdit = document.getElementById("close-edit-user");
 const editUserContainer = document.getElementById("edit-user-container")
 const editUserForm = document.getElementById("edit-user-form");
 
-editUserBtn.addEventListener("click", async ()=> {
+editUserBtn.addEventListener("click", async () => {
     usersActionDropdown.classList.toggle("active");
 
     try {
-         const res = await fetch(`/api/admin/users/${userId}`, {
+        const res = await fetch(`/api/admin/users/${userId}`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -160,17 +168,17 @@ editUserBtn.addEventListener("click", async ()=> {
 
     } catch (error) {
         console.error(error)
-    }finally {
+    } finally {
         editUserContainer.classList.add("active")
     }
 
 });
 
-closeEdit.addEventListener("click", ()=> {
+closeEdit.addEventListener("click", () => {
     editUserContainer.classList.remove("active")
 });
 
-editUserForm.addEventListener("submit", async (e)=>{
+editUserForm.addEventListener("submit", async (e) => {
     e.preventDefault()
 
     const formEditData = new FormData(editUserForm);
@@ -202,6 +210,41 @@ editUserForm.addEventListener("submit", async (e)=>{
         console.error('Update user error:', error)
     }
 })
+
+//////// Login as User ////////
+const loginAsUserBtn = document.getElementById("login-as-user-btn")
+loginAsUserBtn.addEventListener("click", async () => {
+    const confirmLogin = confirm("You are about to login as this User?");
+    if (!confirmLogin) {
+        alert("login cancelled");
+        return;
+    }
+
+    try {
+        const res = await fetch(`/api/admin/users/${userId}/impersonate`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${Auth.getToken()}`
+            }
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message);
+            return;
+        }
+
+        // store NEW token (user token, not admin token)
+        localStorage.setItem("token", data.token);
+
+        // redirect to user dashboard
+        window.location.href = "/dashboard/users-dashboard.html";
+
+    } catch (err) {
+        console.error(err);
+    }
+});
 
 //////// Delete User ////////
 const deleteUserBtn = document.getElementById("delete-user-btn")

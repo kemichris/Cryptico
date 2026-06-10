@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 const Investment = require('../models/Investment');
 const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
@@ -100,6 +101,37 @@ const getOneUser = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+// Login as user
+const loginAsUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // generate a token as THAT user
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role,
+        impersonated: true
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" } // important for safety
+    );
+
+    return res.status(200).json({
+      message: "Impersonation started",
+      token,
+      user
+    });
+
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
 
 // Update user details 
 const updateUser = async (req, res) => {
@@ -647,6 +679,7 @@ module.exports = {
   getDashboard,
   getAllUsers,
   getOneUser,
+  loginAsUser,
   updateUser,
   toggleUserStatus,
   deleteUser,
