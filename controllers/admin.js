@@ -105,7 +105,7 @@ const getOneUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     // pull out only the fields admin is allowed to update
-    const { fullName, phoneNumber, country, role, balance, kycStatus } = req.body;
+    const {userName, fullName, email, phoneNumber, country} = req.body;
 
     // find the user first to make sure they exist
     const user = await User.findById(req.params.id);
@@ -116,12 +116,11 @@ const updateUser = async (req, res) => {
 
     // update only the fields that were actually sent
     // if a field wasn't sent, keep the existing value
+    user.userName = userName ?? user.userName
     user.fullName = fullName ?? user.fullName;
+    user.email = email ?? user.email;
     user.phoneNumber = phoneNumber ?? user.phoneNumber;
     user.country = country ?? user.country;
-    user.role = role ?? user.role;
-    user.balance = balance ?? user.balance;
-    user.kycStatus = kycStatus ?? user.kycStatus;
 
     // save the updated user
     const updatedUser = await user.save();

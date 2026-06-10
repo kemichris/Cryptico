@@ -78,10 +78,8 @@ if (viewPlansBtn) {
     });
 }
 
-
 // KYC status update
 const verifyKycBtn = document.getElementById("verify-kyc-btn");
-
 if (verifyKycBtn) {
     verifyKycBtn.addEventListener("click", async () => {
         try {
@@ -110,7 +108,6 @@ if (verifyKycBtn) {
 
 // Toggle account status 
 const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
-
 toggleStatusBtn.addEventListener("click", async () => {
     try {
         const res = await fetch(`/api/admin/users/${userId}/toggle-status`, {
@@ -135,9 +132,79 @@ toggleStatusBtn.addEventListener("click", async () => {
     }
 });
 
+// Edit user
+const editUserBtn  = document.getElementById("edit-user");
+const closeEdit = document.getElementById("close-edit-user");
+const editUserContainer = document.getElementById("edit-user-container")
+const editUserForm = document.getElementById("edit-user-form");
+
+editUserBtn.addEventListener("click", async ()=> {
+    usersActionDropdown.classList.toggle("active");
+
+    try {
+         const res = await fetch(`/api/admin/users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${Auth.getToken()}`
+            }
+        });
+
+        const data = await res.json();
+        const user = data.oneUser;
+
+        document.getElementById('edit-display-name').innerHTML = `Edit ${user.fullName} details`
+        document.querySelector('[name="userName"]').value = user.userName;
+        document.querySelector('[name="fullName"]').value = user.fullName;
+        document.querySelector('[name="email"]').value = user.email
+        document.querySelector('[name="phoneNumber"]').value = user.phoneNumber;
+        document.querySelector('[name="country"]').value = user.country;
+
+    } catch (error) {
+        console.error(error)
+    }finally {
+        editUserContainer.classList.add("active")
+    }
+
+});
+
+closeEdit.addEventListener("click", ()=> {
+    editUserContainer.classList.remove("active")
+});
+
+editUserForm.addEventListener("submit", async (e)=>{
+    e.preventDefault()
+
+    const formEditData = new FormData(editUserForm);
+    const formEditObject = Object.fromEntries(formEditData.entries());
+
+    try {
+        const res = await fetch(`/api/admin/users/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${Auth.getToken()}`
+            },
+            body: JSON.stringify(formEditObject)
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || 'Failed to update user');
+            return;
+        }
+
+        alert('User updated successfully');
+
+        // optional: go back to plans page
+        window.location.href = '/admin/user-details.html';
+
+    } catch (error) {
+        console.error('Update user error:', error)
+    }
+})
+
 // Delete User 
 const deleteUserBtn = document.getElementById("delete-user-btn")
-
 if (deleteUserBtn) {
     deleteUserBtn.addEventListener("click", async () => {
         const confirmDelete = confirm("Are you sure you want to delete this User?");
@@ -169,8 +236,6 @@ if (deleteUserBtn) {
             console.error(error)
             alert("Something went wrong");
         }
-
-
     })
 }
 
