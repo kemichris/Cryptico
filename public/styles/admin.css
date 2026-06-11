@@ -93,7 +93,7 @@ nav i {
 .user-setting-dropdown {
     position: fixed;
     top: 4rem;
-    right: 1rem;
+    right: 0;
     padding: 1.5rem 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
     display: flex;
@@ -107,28 +107,27 @@ nav i {
     transition: opacity 0.5s ease-in-out;
 }
 
-.user-setting-dropdown a {
-    text-decoration: none;
+.user-setting-dropdown button {
+    border: none;
+    display: flex;
     color: #212529;
+    background-color: transparent;
     font-size: 0.8125rem;
     padding: 0.5rem 0 0.5rem 1rem;
     cursor: pointer;
+    width: 100%;
 }
 
-.user-setting-dropdown a:hover {
+.user-setting-dropdown button:hover {
     background-color: #E9ECEF;
     
 }
 
-.logout {
+.user-setting-dropdown .logout {
     border-top: 1px solid #8d9498;
     padding-top: 0.5rem;
-    display: flex;
 }
 
-.logout a {
-    width: 100%;
-}
 
 .user-setting-dropdown.inactive {
     opacity: 1;

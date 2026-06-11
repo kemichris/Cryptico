@@ -47,4 +47,14 @@ function hideLoader() {
     if (loader) loader.style.display = "none";
 }
 
+/* ////// LOGOUT ////// */
+const adminLogout = document.getElementById('admin-logout');
+if (adminLogout) {
+    adminLogout.addEventListener('click', () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/admin/login.html';
+    });
+}
+
 window.hideLoader = hideLoader;
