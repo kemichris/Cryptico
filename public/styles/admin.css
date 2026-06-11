@@ -741,7 +741,7 @@ td {
     margin-bottom: 0.5rem;
 }
 
-.add-new-users input {
+.add-new-users input, .add-new-users select {
     padding: 0.6rem 1rem;
     font-size: 0.875rem;
     border-radius: 0.25rem;

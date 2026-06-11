@@ -203,13 +203,64 @@ editUserForm.addEventListener("submit", async (e) => {
 
         alert('User updated successfully');
 
-        // optional: go back to plans page
+        // refresh page
         window.location.href = '/admin/user-details.html';
 
     } catch (error) {
         console.error('Update user error:', error)
     }
 })
+
+//////// Credit/Debit User ////////
+const creditDebitBtn = document.getElementById("credit-debit-btn");
+const creditDebitContainer = document.getElementById("credit-debit-container")
+const closeDcBtn = document.getElementById("close-cd-user")
+const creditDebitForm = document.getElementById("credit-debit-form")
+
+creditDebitBtn.addEventListener("click", ()=>{
+    usersActionDropdown.classList.toggle("active");
+    creditDebitContainer.classList.add("active")
+})
+
+closeDcBtn.addEventListener("click", () => {
+    creditDebitContainer.classList.remove("active")
+});
+
+creditDebitForm.addEventListener("submit", async (e)=> {
+    e.preventDefault()
+    
+    const formData = new FormData(creditDebitForm);
+    const formObject = Object.fromEntries(formData.entries());
+
+    try {
+        const res = await fetch(`/api/admin/users/${userId}/credit-debit`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${Auth.getToken()}`
+            },
+            body: JSON.stringify(formObject)
+        })
+
+        const data = await res.json()
+
+        if (!res.ok) {
+            alert(data.message);
+            return;
+        }
+
+        alert(data.message);
+        // refresh page
+        window.location.href = '/admin/user-details.html';
+
+
+    } catch (error) {
+        
+    }
+
+})
+
+
 
 //////// Login as User ////////
 const loginAsUserBtn = document.getElementById("login-as-user-btn")
@@ -245,6 +296,37 @@ loginAsUserBtn.addEventListener("click", async () => {
         console.error(err);
     }
 });
+
+//////// Reset user password ////////
+const resetUserPasswordBtn = document.getElementById("reset-password-btn");
+
+resetUserPasswordBtn.addEventListener("click", async ()=> {
+    const confirmReset = confirm("Are you sure you want to reset this user passwordto user01234#?");
+    if (!confirmReset) {
+        alert("Password reset cancelled");
+        return;
+    }
+
+    try {
+        const res = await fetch(`/api/admin/users/${userId}/reset-password`, {
+            method: "PATCH",
+            headers: {
+                Authorization: `Bearer ${Auth.getToken()}`
+            }           
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message);
+            return;
+        }
+
+        alert(data.message)
+    } catch (error) {
+        console.error("error resetting password", error)
+    }
+} )
 
 //////// Delete User ////////
 const deleteUserBtn = document.getElementById("delete-user-btn")

@@ -8,6 +8,8 @@ const {
   loginAsUser,
   updateUser,
   toggleUserStatus,
+  creditDebitUser,
+  resetUserPassword,
   deleteUser,
   getAllDeposits,
   approveOrRejectDeposit,
@@ -45,6 +47,8 @@ router.get('/users/:id', protect, adminOnly, getOneUser);
 router.post('/users/:id/impersonate', protect, adminOnly, loginAsUser);
 router.patch('/users/:id', protect, adminOnly, updateUser);
 router.patch('/users/:id/toggle-status', protect, adminOnly, toggleUserStatus);
+router.post('/users/:id/credit-debit', protect, adminOnly, creditDebitUser);
+router.patch('/users/:id/reset-password', protect, adminOnly, resetUserPassword);
 router.delete('/users/:id', protect, adminOnly, deleteUser);
 
 // ─── DEPOSITS ─────────────────────────────────

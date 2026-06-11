@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Investment = require('../models/Investment');
 const Transaction = require('../models/Transaction');
@@ -188,6 +189,123 @@ const toggleUserStatus = async (req, res) => {
 
   } catch (err) {
     return res.status(500).json({ message: err.message });
+  }
+};
+
+// Debit/Credit User
+const creditDebitUser = async (req, res) => {
+  try {
+    const { amount, type, action } = req.body;
+
+    if (!amount || amount <= 0) {
+      return res.status(400).json({
+        message: "Amount must be greater than 0"
+      });
+    }
+
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    const amt = Number(amount);
+
+    // ─────────────────────────────
+    // 1. DEPOSIT FLOW (transaction + wallet update)
+    // ─────────────────────────────
+    if (type === "deposit") {
+
+      const deposit = await Transaction.create({
+        user: user._id,
+        type: "deposit",
+        amount: amt,
+        method: "admin",
+        status: "approved",
+        approvedBy: req.user._id
+      });
+
+      // credit balance automatically
+      user.balance += amt;
+
+      await user.save();
+
+      return res.status(200).json({
+        message: "Deposit processed successfully",
+        deposit,
+        user
+      });
+    }
+
+    // ─────────────────────────────
+    // 2. WALLET FLOW
+    // ─────────────────────────────
+    const allowedFields = ["balance", "totalEarnings", "referralBonus"];
+
+    if (!allowedFields.includes(type)) {
+      return res.status(400).json({
+        message: "Invalid wallet field selected"
+      });
+    }
+
+    if (!["credit", "debit"].includes(action)) {
+      return res.status(400).json({
+        message: "Invalid action"
+      });
+    }
+
+    if (action === "credit") {
+      user[type] += amt;
+    }
+
+    if (action === "debit") {
+      user[type] -= amt;
+      if (user[type] < 0) user[type] = 0;
+    }
+
+    await user.save();
+
+    return res.status(200).json({
+      message: `User ${type} ${action}ed successfully`,
+      user
+    });
+
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message
+    });
+  }
+};
+
+// Reset user password
+const resetUserPassword = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: 'User not found'
+      });
+    }
+
+    // hash default password (same pattern as register)
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash('user01234#', salt);
+
+    user.password = hashedPassword;
+
+    await user.save();
+
+    return res.status(200).json({
+      message: 'Password reset successfully to default password'
+    });
+
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message
+    });
   }
 };
 
@@ -682,6 +800,8 @@ module.exports = {
   loginAsUser,
   updateUser,
   toggleUserStatus,
+  creditDebitUser,
+  resetUserPassword,
   deleteUser,
   getAllDeposits,
   approveOrRejectDeposit,
