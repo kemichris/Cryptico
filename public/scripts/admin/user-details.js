@@ -255,7 +255,7 @@ creditDebitForm.addEventListener("submit", async (e)=> {
 
 
     } catch (error) {
-        
+        console.error(error)
     }
 
 })

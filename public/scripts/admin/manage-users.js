@@ -98,7 +98,7 @@ const loadUsers = async ()=> {
             return;
         }
 
-        users.forEach((user, index) => {
+        users.forEach((user) => {
             const tr = document.createElement('tr');
             tr.classList.add('tr');
             tr.innerHTML = `

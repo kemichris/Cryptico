@@ -87,7 +87,7 @@ const getActiveInvestments = async () => {
             return;
         }
 
-        invData.forEach((inv, index) => {
+        invData.forEach((inv) => {
             const tr = document.createElement('tr');
             tr.classList.add('tr');
             tr.innerHTML = `
