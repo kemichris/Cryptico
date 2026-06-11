@@ -27,18 +27,38 @@
 
         </nav>
         <div class="user-setting-dropdown">
-           
+
             <button type="button">Account setting</button>
             <button type="button">Change password</button>
             <button type="button" class="logout" id="admin-logout">Logout</button>
-      
-            
+
+
         </div>
     </header>
 
     <main>
-       <div class="side-menu-main flex">
-<!-- SIDE MENU  -->
+        <!-- PAGE LOADER -->
+        <div id="pageLoader" class="page-loader">
+            <div class="loader-spinner"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
+
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
+
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="side-menu-main flex">
+            <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
                     <p class="admin-name" id="admin-name">Admin Name</p>
@@ -77,13 +97,13 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
                     </div>
                 </a>
-                 <a href="/admin/kyc.html">
+                <a href="/admin/kyc.html">
                     <div class="kyc-application admin-div">
                         <i class="fa-solid fa-user-check"></i>
                         <span>KYC Applications</span>
@@ -116,7 +136,7 @@
                 </div>
                 <div class="setting-dropdown dropdown inactive">
                     <ul>
-                         <li>
+                        <li>
                             <a href="/admin/payment-setting.html">Payment Setting</a>
                         </li>
                         <li>
@@ -129,41 +149,41 @@
                     </ul>
                 </div>
 
-                
+
 
 
             </div>
 
             <!-- MAIN DASHBOARD  -->
             <div class="main-dashboard">
-                
+
                 <h1>Add New Manager</h1>
 
                 <!-- ADMIN FORM  -->
                 <div class="admin-form">
-                   <form action="">
-                    <span>First name</span>
-                    <input type="text" name="" id="">
-                    <span>Last name</span>
-                    <input type="text" name="" id="">
-                    <span>Email address</span>
-                    <input type="email" name="" id="">
-                    <span>Phone number</span>
-                    <input type="tel" name="" id="">
-                    <span>Type</span>
-                    <select name="" id="">
-                        <option value="">Super admin</option>
-                        <option value="">Admin</option>
-                        <option value="">Conversion Agent</option>
-                    </select>
-                    <span>Password</span>
-                    <input type="password" name="" id="" required>
-                    <span>Confirm password</span>
-                    <input type="password" name="" id="" required>
+                    <form action="">
+                        <span>First name</span>
+                        <input type="text" name="" id="">
+                        <span>Last name</span>
+                        <input type="text" name="" id="">
+                        <span>Email address</span>
+                        <input type="email" name="" id="">
+                        <span>Phone number</span>
+                        <input type="tel" name="" id="">
+                        <span>Type</span>
+                        <select name="" id="">
+                            <option value="">Super admin</option>
+                            <option value="">Admin</option>
+                            <option value="">Conversion Agent</option>
+                        </select>
+                        <span>Password</span>
+                        <input type="password" name="" id="" required>
+                        <span>Confirm password</span>
+                        <input type="password" name="" id="" required>
 
-                    <button type="submit"><i class="fa-solid fa-plus"></i> Save user</button>
+                        <button type="submit"><i class="fa-solid fa-plus"></i> Save user</button>
 
-                   </form>
+                    </form>
                 </div>
 
 
@@ -171,7 +191,7 @@
 
             </div>
     </main>
-    
+
     <script src="/scripts/admin/admin-main.js"></script>
 
 

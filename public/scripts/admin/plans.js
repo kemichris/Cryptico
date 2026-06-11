@@ -104,8 +104,11 @@ planContainer.addEventListener("click", async (e) => {
     if (deleteBtn) {
         const planId = deleteBtn.dataset.id;
 
-        const confirmDelete = confirm("Are you sure you want to delete this plan?");
-        if (!confirmDelete) return;
+        const confirmed = await showConfirm(
+            "Are you sure you want to delete this plan?"
+        );
+
+        if (!confirmed) return;
 
         try {
             const res = await fetch(`/api/admin/plans/${planId}`, {
@@ -125,7 +128,7 @@ planContainer.addEventListener("click", async (e) => {
             // remove from UI instantly
             deleteBtn.closest(".package-card").remove();
 
-            alert("Plan deleted successfully");
+            showToast(data.message);;
 
         } catch (err) {
             console.error("Delete error:", err);

@@ -106,9 +106,9 @@ const loadDeposits = async () => {
 
                     ${deposits.status === "pending" ? `
                         <button class="deposit-action-confirm" data-id="${deposits._id}">Confirm</button>
-                        <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
                         ` : ""
-                }
+                    }
+                    <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
                 </td>
             `;
             tbBody.appendChild(tr)

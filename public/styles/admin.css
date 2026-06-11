@@ -58,6 +58,58 @@ i {
   100%{ transform: rotate(360deg); }
 }
 
+/* Modal and toaster  */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.success { background: green; }
+.toast.error { background: red; }
+
+
+.confirm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.confirm-modal.hidden {
+    display: none;
+}
+
+.confirm-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
 /* ////// NAV BAR SECTION ////// */
 nav {
     background-color: #0D4152;
