@@ -103,8 +103,12 @@ const loadDeposits = async () => {
                     ${deposits.proofImage ?
                     `<button class="deposit-action-view" id="openDepositModal" data-image="${deposits.proofImage}" >
                         <i class="fa-solid fa-eye"></i></button>` : ""}
-                    <button class="deposit-action-confirm" data-id="${deposits._id}">Confirm</button>
-                    <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
+
+                    ${deposits.status === "pending" ? `
+                        <button class="deposit-action-confirm" data-id="${deposits._id}">Confirm</button>
+                        <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
+                        ` : ""
+                }
                 </td>
             `;
             tbBody.appendChild(tr)
@@ -124,6 +128,7 @@ const loadDeposits = async () => {
     }
 }
 
+// Deposit Action buttons
 const proofModal = document.getElementById("proofModal")
 const closeDepositModal = document.getElementById("closeModal");
 const depositImg = document.getElementById("proofImage")
@@ -142,6 +147,8 @@ tbBody.addEventListener("click", async (e) => {
     if (confirmBtn) {
         const depositId = confirmBtn.dataset.id;
         console.log("Confirm:", depositId);
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = "Processing...";
 
         try {
             const res = await fetch(`/api/admin/deposits/${depositId}`, {
@@ -175,6 +182,9 @@ tbBody.addEventListener("click", async (e) => {
         const depositId = deleteBtn.dataset.id;
         const confirmDelete = confirm("Are you sure you want to delete this deposit?");
         if (!confirmDelete) return;
+
+        deleteBtn.textContent = "Deleting...";
+        deleteBtn.disabled = true;
 
         try {
             const res = await fetch(`/api/admin/deposits/${depositId}`, {
