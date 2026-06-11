@@ -138,7 +138,7 @@ const loginAsUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     // pull out only the fields admin is allowed to update
-    const {userName, fullName, email, phoneNumber, country} = req.body;
+    const { userName, fullName, email, phoneNumber, country } = req.body;
 
     // find the user first to make sure they exist
     const user = await User.findById(req.params.id);
@@ -318,7 +318,7 @@ const deleteUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" })
     }
 
-    res.status(200).json({ message: "User deleted successfully" })
+    res.status(200).json({ message: "User deleted successfully", deletedUser })
 
   } catch (err) {
     res.status(500).json({ message: err.message })
@@ -389,6 +389,26 @@ const approveOrRejectDeposit = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Delete deposit
+const deleteDeposit = async (req, res) => {
+  try {
+    const deletedDeposit = await Transaction.findByIdAndDelete({
+      _id: req.params.id,
+      type: "deposit"
+    })
+
+    if (!deletedDeposit) {
+      return res.status(404).json({ message: "deposit not found" })
+    }
+
+    res.status(200).json({ message: "Deposit deleted successfully", deletedDeposit })
+
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+
+}
 
 // Get all Withdrawals 
 const getAllWithdrawals = async (req, res) => {
@@ -805,6 +825,7 @@ module.exports = {
   deleteUser,
   getAllDeposits,
   approveOrRejectDeposit,
+  deleteDeposit,
   getAllWithdrawals,
   approveOrRejectWithdrawal,
   getPlans,

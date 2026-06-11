@@ -13,6 +13,7 @@ const {
   deleteUser,
   getAllDeposits,
   approveOrRejectDeposit,
+  deleteDeposit,
   getAllWithdrawals,
   approveOrRejectWithdrawal,
   getPlans,
@@ -54,6 +55,7 @@ router.delete('/users/:id', protect, adminOnly, deleteUser);
 // ─── DEPOSITS ─────────────────────────────────
 router.get('/deposits', protect, adminOnly, getAllDeposits);
 router.put('/deposits/:id', protect, adminOnly, approveOrRejectDeposit);
+router.delete('/deposits/:id/', protect, adminOnly, deleteDeposit);
 
 // ─── WITHDRAWALS ──────────────────────────────
 router.get('/withdrawals', protect, adminOnly, getAllWithdrawals);

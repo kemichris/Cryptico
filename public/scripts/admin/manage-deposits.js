@@ -60,8 +60,8 @@ function updatePaginationButtons(rows) {
 }
 
 
-
-const loadDeposits = async ()=> {
+// Load Deposits
+const loadDeposits = async () => {
     try {
         const res = await fetch('/api/admin/deposits', {
             headers: {
@@ -69,7 +69,7 @@ const loadDeposits = async ()=> {
             }
         });
 
-        if(!res.ok) {
+        if (!res.ok) {
             localStorage.clear();
             window.location.href = "/admin/login.html";
             return;
@@ -100,9 +100,11 @@ const loadDeposits = async ()=> {
                 <td>${deposits.status}</td>
                 <td>${new Date(deposits.createdAt).toLocaleDateString()}</td>
                 <td class="deposit-action">
-                    <button class="deposit-action-view"><i class="fa-solid fa-eye"></i></button>
-                    <button class="deposit-action-del">Delete</button>
-                    <button class="deposit-action-confirm">Confirm</button>
+                    ${deposits.proofImage ?
+                    `<button class="deposit-action-view" id="openDepositModal" data-image="${deposits.proofImage}" >
+                        <i class="fa-solid fa-eye"></i></button>` : ""}
+                    <button class="deposit-action-confirm" data-id="${deposits._id}">Confirm</button>
+                    <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
                 </td>
             `;
             tbBody.appendChild(tr)
@@ -121,5 +123,85 @@ const loadDeposits = async ()=> {
         hideLoader();
     }
 }
+
+const proofModal = document.getElementById("proofModal")
+const closeDepositModal = document.getElementById("closeModal");
+const depositImg = document.getElementById("proofImage")
+
+tbBody.addEventListener("click", async (e) => {
+    // View users deposit proof
+    const modalBtn = e.target.closest(".deposit-action-view");
+    if (modalBtn) {
+        depositImg.src = modalBtn.dataset.image;
+        proofModal.style.display = "flex";
+        return;
+    }
+
+    // Confirm Deposits
+    const confirmBtn = e.target.closest(".deposit-action-confirm");
+    if (confirmBtn) {
+        const depositId = confirmBtn.dataset.id;
+        console.log("Confirm:", depositId);
+
+        try {
+            const res = await fetch(`/api/admin/deposits/${depositId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${Auth.getToken()}`
+                },
+                body: JSON.stringify({ status: "approved" })
+            });
+
+            const data = await res.json()
+            if (!res.ok) {
+                alert(data.message);
+                return;
+            }
+
+            alert(data.message)
+            loadDeposits();
+
+        } catch (error) {
+            console.error("Error comfirming deposit:", error)
+        }
+
+        return;
+    }
+
+    // Delete Deposits 
+    const deleteBtn = e.target.closest(".deposit-action-del");
+    if (deleteBtn) {
+        const depositId = deleteBtn.dataset.id;
+        const confirmDelete = confirm("Are you sure you want to delete this deposit?");
+        if (!confirmDelete) return;
+
+        try {
+            const res = await fetch(`/api/admin/deposits/${depositId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${Auth.getToken()}`
+                }
+            })
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.message || "Failed to delete deposit");
+                return;
+            }
+
+            alert(data.message);
+            loadDeposits()
+        } catch (error) {
+            console.error("Error deleting deposit", error)
+        }
+    }
+
+});
+
+closeDepositModal.addEventListener("click", () => {
+    proofModal.style.display = 'none';
+})
 
 loadDeposits()

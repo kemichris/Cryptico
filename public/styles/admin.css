@@ -812,6 +812,30 @@ td {
     background-color: #0e4152;
 }
 
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal img{
+    max-width:90%;
+    max-height:90%;
+}
+
+#closeModal{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:#fff;
+    font-size:30px;
+    cursor:pointer;
+}
+
 /* ////////////////////////////// EMAIL SERVICES /////////////////////////////////////// */
 .email-form, .admin-form, .payment-setting {
     margin-top: 2.5rem;
