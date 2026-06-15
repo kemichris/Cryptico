@@ -11,7 +11,7 @@ const params = new URLSearchParams(window.location.search);
 const userId = params.get("id") || sessionStorage.getItem("userId");
 
 if (!userId) {
-    alert("No user selected");
+    showToast("No user selected");
     window.location.href = "/admin/manage-users.html";
 }
 
@@ -102,14 +102,14 @@ if (verifyKycBtn) {
 
             const data = await res.json();
             if (res.ok) {
-                alert(data.message || "KYC verified successfully");
+                showToast(data.message || "KYC verified successfully");
                 getUserDetails(); // Refresh user details to show updated KYC status
             } else {
-                alert(data.message || "Failed to verify KYC");
+                showToast(data.message || "Failed to verify KYC");
             }
         } catch (error) {
             console.error("Error verifying KYC:", error);
-            alert("An error occurred while verifying KYC");
+            showToast("An error occurred while verifying KYC");
         }
     });
 }
@@ -129,10 +129,10 @@ toggleStatusBtn.addEventListener("click", async () => {
         const data = await res.json();
 
         if (res.ok) {
-            alert(data.message);
+            showToast(data.message);
             getUserDetails(); // refresh UI
         } else {
-            alert(data.message);
+            showToast(data.message);
         }
 
     } catch (error) {
@@ -197,11 +197,11 @@ editUserForm.addEventListener("submit", async (e) => {
         const data = await res.json();
 
         if (!res.ok) {
-            alert(data.message || 'Failed to update user');
+            showToast(data.message || 'Failed to update user');
             return;
         }
 
-        alert('User updated successfully');
+        showToast('User updated successfully');
 
         // refresh page
         window.location.href = '/admin/user-details.html';
@@ -245,11 +245,11 @@ creditDebitForm.addEventListener("submit", async (e)=> {
         const data = await res.json()
 
         if (!res.ok) {
-            alert(data.message);
+            showToast(data.message);
             return;
         }
 
-        alert(data.message);
+        showToast(data.message);
         // refresh page
         window.location.href = '/admin/user-details.html';
 
@@ -265,9 +265,9 @@ creditDebitForm.addEventListener("submit", async (e)=> {
 //////// Login as User ////////
 const loginAsUserBtn = document.getElementById("login-as-user-btn")
 loginAsUserBtn.addEventListener("click", async () => {
-    const confirmLogin = confirm("You are about to login as this User?");
+    const confirmLogin = await showConfirm("You are about to login as this User?");
     if (!confirmLogin) {
-        alert("login cancelled");
+        showToast("login cancelled");
         return;
     }
 
@@ -282,7 +282,7 @@ loginAsUserBtn.addEventListener("click", async () => {
         const data = await res.json();
 
         if (!res.ok) {
-            alert(data.message);
+            showToast(data.message);
             return;
         }
 
@@ -301,9 +301,9 @@ loginAsUserBtn.addEventListener("click", async () => {
 const resetUserPasswordBtn = document.getElementById("reset-password-btn");
 
 resetUserPasswordBtn.addEventListener("click", async ()=> {
-    const confirmReset = confirm("Are you sure you want to reset this user passwordto user01234#?");
+    const confirmReset = await showConfirm("Are you sure you want to reset this user password to user01234#?");
     if (!confirmReset) {
-        alert("Password reset cancelled");
+        showToast("Password reset cancelled");
         return;
     }
 
@@ -318,11 +318,11 @@ resetUserPasswordBtn.addEventListener("click", async ()=> {
         const data = await res.json();
 
         if (!res.ok) {
-            alert(data.message);
+            showToast(data.message);
             return;
         }
 
-        alert(data.message)
+        showToast(data.message)
     } catch (error) {
         console.error("error resetting password", error)
     }
@@ -332,9 +332,10 @@ resetUserPasswordBtn.addEventListener("click", async ()=> {
 const deleteUserBtn = document.getElementById("delete-user-btn")
 if (deleteUserBtn) {
     deleteUserBtn.addEventListener("click", async () => {
-        const confirmDelete = confirm("Are you sure you want to delete this User?");
+        const confirmDelete = await showConfirm("Are you sure you want to delete this User?");
+
         if (!confirmDelete) {
-            alert("Deletion cancelled");
+            showToast("Deletion cancelled");
             return;
         }
 
@@ -349,17 +350,16 @@ if (deleteUserBtn) {
             const data = await res.json()
 
             if (!res.ok) {
-                alert(data.message || "Failed to delete User");
+                showToast(data.message || "Failed to delete User");
                 return;
             }
 
-            alert(data.message)
+            showToast(data.message)
 
             window.location.href = '/admin/manage-users.html';
 
         } catch (error) {
             console.error(error)
-            alert("Something went wrong");
         }
     })
 }
