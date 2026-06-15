@@ -121,7 +121,7 @@ planContainer.addEventListener("click", async (e) => {
             const data = await res.json();
 
             if (!res.ok) {
-                alert(data.message || "Failed to delete plan");
+                showToast(data.message || "Failed to delete plan");
                 return;
             }
 

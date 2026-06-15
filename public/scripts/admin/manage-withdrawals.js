@@ -99,6 +99,14 @@ const loadWithdrawals = async () => {
                 <td>${withdrawal.method}</td>
                 <td>${withdrawal.status}</td>
                 <td>${new Date(withdrawal.createdAt).toLocaleDateString()}</td>
+                <td class="deposit-action">
+                    ${withdrawal.status === "pending" ? `
+                        <button class="table-action-confirm" data-id="${withdrawal._id}">Confirm</button>
+                        <button class="table-action-reject" data-id="${withdrawal._id}">Reject</button>
+                        ` : ""
+                    }
+                    <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
+                </td>
                 
             `;
             tbBody.appendChild(tr)
@@ -117,5 +125,106 @@ const loadWithdrawals = async () => {
         hideLoader();
     }
 }
+
+tbBody.addEventListener("click", async (e)=>{
+    // Confirm Withdrawals
+    const confirmBtn = e.target.closest(".table-action-confirm");
+    if (confirmBtn) {
+        const withdrawalId = confirmBtn.dataset.id;
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = "Processing...";
+
+        try {
+            const res = await fetch(`/api/admin/withdrawals/${withdrawalId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${Auth.getToken()}`
+                },
+                body: JSON.stringify({ status: "approved" })
+            });
+
+            const data = await res.json()
+            if (!res.ok) {
+               showToast(data.message);;
+                return;
+            }
+
+            showToast(data.message);
+            loadDeposits();
+
+        } catch (error) {
+            console.error("Error comfirming withdrawal:", error)
+        }
+        return;
+    }
+
+    // Reject withdrawal 
+    const rejectBtn = e.target.closest(".table-action-reject")
+    if (rejectBtn) {
+        const withdrawalId = rejectBtn.dataset.id;
+        rejectBtn.disabled = true;
+        rejectBtn.textContent = "Processing...";
+
+        try {
+            const res = await fetch(`/api/admin/withdrawals/${withdrawalId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${Auth.getToken()}`
+                },
+                body: JSON.stringify({ status: "rejected" })
+            });
+
+            const data = await res.json()
+            if (!res.ok) {
+               showToast(data.message);;
+                return;
+            }
+
+            showToast(data.message);
+            loadDeposits();
+
+        } catch (error) {
+            console.error("Error Rejecting withdrawal:", error)
+        }
+        return;
+    }
+
+    // Delete withdrawals 
+    const deleteBtn = e.target.closest(".table-action-del");
+    if (deleteBtn) {
+        const depositId = deleteBtn.dataset.id;
+        const confirmed = await showConfirm(
+            "Are you sure you want to delete this withdrawal?"
+        );
+
+        if (!confirmed) return;
+
+        deleteBtn.textContent = "Deleting...";
+        deleteBtn.disabled = true;
+
+        try {
+            const res = await fetch(`/api/admin/deposits/${depositId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${Auth.getToken()}`
+                }
+            })
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.message || "Failed to delete withdrawal");
+                return;
+            }
+
+            alert(data.message);
+            loadDeposits()
+        } catch (error) {
+            console.error("Error deleting withdrawal", error)
+        }
+    }
+})
 
 loadWithdrawals()

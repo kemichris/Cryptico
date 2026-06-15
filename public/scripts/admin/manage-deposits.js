@@ -101,14 +101,14 @@ const loadDeposits = async () => {
                 <td>${new Date(deposits.createdAt).toLocaleDateString()}</td>
                 <td class="deposit-action">
                     ${deposits.proofImage ?
-                    `<button class="deposit-action-view" id="openDepositModal" data-image="${deposits.proofImage}" >
+                    `<button class="table-action-view" id="openDepositModal" data-image="${deposits.proofImage}" >
                         <i class="fa-solid fa-eye"></i></button>` : ""}
 
                     ${deposits.status === "pending" ? `
-                        <button class="deposit-action-confirm" data-id="${deposits._id}">Confirm</button>
+                        <button class="table-action-confirm" data-id="${deposits._id}">Confirm</button>
                         ` : ""
                     }
-                    <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
+                    <button class="table-action-del" data-id="${deposits._id}">Delete</button>
                 </td>
             `;
             tbBody.appendChild(tr)
@@ -135,7 +135,7 @@ const depositImg = document.getElementById("proofImage")
 
 tbBody.addEventListener("click", async (e) => {
     // View users deposit proof
-    const modalBtn = e.target.closest(".deposit-action-view");
+    const modalBtn = e.target.closest(".table-action-view");
     if (modalBtn) {
         depositImg.src = modalBtn.dataset.image;
         proofModal.style.display = "flex";
@@ -143,10 +143,9 @@ tbBody.addEventListener("click", async (e) => {
     }
 
     // Confirm Deposits
-    const confirmBtn = e.target.closest(".deposit-action-confirm");
+    const confirmBtn = e.target.closest(".table-action-confirm");
     if (confirmBtn) {
         const depositId = confirmBtn.dataset.id;
-        console.log("Confirm:", depositId);
         confirmBtn.disabled = true;
         confirmBtn.textContent = "Processing...";
 
@@ -177,11 +176,14 @@ tbBody.addEventListener("click", async (e) => {
     }
 
     // Delete Deposits 
-    const deleteBtn = e.target.closest(".deposit-action-del");
+    const deleteBtn = e.target.closest(".table-action-del");
     if (deleteBtn) {
         const depositId = deleteBtn.dataset.id;
-        const confirmDelete = confirm("Are you sure you want to delete this deposit?");
-        if (!confirmDelete) return;
+        const confirmed = await showConfirm(
+            "Are you sure you want to delete this deposit?"
+        );
+
+        if (!confirmed) return;
 
         deleteBtn.textContent = "Deleting...";
         deleteBtn.disabled = true;

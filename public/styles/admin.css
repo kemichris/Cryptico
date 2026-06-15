@@ -852,16 +852,20 @@ td {
 
 
 /* ////////////////////////////// MANAGE DEPOSITS /////////////////////////////////////// */
-.deposit-action-view {
+.table-action-view {
     background-color: #48abf7;
 }
 
-.deposit-action-del {
+.table-action-del {
     background-color: #f25961;
 }
 
-.deposit-action-confirm {
+.table-action-confirm {
     background-color: #0e4152;
+}
+
+.table-action-reject {
+     background-color: #7c4043;
 }
 
 .modal{
