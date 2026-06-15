@@ -161,11 +161,11 @@ tbBody.addEventListener("click", async (e) => {
 
             const data = await res.json()
             if (!res.ok) {
-                alert(data.message);
+                showToast(data.message);
                 return;
             }
 
-            alert(data.message)
+            showToast(data.message)
             loadDeposits();
 
         } catch (error) {

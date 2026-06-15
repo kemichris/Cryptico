@@ -87,23 +87,15 @@ planForm.addEventListener('submit', async (e) => {
         console.log('Response:', data);
 
         if (res.ok) {
-
-            alert('Plan created successfully');
-
+            showToast('Plan created successfully')
             planForm.reset();
-
             window.location.href = '/admin/plans.html';
-
         } else {
-
-            alert(data.message || 'Something went wrong');
+            showToast(data.message || 'Something went wrong')
         }
 
     } catch (error) {
-
         console.error('Plan error:', error);
-
-        alert('Server error');
     } finally {
         hideLoader();
         submitBtn.disabled = false;

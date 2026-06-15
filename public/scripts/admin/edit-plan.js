@@ -3,7 +3,7 @@ const planId = params.get("id") || sessionStorage.getItem("editPlanId");
 const editPlanForm = document.getElementById('edit-plan-form')
 
 if (!planId) {
-    alert("No plan selected");
+   showToast("No plan selected")
     window.location.href = "/admin/plans.html";
 }
 
@@ -60,18 +60,17 @@ editPlanForm.addEventListener('submit', async (e) => {
         const data = await res.json();
 
         if (!res.ok) {
-            alert(data.message || 'Failed to update plan');
+            showToast(data.message || 'Failed to update plan')
             return;
         }
 
-        alert('Plan updated successfully');
+        showToast('Plan updated successfully');
 
         // optional: go back to plans page
         window.location.href = '/admin/plans.html';
 
     } catch (error) {
         console.error('Update plan error:', error);
-        alert('Something went wrong');
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Save';
