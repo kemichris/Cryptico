@@ -128,11 +128,11 @@ planContainer.addEventListener("click", async (e) => {
             // remove from UI instantly
             deleteBtn.closest(".package-card").remove();
 
-            showToast(data.message);;
+            showToast(data.message);
 
         } catch (err) {
             console.error("Delete error:", err);
-            alert("Something went wrong");
+            showToast("Something went wrong");
         }
     };
 });

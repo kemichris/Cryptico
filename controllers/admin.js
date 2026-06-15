@@ -453,8 +453,6 @@ const approveOrRejectWithdrawal = async (req, res) => {
       withdrawal
     });
 
-
-
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
