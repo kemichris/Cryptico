@@ -64,7 +64,7 @@ const params = new URLSearchParams(window.location.search);
 const userId = params.get("id") || sessionStorage.getItem("userId");
 
 if (!userId) {
-    alert("No user selected");
+    showToast("No user selected");
     window.location.href = "/admin/manage-users.html";
 }
 
@@ -115,9 +115,12 @@ const getUserInvestments = async () => {
                 <td>${new Date(inv.startDate).toLocaleDateString()}</td>
                 <td>${new Date(inv.endDate).toLocaleDateString()}</td>
                 <td class="action-btns">
-                    <button class="complete-btn" data-id="${inv.id}">Mark as complete</button>
-                    <button class="cancel-btn" data-id="${inv.id}">Cancel Investment</button>
-                    <button class="del-btn" data-id="${inv.id}">Delete Plan</button> 
+                    ${inv.status === "active" ? `
+                        <button class="complete-btn" data-id="${inv._id}">Mark as complete</button>
+                        <button class="cancel-btn" data-id="${inv._id}">Cancel Investment</button>
+                        ` : ""
+                    }
+                    <button class="del-btn" data-id="${inv._id}">Delete Plan</button> 
                 </td>
             `;
             tbBody.appendChild(tr);
@@ -139,73 +142,124 @@ const getUserInvestments = async () => {
 
 // user investment button actins
 tbBody.addEventListener('click', async (e) => {
-    const target = e.target;
-    const invId = target.getAttribute('data-id');
 
-    if (target.classList.contains('complete-btn')) {
-        if (confirm('Are you sure you want to mark this investment as complete?')) {
-            try {
-                const res = await fetch(`/api/admin/investments/${invId}/complete`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${Auth.getToken()}`,
-                    }
-                });
+    // COMPLETE INVESTMENT
+    const completeBtn = e.target.closest('.complete-btn');
 
-                if (!res.ok) {
-                    throw new Error(`Failed to complete investment: ${res.status} ${res.statusText}`);
+    if (completeBtn) {
+        const invId = completeBtn.dataset.id;
+
+        const confirmed = await showConfirm(
+            'Are you sure you want to mark this investment as complete?'
+        );
+
+        if (!confirmed) return;
+
+        try {
+            const res = await fetch(`/api/admin/investments/${invId}/complete`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${Auth.getToken()}`
                 }
+            });
 
-                alert('Investment marked as complete');
-                getUserInvestments();
-            } catch (error) {
-                console.error('Error completing investment:', error);
+            const data = await res.json();
+
+            if (!res.ok) {
+                showToast(data.message || 'Failed to complete investment', 'error');
+                return;
             }
+
+            showToast('Investment marked as complete', 'success');
+            getUserInvestments();
+
+        } catch (error) {
+            console.error('Error completing investment:', error);
+            showToast('Error completing investment', 'error');
         }
-    } else if (target.classList.contains('cancel-btn')) {
-        if (confirm('Are you sure you want to cancel this investment?')) {
-            try {
-                const res = await fetch(`/api/admin/investments/${invId}/cancel`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${Auth.getToken()}`,
-                    }
-                });
 
-                if (!res.ok) {
-                    throw new Error(`Failed to cancel investment: ${res.status} ${res.statusText}`);
-                }
-
-                alert('Investment cancelled');
-                getUserInvestments();
-            } catch (error) {
-                console.error('Error cancelling investment:', error);
-            }
-        }
-    } else if (target.classList.contains('del-btn')) {
-        if (confirm('Are you sure you want to delete this investment? This action cannot be undone.')) {
-            try {
-                const res = await fetch(`/api/admin/investments/${invId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${Auth.getToken()}`,
-                    }
-                });
-
-                if (!res.ok) {
-                    throw new Error(`Failed to delete investment: ${res.status} ${res.statusText}`);
-                }
-
-                alert('Investment deleted');
-                getUserInvestments();
-            } catch (error) {
-                console.error('Error deleting investment:', error);
-            }
-        }
+        return;
     }
+
+    // CANCEL INVESTMENT
+    const cancelBtn = e.target.closest('.cancel-btn');
+
+    if (cancelBtn) {
+        const invId = cancelBtn.dataset.id;
+
+        const confirmed = await showConfirm(
+            'Are you sure you want to cancel this investment?'
+        );
+
+        if (!confirmed) return;
+
+        try {
+            const res = await fetch(`/api/admin/investments/${invId}/cancel`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${Auth.getToken()}`
+                }
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                showToast(data.message || 'Failed to cancel investment', 'error');
+                return;
+            }
+
+            showToast('Investment cancelled', 'success');
+            getUserInvestments();
+
+        } catch (error) {
+            console.error('Error cancelling investment:', error);
+            showToast('Error cancelling investment', 'error');
+        }
+
+        return;
+    }
+
+    // DELETE INVESTMENT
+    const deleteBtn = e.target.closest('.del-btn');
+
+    if (deleteBtn) {
+        const invId = deleteBtn.dataset.id;
+
+        const confirmed = await showConfirm(
+            'Are you sure you want to delete this investment? This action cannot be undone.'
+        );
+
+        if (!confirmed) return;
+
+        try {
+            const res = await fetch(`/api/admin/investments/${invId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${Auth.getToken()}`
+                }
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                showToast(data.message || 'Failed to delete investment', 'error');
+                return;
+            }
+
+            showToast('Investment deleted', 'success');
+            getUserInvestments();
+
+        } catch (error) {
+            console.error('Error deleting investment:', error);
+            showToast('Error deleting investment', 'error');
+        }
+
+        return;
+    }
+
 });
 
 getUserInvestments();

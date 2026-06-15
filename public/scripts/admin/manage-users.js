@@ -176,6 +176,7 @@ addUserForm.addEventListener("submit", async (e) => {
         const data = await res.json();
         console.log("User registered successfully:", data);
         newUserForm.classList.remove("active");
+        showToast("New user created")
         loadUsers(); // Refresh the users list
     } catch (error) {
         console.error("Error registering user:", error);

@@ -18,6 +18,9 @@ if (logoutBtn) {
     });
 }
 
+ const latestUsers = document.getElementById("latest-users");
+
+
 const loadDashboardData = async () => {
     try {
         const res = await fetch("/api/admin/dashboard", {
@@ -57,9 +60,7 @@ const loadDashboardData = async () => {
         if (pendingDeposits) pendingDeposits.textContent = data.pendingDeposits;
 
         // loading Latest users
-        const latestUsers = document.getElementById("latest-users");
-
-
+       
         if (latestUsers) {
             latestUsers.innerHTML = "";
 
@@ -69,7 +70,7 @@ const loadDashboardData = async () => {
 
             data.recentUsers.forEach((user) => {
                 latestUsers.innerHTML += `
-            <div class="user flex">
+            <div class="user latest-u flex" data-id="${user._id}">
                 <div class="user-name-email">
                     <p class="latest-user-name">${user.fullName}</p>
                     <p class="latest-user-mail">${user.email}</p>
@@ -85,5 +86,16 @@ const loadDashboardData = async () => {
         hideLoader();
     }
 };
+
+
+
+latestUsers.addEventListener("click", (e) => {
+    const userCard = e.target.closest(".latest-u");
+    if (!userCard) return;
+    
+    const userId = userCard.dataset.id;
+    sessionStorage.setItem("userId", userId);
+    window.location.href = `/admin/user-details.html?id=${userId}`;
+});
 
 loadDashboardData();

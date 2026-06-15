@@ -203,7 +203,7 @@ tbBody.addEventListener("click", async (e) => {
                 return;
             }
 
-            alert(data.message);
+            showToast(data.message);
             loadDeposits()
         } catch (error) {
             console.error("Error deleting deposit", error)
