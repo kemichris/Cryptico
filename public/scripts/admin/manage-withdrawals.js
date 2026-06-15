@@ -76,7 +76,7 @@ const loadWithdrawals = async () => {
         }
 
         const data = await res.json();
-        const withdrawalData = data.allDeposits;
+        const withdrawalData = data.allWithdrawals;
 
         console.log(withdrawalData);
 
@@ -105,7 +105,7 @@ const loadWithdrawals = async () => {
                         <button class="table-action-reject" data-id="${withdrawal._id}">Reject</button>
                         ` : ""
                     }
-                    <button class="deposit-action-del" data-id="${deposits._id}">Delete</button>
+                    <button class="table-action-del" data-id="${withdrawal._id}">Delete</button>
                 </td>
                 
             `;
@@ -151,7 +151,7 @@ tbBody.addEventListener("click", async (e)=>{
             }
 
             showToast(data.message);
-            loadDeposits();
+            loadWithdrawals();
 
         } catch (error) {
             console.error("Error comfirming withdrawal:", error)
@@ -183,7 +183,7 @@ tbBody.addEventListener("click", async (e)=>{
             }
 
             showToast(data.message);
-            loadDeposits();
+            loadWithdrawals();
 
         } catch (error) {
             console.error("Error Rejecting withdrawal:", error)
@@ -219,8 +219,8 @@ tbBody.addEventListener("click", async (e)=>{
                 return;
             }
 
-            alert(data.message);
-            loadDeposits()
+            showToast(data.message)
+            loadWithdrawals()
         } catch (error) {
             console.error("Error deleting withdrawal", error)
         }
