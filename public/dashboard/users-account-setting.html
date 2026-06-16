@@ -40,20 +40,20 @@
             <div class="loader-spinner"></div>
         </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
 
-<!-- CONFIRM MODAL -->
-<div id="confirmModal" class="confirm-modal hidden">
-    <div class="confirm-box">
-        <p id="confirmText">Are you sure?</p>
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
 
-        <div class="confirm-actions">
-            <button id="confirmNo">Cancel</button>
-            <button id="confirmYes">Yes</button>
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <div class="side-main-flex">
             <!-- ////// SIDE BAR ////// -->
@@ -76,7 +76,7 @@
                         <li>
                             <a href="/dashboard/users-withdrawinfo.html">Withdrawal info</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <a href="">
@@ -137,34 +137,34 @@
 
             <!-- ////// USER ACCOUNT ////// -->
             <div class="user-account">
-               <h1>Profile Information</h1>
-               <div class="profile-form">
-                <form id="user-form">
-                    <span>User Name</span>
-                    <input type="text" name="userName" readonly>
-                    <span>Full Name</span>
-                    <input type="text"  name="fullName" id="fullName" readonly>
-                    <span>Date of Birth</span>
-                    <input type="date" name="dob" id="" readonly>
-                    <span>Phone Number</span>
-                    <input type="tel" name="phoneNumber" id="" readonly>
-                    <span>Country</span>
-                    <input type="text"  name="country" id="" readonly>
-                    <span>Email</span>
-                    <input type="text" name="email" id="" readonly>
-                    <span>Address</span>
-                    <input type="text" name="address" id="" readonly>
-                    
-                    <button class="edit-btn" id="edit-btn" type="button">Edit</button> 
-                    <button class="save-info-btn" type="submit" id="save-btn" hidden>Save</button>
-                </form>
-               </div>
+                <h1>Profile Information</h1>
+                <div class="profile-form">
+                    <form id="user-form">
+                        <span>User Name</span>
+                        <input type="text" name="userName" readonly>
+                        <span>Full Name</span>
+                        <input type="text" name="fullName" id="fullName" readonly>
+                        <span>Date of Birth</span>
+                        <input type="date" name="dob" id="" readonly>
+                        <span>Phone Number</span>
+                        <input type="tel" name="phoneNumber" id="" readonly>
+                        <span>Country</span>
+                        <input type="text" name="country" id="" readonly>
+                        <span>Email</span>
+                        <input type="text" name="email" id="" readonly>
+                        <span>Address</span>
+                        <input type="text" name="address" id="" readonly>
+
+                        <button class="edit-btn" id="edit-btn" type="button">Edit</button>
+                        <button class="save-info-btn" type="submit" id="save-btn" hidden>Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
-
     <script src="/scripts/dashboard/users-dashboard.js"></script>
     <script src="/scripts/dashboard/account-setting.js"></script>
+
 </body>
 
 </html>
