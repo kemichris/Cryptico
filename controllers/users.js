@@ -4,7 +4,7 @@ const Investment = require('../models/Investment');
 const Plan = require('../models/Plan');
 const WithdrawalInfo = require('../models/WithdrawalInfo')
 
-const getUserDashboard = async (req, res) => {
+const getUserDashboard = async (req, res)=> {
   try {
     const user = await User.findById(req.user._id)
       .select('-password');
@@ -55,9 +55,12 @@ const updateUserProfile = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { userName, phoneNumber },
-      { new: true }
+      { returnDocument: 'after' }
     ).select('-password');
-    res.status(200).json(user);
+    res.status(200).json({
+      message: 'profile updated successfully',
+      user
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -239,8 +242,8 @@ const createInvestment = async (req, res) => {
 
 const getUserInvestments = async (req, res) => {
   try {
-    const investments = await Investment.find({ user: req.user._id })
-      .populate('plan', 'name minRoi maxRoi duration topUpInterval')
+    const investments = await Investment.find({ user: req.user._id, status: 'completed' })
+      .populate('plan', 'name duration')
       .sort({ createdAt: -1 });
     res.status(200).json(investments);
   } catch (err) {

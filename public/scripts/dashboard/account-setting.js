@@ -85,6 +85,7 @@ userForm.addEventListener('submit', async (e) => {
 
         const data = await res.json();
         console.log(data);
+        showToast(data.message)
 
     } catch (error) {
         console.error('Update error:', error);
