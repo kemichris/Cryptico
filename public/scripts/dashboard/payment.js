@@ -54,12 +54,12 @@ depositForm.addEventListener("submit", async (e) => {
         console.log("📥 Server response:", data);
 
         if (!res.ok) {
-            alert(data.message || "Something went wrong");
+            showToast(data.message || "Something went wrong");
             return;
         }
 
         // ✅ SUCCESS MESSAGE
-        alert("Deposit submitted successfully");
+        showToast("Deposit submitted successfully");
 
         // 🚀 REDIRECT TO TRANSACTION HISTORY
         window.location.href = "/dashboard/transact-history.html";

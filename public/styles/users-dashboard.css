@@ -510,6 +510,7 @@ input:focus, textarea:focus {
 
 .history-container {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow-x: auto;
 }
 
 .history-section {
@@ -550,9 +551,10 @@ input:focus, textarea:focus {
 table {
     padding: 3rem 1rem 0;
     color: #D1DDEB;
-    width: 95%;
+    width: 100%;
     border-spacing: 0;
-    box-sizing: content-box;
+    table-layout: fixed;
+    min-width: 800px;
     overflow-x: scroll;
 }
 
@@ -784,6 +786,11 @@ td {
 .withdraw-card p {
     color: #D1DDEB;
     margin: 0;
+}
+
+.withdraw-popup form {
+    display: flex;
+    flex-direction: column;
 }
 
 

@@ -222,17 +222,21 @@
                         <h3>Payment will be sent through your Selected method</h3>
                         <i class="fa-solid fa-xmark close-deposit-popup"></i>
                     </div>
-                    <input type="text" placeholder="Enter amount here" name="" id="">
-                    <input type="text" readonly value="" id="payment-option">
-                    <button>Continue</button>
+                    <form id="withdrawal-form">
+                        <input type="number"  placeholder="Enter amount here" name="amount" id="">
+                        <input type="text" readonly value="" id="payment-option" name="method">
+                        <button type="submit">Submit</button>
+                    </form>
+
                 </div>
 
 
             </div>
         </div>
     </main>
+    <script src="/scripts/dashboard/main.js"></script>
     <script src="/scripts/dashboard/users-dashboard.js"></script>
-    <script src="../scripts/withdrawal.js"></script>
+    <script src="/scripts/dashboard/withdrawal.js"></script>
 </body>
 
 </html>
