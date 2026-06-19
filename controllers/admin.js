@@ -458,7 +458,6 @@ const approveOrRejectWithdrawal = async (req, res) => {
   }
 }
 
-
 //////////////// PLAN SECTION  /////////////////
 
 // Get plans
@@ -471,22 +470,46 @@ const getPlans = async (req, res) => {
   }
 }
 
-// Create Plan
 const createPlan = async (req, res) => {
   try {
     const {
-      name, price, minAmount, maxAmount, totalExpectedReturn, giftBonus, topUpInterval, topUpAmount, duration, features
+      name,
+      price,
+      minAmount,
+      maxAmount,
+      totalExpectedReturn,
+      giftBonus,
+      topUpInterval,
+      topUpRate,   // 👈 NEW
+      duration,
+      features
     } = req.body;
 
+    // normalize percentage (admin sends 5 = 5%)
+    const normalizedRate = Number(topUpRate) / 100;
+
     const plan = await Plan.create({
-      name, price, minAmount, maxAmount, totalExpectedReturn, giftBonus, topUpInterval, topUpAmount, duration, features
+      name,
+      price,
+      minAmount,
+      maxAmount,
+      totalExpectedReturn,
+      giftBonus,
+      topUpInterval,
+      topUpRate: normalizedRate, // store as decimal
+      duration,
+      features
     });
-    return res.status(201).json({ message: "Plan created successfully", data: plan });
+
+    return res.status(201).json({
+      message: "Plan created successfully",
+      data: plan
+    });
 
   } catch (err) {
-    res.status(500).json({ message: err.message })
+    res.status(500).json({ message: err.message });
   }
-}
+};
 
 // Get single plan (for edit page)
 const getSinglePlan = async (req, res) => {
@@ -517,7 +540,7 @@ const updatePlan = async (req, res) => {
       'totalExpectedReturn',
       'giftBonus',
       'topUpInterval',
-      'topUpAmount',
+      'topUpRate',
       'duration',
     ];
 
@@ -526,7 +549,15 @@ const updatePlan = async (req, res) => {
 
     allowedUpdates.forEach((field) => {
       if (req.body[field] !== undefined) {
-        updates[field] = req.body[field];
+
+        // 🔥 Normalize topUpRate (percentage → decimal)
+        // Example: 5 → 0.05
+        if (field === 'topUpRate') {
+          updates[field] = Number(req.body[field]) / 100;
+        } else {
+          updates[field] = req.body[field];
+        }
+
       }
     });
 

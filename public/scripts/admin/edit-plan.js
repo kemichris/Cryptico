@@ -26,7 +26,7 @@ const loadPlanEdit = async () => {
         document.querySelector('[name="totalExpectedReturn"]').value = plan.totalExpectedReturn;
         document.querySelector('[name="giftBonus"]').value = plan.giftBonus;
         document.querySelector('[name="topUpInterval"]').value = plan.topUpInterval;
-        document.querySelector('[name="topUpAmount"]').value = plan.topUpAmount;
+        document.querySelector('[name="topUpRate"]').value = plan.topUpRate * 100;
         document.querySelector('[name="duration"]').value = plan.duration;
 
     } catch (err) {
@@ -37,7 +37,7 @@ const loadPlanEdit = async () => {
 };
 
 const totalExpectedInput = document.querySelector('input[name="totalExpectedReturn"]');
-const topUpAmountInput = document.querySelector('input[name="topUpAmount"]');
+const topUpAmountInput = document.querySelector('input[name="topUpRate"]');
 const durationInput = document.querySelector('input[name="duration"]');
 const intervalSelect = document.querySelector('select[name="topUpInterval"]');
 
@@ -94,7 +94,7 @@ editPlanForm.addEventListener('submit', async (e) => {
     // ensure final calculation before submit
     calculateExpectedReturn();
 
-    const formData = new FormData(planForm);
+    const formData = new FormData(editPlanForm);
     const formObject = Object.fromEntries(formData.entries());
 
     // convert number fields

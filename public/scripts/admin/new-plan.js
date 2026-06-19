@@ -1,7 +1,8 @@
+ hideLoader();
 const planForm = document.getElementById('plan-form');
 
 const totalExpectedInput = document.querySelector('input[name="totalExpectedReturn"]');
-const topUpAmountInput = document.querySelector('input[name="topUpAmount"]');
+const topUpAmountInput = document.querySelector('input[name="topUpRate"]');
 const durationInput = document.querySelector('input[name="duration"]');
 const intervalSelect = document.querySelector('select[name="topUpInterval"]');
 

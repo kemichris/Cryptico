@@ -12,7 +12,7 @@ const planSchema = new mongoose.Schema({
         enum: ['monthly', 'weekly', 'daily', 'hourly', '30 minutes', '10 minutes'],
         required: true
     },
-    topUpAmount: { type: Number, required: true },
+    topUpRate: { type: Number, required: true, default: 0 },
     duration: { type: Number, required: true },
     isActive: { type: Boolean, default: true },
 }, { timestamps: true });

@@ -95,7 +95,7 @@ const getActiveInvestments = async () => {
                 <td>${inv.planName}</td>
                 <td>$${inv.amountInvested}</td>
                 <td>${inv.duration} days</td>
-                <td>${inv.roi}</td>
+                <td>$${inv.roi}</td>
                 <td>${new Date(inv.startDate).toLocaleDateString()}</td>
                 <td>${new Date(inv.endDate).toLocaleDateString()}</td>
                 <td class="action-btns">

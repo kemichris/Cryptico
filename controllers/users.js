@@ -175,21 +175,24 @@ const createInvestment = async (req, res) => {
   try {
     const { planId, amount } = req.body;
 
+    // 1. Get plan
     const plan = await Plan.findById(planId);
     if (!plan) return res.status(404).json({ message: 'Plan not found' });
 
+    // 2. Validate investment amount
     if (amount < plan.minAmount || amount > plan.maxAmount) {
       return res.status(400).json({
         message: `Amount must be between $${plan.minAmount} and $${plan.maxAmount}`
       });
     }
 
+    // 3. Check user balance
     if (req.user.balance < amount) {
       return res.status(400).json({ message: 'Insufficient balance' });
     }
 
     // -------------------------
-    // calculate number of intervals
+    // 4. Convert interval to minutes
     // -------------------------
     let intervalMinutes = 0;
 
@@ -202,18 +205,26 @@ const createInvestment = async (req, res) => {
       case 'monthly': intervalMinutes = 43200; break;
     }
 
-    const totalMinutes = plan.duration * 1440; // duration is in days
+    const totalMinutes = plan.duration * 1440; // duration in days
     const totalIntervals = Math.floor(totalMinutes / intervalMinutes);
 
     // -------------------------
-    // FIXED RETURN CALCULATION
+    // 5. FIXED RETURN CALCULATION (percentage-based)
     // -------------------------
-    const totalExpectedReturn =
-      amount + (plan.topUpAmount * totalIntervals);
 
+    const profitPerInterval = amount * plan.topUpRate;
+    const totalProfit = profitPerInterval * totalIntervals;
+    const totalExpectedReturn = amount + totalProfit;
+
+    // -------------------------
+    // 6. Set investment end date
+    // -------------------------
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + plan.duration);
 
+    // -------------------------
+    // 7. Create investment
+    // -------------------------
     const investment = await Investment.create({
       user: req.user._id,
       plan: planId,
@@ -223,6 +234,9 @@ const createInvestment = async (req, res) => {
       lastTopUp: new Date()
     });
 
+    // -------------------------
+    // 8. Deduct user balance
+    // -------------------------
     await User.findByIdAndUpdate(req.user._id, {
       $inc: {
         balance: -amount,
@@ -230,6 +244,9 @@ const createInvestment = async (req, res) => {
       }
     });
 
+    // -------------------------
+    // 9. Response
+    // -------------------------
     return res.status(201).json({
       message: 'Investment created successfully',
       investment

@@ -51,7 +51,7 @@ const loadPlans = async () => {
                 </div>
                 <div>
                     <p>Total expected return:</p>
-                    <p>${plan.totalExpectedReturn}</p>
+                    <p>${plan.totalExpectedReturn}%</p>
                 </div>
                 <div>
                     <p>Gift Bonus:</p>
