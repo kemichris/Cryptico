@@ -149,7 +149,7 @@ tbBody.addEventListener('click', async (e) => {
             }
 
             showToast('Investment marked as complete');
-            getUserInvestments();
+            getActiveInvestments();
         } catch (error) {
             console.error('Error completing investment:', error);
         }
@@ -180,8 +180,8 @@ tbBody.addEventListener('click', async (e) => {
                 throw new Error(`Failed to cancel investment: ${res.status} ${res.statusText}`);
             }
 
-            alert('Investment cancelled');
-            getUserInvestments();
+            showToast('Investment cancelled');
+            getActiveInvestments();
         } catch (error) {
             console.error('Error cancelling investment:', error);
         }
@@ -213,7 +213,7 @@ tbBody.addEventListener('click', async (e) => {
             }
 
             alert('Investment deleted');
-            getUserInvestments();
+            getActiveInvestments();
         } catch (error) {
             console.error('Error deleting investment:', error);
         }

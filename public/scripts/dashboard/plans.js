@@ -103,7 +103,6 @@ const getPlans = async () => {
     }
 };
 
-
 // Purchase plan
 planContainer.addEventListener("click", async (e) => {
 

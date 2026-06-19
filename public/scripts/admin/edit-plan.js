@@ -36,6 +36,53 @@ const loadPlanEdit = async () => {
     }
 };
 
+const totalExpectedInput = document.querySelector('input[name="totalExpectedReturn"]');
+const topUpAmountInput = document.querySelector('input[name="topUpAmount"]');
+const durationInput = document.querySelector('input[name="duration"]');
+const intervalSelect = document.querySelector('select[name="topUpInterval"]');
+
+
+// Convert interval to frequency per day
+function getFrequency(interval) {
+    switch (interval) {
+        case 'hourly':
+            return 24;
+        case 'daily':
+            return 1;
+        case 'weekly':
+            return 1 / 7;
+        case 'monthly':
+            return 1 / 30;
+        case '10 minutes':
+            return 144;
+        case '30 minutes':
+            return 48;
+        default:
+            return 0;
+    }
+}
+
+
+// Calculate expected return
+function calculateExpectedReturn() {
+    const topUpAmount = Number(topUpAmountInput.value) || 0;
+    const duration = Number(durationInput.value) || 0;
+    const interval = intervalSelect.value;
+
+    const frequencyPerDay = getFrequency(interval);
+
+    const total = topUpAmount * duration * frequencyPerDay;
+
+    totalExpectedInput.value = total.toFixed(2);
+}
+
+
+// Live updates
+topUpAmountInput.addEventListener('input', calculateExpectedReturn);
+durationInput.addEventListener('input', calculateExpectedReturn);
+intervalSelect.addEventListener('change', calculateExpectedReturn);
+
+
 editPlanForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -43,9 +90,21 @@ editPlanForm.addEventListener('submit', async (e) => {
      submitBtn.disabled = true;
      submitBtn.textContent = 'Updating...';
 
-    // collect form values
-    const formData = new FormData(editPlanForm);
+    
+    // ensure final calculation before submit
+    calculateExpectedReturn();
+
+    const formData = new FormData(planForm);
     const formObject = Object.fromEntries(formData.entries());
+
+    // convert number fields
+    formObject.price = Number(formObject.price);
+    formObject.minAmount = Number(formObject.minAmount);
+    formObject.maxAmount = Number(formObject.maxAmount);
+    formObject.totalExpectedReturn = Number(formObject.totalExpectedReturn);
+    formObject.giftBonus = Number(formObject.giftBonus);
+    formObject.topUpAmount = Number(formObject.topUpAmount);
+    formObject.duration = Number(formObject.duration);
 
     try {
         const res = await fetch(`/api/admin/plans/${planId}`, {
