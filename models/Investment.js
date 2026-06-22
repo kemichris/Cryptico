@@ -22,6 +22,10 @@ const investmentSchema = new mongoose.Schema({
     startDate: { type: Date, default: Date.now },
     endDate: { type: Date, required: true },
     lastTopUp: { type: Date, default: Date.now },
+    processedIntervals: {
+        type: Number,
+        default: 0
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Investment', investmentSchema);
