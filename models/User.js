@@ -35,35 +35,45 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
 
-    role: { 
-        type: String, 
-        enum: ['user', 'admin'], 
-        default: 'user' 
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     },
-    balance: { 
-        type: Number, 
-        default: 0 
+    balance: {
+        type: Number,
+        default: 0
     },
-    totalInvested: { 
-        type: Number, 
-        default: 0 
+    totalInvested: {
+        type: Number,
+        default: 0
     },
-    totalEarnings: { 
-        type: Number, 
-        default: 0 
+    totalEarnings: {
+        type: Number,
+        default: 0
     },
-    referralBonus: { 
-        type: Number, 
-        default: 0 
+    referralBonus: {
+        type: Number,
+        default: 0
     },
-    kycStatus: { 
-        type: String, 
-        enum: ['pending', 'verified', 'rejected'], 
-        default: 'pending' 
+    kycStatus: {
+        type: String,
+        enum: ['pending', 'verified', 'rejected'],
+        default: 'pending'
     },
-    isActive: { 
-        type: Boolean, 
-        default: true 
+    emailVerified: {
+        type: Boolean,
+        default: false
+    },
+    emailVerificationCode: String,
+    emailVerificationExpires: Date,
+    lastLogin: {
+        type: Date,
+        default: null
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     },
 }, { timestamps: true });
 

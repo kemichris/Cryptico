@@ -94,7 +94,7 @@ const getActiveInvestments = async () => {
                 <td>${inv.clientName}</td>
                 <td>${inv.planName}</td>
                 <td>$${inv.amountInvested}</td>
-                <td>${inv.duration} days</td>
+                <td>${inv.duration > 1 ? `${inv.duration} days` : `${inv.duration} day`}</td>
                 <td>$${inv.roi}</td>
                 <td>${new Date(inv.startDate).toLocaleDateString()}</td>
                 <td>${new Date(inv.endDate).toLocaleDateString()}</td>

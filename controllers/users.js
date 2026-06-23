@@ -268,6 +268,21 @@ const getUserInvestments = async (req, res) => {
   }
 };
 
+const getUserActiveInvestment = async (req, res) => {
+  try {
+    const investments = await Investment.find({user: req.user._id, status: 'active'})
+    .populate('plan', 'name duration')
+    .sort({createdAt: -1});
+
+    if (!investments) return res.status(404).json({ message: 'no active investment found' });
+
+    res.status(200).json(investments)
+
+  } catch (err) {
+    rest.status(500).json({message: err.message})
+  }
+}
+
 module.exports = {
   getUserDashboard,
   getUserProfile,
@@ -280,4 +295,5 @@ module.exports = {
   getPlans,
   createInvestment,
   getUserInvestments,
+  getUserActiveInvestment,
 };

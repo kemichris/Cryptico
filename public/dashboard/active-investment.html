@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction History</title>
+    <title>Active Investments</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
@@ -26,6 +26,7 @@
                     </a>
                 </li>
                 <li class="welcome">Welcome <span id="welcomeName">User</span>!</li>
+
                 <button class="sign-out-btn" id="logoutBtn">Sign out</button>
                 <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
                 <i class="fa-solid fa-x remove-nav-icon inactive"></i>
@@ -34,6 +35,7 @@
     </header>
 
     <main>
+
         <!-- PAGE LOADER -->
         <div id="pageLoader" class="page-loader">
             <div class="loader-spinner"></div>
@@ -85,9 +87,9 @@
                     </div>
                 </a>
                 <a href="/dashboard/transact-history.html">
-                    <div class="account-history user-div active">
-                        <i class="fa-solid fa-briefcase active"></i>
-                        <span class="active">Transaction history</span>
+                    <div class="account-history user-div">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Transaction history</span>
                     </div>
                 </a>
                 <div class="dep-with user-div">
@@ -104,9 +106,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="packages user-div">
-                    <i class="fa-solid fa-cubes"></i>
-                    <span>Packages <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="packages user-div active">
+                    <i class="fa-solid fa-cubes active"></i>
+                    <span class="active">Packages <i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="packages-dropdown inactive">
                     <ul>
@@ -136,35 +138,18 @@
 
             <!-- ////// TRANSACTION HISTORY ////// -->
             <div class="transaction-history">
-                <h1>Account Transactions</h1>
+                <h1>Active Investment</h1>
 
                 <div class="history-container">
-                    <div class="history-section">
-                        <a href="/dashboard/transact-history.html">
-                            <div class="deposit-history">
-                                <p>Deposits</p>
-                            </div>
-                        </a>
-                        <a href="transact-withdraw-history.html">
-                            <div class="withdraw-history active">
-                                <p>Withdrawals</p>
-                            </div>
-                        </a>
-                        <a href="transact-others-history.html">
-                            <div class="other-history">
-                                <p>Others</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <table class="withdrawal-table">
+                    <table class="deposit-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Amount requested</th>
-                                <th>Receiving Mode</th>
-                                <th>Status</th>
-                                <th>Date Created</th>
+                                <th>Plan</th>
+                                <th>Amount Invested</th>
+                                <th>Duration</th>
+                                <th>ROI</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                             </tr>
                         </thead>
                         <tbody class="tbody">
@@ -174,20 +159,14 @@
                                 <td>Bitcoion</td>
                                 <td>Pending</td>
                                 <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>
-                            <tr class="tr">
-                                <td>1</td>
-                                <td>$<span>1000</span></td>
-                                <td>Bitcoion</td>
-                                <td>Pending</td>
-                                <td>Mon, Oct 23, 2023 3:50 PM</td>
-                            </tr>   -->
+                            </tr> -->
+
                         </tbody>
                     </table>
 
                     <div class="entries">
-                        <p>showing <span id="startIdx">1</span> to <span id="endIdx">5</span> of <span
-                                id="totalEntries">5</span> entries </p>
+                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span
+                                id="totalEntries">0</span> entries </p>
                         <div class="entries-buttons">
                             <button class="prev-btn">Prev</button>
                             <button class="pg-btn">1</button>
@@ -198,10 +177,10 @@
                 </div>
             </div>
         </div>
-
     </main>
+
     <script src="/scripts/dashboard/users-dashboard.js"></script>
-    <script src="/scripts/dashboard/transact-withdraw-history.js"></script>
+    <script src="/scripts/dashboard/active-investment.js"></script>
 </body>
 
 </html>

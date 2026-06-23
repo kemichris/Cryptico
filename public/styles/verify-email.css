@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.verify-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.verify-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    text-align: center;
+}
+
+.verify-card h1 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+#user-email {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #1e88e5;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.otp-input {
+    width: 50px;
+    height: 55px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 22px;
+    outline: none;
+    transition: .2s;
+}
+
+.otp-input:focus {
+    border-color: #1e88e5;
+}
+
+.verify-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #1e88e5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.verify-btn:hover {
+    background: #1565c0;
+}
+
+.resend-text {
+    margin-top: 25px;
+    color: #666;
+    font-size: 14px;
+}
+
+#resend-btn {
+    border: none;
+    background: none;
+    color: #1e88e5;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#resend-btn:hover {
+    text-decoration: underline;
+}

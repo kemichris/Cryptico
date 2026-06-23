@@ -49,6 +49,8 @@ withdrawalForm.addEventListener("submit", async (e)=> {
 
     } catch (error) {
         console.error(error)
+    } finally {
+        withdrawPopup.classList.add("inactive");
     }
 
 })

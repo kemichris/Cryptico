@@ -1,4 +1,5 @@
 const form = document.getElementById("registration");
+const regBtn = document.getElementById("reg-btn")
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -19,6 +20,11 @@ form.addEventListener('submit', async (e) => {
   console.log('Sending:', dataObject);
 
   try {
+
+    // Prevent multiple clicks
+    regBtn.disabled = true;
+    regBtn.textContent = "Processing...";
+
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -29,9 +35,12 @@ form.addEventListener('submit', async (e) => {
     console.log('Response:', data);
 
     if (res.ok) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      window.location.href = '/dashboard/users-dashboard.html';
+      alert(data.message);
+      // store email temporarily for OTP page
+      sessionStorage.setItem("verifyEmail", data.email);
+
+      // redirect to OTP page
+      window.location.href = "/pages/verify-email.html";
     } else {
       alert(data.message);
     }
@@ -39,5 +48,8 @@ form.addEventListener('submit', async (e) => {
   } catch (err) {
     console.error('Fetch error:', err);
     alert('Something went wrong: ' + err.message);
+  } finally {
+    regBtn.disabled = false;
+    regBtn.textContent = "Register";
   }
 });
