@@ -214,7 +214,7 @@ const creditDebitUser = async (req, res) => {
     const amt = Number(amount);
 
     // ─────────────────────────────
-    // 1. DEPOSIT FLOW (transaction + wallet update)
+    // 1. DEPOSIT FLOW
     // ─────────────────────────────
     if (type === "deposit") {
 
@@ -227,7 +227,6 @@ const creditDebitUser = async (req, res) => {
         approvedBy: req.user._id
       });
 
-      // credit balance automatically
       user.balance += amt;
 
       await user.save();
@@ -256,13 +255,33 @@ const creditDebitUser = async (req, res) => {
       });
     }
 
+    // Credit wallet
     if (action === "credit") {
       user[type] += amt;
     }
 
+    // Debit wallet
     if (action === "debit") {
+
+      if (user[type] < amt) {
+        return res.status(400).json({
+          message: `Insufficient ${type}`
+        });
+      }
+
       user[type] -= amt;
-      if (user[type] < 0) user[type] = 0;
+
+      // Record admin withdrawal only when balance is debited
+      if (type === "balance") {
+        await Transaction.create({
+          user: user._id,
+          type: "withdrawal",
+          amount: amt,
+          method: "admin",
+          status: "approved",
+          approvedBy: req.user._id
+        });
+      }
     }
 
     await user.save();

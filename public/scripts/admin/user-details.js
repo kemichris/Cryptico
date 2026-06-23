@@ -250,12 +250,12 @@ creditDebitForm.addEventListener("submit", async (e)=> {
         }
 
         showToast(data.message);
-        // refresh page
-        window.location.href = '/admin/user-details.html';
-
-
+        getUserDetails()
+        
     } catch (error) {
         console.error(error)
+    } finally {
+        creditDebitContainer.classList.remove("active")
     }
 
 })
