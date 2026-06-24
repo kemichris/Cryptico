@@ -25,4 +25,14 @@ const sendVerificationEmail = async (email, name, code) => {
   });
 };
 
-module.exports = { sendVerificationEmail };
+const sendMail = async ({ to, subject, html }) => {
+    await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to,
+        subject,
+        html
+    });
+};
+
+
+module.exports = { sendVerificationEmail, sendMail };

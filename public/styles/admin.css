@@ -911,6 +911,75 @@ td {
     margin-bottom: 0.5rem;
 }
 
+/* .choose-users-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.choose-users-container select {
+    height: 3rem;
+} */
+
+.choose-users-container{
+    margin-top:1rem;
+}
+
+.user-results{
+    max-height:250px;
+    overflow-y:auto;
+    border:1px solid #dcdcdc;
+    border-radius:6px;
+    margin-top:.5rem;
+}
+
+.user-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+}
+
+.user-item:hover{
+    background:#f8f8f8;
+}
+
+.user-info h4{
+    margin:0;
+    font-size:15px;
+}
+
+.user-info small{
+    color:#777;
+}
+
+.selected-users{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    margin-top:1rem;
+}
+
+.selected-user{
+    background:#141928;
+    color:#fff;
+    padding:8px 12px;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.selected-user i{
+    cursor:pointer;
+}
+
+.choose-users-container.active {
+    display: none;
+}
+
 .email-form select, .email-form input{
     padding: 0.6rem 1rem;
     font-size: 0.875rem;
@@ -925,6 +994,15 @@ td {
 
 .ck.ck-reset {
     height: 8rem !important;
+}
+
+.send-email-btn {
+    width: fit-content;
+    padding: 1rem 0.5rem;
+    background-color: #627afe;
+    border: none;
+    color: #D1DDEB;
+    border-radius: 0.5rem;
 }
 
 /* ////////////////////////////// ADMINISTRATION SECTION /////////////////////////////////////// */

@@ -32,6 +32,7 @@ const {
   getAllTransactions,
   getSingleTransaction,
   getUserTransactions,
+  sendEmail,
 } = require('../controllers/admin');
 
 const { register } = require('../controllers/auth');
@@ -84,5 +85,8 @@ router.get('/transactions/:id', protect, adminOnly, getSingleTransaction);
 // ─── KYC ─────────────────────────────────────
 router.get('/kyc', protect, adminOnly, getPendingKyc);
 router.put('/kyc/:id', protect, adminOnly, approveOrRejectKyc);
+
+// ─── EMAIL ─────────────────────────────────────
+router.post('/send-email', protect, adminOnly, sendEmail);
 
 module.exports = router;

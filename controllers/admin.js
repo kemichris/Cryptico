@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const Investment = require('../models/Investment');
 const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
-
+const {sendMail} = require('../utils/mailer')
 
 
 //////////////// USER SECTION  /////////////////
@@ -860,6 +860,138 @@ const approveOrRejectKyc = async (req, res) => {
   }
 };
 
+//////////////// EMAIL SECTION  /////////////////
+
+const sendEmail = async (req, res) => {
+  try {
+    const {
+      category,
+      selectedUsers,
+      greeting,
+      greetingTitle,
+      subject,
+      message,
+    } = req.body;
+
+    // Validation
+    if (!category || !subject || !message) {
+      return res.status(400).json({
+        message: "Category, subject and message are required.",
+      });
+    }
+
+    let users = [];
+
+    switch (category) {
+      // ==========================================================
+      // ALL USERS
+      // ==========================================================
+      case "allUsers":
+        users = await User.find({
+          emailVerified: true,
+          isActive: true,
+        }).select("-password");
+        break;
+
+      // ==========================================================
+      // USERS WITHOUT INVESTMENT
+      // ==========================================================
+      case "withoutInvestment":
+        users = await User.find({
+          totalInvested: 0,
+          emailVerified: true,
+          isActive: true,
+        }).select("-password");
+        break;
+
+      // ==========================================================
+      // USERS WITHOUT DEPOSIT
+      // ==========================================================
+      case "withoutDeposit":
+        const depositedUsers = await Transaction.distinct("user", {
+          type: "deposit",
+        });
+
+        users = await User.find({
+          _id: { $nin: depositedUsers },
+          emailVerified: true,
+          isActive: true,
+        }).select("-password");
+
+        break;
+
+      // ==========================================================
+      // SELECTED USERS
+      // ==========================================================
+      case "chooseUser":
+        if (!selectedUsers || !selectedUsers.length) {
+          return res.status(400).json({
+            message: "Please select at least one user.",
+          });
+        }
+
+        users = await User.find({
+          _id: { $in: selectedUsers },
+          emailVerified: true,
+          isActive: true,
+        }).select("-password");
+
+        break;
+
+      default:
+        return res.status(400).json({
+          message: "Invalid category.",
+        });
+    }
+
+    // No users found
+    if (!users.length) {
+      return res.status(404).json({
+        message: "No users found.",
+      });
+    }
+
+    // Send emails concurrently
+    await Promise.all(
+      users.map((user) => {
+        const html = `
+            <p>${greeting || "Hello"} ${
+          greetingTitle || user.fullName
+        },</p>
+
+            ${message}
+
+            <br><br>
+
+            <p>
+                Regards,<br>
+                <strong>Cryptico Team</strong>
+            </p>
+        `;
+
+        return sendMail({
+          to: user.email,
+          subject,
+          html,
+        });
+      })
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: `Email sent successfully to ${users.length} user(s).`,
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 
 module.exports = {
   getDashboard,
@@ -892,4 +1024,5 @@ module.exports = {
   getAllTransactions,
   getSingleTransaction,
   getUserTransactions,
+  sendEmail,
 };

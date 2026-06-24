@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
@@ -148,10 +148,6 @@
 
                     </ul>
                 </div>
-
-
-
-
             </div>
 
             <!-- MAIN DASHBOARD  -->
@@ -161,30 +157,47 @@
 
                 <!-- EMAIL FORM  -->
                 <div class="email-form">
-                    <form action="">
+                    <form id="email-form">
                         <span>Category</span>
-                        <select name="" id="">
-                            <option value="all users">All Users</option>
-                            <option value="without investment">Users without investment plan</option>
-                            <option value="without deposit">Users without any deposit</option>
-                            <option value="choose user">Choose Users</option>
+                        <select name="category" id="">
+                            <option value="allUsers">All Users</option>
+                            <option value="withoutInvestment">Users without investment plan</option>
+                            <option value="withoutDeposit">Users without any deposit</option>
+                            <option value="chooseUser">Choose Users</option>
                         </select>
-                        <span>Select users (<span>0</span>)</span>
-                        <input type="search" name="" id="">
+                        <!-- <div class="choose-users-container active">
+                            <span>Select Users (<span id="selectedCount">0</span>)</span>
+                            <select id="selectedUsers" name="selectedUsers" multiple>
+                            </select>
+                        </div> -->
+                        <div class="choose-users-container active">
+
+                            <span>Select Users (<span id="selectedCount">0</span>)</span>
+
+                            <!-- Search -->
+                            <input type="text" id="userSearch" class="input" placeholder="Search by name or email...">
+
+                            <!-- Search Results -->
+                            <div id="userResults" class="user-results"></div>
+
+                            <!-- Selected Users -->
+                            <div id="selectedUsersContainer" class="selected-users"></div>
+
+                        </div>
                         <span>Greeting/Title</span>
                         <div class="greet-title flex">
-                            <input type="text" name="" id="" value="Hello">
-                            <input type="text" name="" id="" value="Investor">
+                            <input type="text" name="greeting" id="" value="Hello">
+                            <input type="text" name="greetingTitle" id="" value="Investor">
                         </div>
                         <span>Subject</span>
-                        <input type="text" name="" id="" placeholder="Subject">
-                        <div id="editor" class="editor">
+                        <input type="text" name="subject" id="" placeholder="Subject">
+                        <div id="editor" name="message" class="editor">
 
                         </div>
-
-
-
-
+                        <button type="submit" class="send-email-btn" id="send-email-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Send Email
+                        </button>
                     </form>
                 </div>
 
@@ -212,23 +225,37 @@
             Paragraph
         } from 'ckeditor5';
 
+        window.editor = null;
+
         ClassicEditor
-            .create(document.querySelector('#editor'), {
+            .create(document.querySelector("#editor"), {
                 plugins: [ClassicEditor, Essentials, Bold, Italic, Font, Paragraph],
                 toolbar: {
                     items: [
-                        'undo', 'redo', '|', 'bold', 'italic', '|',
-                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                        "undo",
+                        "redo",
+                        "|",
+                        "bold",
+                        "italic",
+                        "|",
+                        "fontSize",
+                        "fontFamily",
+                        "fontColor",
+                        "fontBackgroundColor"
                     ]
                 }
             })
-            .then( /* ... */)
-            .catch( /* ... */);
+            .then(newEditor => {
+                window.editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
-
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
+    <script src="/scripts/admin/email-services.js"></script>
 
 </body>
 

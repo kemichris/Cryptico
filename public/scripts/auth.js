@@ -1,5 +1,3 @@
-
-
 // Create a reusable API helper function
 // url → endpoint you want to call
 // options → extra fetch settings (method, body, headers etc.)

@@ -25,37 +25,37 @@
 
         </nav>
         <div class="user-setting-dropdown">
-           
+
             <button type="button">Account setting</button>
             <button type="button">Change password</button>
             <button type="button" class="logout" id="admin-logout">Logout</button>
-      
+
 
         </div>
     </header>
 
     <main>
-        
+
         <!-- PAGE LOADER -->
         <div id="pageLoader" class="page-loader">
             <div class="loader-spinner"></div>
         </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
 
-<!-- CONFIRM MODAL -->
-<div id="confirmModal" class="confirm-modal hidden">
-    <div class="confirm-box">
-        <p id="confirmText">Are you sure?</p>
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
 
-        <div class="confirm-actions">
-            <button id="confirmNo">Cancel</button>
-            <button id="confirmYes">Yes</button>
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="side-menu-main flex">
+        <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
@@ -95,13 +95,13 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
                     </div>
                 </a>
-                 <a href="/admin/kyc.html">
+                <a href="/admin/kyc.html">
                     <div class="kyc-application admin-div">
                         <i class="fa-solid fa-user-check"></i>
                         <span>KYC Applications</span>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="setting-dropdown dropdown inactive">
                     <ul>
-                         <li>
+                        <li>
                             <a href="/admin/payment-setting.html">Payment Setting</a>
                         </li>
                         <li>
@@ -184,13 +184,15 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><button class="manage-admins-action">Action <i class="fa-solid fa-caret-down"></i></button></td>
+                                <td><button class="manage-admins-action">Action <i
+                                            class="fa-solid fa-caret-down"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="entries">
-                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span id="totalEntries">0</span> entries </p>
+                        <p>showing <span id="startIdx">0</span> to <span id="endIdx">0</span> of <span
+                                id="totalEntries">0</span> entries </p>
                         <div class="entries-buttons">
                             <button class="prev-btn">Prev</button>
                             <button class="pg-btn">1</button>
@@ -203,10 +205,9 @@
 
         </div>
     </main>
-
+    <script src=""></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-    <script src="../scripts/transaction-history.js"></script>
+    <script src="/scripts/admin/manage-admins.js"></script>
 
 </body>
 
