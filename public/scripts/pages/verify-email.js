@@ -8,7 +8,7 @@ const email = sessionStorage.getItem("verifyEmail");
 
 if (!email) {
   alert("No verification session found. Please register again.");
-  window.location.href = "/pages/register.html";
+  window.location.href = "/pages/sign-up.html";
 }
 
 // show email on UI
@@ -84,7 +84,7 @@ resendBtn.addEventListener("click", async () => {
     resendBtn.disabled = true;
     resendBtn.textContent = "Sending...";
 
-    const res = await fetch("/api/auth/resend-code", {
+    const res = await fetch("/api/auth/resend-verification", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

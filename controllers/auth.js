@@ -57,6 +57,7 @@ const register = async (req, res) => {
       emailVerified: false,
       emailVerificationCode: verificationCode,
       emailVerificationExpires: new Date(Date.now() + 10 * 60 * 1000), // 10 minutes
+      emailVerificationLastSent: new Date() // track when code was sent
     });
 
 
@@ -257,6 +258,77 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+// ─── RESEND EMAIL VERIFICATION CODE ────────────────────────────
+const resendVerificationCode = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required"
+      });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    if (user.emailVerified) {
+      return res.status(400).json({
+        message: "Email is already verified"
+      });
+    }
+
+    // Prevent spam requests
+    if (user.emailVerificationLastSent) {
+      const secondsSinceLastRequest =
+        (Date.now() - user.emailVerificationLastSent.getTime()) / 1000;
+
+      if (secondsSinceLastRequest < 60) {
+        const remaining = Math.ceil(
+          60 - secondsSinceLastRequest
+        );
+
+        return res.status(429).json({
+          message: `Please wait ${remaining} seconds before requesting another code`
+        });
+      }
+    }
+
+    // Generate new 6-digit code
+    const verificationCode = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+
+    user.emailVerificationCode = verificationCode;
+    user.emailVerificationExpires =
+      Date.now() + 10 * 60 * 1000; // 10 mins
+
+    user.emailVerificationLastSent = new Date();
+
+    await user.save();
+
+    await sendVerificationEmail(
+      user.email,
+      user.fullName,
+      verificationCode
+    );
+
+    return res.status(200).json({
+      message: "Verification code resent successfully"
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
 
 
-module.exports = { register, login, verifyEmail, registerAdmin }
+
+module.exports = { register, login, verifyEmail, registerAdmin, resendVerificationCode }
