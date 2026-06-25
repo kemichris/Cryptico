@@ -86,6 +86,61 @@ if (viewPlansBtn) {
     });
 }
 
+//////// Toggle account status //////// 
+const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
+toggleStatusBtn.addEventListener("click", async () => {
+    try {
+        const res = await fetch(`/api/admin/users/${userId}/toggle-status`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${Auth.getToken()}`
+            }
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            showToast(data.message);
+            getUserDetails(); // refresh UI
+        } else {
+            showToast(data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+//////// Verify Email //////// 
+const verifyEmailBtn = document.getElementById("verify-email-btn");
+if (verifyEmailBtn) {
+    verifyEmailBtn.addEventListener("click", async () => {
+        try {
+            const res = await fetch(`/api/admin/users/${userId}/verify-email`, {
+                    method: "PATCH",
+                    headers: {
+                        Authorization: `Bearer ${Auth.getToken()}`
+                    }
+                }
+            );
+
+            const data = await res.json();
+
+            if (res.ok) {
+                showToast(data.message || "Email verified successfully");
+                getUserDetails();
+            } else {
+                showToast(data.message || "Failed to verify email");
+            }
+
+        } catch (error) {
+            console.error(error);
+            showToast("Something went wrong");
+        }
+    });
+}
+
 //////// KYC status update ////////
 const verifyKycBtn = document.getElementById("verify-kyc-btn");
 if (verifyKycBtn) {
@@ -113,32 +168,6 @@ if (verifyKycBtn) {
         }
     });
 }
-
-//////// Toggle account status //////// 
-const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
-toggleStatusBtn.addEventListener("click", async () => {
-    try {
-        const res = await fetch(`/api/admin/users/${userId}/toggle-status`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${Auth.getToken()}`
-            }
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-            showToast(data.message);
-            getUserDetails(); // refresh UI
-        } else {
-            showToast(data.message);
-        }
-
-    } catch (error) {
-        console.error(error);
-    }
-});
 
 ///////// Edit user ////////
 const editUserBtn = document.getElementById("edit-user");
@@ -217,7 +246,7 @@ const creditDebitContainer = document.getElementById("credit-debit-container")
 const closeDcBtn = document.getElementById("close-cd-user")
 const creditDebitForm = document.getElementById("credit-debit-form")
 
-creditDebitBtn.addEventListener("click", ()=>{
+creditDebitBtn.addEventListener("click", () => {
     usersActionDropdown.classList.toggle("active");
     creditDebitContainer.classList.add("active")
 })
@@ -226,9 +255,9 @@ closeDcBtn.addEventListener("click", () => {
     creditDebitContainer.classList.remove("active")
 });
 
-creditDebitForm.addEventListener("submit", async (e)=> {
+creditDebitForm.addEventListener("submit", async (e) => {
     e.preventDefault()
-    
+
     const formData = new FormData(creditDebitForm);
     const formObject = Object.fromEntries(formData.entries());
 
@@ -251,7 +280,7 @@ creditDebitForm.addEventListener("submit", async (e)=> {
 
         showToast(data.message);
         getUserDetails()
-        
+
     } catch (error) {
         console.error(error)
     } finally {
@@ -300,7 +329,7 @@ loginAsUserBtn.addEventListener("click", async () => {
 //////// Reset user password ////////
 const resetUserPasswordBtn = document.getElementById("reset-password-btn");
 
-resetUserPasswordBtn.addEventListener("click", async ()=> {
+resetUserPasswordBtn.addEventListener("click", async () => {
     const confirmReset = await showConfirm("Are you sure you want to reset this user password to user01234#?");
     if (!confirmReset) {
         showToast("Password reset cancelled");
@@ -312,7 +341,7 @@ resetUserPasswordBtn.addEventListener("click", async ()=> {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
-            }           
+            }
         });
 
         const data = await res.json();
@@ -326,7 +355,7 @@ resetUserPasswordBtn.addEventListener("click", async ()=> {
     } catch (error) {
         console.error("error resetting password", error)
     }
-} )
+})
 
 //////// Delete User ////////
 const deleteUserBtn = document.getElementById("delete-user-btn")

@@ -214,7 +214,7 @@ const createInvestment = async (req, res) => {
 
     const profitPerInterval = amount * plan.topUpRate;
     const totalProfit = profitPerInterval * totalIntervals;
-    const totalExpectedReturn = amount + totalProfit;
+    const totalExpectedReturn = totalProfit;
 
     // -------------------------
     // 6. Set investment end date

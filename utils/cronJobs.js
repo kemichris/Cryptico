@@ -99,8 +99,7 @@ const runTopUp = async () => {
         await User.findByIdAndUpdate(investment.user, {
           $inc: {
             balance: payout,
-            totalEarnings: accrued,
-            totalInvested: -principal
+            totalEarnings: accrued
           }
         });
 
