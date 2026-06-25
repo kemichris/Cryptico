@@ -79,7 +79,10 @@ const getDashboard = async (req, res) => {
 // Get all users
 const getAllUsers = async (req, res) => {
   try {
-    const allUsers = await User.find().select('-password').sort({ createdAt: -1 });
+    const allUsers = await User.find({role: 'user'}).select('-password').sort({ createdAt: -1 });
+    if(!allUsers) {
+      return res.status(404).json({message: 'No users found'})
+    }
     return res.status(200).json({ allUsers });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -1022,6 +1025,21 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+//////////////// ADMIN SECTION  /////////////////
+const getAllAdmins = async (req, res) => {
+  try {
+    const admins = await User.find({role: 'admin'})
+
+    if(!admins) {
+      return res.status(404).json({message: 'No admin found'})
+    }
+    return res.status(200).json(admins);
+
+  } catch (err) {
+    res.status(500).json({message: err.message})
+  }
+}
+
 
 module.exports = {
   getDashboard,
@@ -1055,5 +1073,6 @@ module.exports = {
   getSingleTransaction,
   getUserTransactions,
   sendEmail,
-  verifyEmail
+  verifyEmail,
+  getAllAdmins
 };

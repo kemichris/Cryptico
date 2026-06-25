@@ -34,6 +34,7 @@ const {
   getUserTransactions,
   sendEmail,
   verifyEmail,
+  getAllAdmins,
 } = require('../controllers/admin');
 
 const { register } = require('../controllers/auth');
@@ -90,5 +91,9 @@ router.put('/kyc/:id', protect, adminOnly, approveOrRejectKyc);
 // ─── EMAIL ─────────────────────────────────────
 router.post('/send-email', protect, adminOnly, sendEmail);
 router.patch("/users/:id/verify-email", verifyEmail);
+
+// ─── ADMIN ─────────────────────────────────────
+router.get('/manage-admin', protect, adminOnly, getAllAdmins);
+
 
 module.exports = router;
