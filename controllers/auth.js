@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { sendVerificationEmail } = require("../utils/mailer");
 
-// ─── REGISTER ────────────────────────────────
+// ─── REGISTER  USER ────────────────────────────────
 const register = async (req, res) => {
   try {
     const {
@@ -81,6 +81,63 @@ const register = async (req, res) => {
   }
 };
 
+// ─── REGISTER  ADMIN ────────────────────────────────
+const registerAdmin = async (req, res) => {
+  try {
+    const {
+      fullName,
+      userName,
+      email,
+      password,
+      phoneNumber,
+      role,
+    } = req.body;
+
+    // Check if email already exists
+    const emailExists = await User.findOne({ email });
+
+    if (emailExists) {
+      return res.status(400).json({
+        message: "Email already registered",
+      });
+    }
+
+    // Check if username already exists
+    const userNameExists = await User.findOne({ userName });
+
+    if (userNameExists) {
+      return res.status(400).json({
+        message: "Username already taken",
+      });
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create the user
+    const user = await User.create({
+      fullName,
+      userName,
+      email,
+      password: hashedPassword,
+      phoneNumber,
+      country: 'none',
+      role,
+      emailVerified: true,
+    });
+
+    // Send response back to frontend
+    return res.status(201).json({
+      message: "Registration successful"
+    });
+
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
 
 // ─── LOGIN ───────────────────────────────────
 const login = async (req, res) => {
@@ -140,7 +197,6 @@ const login = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 }
-
 
 // ─── VERIFY EMAIL ────────────────────────────
 const verifyEmail = async (req, res) => {
@@ -203,4 +259,4 @@ const verifyEmail = async (req, res) => {
 
 
 
-module.exports = { register, login, verifyEmail }
+module.exports = { register, login, verifyEmail, registerAdmin }

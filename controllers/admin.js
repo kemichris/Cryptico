@@ -1026,6 +1026,7 @@ const verifyEmail = async (req, res) => {
 };
 
 //////////////// ADMIN SECTION  /////////////////
+// Get all admins
 const getAllAdmins = async (req, res) => {
   try {
     const admins = await User.find({role: 'admin'})
@@ -1039,6 +1040,7 @@ const getAllAdmins = async (req, res) => {
     res.status(500).json({message: err.message})
   }
 }
+
 
 
 module.exports = {

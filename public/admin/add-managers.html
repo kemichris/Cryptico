@@ -161,27 +161,25 @@
 
                 <!-- ADMIN FORM  -->
                 <div class="admin-form">
-                    <form action="">
-                        <span>First name</span>
-                        <input type="text" name="" id="">
-                        <span>Last name</span>
-                        <input type="text" name="" id="">
+                    <form id="admin-form">
+                        <span>User name</span>
+                        <input type="text" name="userName" id="">
+                        <span>Full name</span>
+                        <input type="text" name="fullName" id="">
                         <span>Email address</span>
-                        <input type="email" name="" id="">
+                        <input type="email" name="email" id="">
                         <span>Phone number</span>
-                        <input type="tel" name="" id="">
+                        <input type="tel" name="phoneNumber" id="">
                         <span>Type</span>
-                        <select name="" id="">
-                            <option value="">Super admin</option>
-                            <option value="">Admin</option>
-                            <option value="">Conversion Agent</option>
+                        <select name="role" id="">
+                            <option value="admin" selected>Admin</option>
                         </select>
                         <span>Password</span>
-                        <input type="password" name="" id="" required>
+                        <input type="password" name="password" id="" required>
                         <span>Confirm password</span>
-                        <input type="password" name="" id="" required>
+                        <input type="password" name="confirmPassword" id="" required>
 
-                        <button type="submit"><i class="fa-solid fa-plus"></i> Save user</button>
+                        <button type="submit" id="save-btn"><i class="fa-solid fa-plus"></i> Save</button>
 
                     </form>
                 </div>
@@ -191,10 +189,9 @@
 
             </div>
     </main>
-
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-
+    <script src="/scripts/admin/add-managers.js"></script>
 </body>
 
 </html>
