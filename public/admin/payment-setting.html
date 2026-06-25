@@ -12,7 +12,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
-    <link rel="stylesheet" href="../styles/admin.css" />
+    <link rel="stylesheet" href="/styles/admin.css" />
 </head>
 
 <body>
@@ -25,11 +25,11 @@
 
         </nav>
         <div class="user-setting-dropdown">
-           
+
             <button type="button">Account setting</button>
             <button type="button">Change password</button>
             <button type="button" class="logout" id="admin-logout">Logout</button>
-      
+
 
         </div>
     </header>
@@ -41,21 +41,21 @@
             <div class="loader-spinner"></div>
         </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
 
-<!-- CONFIRM MODAL -->
-<div id="confirmModal" class="confirm-modal hidden">
-    <div class="confirm-box">
-        <p id="confirmText">Are you sure?</p>
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
 
-        <div class="confirm-actions">
-            <button id="confirmNo">Cancel</button>
-            <button id="confirmYes">Yes</button>
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="side-menu-main flex">
+        <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
                 <div class="admin-user">
@@ -95,7 +95,7 @@
                         <span>Manage Deposits</span>
                     </div>
                 </a>
-               <a href="/admin/manage-withdrawals.html">
+                <a href="/admin/manage-withdrawals.html">
                     <div class="manage-with admin-div">
                         <i class="fa-solid fa-circle-arrow-up"></i>
                         <span>Manage Withdrawal</span>
@@ -181,7 +181,7 @@
                                 <td class="deposit-action">
                                     <a href="edit-method.html">
                                         <button class="deposit-action-view"><i class="fa-solid fa-pen"></i></button>
-                                    </a> 
+                                    </a>
                                     <button class="deposit-action-del">Delete</button>
                                     <button class="deposit-action-confirm">Enable</button>
                                 </td>
@@ -191,7 +191,7 @@
                     </table>
                 </div>
 
-                <div class="plan-form">             
+                <div class="plan-form">
                     <form action="">
                         <div class="form-container grid">
                             <div class="plan-name">
@@ -200,17 +200,17 @@
                             </div>
                             <div>
                                 <span>Minimum Amount</span>
-                                <input type="number" name=""  id="">
+                                <input type="number" name="" id="">
                                 <small>Required but only applies to withdrawal</small>
                             </div>
                             <div>
                                 <span>Maximum Amount</span>
-                                <input type="number" name=""  id="">
+                                <input type="number" name="" id="">
                                 <small>Required but only applies to withdrawal</small>
                             </div>
                             <div>
                                 <span>Charges</span>
-                                <input type="number" name=""  id="">
+                                <input type="number" name="" id="">
                                 <small>Required but only applies to withdrawal</small>
                             </div>
                             <div>
@@ -227,27 +227,27 @@
                             </div>
                             <div>
                                 <span>Image URl</span>
-                                <input type="text" name=""  id="">
+                                <input type="text" name="" id="">
                             </div>
                             <div>
                                 <span>Bank Name</span>
-                                <input type="text" name=""  id="">
+                                <input type="text" name="" id="">
                             </div>
                             <div>
                                 <span>Account Name</span>
-                                <input type="text" name=""  id="">
+                                <input type="text" name="" id="">
                             </div>
                             <div>
                                 <span>Account Number</span>
-                                <input type="number" name=""  id="">
+                                <input type="number" name="" id="">
                             </div>
                             <div>
                                 <span>Swift/Other code</span>
-                                <input type="text" name=""  id="">
+                                <input type="text" name="" id="">
                             </div>
                             <div>
                                 <span>Wallet Address</span>
-                                <input type="text" name=""  id="">
+                                <input type="text" name="" id="">
                             </div>
                             <div>
                                 <span>Barcode image (optional)</span>
@@ -285,10 +285,9 @@
         </div>
     </main>
 
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-    <script src="../scripts/transaction-history.js"></script>
-
+    <script src="/scripts/admin/payment-setting.js"></script>
 </body>
 
 </html>
