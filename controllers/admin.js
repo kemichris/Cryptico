@@ -863,8 +863,12 @@ const approveOrRejectKyc = async (req, res) => {
   }
 };
 
-//////////////// EMAIL SECTION  /////////////////
 
+//////////////// PAYMENT METHOD SECTION  /////////////////
+
+
+//////////////// EMAIL SECTION  /////////////////
+// Send email
 const sendEmail = async (req, res) => {
   try {
     const {
