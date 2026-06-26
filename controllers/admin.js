@@ -945,6 +945,39 @@ const getAllMethods = async (req, res) => {
   }
 }
 
+// Toggle Payment Method Status
+const togglePaymentMethodStatus = async (req, res) => {
+  try {
+    const paymentMethod = await PaymentMethod.findById(req.params.id);
+
+    if (!paymentMethod) {
+      return res.status(404).json({
+        message: "Payment method not found"
+      });
+    }
+
+    // Toggle status
+    paymentMethod.status = paymentMethod.status === "enabled" ? "disabled" : "enabled";
+
+    await paymentMethod.save();
+
+    return res.status(200).json({
+      message: `Payment method ${
+        paymentMethod.status === "enabled"
+          ? "enabled"
+          : "disabled"
+      } successfully`,
+      method: paymentMethod
+    });
+
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message
+    });
+  }
+};
+
+
 // delete payment method
 const deletePaymentMethod = async (req, res) => {
   try {
@@ -1183,6 +1216,7 @@ module.exports = {
   getAllAdmins,
   createPaymentMethod,
   editPaymentMethod,
+  togglePaymentMethodStatus,
   getAllMethods,
   deletePaymentMethod
 };

@@ -93,7 +93,6 @@ toggleStatusBtn.addEventListener("click", async () => {
         const res = await fetch(`/api/admin/users/${userId}/toggle-status`, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: `Bearer ${Auth.getToken()}`
             }
         });

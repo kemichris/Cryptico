@@ -38,6 +38,7 @@ const {
   getAllAdmins,
   createPaymentMethod,
   editPaymentMethod,
+  togglePaymentMethodStatus,
   getAllMethods,
   deletePaymentMethod
 } = require('../controllers/admin');
@@ -97,6 +98,7 @@ router.put('/kyc/:id', protect, adminOnly, approveOrRejectKyc);
 router.post('/payment-methods', protect, adminOnly, upload.single('qrCode'), createPaymentMethod);
 router.get('/payment-methods', protect, adminOnly, getAllMethods);
 router.patch('/payment-methods/:id', protect, adminOnly, editPaymentMethod);
+router.patch("/payment-methods/:id/toggle-status", protect, adminOnly, togglePaymentMethodStatus);
 router.delete('/payment-methods/:id', protect, adminOnly, deletePaymentMethod);
 
 // ─── EMAIL ─────────────────────────────────────
