@@ -159,7 +159,7 @@
                 <div class="payment-setting">
                     <div class="payment-method flex">
                         <p>Payment Methods</p>
-                        <button><i class="fa-solid fa-plus"></i> Add new</button>
+                        <button id="add-payment-method-btn"><i class="fa-solid fa-plus"></i> Add new</button>
                     </div>
 
                     <table>
@@ -179,11 +179,9 @@
                                 <td></td>
                                 <td></td>
                                 <td class="deposit-action">
-                                    <a href="edit-method.html">
-                                        <button class="deposit-action-view"><i class="fa-solid fa-pen"></i></button>
-                                    </a>
-                                    <button class="deposit-action-del">Delete</button>
-                                    <button class="deposit-action-confirm">Enable</button>
+                                    <button class="manage-btn"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="del-btn">Delete</button>
+                                    <button class="complete-btn">Enable</button>
                                 </td>
 
                             </tr>
@@ -191,96 +189,107 @@
                     </table>
                 </div>
 
-                <div class="plan-form">
-                    <form action="">
-                        <div class="form-container grid">
-                            <div class="plan-name">
-                                <span>Name</span>
-                                <input type="text" name="" placeholder="payment method name" id="">
-                            </div>
-                            <div>
-                                <span>Minimum Amount</span>
-                                <input type="number" name="" id="">
-                                <small>Required but only applies to withdrawal</small>
-                            </div>
-                            <div>
-                                <span>Maximum Amount</span>
-                                <input type="number" name="" id="">
-                                <small>Required but only applies to withdrawal</small>
-                            </div>
-                            <div>
-                                <span>Charges</span>
-                                <input type="number" name="" id="">
-                                <small>Required but only applies to withdrawal</small>
-                            </div>
-                            <div>
-                                <span>Charges Type (%)</span>
-                                <input type="number" name="" id="">
-                                <small>Required but only applies to withdrawal</small>
-                            </div>
-                            <div>
-                                <span>Type</span>
-                                <select name="" id="">
-                                    <option value="Crypto">Crypto</option>
-                                    <option value="currency">Currency</option>
-                                </select>
-                            </div>
-                            <div>
-                                <span>Image URl</span>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div>
-                                <span>Bank Name</span>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div>
-                                <span>Account Name</span>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div>
-                                <span>Account Number</span>
-                                <input type="number" name="" id="">
-                            </div>
-                            <div>
-                                <span>Swift/Other code</span>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div>
-                                <span>Wallet Address</span>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div>
-                                <span>Barcode image (optional)</span>
-                                <input type="file" name="" id="">
-                                <small>Recommended Size: 575px both width and height</small>
-                            </div>
-                            <div>
-                                <span>Wallet Address Network Type</span>
-                                <input type="number" name="" placeholder="e.g ERC20 BEP20 Bitcoin" id="">
-                            </div>
-                            <div>
-                                <span>Status</span>
-                                <select name="" id="">
-                                    <option value="enable">Enable</option>
-                                    <option value="disable">Disable</option>
-                                </select>
-                            </div>
-                            <div>
-                                <span>Type for</span>
-                                <select name="" id="">
-                                    <option value="Crypto">Withdrawal</option>
-                                    <option value="currency">Deposit</option>
-                                    <option value="both">Both</option>
-                                </select>
-                            </div>
-                            <div>
-                                <span>Optional note</span>
-                                <input type="text" name="" placeholder="Payment may take up to 24hrs" id="">
-                            </div>
+                <!-- Overlay -->
+                <div class="payment-modal active" id="paymentModal">
+
+                    <div class="payment-modal-content">
+
+                        <div class="modal-header">
+                            <h2>Add Payment Method</h2>
+
+                            <i class="fa-solid fa-xmark" id="closePaymentModal"></i>
                         </div>
-                        <button class="add-plan-btn" type="submit">Save Method</button>
-                    </form>
+
+                        <div class="plan-form payment-setting">
+                            <form action="">
+                                <div class="form-container grid">
+                                    <div class="plan-name">
+                                        <span>Name</span>
+                                        <input type="text" name="name" placeholder="payment method name" id="">
+                                    </div>
+                                    <div>
+                                        <span>Minimum Amount</span>
+                                        <input type="number" name="" id="">
+                                        <small>Required but only applies to withdrawal</small>
+                                    </div>
+                                    <div>
+                                        <span>Maximum Amount</span>
+                                        <input type="number" name="" id="">
+                                        <small>Required but only applies to withdrawal</small>
+                                    </div>
+                                    <div>
+                                        <span>Charges (%)</span>
+                                        <input type="number" name="" id="">
+                                        <small>Required but only applies to withdrawal</small>
+                                    </div>
+                                    <div>
+                                        <span>Type</span>
+                                        <select name="type" id="payment-type">
+                                            <option value="crypto">Crypto</option>
+                                            <option value="currency">Currency</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span>Image URl</span>
+                                        <input type="text" name="icon" id="" placeholder="paste image url here">
+                                        <small>Just search the logo and copy the link to the image</small>
+                                    </div>
+                                    <div class="bank-field active">
+                                        <span>Bank Name</span>
+                                        <input type="text" name="icon" id="">
+                                    </div>
+                                    <div class="bank-field active">
+                                        <span>Account Name</span>
+                                        <input type="text" name="" id="">
+                                    </div>
+                                    <div class="bank-field active">
+                                        <span>Account Number</span>
+                                        <input type="number" name="" id="">
+                                    </div>
+                                    <div class="bank-field active">
+                                        <span>Swift/Other code</span>
+                                        <input type="text" name="" id="">
+                                    </div>
+                                    <div class="crypto-field active">
+                                        <span>Wallet Address</span>
+                                        <input type="text" name="" id="">
+                                    </div>
+                                    <div class="crypto-field active">
+                                        <span>Barcode image (optional)</span>
+                                        <input type="file" name="" id="">
+                                        <small>Recommended Size: 575px both width and height</small>
+                                    </div>
+                                    <div class="crypto-field active">
+                                        <span>Wallet Address Network Type</span>
+                                        <input type="number" name="" placeholder="e.g ERC20 BEP20 Bitcoin" id="">
+                                    </div>
+                                    <div>
+                                        <span>Status</span>
+                                        <select name="" id="">
+                                            <option value="enable">Enable</option>
+                                            <option value="disable">Disable</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span>Type for</span>
+                                        <select name="" id="">
+                                            <option value="withdrawal">Withdrawal</option>
+                                            <option value="deposit">Deposit</option>
+                                            <option value="both">Both</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span>Optional note</span>
+                                        <input type="text" name="" placeholder="Payment may take up to 24hrs" id="">
+                                    </div>
+                                </div>
+                                <button class="add-plan-btn" type="submit">Save Method</button>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </main>
