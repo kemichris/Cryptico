@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const Investment = require('../models/Investment');
 const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
+const PaymentMethod = require('../models/PaymentMethod')
 const { sendMail } = require('../utils/mailer')
 
 
@@ -79,9 +80,9 @@ const getDashboard = async (req, res) => {
 // Get all users
 const getAllUsers = async (req, res) => {
   try {
-    const allUsers = await User.find({role: 'user'}).select('-password').sort({ createdAt: -1 });
-    if(!allUsers) {
-      return res.status(404).json({message: 'No users found'})
+    const allUsers = await User.find({ role: 'user' }).select('-password').sort({ createdAt: -1 });
+    if (!allUsers) {
+      return res.status(404).json({ message: 'No users found' })
     }
     return res.status(200).json({ allUsers });
   } catch (err) {
@@ -502,7 +503,7 @@ const createPlan = async (req, res) => {
       totalExpectedReturn,
       giftBonus,
       topUpInterval,
-      topUpRate,   // 👈 NEW
+      topUpRate,
       duration,
       features
     } = req.body;
@@ -595,7 +596,7 @@ const updatePlan = async (req, res) => {
       req.params.id,
       { $set: updates },
       {
-        new: true,          // return updated document
+        new: true,
         runValidators: true // enforce schema rules
       }
     );
@@ -865,6 +866,81 @@ const approveOrRejectKyc = async (req, res) => {
 
 
 //////////////// PAYMENT METHOD SECTION  /////////////////
+// create payment method
+const createPaymentMethod = async (req, res) => {
+  try {
+    const { name, network, type, paymentAddress, accountName, bankName, icon, qrCode, instructions } = req.body;
+
+    const paymentMethod = await PaymentMethod.create({
+      name, network, type, paymentAddress, accountName, bankName, icon, qrCode, instructions
+    }) 
+
+    return res.status(201).json({
+      message: 'Payment method created successfully',
+      method: paymentMethod
+    })
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+}
+
+// update payment method
+const editPaymentMethod = async (req, res) => {
+  try {
+    const paymentMethod = await PaymentMethod.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!paymentMethod) {
+      return res.status(404).json({
+        message: "Payment method not found"
+      });
+    }
+
+    return res.status(200).json({
+      message: "Payment method updated successfully",
+      method: paymentMethod
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
+// Get all payment methods
+const getAllMethods = async (req, res) => {
+  try {
+    const paymentMethods = await PaymentMethod.find().sort({ createdAt: 1})
+    return res.status(200).json(paymentMethods)
+  } catch (error) {
+    return res.status(500).json({message: error.message})
+  }
+}
+
+// delete payment method
+const deletePaymentMethod = async (req, res) => {
+  try {
+    const deletedMethod = await PaymentMethod.findByIdAndDelete(req.params.id)
+    if(!deletedMethod) {
+      return res.status(404).json({
+        message: 'Payment method not found'
+      })
+    }
+
+    return res.status(200).json({
+      message: 'Payment method deleted succesfully'
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    })
+  }
+}
+
 
 
 //////////////// EMAIL SECTION  /////////////////
@@ -1033,15 +1109,15 @@ const verifyEmail = async (req, res) => {
 // Get all admins
 const getAllAdmins = async (req, res) => {
   try {
-    const admins = await User.find({role: 'admin'})
+    const admins = await User.find({ role: 'admin' })
 
-    if(!admins) {
-      return res.status(404).json({message: 'No admin found'})
+    if (!admins) {
+      return res.status(404).json({ message: 'No admin found' })
     }
     return res.status(200).json(admins);
 
   } catch (err) {
-    res.status(500).json({message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
