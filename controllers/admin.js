@@ -1156,5 +1156,9 @@ module.exports = {
   getUserTransactions,
   sendEmail,
   verifyEmail,
-  getAllAdmins
+  getAllAdmins,
+  createPaymentMethod,
+  editPaymentMethod,
+  getAllMethods,
+  deletePaymentMethod
 };

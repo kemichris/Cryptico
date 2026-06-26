@@ -35,6 +35,10 @@ const {
   sendEmail,
   verifyEmail,
   getAllAdmins,
+  createPaymentMethod,
+  editPaymentMethod,
+  getAllMethods,
+  deletePaymentMethod
 } = require('../controllers/admin');
 
 const { register } = require('../controllers/auth');
@@ -87,6 +91,12 @@ router.get('/transactions/:id', protect, adminOnly, getSingleTransaction);
 // ─── KYC ─────────────────────────────────────
 router.get('/kyc', protect, adminOnly, getPendingKyc);
 router.put('/kyc/:id', protect, adminOnly, approveOrRejectKyc);
+
+// ─── PAYMENT METHOD ─────────────────────────────────────
+router.post('/payment-methods', protect, adminOnly, createPaymentMethod);
+router.get('/payment-methods', protect, adminOnly, getAllMethods);
+router.patch('/payment-methods/:id', protect, adminOnly, editPaymentMethod);
+router.delete('/payment-methods/:id', protect, adminOnly, deletePaymentMethod);
 
 // ─── EMAIL ─────────────────────────────────────
 router.post('/send-email', protect, adminOnly, sendEmail);
