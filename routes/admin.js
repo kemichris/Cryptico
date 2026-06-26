@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { protect, adminOnly } = require('../middleware/auth');
+const upload = require('../middleware/upload');
 const {
   getDashboard,
   getAllUsers,
@@ -93,7 +94,7 @@ router.get('/kyc', protect, adminOnly, getPendingKyc);
 router.put('/kyc/:id', protect, adminOnly, approveOrRejectKyc);
 
 // ─── PAYMENT METHOD ─────────────────────────────────────
-router.post('/payment-methods', protect, adminOnly, createPaymentMethod);
+router.post('/payment-methods', protect, adminOnly, upload.single('qrCode'), createPaymentMethod);
 router.get('/payment-methods', protect, adminOnly, getAllMethods);
 router.patch('/payment-methods/:id', protect, adminOnly, editPaymentMethod);
 router.delete('/payment-methods/:id', protect, adminOnly, deletePaymentMethod);

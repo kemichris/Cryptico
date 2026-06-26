@@ -869,20 +869,44 @@ const approveOrRejectKyc = async (req, res) => {
 // create payment method
 const createPaymentMethod = async (req, res) => {
   try {
-    const { name, network, type, paymentAddress, accountName, bankName, icon, qrCode, instructions } = req.body;
+    const {
+      availableFor,
+      minWithdrawal,
+      maxWithdrawal
+    } = req.body;
+
+    // Uploaded QR code image
+    const qrCode = req.file
+      ? `/assets/uploads/${req.file.filename}`
+      : "";
+
+    // Validate withdrawal limits
+    if (
+      (availableFor === "withdrawal" || availableFor === "both") &&
+      Number(maxWithdrawal) < Number(minWithdrawal)
+    ) {
+      return res.status(400).json({
+        message:
+          "Maximum withdrawal amount must be greater than minimum withdrawal amount."
+      });
+    }
 
     const paymentMethod = await PaymentMethod.create({
-      name, network, type, paymentAddress, accountName, bankName, icon, qrCode, instructions
-    }) 
+      ...req.body,
+      qrCode
+    });
 
     return res.status(201).json({
-      message: 'Payment method created successfully',
+      message: "Payment method created successfully",
       method: paymentMethod
-    })
+    });
+
   } catch (error) {
-    res.status(500).json({message: error.message})
+    return res.status(500).json({
+      message: error.message
+    });
   }
-}
+};
 
 // update payment method
 const editPaymentMethod = async (req, res) => {

@@ -201,7 +201,7 @@
                         </div>
 
                         <div class="plan-form payment-setting">
-                            <form action="">
+                            <form id="payment-setting">
                                 <div class="form-container grid">
                                     <div class="plan-name">
                                         <span>Name</span>
@@ -209,17 +209,25 @@
                                     </div>
                                     <div>
                                         <span>Minimum Amount</span>
-                                        <input type="number" name="" id="">
+                                        <input type="number" name="minWithdrawal" id="" value="0">
                                         <small>Required but only applies to withdrawal</small>
                                     </div>
                                     <div>
                                         <span>Maximum Amount</span>
-                                        <input type="number" name="" id="">
+                                        <input type="number" name="maxWithdrawal" value="0">
                                         <small>Required but only applies to withdrawal</small>
                                     </div>
-                                    <div>
-                                        <span>Charges (%)</span>
-                                        <input type="number" name="" id="">
+                                    <div class="charges">
+                                        <span>Charges Type</span>
+                                        <select name="withdrawalChargeType" id="">
+                                            <option value="fixed">Fixed</option>
+                                            <option value="percentage">Percentage</option>
+                                        </select>
+                                        <small>Required but only applies to withdrawal</small>
+                                    </div>
+                                    <div class="charges">
+                                        <span>Charges</span>
+                                        <input type="number" name="withdrawalCharge" id="" value="0">
                                         <small>Required but only applies to withdrawal</small>
                                     </div>
                                     <div>
@@ -236,43 +244,43 @@
                                     </div>
                                     <div class="bank-field active">
                                         <span>Bank Name</span>
-                                        <input type="text" name="icon" id="">
+                                        <input type="text" name="bankName" id="">
                                     </div>
                                     <div class="bank-field active">
                                         <span>Account Name</span>
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="accountName" id="">
                                     </div>
                                     <div class="bank-field active">
                                         <span>Account Number</span>
-                                        <input type="number" name="" id="">
+                                        <input type="number" name="accountNumber" id="">
                                     </div>
                                     <div class="bank-field active">
                                         <span>Swift/Other code</span>
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="swiftCode" id="">
                                     </div>
                                     <div class="crypto-field active">
                                         <span>Wallet Address</span>
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="walletAddress" id="">
                                     </div>
                                     <div class="crypto-field active">
                                         <span>Barcode image (optional)</span>
-                                        <input type="file" name="" id="">
+                                        <input type="file" name="qrCode" id="">
                                         <small>Recommended Size: 575px both width and height</small>
                                     </div>
                                     <div class="crypto-field active">
                                         <span>Wallet Address Network Type</span>
-                                        <input type="number" name="" placeholder="e.g ERC20 BEP20 Bitcoin" id="">
+                                        <input type="text" name="network" placeholder="e.g ERC20 BEP20 Bitcoin" id="">
                                     </div>
                                     <div>
                                         <span>Status</span>
-                                        <select name="" id="">
-                                            <option value="enable">Enable</option>
-                                            <option value="disable">Disable</option>
+                                        <select name="status" id="">
+                                            <option value="enabled">Enable</option>
+                                            <option value="disabled">Disable</option>
                                         </select>
                                     </div>
                                     <div>
                                         <span>Type for</span>
-                                        <select name="" id="">
+                                        <select name="availableFor" id="">
                                             <option value="withdrawal">Withdrawal</option>
                                             <option value="deposit">Deposit</option>
                                             <option value="both">Both</option>
@@ -280,7 +288,7 @@
                                     </div>
                                     <div>
                                         <span>Optional note</span>
-                                        <input type="text" name="" placeholder="Payment may take up to 24hrs" id="">
+                                        <input type="text" name="instructions" placeholder="Payment may take up to 24hrs" id="">
                                     </div>
                                 </div>
                                 <button class="add-plan-btn" type="submit">Save Method</button>

@@ -11,9 +11,10 @@ const paymentMethodSchema = new mongoose.Schema({
     // bitcoin, ethereum, bank...
     network: {
         type: String,
-        required: true,
-    },
+        default: ''
 
+    },
+    
     // crypto | bank
     type: {
         type: String,
@@ -22,9 +23,15 @@ const paymentMethodSchema = new mongoose.Schema({
     },
 
     // Wallet address or bank account number
-    paymentAddress: {
+    walletAddress: {
         type: String,
-        required: true,
+        default: '',
+        trim: true
+    },
+
+    accountNumber: {
+        type: String,
+        default: '',
         trim: true
     },
 
@@ -40,6 +47,24 @@ const paymentMethodSchema = new mongoose.Schema({
         default: ""
     },
 
+    // optional swift code 
+    swiftCode: {
+        type: String,
+        default: ''
+    },
+
+    withdrawalCharge: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+
+    withdrawalChargeType: {
+        type: String,
+        enum: ["fixed", "percentage"],
+        default: "fixed"
+    },
+
     // Used for displaying logo
     icon: {
         type: String,
@@ -48,6 +73,7 @@ const paymentMethodSchema = new mongoose.Schema({
 
     qrCode: {
         type: String,
+        default: ''
     },
 
     availableFor: {
@@ -55,6 +81,23 @@ const paymentMethodSchema = new mongoose.Schema({
         enum: ["deposit", "withdrawal", "both"],
         default: "both"
     },
+
+    minWithdrawal: {
+        type: Number,
+        min: 0,
+        required() {
+            return this.availableFor === "withdrawal" || this.availableFor === "both";
+        }
+    },
+
+    maxWithdrawal: {
+        type: Number,
+        min: 0,
+        required() {
+            return this.availableFor === "withdrawal" || this.availableFor === "both";
+        }
+    },
+
 
     // Whether users can currently use it
     status: {
