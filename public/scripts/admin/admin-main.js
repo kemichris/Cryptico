@@ -63,7 +63,7 @@ function showToast(message, type = "success") {
 
     setTimeout(() => {
         toast.classList.remove("show");
-    }, 3000);
+    }, 7000);
 }
 
 const confirmModal = document.getElementById("confirmModal");
