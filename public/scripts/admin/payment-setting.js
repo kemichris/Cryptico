@@ -115,6 +115,9 @@ const paymentMethodForm = document.getElementById("payment-setting");
 
 paymentMethodForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const submitBtn = paymentMethodForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating...';
 
     const formData = new FormData(paymentMethodForm);
 
@@ -143,6 +146,8 @@ paymentMethodForm.addEventListener("submit", async (e) => {
         showToast("Something went wrong");
     } finally {
         modal.classList.add("active");
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save Method';
     }
 });
 
