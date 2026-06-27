@@ -911,8 +911,16 @@ const createPaymentMethod = async (req, res) => {
 // update payment method
 const editPaymentMethod = async (req, res) => {
   try {
-    const paymentMethod = await PaymentMethod.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
+    // If a new QR code was uploaded, add it to the update data
+    if (req.file) {
+      req.body.qrCode = `/assets/uploads/${req.file.filename}`;
+    }
+
+    const paymentMethod = await PaymentMethod.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        returnDocument: 'after',
         runValidators: true
       }
     );
@@ -938,12 +946,34 @@ const editPaymentMethod = async (req, res) => {
 // Get all payment methods
 const getAllMethods = async (req, res) => {
   try {
-    const paymentMethods = await PaymentMethod.find().sort({ createdAt: 1})
+    const paymentMethods = await PaymentMethod.find().sort({ createdAt: 1 })
     return res.status(200).json(paymentMethods)
   } catch (error) {
-    return res.status(500).json({message: error.message})
+    return res.status(500).json({ message: error.message })
   }
 }
+
+// Get Single Payment Method
+const getPaymentMethod = async (req, res) => {
+  try {
+    const paymentMethod = await PaymentMethod.findById(req.params.id);
+
+    if (!paymentMethod) {
+      return res.status(404).json({
+        message: "Payment method not found"
+      });
+    }
+
+    return res.status(200).json({
+      method: paymentMethod
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
 
 // Toggle Payment Method Status
 const togglePaymentMethodStatus = async (req, res) => {
@@ -962,11 +992,10 @@ const togglePaymentMethodStatus = async (req, res) => {
     await paymentMethod.save();
 
     return res.status(200).json({
-      message: `Payment method ${
-        paymentMethod.status === "enabled"
+      message: `Payment method ${paymentMethod.status === "enabled"
           ? "enabled"
           : "disabled"
-      } successfully`,
+        } successfully`,
       method: paymentMethod
     });
 
@@ -977,12 +1006,11 @@ const togglePaymentMethodStatus = async (req, res) => {
   }
 };
 
-
 // delete payment method
 const deletePaymentMethod = async (req, res) => {
   try {
     const deletedMethod = await PaymentMethod.findByIdAndDelete(req.params.id)
-    if(!deletedMethod) {
+    if (!deletedMethod) {
       return res.status(404).json({
         message: 'Payment method not found'
       })
@@ -1218,5 +1246,6 @@ module.exports = {
   editPaymentMethod,
   togglePaymentMethodStatus,
   getAllMethods,
+  getPaymentMethod,
   deletePaymentMethod
 };

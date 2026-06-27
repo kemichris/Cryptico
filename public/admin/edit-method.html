@@ -38,20 +38,20 @@
             <div class="loader-spinner"></div>
         </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
 
-<!-- CONFIRM MODAL -->
-<div id="confirmModal" class="confirm-modal hidden">
-    <div class="confirm-box">
-        <p id="confirmText">Are you sure?</p>
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
 
-        <div class="confirm-actions">
-            <button id="confirmNo">Cancel</button>
-            <button id="confirmYes">Yes</button>
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
         <div class="side-menu-main flex">
             <!-- SIDE MENU  -->
             <div class="side-menu active" id="side-menu">
@@ -159,102 +159,105 @@
                 </div>
 
                 <div class="plan-form">
-                    <form action="">
+                    <form id="payment-setting">
                         <div class="form-container grid">
                             <div class="plan-name">
                                 <span>Name</span>
-                                <input type="text" name="" readonly value="Payment Method" id="">
+                                <input type="text" name="name" placeholder="payment method name" id="">
                             </div>
                             <div>
                                 <span>Minimum Amount</span>
-                                <input type="number" name="" id="">
+                                <input type="number" name="minWithdrawal" id="" value="0">
                                 <small>Required but only applies to withdrawal</small>
                             </div>
                             <div>
                                 <span>Maximum Amount</span>
-                                <input type="number" name="" id="">
+                                <input type="number" name="maxWithdrawal" value="0">
                                 <small>Required but only applies to withdrawal</small>
                             </div>
-                            <div>
+                            <div class="charges">
+                                <span>Charges Type</span>
+                                <select name="withdrawalChargeType" id="">
+                                    <option value="fixed">Fixed</option>
+                                    <option value="percentage">Percentage</option>
+                                </select>
+                                <small>Required but only applies to withdrawal</small>
+                            </div>
+                            <div class="charges">
                                 <span>Charges</span>
-                                <input type="number" name="" id="">
-                                <small>Required but only applies to withdrawal</small>
-                            </div>
-                            <div>
-                                <span>Charges Type (%)</span>
-                                <input type="number" name="" id="">
+                                <input type="number" name="withdrawalCharge" id="" value="0">
                                 <small>Required but only applies to withdrawal</small>
                             </div>
                             <div>
                                 <span>Type</span>
-                                <select name="" id="">
-                                    <option value="Crypto">Crypto</option>
+                                <select name="type" id="payment-type">
+                                    <option value="crypto">Crypto</option>
                                     <option value="currency">Currency</option>
                                 </select>
                             </div>
                             <div>
                                 <span>Image URl</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="icon" id="" placeholder="paste image url here">
+                                <small>Just search the logo and copy the link to the image</small>
                             </div>
-                            <div>
+                            <div class="bank-field active">
                                 <span>Bank Name</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="bankName" id="">
                             </div>
-                            <div>
+                            <div class="bank-field active">
                                 <span>Account Name</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="accountName" id="">
                             </div>
-                            <div>
+                            <div class="bank-field active">
                                 <span>Account Number</span>
-                                <input type="number" name="" id="">
+                                <input type="number" name="accountNumber" id="">
                             </div>
-                            <div>
+                            <div class="bank-field active">
                                 <span>Swift/Other code</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="swiftCode" id="">
                             </div>
-                            <div>
+                            <div class="crypto-field active">
                                 <span>Wallet Address</span>
-                                <input type="text" name="" id="">
+                                <input type="text" name="walletAddress" id="">
                             </div>
-                            <div>
+                            <div class="crypto-field active">
                                 <span>Barcode image (optional)</span>
-                                <input type="file" name="" id="">
+                                <input type="file" name="qrCode" id="">
                                 <small>Recommended Size: 575px both width and height</small>
                             </div>
-                            <div>
+                            <div class="crypto-field active">
                                 <span>Wallet Address Network Type</span>
-                                <input type="number" name="" placeholder="e.g ERC20 BEP20 Bitcoin" id="">
+                                <input type="text" name="network" placeholder="e.g ERC20 BEP20 Bitcoin" id="">
                             </div>
                             <div>
                                 <span>Status</span>
-                                <select name="" id="">
-                                    <option value="enable">Enable</option>
-                                    <option value="disable">Disable</option>
+                                <select name="status" id="">
+                                    <option value="enabled">Enable</option>
+                                    <option value="disabled">Disable</option>
                                 </select>
                             </div>
                             <div>
                                 <span>Type for</span>
-                                <select name="" id="">
-                                    <option value="Crypto">Withdrawal</option>
-                                    <option value="currency">Deposit</option>
+                                <select name="availableFor" id="">
+                                    <option value="withdrawal">Withdrawal</option>
+                                    <option value="deposit">Deposit</option>
                                     <option value="both">Both</option>
                                 </select>
                             </div>
                             <div>
                                 <span>Optional note</span>
-                                <input type="text" name="" placeholder="Payment may take up to 24hrs" id="">
+                                <input type="text" name="instructions" placeholder="Payment may take up to 24hrs" id="">
                             </div>
                         </div>
-                        <button class="add-plan-btn" type="submit">Save changes</button>
+                        <button class="add-plan-btn save-changes" type="submit">Save changes</button>
                     </form>
                 </div>
             </div>
         </div>
     </main>
-
+    <script src="/scripts/utils/auth.js"></script>
     <script src="/scripts/admin/admin-main.js"></script>
-
-    <script src="/scripts/transaction-history.js"></script>
+    <script src="/scripts/admin/edit-method.js"></script>
 
 </body>
 

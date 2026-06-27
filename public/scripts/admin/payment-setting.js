@@ -132,6 +132,7 @@ paymentMethodForm.addEventListener("submit", async (e) => {
         if (res.ok) {
             showToast(data.message);
             paymentMethodForm.reset();
+            loadPaymentMethods()
         } else {
             showToast(data.message || "Failed to create payment method");
             console.log(data.message)
