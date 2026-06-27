@@ -677,7 +677,7 @@ const getUserTransactions = async (req, res) => {
   }
 };
 
-//////////////// CANCEL AND COMPLETE INVESTMENT  /////////////////
+//////////////// INVESTMENT SECTION  /////////////////
 // Get all investments
 const getAllInvestments = async (req, res) => {
   try {
@@ -811,7 +811,7 @@ const deleteInvestment = async (req, res) => {
   }
 };
 
-//////////////// INV AND KYC SECTION  /////////////////
+//////////////// KYC SECTION  /////////////////
 
 // Get all pending kyc
 const getPendingKyc = async (req, res) => {
