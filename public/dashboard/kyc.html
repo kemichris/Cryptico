@@ -131,32 +131,132 @@
                         <span class="active">Verify Kyc</span>
                     </div>
                 </a>
-                
+
 
 
             </div>
 
-            <!-- ////// SUPPORT ////// -->
+            <!-- ////// KYC APPLICATION ////// -->
             <div class="user-support">
-                <h1>Cryptico Support</h1>
-                <h4>For inquiries, suggestions or complains. Mail us at</h4>
-                <p>info@cryptico.com</p>
+                <h1>Identity Verification (KYC)</h1>
+                <p>
+                    Verify your identity to increase your account security and unlock withdrawals.
+                </p>
 
-                <div class="support-form">
-                    <form action="">
-                        <span>Subject</span>
-                        <input type="text" name="" id="">
-                        <span>Message</span>
-                        <textarea name="" id=""></textarea>
-                        <button class="support-btn" type="submit">Send</button>
-                    </form>
+                <form id="kyc-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" name="dateOfBirth" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" name="country" required>
+                        </div>
+                        <div class="form-group">
+                            <label>ID Type</label>
+                            <select name="idType" id="idType" required>
+                                <option value="">Choose ID</option>
+                                <option value="passport">
+                                    International Passport
+                                </option>
+                                <option value="nationalId">
+                                    National ID
+                                </option>
+                                <option value="driversLicense">
+                                    Driver's License
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ID Number</label>
+                            <input type="text" name="idNumber" required>
+                        </div>
+                    </div>
+                    <div class="upload-grid">
+                        <div class="upload-card">
+                            <label>
+                                Front of ID
+                            </label>
+                            <input type="file" name="frontImage" accept="image/*" required>
+                        </div>
+                        <div class="upload-card" id="backImageWrapper">
+                            <label>
+                                Back of ID
+                            </label>
+                            <input type="file" name="backImage" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="guidelines">
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Upload a clear image.</li>
+                            <li>All four corners must be visible.</li>
+                            <li>No screenshots.</li>
+                            <li>Document must not be expired.</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        Submit KYC
+                    </button>
+
+                </form>
+
+                <div class="kyc-status-card pending" id="pending-card">
+                    <div class="status-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h2>KYC Under Review</h2>
+                    <p>
+                        Your identity verification has been submitted successfully.
+                    </p>
+                    <p>
+                        Please allow up to <strong>24 hours</strong> for review.
+                    </p>
+                </div>
+
+                <div class="kyc-status-card verified" id="verified-card">
+                    <div class="status-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h2>KYC Verified</h2>
+                    <p>
+                        Congratulations!
+                    </p>
+                    <p>
+                        Your identity has been verified successfully.
+                    </p>
+                </div>
+
+                <div class="kyc-status-card rejected" id="rejected-card">
+                    <div class="status-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <h2>
+                        KYC Rejected
+                    </h2>
+                    <p>
+                        Your verification could not be approved.
+                    </p>
+                    <div class="reason">
+                        <strong>Reason</strong>
+                        <p id="reason"></p>
+                    </div>
+                    <button id="resubmitBtn" class="resubmit-btn">
+                        Submit New Application
+                    </button>
                 </div>
             </div>
         </div>
         </div>
     </main>
-    
     <script src="/scripts/dashboard/users-dashboard.js"></script>
+    <script src="/scripts/dashboard/kyc-application.js"></script>
 </body>
 
 </html>
