@@ -28,8 +28,6 @@ const kycSchema = new mongoose.Schema({
 
     backImage: String,
 
-    selfieImage: String,
-
     applicationStatus: {
         type: String,
         enum: [

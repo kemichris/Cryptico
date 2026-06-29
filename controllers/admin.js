@@ -825,6 +825,20 @@ const kycApplications = async (req, res) => {
   }
 };
 
+// get User application
+const singleKycApplication = async(req, res) => {
+  try {
+    const kycApplication = await Kyc.findById(req.params.id).populate('user', 'email userName kycStatus');
+    if(!kycApplication) {
+      return res.status(404).json({ message: 'user application not found'});
+    }
+
+    res.status(200).json(kycApplication)
+  } catch (err) {
+    return res.status(500).json({message: err.message})
+  }
+}
+
 // Approve kyc without application
 const verifyUserKyc = async (req, res) => {
   try {
@@ -1309,6 +1323,7 @@ module.exports = {
   completeInvestment,
   deleteInvestment,
   kycApplications,
+  singleKycApplication,
   verifyUserKyc,
   reviewKycApplication,
   getAllTransactions,

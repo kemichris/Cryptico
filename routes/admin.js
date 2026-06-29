@@ -29,6 +29,7 @@ const {
   completeInvestment,
   deleteInvestment,
   kycApplications,
+  singleKycApplication,
   verifyUserKyc,
   reviewKycApplication,
   getAllTransactions,
@@ -94,6 +95,7 @@ router.get('/transactions/:id', protect, adminOnly, getSingleTransaction);
 
 // ─── KYC ─────────────────────────────────────
 router.get('/kyc', protect, adminOnly, kycApplications);
+router.get('/kyc/:id', protect, adminOnly, singleKycApplication);
 router.patch('/kyc/:id/review', protect,adminOnly, reviewKycApplication);
 router.patch('/kyc/:id/verify', protect, adminOnly, verifyUserKyc);
 
