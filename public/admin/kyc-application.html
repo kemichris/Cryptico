@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Application</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/admin.css" />
+</head>
+
+<body>
+    <header>
+        <!-- NAV SECTION  -->
+        <nav class="flex">
+            <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+            <a href="../index.html">Cryptico</a>
+            <i class="fa-solid fa-user" id="account"></i>
+
+        </nav>
+        <div class="user-setting-dropdown">
+
+            <button type="button">Account setting</button>
+            <button type="button">Change password</button>
+            <button type="button" class="logout" id="admin-logout">Logout</button>
+
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PAGE LOADER -->
+        <div id="pageLoader" class="page-loader">
+            <div class="loader-spinner"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
+
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
+
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
+        </div>
+        <div class="side-menu-main flex">
+            <!-- SIDE MENU  -->
+            <div class="side-menu active" id="side-menu">
+                <div class="admin-user">
+                    <p class="admin-name" id="admin-name">Admin Name</p>
+                    <small class="admin-title">Admin</small>
+                </div>
+                <a href="dashboard.html">
+                    <div class="dashboard admin-div">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+                <div class="investment admin-div">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <span>Investment <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="investment-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="/admin/plans.html">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="/admin/active-investment.html">Active Investment</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <a href="/admin/manage-users.html">
+                    <div class="manage-users admin-div">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Manage Users</span>
+                    </div>
+                </a>
+                <a href="/admin/manage-deposits.html">
+                    <div class="manage-dep admin-div">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Manage Deposits</span>
+                    </div>
+                </a>
+                <a href="/admin/manage-withdrawals.html">
+                    <div class="manage-with admin-div">
+                        <i class="fa-solid fa-circle-arrow-up"></i>
+                        <span>Manage Withdrawal</span>
+                    </div>
+                </a>
+                <a href="/admin/kyc.html">
+                    <div class="kyc-application admin-div active">
+                        <i class="fa-solid fa-user-check active"></i>
+                        <span class="active">KYC Applications</span>
+                    </div>
+                </a>
+                <a href="/admin/email-service.html">
+                    <div class="email-services admin-div">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Email Services</span>
+                    </div>
+                </a>
+                <div class="administrator admin-div">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Administrator <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="administrator-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="/admin/add-managers.html">Add Manager</a>
+                        </li>
+                        <li>
+                            <a href="/admin/manage-admins.html">Manage Admins</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="setting admin-div">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Setting <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="setting-dropdown dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="/admin/payment-setting.html">Payment Setting</a>
+                        </li>
+                        <li>
+                            <a href="">Frontend setting</a>
+                        </li>
+                        <li>
+                            <a href="">Terms and Privacy</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+
+            </div>
+
+            <!-- MAIN DASHBOARD  -->
+            <div class="main-dashboard">
+                <div class="plan-top flex">
+                    <div>
+                        <h1><span id="investor-name"></span> KYC Application</h1>
+                        <div class="status pending">
+                            Pending Review
+                        </div>
+                    </div>
+
+                    <a href="kyc.html">
+                        <button><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    </a>
+                </div>
+
+                <div class="kyc-page">
+                    <div class="kyc-grid">
+
+                        <!-- Applicant Information -->
+                        <div class="kyc-card">
+
+                            <h2>Applicant Information</h2>
+
+                            <div class="info-row">
+                                <span>Full Name</span>
+                                <p id="fullName">John Doe</p>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Email</span>
+                                <p id="email">john@email.com</p>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Country</span>
+                                <p id="country">Nigeria</p>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Date of Birth</span>
+                                <p id="dob">18 Jan 1998</p>
+                            </div>
+
+                            <div class="info-row">
+                                <span>ID Type</span>
+                                <p id="idType">National ID</p>
+                            </div>
+
+                            <div class="info-row">
+                                <span>ID Number</span>
+                                <p id="idNumber">A123456789</p>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Submitted</span>
+                                <p id="submittedDate">29 Jun 2026</p>
+                            </div>
+
+                        </div>
+
+                        <!-- Uploaded Documents -->
+                        <div class="kyc-card">
+
+                            <h2>Uploaded Documents</h2>
+
+                            <div class="document-grid">
+
+                                <div class="document-card">
+                                    <h4>Front of ID</h4>
+
+                                    <img id="frontImage" src="/assets/uploads/front.jpg" alt="">
+
+                                    <button class="view-image-btn">
+                                        View Full Image
+                                    </button>
+                                </div>
+
+                                <div class="document-card" id="backImageContainer">
+                                    <h4>Back of ID</h4>
+
+                                    <img id="backImage" src="/assets/uploads/back.jpg" alt="">
+
+                                    <button class="view-image-btn">
+                                        View Full Image
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Review Section -->
+
+                    <div class="kyc-card">
+
+                        <h2>Review</h2>
+
+                        <textarea id="rejectionReason"
+                            placeholder="Reason for rejection (required only if rejecting)"></textarea>
+
+                        <div class="action-buttons">
+
+                            <button class="approve-btn">
+                                <i class="fa-solid fa-check"></i>
+                                Approve
+                            </button>
+
+                            <button class="reject-btn">
+                                <i class="fa-solid fa-xmark"></i>
+                                Reject
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Image Preview Modal -->
+
+                <div class="image-modal">
+
+                    <span class="close-image">
+                        <i class="fa-solid fa-xmark"></i>
+                    </span>
+
+                    <img class="modal-image" src="" alt="">
+
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </main>
+    <script src="/scripts/utils/auth.js"></script>
+    <script src="/scripts/admin/admin-main.js"></script>
+    <script src="/scripts/admin/kyc-application.js"></script>
+
+</body>
+
+</html>
