@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/users-dashboard.css" />
+</head>
+
+<body>
+    <header>
+        <!-- ////// NAV BAR SECTION ////// -->
+        <nav>
+            <ul>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="../assets/icons/crypt-logo.jpg" alt="" />
+                    </a>
+                </li>
+                <li class="welcome">Welcome <span id="welcomeName">User</span>!</li>
+                <button class="sign-out-btn" id="logoutBtn">Sign out</button>
+                <i class="fa-solid fa-bars-staggered nav-menu-icon"></i>
+                <i class="fa-solid fa-x remove-nav-icon inactive"></i>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- PAGE LOADER -->
+        <div id="pageLoader" class="page-loader">
+            <div class="loader-spinner"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div id="toast" class="toast"></div>
+
+        <!-- CONFIRM MODAL -->
+        <div id="confirmModal" class="confirm-modal hidden">
+            <div class="confirm-box">
+                <p id="confirmText">Are you sure?</p>
+
+                <div class="confirm-actions">
+                    <button id="confirmNo">Cancel</button>
+                    <button id="confirmYes">Yes</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-main-flex">
+            <!-- ////// SIDE BAR ////// -->
+            <div class="user-side-bar active">
+                <a class="active" href="/dashboard/users-dashboard.html">
+                    <div class="dashboard user-div">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+                <div class="account user-div">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Account <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="account-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="/dashboard/users-account-setting.html">Account setting</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/users-withdrawinfo.html">Withdrawal info</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <a href="/dashboard/profit-record.html">
+                    <div class="profitl/loss user-div">
+                        <i class="fa-solid fa-signal"></i>
+                        <span>P/L record</span>
+                    </div>
+                </a>
+                <a href="/dashboard/transact-history.html">
+                    <div class="account-history user-div">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Transaction history</span>
+                    </div>
+                </a>
+                <div class="dep-with user-div">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Deposti/Withdraw <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="dep-with-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="/dashboard/users-deposits.html">Deposit</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/users-withdrawal.html">Withdrawal</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="packages user-div">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Packages <i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="packages-dropdown inactive">
+                    <ul>
+                        <li>
+                            <a href="/dashboard/users-plans.html">Investment Plans</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/active-investment.html">My Packages</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="/dashboard/users-support.html">
+                    <div class="support user-div">
+                        <i class="fa-solid fa-circle-radiation"></i>
+                        <span>Support</span>
+                    </div>
+                </a>
+                <a href="/dashboard/kyc.html">
+                    <div class="refer user-div active">
+                        <i class="fa-solid fa-recycle active"></i>
+                        <span class="active">Verify Kyc</span>
+                    </div>
+                </a>
+                
+
+
+            </div>
+
+            <!-- ////// SUPPORT ////// -->
+            <div class="user-support">
+                <h1>Cryptico Support</h1>
+                <h4>For inquiries, suggestions or complains. Mail us at</h4>
+                <p>info@cryptico.com</p>
+
+                <div class="support-form">
+                    <form action="">
+                        <span>Subject</span>
+                        <input type="text" name="" id="">
+                        <span>Message</span>
+                        <textarea name="" id=""></textarea>
+                        <button class="support-btn" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+    
+    <script src="/scripts/dashboard/users-dashboard.js"></script>
+</body>
+
+</html>
