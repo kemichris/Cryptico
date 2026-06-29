@@ -28,8 +28,9 @@ const {
   cancelInvestment,
   completeInvestment,
   deleteInvestment,
-  getPendingKyc,
-  approveOrRejectKyc,
+  kycApplications
+  verifyUserKyc,
+  reviewKycApplication,
   getAllTransactions,
   getSingleTransaction,
   getUserTransactions,
@@ -92,8 +93,9 @@ router.get('/transactions/user/:id', protect, adminOnly, getUserTransactions);
 router.get('/transactions/:id', protect, adminOnly, getSingleTransaction);
 
 // ─── KYC ─────────────────────────────────────
-router.get('/kyc', protect, adminOnly, getPendingKyc);
-router.put('/kyc/:id', protect, adminOnly, approveOrRejectKyc);
+router.get('/kyc', protect, adminOnly, kycApplications);
+router.patch('/kyc/:id/review', protect,adminOnly, reviewKycApplication);
+router.patch('/kyc/:id/verify', protect, adminOnly, verifyUserKyc);
 
 // ─── PAYMENT METHOD ─────────────────────────────────────
 router.post('/payment-methods', protect, adminOnly, upload.single('qrCode'), createPaymentMethod);

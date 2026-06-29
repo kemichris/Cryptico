@@ -5,6 +5,7 @@ const Investment = require('../models/Investment');
 const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
 const PaymentMethod = require('../models/PaymentMethod')
+const Kyc = require('../models/Kyc')
 const { sendMail } = require('../utils/mailer')
 
 
@@ -813,54 +814,127 @@ const deleteInvestment = async (req, res) => {
 
 //////////////// KYC SECTION  /////////////////
 
-// Get all pending kyc
-const getPendingKyc = async (req, res) => {
+// Get all KYC applications 
+const kycApplications = async (req, res) => {
   try {
-    const pendingKyc = await User.find({ kycStatus: 'pending' })
-      .select('-password')
+    const kyc = await Kyc.find()
       .sort({ createdAt: -1 });
-    return res.status(200).json({ pendingKyc });
+    return res.status(200).json(kyc);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-// Approve or reject kyc
-const approveOrRejectKyc = async (req, res) => {
+// Approve kyc without application
+const verifyUserKyc = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const { kycStatus } = req.body;
-
-    // Validate status
-    const validStatuses = ['verified', 'rejected'];
-
-    if (!validStatuses.includes(kycStatus)) {
-      return res.status(400).json({
-        message: 'Invalid KYC status. Must be either verified or rejected.'
+      return res.status(404).json({
+        message: "User not found."
       });
     }
 
-    if (user.kycStatus === kycStatus) {
+    if (user.kycStatus === "verified") {
       return res.status(400).json({
-        message: `User KYC is already ${kycStatus}`
+        message: "User is already KYC verified."
       });
     }
 
-    user.kycStatus = kycStatus;
+    user.kycStatus = "verified";
+
     await user.save();
 
     return res.status(200).json({
-      message: `KYC ${kycStatus} successfully`,
+      message: "User KYC verified successfully.",
       user
     });
 
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
+// Review KYC application
+const reviewKycApplication = async (req, res) => {
+  try {
+    const { applicationStatus, rejectionReason } = req.body;
+
+    // Only approved or rejected are allowed
+    const validStatuses = ["approved", "rejected"];
+
+    if (!validStatuses.includes(applicationStatus)) {
+      return res.status(400).json({
+        message: "Invalid application status."
+      });
+    }
+
+    // Find KYC application
+    const kyc = await Kyc.findById(req.params.id);
+
+    if (!kyc) {
+      return res.status(404).json({
+        message: "KYC application not found."
+      });
+    }
+
+    // Prevent reviewing twice
+    if (kyc.applicationStatus !== "pending") {
+      return res.status(400).json({
+        message: "This KYC application has already been reviewed."
+      });
+    }
+
+    // Find associated user
+    const user = await User.findById(kyc.user);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found."
+      });
+    }
+
+    // Require rejection reason
+    if (
+      applicationStatus === "rejected" &&
+      (!rejectionReason || !rejectionReason.trim())
+    ) {
+      return res.status(400).json({
+        message: "Rejection reason is required."
+      });
+    }
+
+    // -------------------------
+    // Update KYC Application
+    // -------------------------
+
+    kyc.applicationStatus = applicationStatus;
+    kyc.reviewedBy = req.user._id;
+    kyc.reviewedAt = new Date();
+
+    if (applicationStatus === "rejected") {
+      kyc.rejectionReason = rejectionReason;
+      user.kycStatus = "rejected";
+    } else {
+      kyc.rejectionReason = "";
+      user.kycStatus = "verified";
+    }
+
+    await kyc.save();
+    await user.save();
+
+    return res.status(200).json({
+      message: `KYC application ${applicationStatus}.`,
+      kyc
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
   }
 };
 
@@ -993,8 +1067,8 @@ const togglePaymentMethodStatus = async (req, res) => {
 
     return res.status(200).json({
       message: `Payment method ${paymentMethod.status === "enabled"
-          ? "enabled"
-          : "disabled"
+        ? "enabled"
+        : "disabled"
         } successfully`,
       method: paymentMethod
     });
@@ -1234,8 +1308,9 @@ module.exports = {
   cancelInvestment,
   completeInvestment,
   deleteInvestment,
-  getPendingKyc,
-  approveOrRejectKyc,
+  kycApplications,
+  verifyUserKyc,
+  reviewKycApplication,
   getAllTransactions,
   getSingleTransaction,
   getUserTransactions,

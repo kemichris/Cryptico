@@ -145,13 +145,11 @@ const verifyKycBtn = document.getElementById("verify-kyc-btn");
 if (verifyKycBtn) {
     verifyKycBtn.addEventListener("click", async () => {
         try {
-            const res = await fetch(`/api/admin/kyc/${userId}`, {
-                method: "PUT",
+            const res = await fetch(`/api/admin/kyc/${userId}/verify`, {
+                method: "PATCH",
                 headers: {
-                    "Content-Type": "application/json",
                     Authorization: `Bearer ${Auth.getToken()}`
-                },
-                body: JSON.stringify({ kycStatus: "verified" })
+                }
             });
 
             const data = await res.json();

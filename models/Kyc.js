@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
-const kycSchema = new mongoose.Schema(
-  {
+const kycSchema = new mongoose.Schema({
     user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     },
 
     fullName: String,
@@ -15,12 +14,12 @@ const kycSchema = new mongoose.Schema(
     country: String,
 
     idType: {
-      type: String,
-      enum: [
-        "passport",
-        "driversLicense",
-        "nationalId"
-      ]
+        type: String,
+        enum: [
+            "passport",
+            "driversLicense",
+            "nationalId"
+        ]
     },
 
     idNumber: String,
@@ -31,31 +30,31 @@ const kycSchema = new mongoose.Schema(
 
     selfieImage: String,
 
-    status: {
-      type: String,
-      enum: [
-        "pending",
-        "approved",
-        "rejected"
-      ],
-      default: "pending"
+    applicationStatus: {
+        type: String,
+        enum: [
+            "pending",
+            "approved",
+            "rejected"
+        ],
+        default: "pending"
     },
 
     reviewComment: {
-      type: String,
-      default: ""
+        type: String,
+        default: ""
     },
 
     reviewedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
 
     reviewedAt: Date
-  },
-  {
-    timestamps: true
-  }
+},
+    {
+        timestamps: true
+    }
 );
 
 module.exports = mongoose.model("KYC", kycSchema);
