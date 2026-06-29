@@ -28,7 +28,7 @@ const {
   cancelInvestment,
   completeInvestment,
   deleteInvestment,
-  kycApplications
+  kycApplications,
   verifyUserKyc,
   reviewKycApplication,
   getAllTransactions,
