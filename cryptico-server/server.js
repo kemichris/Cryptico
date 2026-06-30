@@ -39,6 +39,13 @@ app.use((err, req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Cryptico API is running 🚀",
+  });
+});
+
 
 // Connect to database then start server
 mongoose.connect(process.env.MONGO_URI)
