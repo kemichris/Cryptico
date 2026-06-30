@@ -1164,7 +1164,7 @@ const sendEmail = async (req, res) => {
       // USERS WITHOUT DEPOSIT
       // ==========================================================
       case "withoutDeposit":
-        const depositedUsers = await Transaction.distinct("user", {
+        const depositedUsers = await Transaction.distinct("user`, {
           type: "deposit",
         });
 

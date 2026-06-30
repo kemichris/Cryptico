@@ -135,7 +135,7 @@ tbBody.addEventListener("click", async (e)=>{
         confirmBtn.textContent = "Processing...";
 
         try {
-            const res = await fetch(`/api/admin/withdrawals/${withdrawalId}`, {
+            const res = await fetch(`${API_URL}/api/admin/withdrawals/${withdrawalId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -167,7 +167,7 @@ tbBody.addEventListener("click", async (e)=>{
         rejectBtn.textContent = "Processing...";
 
         try {
-            const res = await fetch(`/api/admin/withdrawals/${withdrawalId}`, {
+            const res = await fetch(`${API_URL}/api/admin/withdrawals/${withdrawalId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -205,7 +205,7 @@ tbBody.addEventListener("click", async (e)=>{
         deleteBtn.disabled = true;
 
         try {
-            const res = await fetch(`/api/admin/deposits/${depositId}`, {
+            const res = await fetch(`${API_URL}/api/admin/deposits/${depositId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${Auth.getToken()}`

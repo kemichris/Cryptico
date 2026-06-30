@@ -136,7 +136,7 @@ tbBody.addEventListener('click', async (e) => {
 
         
         try {
-            const res = await fetch(`/api/admin/investments/${invId}/complete`, {
+            const res = await fetch(`${API_URL}/api/admin/investments/${invId}/complete`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ tbBody.addEventListener('click', async (e) => {
         if (!confirmed) return;
 
         try {
-            const res = await fetch(`/api/admin/investments/${invId}/cancel`, {
+            const res = await fetch(`${API_URL}/api/admin/investments/${invId}/cancel`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ tbBody.addEventListener('click', async (e) => {
         if (!confirmed) return;
 
          try {
-            const res = await fetch(`/api/admin/investments/${invId}`, {
+            const res = await fetch(`${API_URL}/api/admin/investments/${invId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

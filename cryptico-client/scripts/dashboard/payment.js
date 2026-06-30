@@ -15,7 +15,7 @@ const paymentSelect = document.getElementById("select-method")
 
 const showPaymentMethods = async () => {
     try {
-        const res = await fetch(`${API_URL}/api/users/payment-method/deposit", {
+        const res = await fetch(`${API_URL}/api/users/payment-method/deposit`, {
             headers: { Authorization: `Bearer ${token}` }
         });
 

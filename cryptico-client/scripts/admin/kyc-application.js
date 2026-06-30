@@ -35,7 +35,7 @@ const closeModal = document.querySelector(".close-image");
 // load kyc application 
 const loadKyc = async () => {
     try {
-        const res = await fetch(`/api/admin/kyc/${applicationId}`, {
+        const res = await fetch(`${API_URL}/api/admin/kyc/${applicationId}`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -126,7 +126,7 @@ approveBtn.addEventListener("click", async () => {
 
     try {
         approveBtn.disabled = true;
-        const res = await fetch(`/api/admin/kyc/${applicationId}/review`, {
+        const res = await fetch(`${API_URL}/api/admin/kyc/${applicationId}/review`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -161,7 +161,7 @@ rejectBtn.addEventListener("click", async () => {
 
     try {
         rejectBtn.disabled = true;
-        const res = await fetch(`/api/admin/kyc/${applicationId}/review`, {
+        const res = await fetch(`${API_URL}/api/admin/kyc/${applicationId}/review`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

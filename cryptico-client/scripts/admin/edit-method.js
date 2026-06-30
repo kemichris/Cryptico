@@ -10,7 +10,7 @@ if (!paymentMethodId) {
 // load form fields 
 const loadPaymentMethod = async () => {
     try {
-        const res = await fetch(`/api/admin/payment-methods/${paymentMethodId}`, {
+        const res = await fetch(`${API_URL}/api/admin/payment-methods/${paymentMethodId}`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -95,7 +95,7 @@ paymentMethodForm.addEventListener("submit", async (e) => {
     const formData = new FormData(paymentMethodForm);
 
     try {
-        const res = await fetch(`/api/admin/payment-methods/${paymentMethodId}`, {
+        const res = await fetch(`${API_URL}/api/admin/payment-methods/${paymentMethodId}`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`

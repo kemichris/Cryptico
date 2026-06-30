@@ -84,7 +84,7 @@ resendBtn.addEventListener("click", async () => {
     resendBtn.disabled = true;
     resendBtn.textContent = "Sending...";
 
-    const res = await fetch(`${API_URL}/api/auth/resend-verification", {
+    const res = await fetch(`${API_URL}/api/auth/resend-verification`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

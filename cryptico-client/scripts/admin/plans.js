@@ -3,7 +3,7 @@ const planContainer = document.getElementById("plan-container");
 // Load plans on page load
 const loadPlans = async () => {
     try {
-        const res = await fetch(`${API_URL}/api/admin/plans", {
+        const res = await fetch(`${API_URL}/api/admin/plans`, {
             headers: { Authorization: `Bearer ${Auth.getToken()}` },
         });
 
@@ -111,7 +111,7 @@ planContainer.addEventListener("click", async (e) => {
         if (!confirmed) return;
 
         try {
-            const res = await fetch(`/api/admin/plans/${planId}`, {
+            const res = await fetch(`${API_URL}/api/admin/plans/${planId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${Auth.getToken()}`,

@@ -9,7 +9,7 @@ if (!planId) {
 
 const loadPlanEdit = async () => {
     try {
-        const res = await fetch(`/api/admin/plans/${planId}`, {
+        const res = await fetch(`${API_URL}/api/admin/plans/${planId}`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -107,7 +107,7 @@ editPlanForm.addEventListener('submit', async (e) => {
     formObject.duration = Number(formObject.duration);
 
     try {
-        const res = await fetch(`/api/admin/plans/${planId}`, {
+        const res = await fetch(`${API_URL}/api/admin/plans/${planId}`, {
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`,

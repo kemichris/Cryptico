@@ -18,7 +18,7 @@ if (!userId) {
 //////// Get user details and display ////////
 const getUserDetails = async () => {
     try {
-        const res = await fetch(`/api/admin/users/${userId}`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -90,7 +90,7 @@ if (viewPlansBtn) {
 const toggleStatusBtn = document.getElementById("toggle-account-status-btn");
 toggleStatusBtn.addEventListener("click", async () => {
     try {
-        const res = await fetch(`/api/admin/users/${userId}/toggle-status`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}/toggle-status`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
@@ -116,7 +116,7 @@ const verifyEmailBtn = document.getElementById("verify-email-btn");
 if (verifyEmailBtn) {
     verifyEmailBtn.addEventListener("click", async () => {
         try {
-            const res = await fetch(`/api/admin/users/${userId}/verify-email`, {
+            const res = await fetch(`${API_URL}/api/admin/users/${userId}/verify-email`, {
                     method: "PATCH",
                     headers: {
                         Authorization: `Bearer ${Auth.getToken()}`
@@ -145,7 +145,7 @@ const verifyKycBtn = document.getElementById("verify-kyc-btn");
 if (verifyKycBtn) {
     verifyKycBtn.addEventListener("click", async () => {
         try {
-            const res = await fetch(`/api/admin/kyc/${userId}/verify`, {
+            const res = await fetch(`${API_URL}/api/admin/kyc/${userId}/verify`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${Auth.getToken()}`
@@ -176,7 +176,7 @@ editUserBtn.addEventListener("click", async () => {
     usersActionDropdown.classList.toggle("active");
 
     try {
-        const res = await fetch(`/api/admin/users/${userId}`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -211,7 +211,7 @@ editUserForm.addEventListener("submit", async (e) => {
     const formEditObject = Object.fromEntries(formEditData.entries());
 
     try {
-        const res = await fetch(`/api/admin/users/${userId}`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
@@ -259,7 +259,7 @@ creditDebitForm.addEventListener("submit", async (e) => {
     const formObject = Object.fromEntries(formData.entries());
 
     try {
-        const res = await fetch(`/api/admin/users/${userId}/credit-debit`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}/credit-debit`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -298,7 +298,7 @@ loginAsUserBtn.addEventListener("click", async () => {
     }
 
     try {
-        const res = await fetch(`/api/admin/users/${userId}/impersonate`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}/impersonate`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
@@ -334,7 +334,7 @@ resetUserPasswordBtn.addEventListener("click", async () => {
     }
 
     try {
-        const res = await fetch(`/api/admin/users/${userId}/reset-password`, {
+        const res = await fetch(`${API_URL}/api/admin/users/${userId}/reset-password`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
@@ -366,7 +366,7 @@ if (deleteUserBtn) {
         }
 
         try {
-            const res = await fetch(`/api/admin/users/${userId}`, {
+            const res = await fetch(`${API_URL}/api/admin/users/${userId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${Auth.getToken()}`

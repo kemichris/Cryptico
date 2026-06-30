@@ -4,7 +4,7 @@ const planContainer = document.querySelector(".available-plans");
 // Load all available plans
 const getPlans = async () => {
     try {
-        const res = await fetch(`${API_URL}/api/users/plans", {
+        const res = await fetch(`${API_URL}/api/users/plans`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -145,7 +145,7 @@ planContainer.addEventListener("click", async (e) => {
         joinBtn.disabled = true;
         joinBtn.textContent = "Processing...";
 
-        const res = await fetch(`${API_URL}/api/users/invest", {
+        const res = await fetch(`${API_URL}/api/users/invest`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

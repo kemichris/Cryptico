@@ -72,7 +72,7 @@ function maskEmail(email) {
 // FETCH USERS AND POPULATE TABLE
 const loadUsers = async ()=> {
     try {
-        const res = await fetch(`${API_URL}/api/admin/users", {
+        const res = await fetch(`${API_URL}/api/admin/users`, {
             headers: { Authorization: `Bearer ${Auth.getToken()}` }
         });
         
@@ -160,7 +160,7 @@ addUserForm.addEventListener("submit", async (e) => {
     const userData = Object.fromEntries(formData.entries());
 
     try {
-        const res = await fetch(`${API_URL}/api/admin/register", {
+        const res = await fetch(`${API_URL}/api/admin/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

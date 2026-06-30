@@ -63,7 +63,7 @@ const tbBody = document.querySelector(".tbody");
 
 const loadPaymentMethods = async () => {
     try {
-        const res = await fetch(`${API_URL}/api/admin/payment-methods", {
+        const res = await fetch(`${API_URL}/api/admin/payment-methods`, {
             headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })
 
@@ -122,7 +122,7 @@ paymentMethodForm.addEventListener("submit", async (e) => {
     const formData = new FormData(paymentMethodForm);
 
     try {
-        const res = await fetch(`${API_URL}/api/admin/payment-methods", {
+        const res = await fetch(`${API_URL}/api/admin/payment-methods`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
@@ -176,7 +176,7 @@ tbBody.addEventListener("click", async (e) => {
         if (!confirmed) return;
 
         try {
-            const res = await fetch(`/api/admin/payment-methods/${methodId}`, {
+            const res = await fetch(`${API_URL}/api/admin/payment-methods/${methodId}`, {
                 headers: {
                     Authorization: `Bearer ${Auth.getToken()}`
                 }
@@ -204,7 +204,7 @@ tbBody.addEventListener("click", async (e) => {
     if (toggleStatusBtn) {
         const methodId = toggleStatusBtn.dataset.id;
         try {
-            const res = await fetch(`/api/admin/payment-methods/${methodId}/toggle-status`, {
+            const res = await fetch(`${API_URL}/api/admin/payment-methods/${methodId}/toggle-status`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${Auth.getToken()}`

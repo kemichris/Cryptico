@@ -63,7 +63,7 @@ function updatePaginationButtons(rows) {
 
 const getAdmins = async ()=> {
     try {
-        const res = await fetch(`${API_URL}/api/admin/manage-admin", {
+        const res = await fetch(`${API_URL}/api/admin/manage-admin`, {
             headers: {
                 "Authorization": `Bearer ${Auth.getToken()}`
             }
