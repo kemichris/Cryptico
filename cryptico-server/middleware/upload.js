@@ -4,7 +4,7 @@ const path = require('path');
 // where to store uploaded files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/assets/uploads/');
+    cb(null, '../assets/uploads/');
   },
   filename: (req, file, cb) => {
     // unique filename → timestamp + original name
