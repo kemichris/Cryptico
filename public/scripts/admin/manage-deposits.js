@@ -106,6 +106,7 @@ const loadDeposits = async () => {
 
                     ${deposits.status === "pending" ? `
                         <button class="table-action-confirm" data-id="${deposits._id}">Confirm</button>
+                        <button class="table-action-reject" data-id="${deposits._id}">Reject</button>
                         ` : ""
                     }
                     <button class="table-action-del" data-id="${deposits._id}">Delete</button>
@@ -145,6 +146,9 @@ tbBody.addEventListener("click", async (e) => {
     // Confirm Deposits
     const confirmBtn = e.target.closest(".table-action-confirm");
     if (confirmBtn) {
+        const confirmed = await showConfirm("Are you sure you want to accept this deposit?")
+        if(!confirmed) return;
+
         const depositId = confirmBtn.dataset.id;
         confirmBtn.disabled = true;
         confirmBtn.textContent = "Processing...";
@@ -157,6 +161,42 @@ tbBody.addEventListener("click", async (e) => {
                     Authorization: `Bearer ${Auth.getToken()}`
                 },
                 body: JSON.stringify({ status: "approved" })
+            });
+
+            const data = await res.json()
+            if (!res.ok) {
+                showToast(data.message);
+                return;
+            }
+
+            showToast(data.message)
+            loadDeposits();
+
+        } catch (error) {
+            console.error("Error comfirming deposit:", error)
+        }
+
+        return;
+    }
+
+    // Reject Deposits
+    const rejectBtn = e.target.closest(".table-action-reject");
+    if (rejectBtn) {
+
+        const confirmed = await showConfirm("Are you sure you want to reject this deposit?")
+        if(!confirmed) return;
+        const depositId = rejectBtn.dataset.id;
+        rejectBtn.disabled = true;
+        rejectBtn.textContent = "Processing...";
+
+        try {
+            const res = await fetch(`/api/admin/deposits/${depositId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${Auth.getToken()}`
+                },
+                body: JSON.stringify({ status: "rejected" })
             });
 
             const data = await res.json()
