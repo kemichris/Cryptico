@@ -366,14 +366,27 @@ const kycApplication = async (req, res) => {
 };
 
 //////////////// PAYMENT METHOD SECTION  /////////////////
-
-const getPaymentMethods = async (req, res) => {
+// deposit payment method
+const getDepositMethods = async (req, res) => {
   try {
     const paymentMethods = await PaymentMethod.find({
       status: "enabled",
-      availableFor: { $in: ["withdrawal", "both"] }
+      availableFor: { $in: ["deposit", "both"] }
     });
     return res.status(200).json(paymentMethods);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+// withdrawal payment method
+const getWithdrawalMethods = async (req, res) => {
+  try {
+    const withdrawMethods = await PaymentMethod.find({
+      status: "enabled",
+      availableFor: { $in: ["withdrawal", "both"] }
+    });
+    return res.status(200).json(withdrawMethods);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
@@ -394,5 +407,6 @@ module.exports = {
   getUserInvestments,
   getUserActiveInvestment,
   kycApplication,
-  getPaymentMethods
+  getDepositMethods,
+  getWithdrawalMethods
 };

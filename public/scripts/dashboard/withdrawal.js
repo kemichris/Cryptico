@@ -1,26 +1,87 @@
-// USER DEPOSTI POPUP 
+// USER DEPOSTI POPUP
 const withdrawalBtns = document.querySelectorAll(".request-btn");
 const withdrawPopup = document.querySelector(".withdraw-popup");
 const closewithdrawPopup = document.querySelector(".close-deposit-popup");
 const paymentOptionDisplay = document.getElementById("payment-option");
 const withdrawalForm = document.getElementById("withdrawal-form");
 
+// Load withdrawal cards
+const withdrawalCardsContainer = document.getElementById(
+    "withdrawal-card-container",
+);
 
-withdrawalBtns.forEach((withdrawalBtn)=>{
-    withdrawalBtn.addEventListener("click", ()=>{
-        let buttonValue = withdrawalBtn.value;
-        paymentOptionDisplay.value = buttonValue
+const loadWithdrawalCards = async () => {
+    try {
+        const res = await fetch("/api/users/payment-method/withdrawal", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!res.ok) {
+            window.location.href = "/pages/login.html";
+            return
+        }
+
+        const withdrawCardData = await res.json();
+        withdrawalCardsContainer.innerHTML = "";
+
+        withdrawCardData.forEach((card) => {
+            const withdrawCard = document.createElement("div");
+            withdrawCard.className = "withdraw-card";
+
+            withdrawCard.innerHTML = `
+                <h3>${card.name}</h3>
+                <div>
+                    <p>Minimum amount:</p>
+                    <p><strong>$${card.minWithdrawal.toFixed(2)}</strong></p>
+                </div>
+                <div>
+                    <p>Maximum amount:</p>
+                    <p><strong>$${card.maxWithdrawal.toFixed(2)}</strong></p>
+                </div>
+                <div>
+                    <p>charges type</p>
+                    <p><strong>${card.withdrawalChargeType}</strong></p>
+                </div>
+                <div>
+                    <p>Charges</p>
+                    ${card.withdrawalChargeType === "percentage" ? `
+                        <p><strong>${card.withdrawalCharge}%</strong></p>` : 
+                        `<p><strong>$${card.withdrawalCharge}</strong></p>`}
+                </div>
+                <div>
+                    <p>Duration</p>
+                    <p><strong>3 hours</strong></p>
+                </div>
+                <button class="request-btn" data-id="${card.name}"><i class="fa-solid fa-plus"></i> Request Withdrawal</button>
+            `;
+
+            withdrawalCardsContainer.appendChild(withdrawCard)
+
+        });
+    } catch (error) { 
+        console.error(error)
+    }
+};
+
+withdrawalCardsContainer.addEventListener("click", (e)=> {
+    const requestBtn = e.target.closest(".request-btn");
+
+    if (requestBtn) {
+        const requestName = requestBtn.dataset.id;
+        paymentOptionDisplay.value = requestName;
         withdrawPopup.classList.remove("inactive");
-    })
+        return
+    }
 })
 
-
-closewithdrawPopup.addEventListener("click", ()=>{
+closewithdrawPopup.addEventListener("click", () => {
     withdrawPopup.classList.add("inactive");
 });
 
-withdrawalForm.addEventListener("submit", async (e)=> {
-    e.preventDefault()
+
+// withdrawal form
+withdrawalForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
     const form = new FormData(withdrawalForm);
     const formObject = Object.fromEntries(form.entries());
@@ -30,10 +91,10 @@ withdrawalForm.addEventListener("submit", async (e)=> {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(formObject)
-        })
+            body: JSON.stringify(formObject),
+        });
 
         const data = await res.json();
 
@@ -46,11 +107,12 @@ withdrawalForm.addEventListener("submit", async (e)=> {
 
         // ✅ SUCCESS MESSAGE
         showToast(data.message || "Withdrawal request sent");
-
     } catch (error) {
-        console.error(error)
+        console.error(error);
     } finally {
         withdrawPopup.classList.add("inactive");
     }
+});
 
-})
+
+loadWithdrawalCards()
