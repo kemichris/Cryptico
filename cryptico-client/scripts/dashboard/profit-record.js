@@ -63,7 +63,7 @@ function updatePaginationButtons(rows) {
 // Load profit record
 const LoadProfitRecord = async () => {
     try {
-        const res = await fetch(`${API_URL}/api/users/investments`, {
+        const res = await fetch(`${API_URL}/api/users/investments", {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
