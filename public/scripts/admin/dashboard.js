@@ -36,6 +36,7 @@ const loadDashboardData = async () => {
             return;
         }
 
+        const adminNameMain = document.getElementById("admin-name-main")
         const adminName = document.getElementById("admin-name")
         const totalUsers = document.getElementById("total-users");
         const activeSubs = document.getElementById("active-subs");
@@ -46,6 +47,7 @@ const loadDashboardData = async () => {
         const pendingWithdrawals = document.getElementById("pending-with");
         const pendingDeposits = document.getElementById("pending-deposits");
 
+        if(adminNameMain) adminNameMain.textContent = data.adminName;
         if(adminName) adminName.textContent = data.adminName;
         if (totalUsers) totalUsers.textContent = data.totalUsers;
         if (activeSubs) activeSubs.textContent = data.activeSubscribers || 0;
