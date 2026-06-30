@@ -1,6 +1,6 @@
 const cron = require('node-cron');
-const Investment = require('../models/Investment');
-const User = require('../models/User');
+const Investment = require('../cryptico-server/models/Investment');
+const User = require('../cryptico-server/models/User');
 
 const intervalMap = {
   '10 minutes': 10,

@@ -44,9 +44,9 @@ const {
   getAllMethods,
   getPaymentMethod,
   deletePaymentMethod
-} = require('../controllers/admin');
+} = require('../cryptico-server/controllers/admin');
 
-const { register } = require('../controllers/auth');
+const { register } = require('../cryptico-server/controllers/auth');
 
 // ─── REGISTER NEW USER ────────────────────────────────
 router.post('/register', protect, adminOnly, register);

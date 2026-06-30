@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login, verifyEmail, registerAdmin, resendVerificationCode } = require('../controllers/auth');
+const { register, login, verifyEmail, registerAdmin, resendVerificationCode } = require('../cryptico-server/controllers/auth');
 
 router.post('/register', register);
 router.post('/register-admin', registerAdmin);

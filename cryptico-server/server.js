@@ -9,17 +9,25 @@ const { startCronJobs } = require('./utils/cronJobs');
 dotenv.config();
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
+
 // Middleware
 app.use(
   cors({
-    origin: true,
+    origin: [
+      "http://localhost:3000",          // Live Server
+      "http://127.0.0.1:5500",
+      "https://cryptico.vercel.app",    // Replace with your Vercel URL
+      "https://cryptico.com"            // Your future domain
+    ],
     credentials: true,
   })
 );
 app.use(express.json());
 
 // ─── API Routes ────────────────────────────────
-app.use('/api/auth',  require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/admin', require('./routes/admin'));
 
@@ -31,22 +39,13 @@ app.use((err, req, res, next) => {
   next();
 });
 
-// ─── Static files ─────────────────────────────
-app.use(express.static(path.join(__dirname, 'public')));
-
-// ─── Fallback ──────────────────────────────────
-app.get('/{*path}', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
-});
-
-
 
 // Connect to database then start server
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB connected');
-    app.listen(process.env.PORT, () => {
-      console.log(`🚀 Server live → http://localhost:${process.env.PORT}`);
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
     });
     // start cron jobs after DB connects
     startCronJobs();

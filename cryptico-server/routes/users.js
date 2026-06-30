@@ -19,7 +19,7 @@ const {
   kycApplication,
   getDepositMethods,
   getWithdrawalMethods
-} = require('../controllers/users');
+} = require('../cryptico-server/controllers/users');
 
 router.get('/dashboard', protect, getUserDashboard);
 router.get('/profile', protect, getUserProfile);
