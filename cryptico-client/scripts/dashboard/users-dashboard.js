@@ -53,7 +53,7 @@ if (logoutBtn) {
 /* ////// LOAD DASHBOARD DATA ////// */
 const loadDashboard = async () => {
   try {
-    const res = await fetch('/api/users/dashboard', {
+    const res = await fetch(`${API_URL}/api/users/dashboard`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -92,7 +92,7 @@ const loadDashboard = async () => {
 /* ////// LOAD TOTAL DEPOSITS ////// */
 const loadTransactions = async () => {
   try {
-    const res = await fetch('/api/users/transactions', {
+    const res = await fetch(`${API_URL}/api/users/transactions`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 

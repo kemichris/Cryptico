@@ -28,7 +28,7 @@ const resubmitBtn = document.getElementById("resubmitBtn");
 
 const loadKycStatus = async () => {
     try {
-        const res = await fetch("/api/users/profile", {
+        const res = await fetch(`${API_URL}/api/users/profile", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -79,7 +79,7 @@ kycForm.addEventListener("submit", async(e)=> {
         submitBtn.disabled = true;
         submitBtn.innerText = "sending Application..."
 
-        const res = await fetch("/api/users/kyc", {
+        const res = await fetch(`${API_URL}/api/users/kyc", {
             method: "POST",
             headers: { Authorization: `Bearer ${token}`},
             body: formData

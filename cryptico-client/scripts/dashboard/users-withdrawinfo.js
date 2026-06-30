@@ -38,7 +38,7 @@ const withdrawalInfoForm = document.getElementById("withdrawal-info")
 const loadWithdrawalInfo = async () => {
   try {
     // STEP 1: Call backend API to get withdrawal info
-    const res = await fetch('/api/users/withdrawal-info', {
+    const res = await fetch(`${API_URL}/api/users/withdrawal-info`, {
       headers: {
         Authorization: `Bearer ${token}` // send login token for auth
       }
@@ -121,7 +121,7 @@ withdrawalInfoForm.addEventListener('submit',  async (e) => {
     }
 
     try {
-        const res = await fetch('/api/users/withdrawal-info', {
+        const res = await fetch(`${API_URL}/api/users/withdrawal-info`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

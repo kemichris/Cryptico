@@ -5,7 +5,7 @@ const profile = async () => {
     const userData = new FormData(userForm)
 
     try {
-        const res = await fetch('/api/users/profile', {
+        const res = await fetch(`${API_URL}/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -65,7 +65,7 @@ userForm.addEventListener('submit', async (e) => {
     saveBtn.hidden = true;
 
     try {
-        const res = await fetch('/api/users/profile', {
+        const res = await fetch(`${API_URL}/api/users/profile`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

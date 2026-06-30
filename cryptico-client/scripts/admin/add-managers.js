@@ -25,7 +25,7 @@ adminForm.addEventListener('submit', async (e) => {
     saveBtn.disabled = true;
     saveBtn.textContent = "Processing...";
 
-    const res = await fetch('/api/auth/register-admin', {
+    const res = await fetch(`${API_URL}/api/auth/register-admin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataObject)

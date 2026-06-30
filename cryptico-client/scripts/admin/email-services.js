@@ -63,7 +63,7 @@ let selectedUsers = [];
 
 const loadUsers = async () => {
      try {
-        const response = await fetch("/api/admin/users", {
+        const response = await fetch(`${API_URL}/api/admin/users", {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }
@@ -367,7 +367,7 @@ async function sendEmail(e) {
         // Get selected user ids
         const selectedUserIds = selectedUsers.map(user => user._id);
 
-        const res = await fetch("/api/admin/send-email", {
+        const res = await fetch(`${API_URL}/api/admin/send-email", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

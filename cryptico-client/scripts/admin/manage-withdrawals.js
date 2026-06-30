@@ -63,7 +63,7 @@ function updatePaginationButtons(rows) {
 // Load Withdrawals
 const loadWithdrawals = async () => {
     try {
-        const res = await fetch('/api/admin/withdrawals', {
+        const res = await fetch(`${API_URL}/api/admin/withdrawals`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }

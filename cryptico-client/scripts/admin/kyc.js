@@ -62,7 +62,7 @@ function updatePaginationButtons(rows) {
 // Get all KYC applications
 const getKycApplications = async () => {
     try {
-        const res = await fetch("/api/admin/kyc", {
+        const res = await fetch(`${API_URL}/api/admin/kyc", {
             headers: { Authorization: `Bearer ${Auth.getToken()}` },
         });
 

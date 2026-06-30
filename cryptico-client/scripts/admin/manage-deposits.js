@@ -63,7 +63,7 @@ function updatePaginationButtons(rows) {
 // Load Deposits
 const loadDeposits = async () => {
     try {
-        const res = await fetch('/api/admin/deposits', {
+        const res = await fetch(`${API_URL}/api/admin/deposits`, {
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`
             }

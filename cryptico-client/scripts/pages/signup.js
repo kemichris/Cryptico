@@ -25,7 +25,7 @@ form.addEventListener('submit', async (e) => {
     regBtn.disabled = true;
     regBtn.textContent = "Processing...";
 
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataObject)

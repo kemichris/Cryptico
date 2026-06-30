@@ -3,7 +3,7 @@ const planContainer = document.getElementById("plan-container");
 // Load plans on page load
 const loadPlans = async () => {
     try {
-        const res = await fetch("/api/admin/plans", {
+        const res = await fetch(`${API_URL}/api/admin/plans", {
             headers: { Authorization: `Bearer ${Auth.getToken()}` },
         });
 

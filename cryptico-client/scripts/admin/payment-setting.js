@@ -63,7 +63,7 @@ const tbBody = document.querySelector(".tbody");
 
 const loadPaymentMethods = async () => {
     try {
-        const res = await fetch("/api/admin/payment-methods", {
+        const res = await fetch(`${API_URL}/api/admin/payment-methods", {
             headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })
 
@@ -122,7 +122,7 @@ paymentMethodForm.addEventListener("submit", async (e) => {
     const formData = new FormData(paymentMethodForm);
 
     try {
-        const res = await fetch("/api/admin/payment-methods", {
+        const res = await fetch(`${API_URL}/api/admin/payment-methods", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${Auth.getToken()}`

@@ -29,7 +29,7 @@ const API = async (url, options = {}) => {
       /*
         Allow custom headers passed when calling API()
         Example:
-          API('/upload', { headers: {...} })
+          API('/upload`, { headers: {...} })
       */
       ...options.headers
     },

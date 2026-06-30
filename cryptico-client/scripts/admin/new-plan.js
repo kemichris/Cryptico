@@ -74,7 +74,7 @@ planForm.addEventListener('submit', async (e) => {
 
     try {
 
-        const res = await fetch('/api/admin/plans', {
+        const res = await fetch(`${API_URL}/api/admin/plans`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${Auth.getToken()}`,

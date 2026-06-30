@@ -63,7 +63,7 @@ function updatePaginationButtons(rows) {
 /* ////// LOAD TRANSACTIONS ////// */
 const loadWithdrawalHistory = async () => {
   try {
-    const res = await fetch('/api/users/transactions', {
+    const res = await fetch(`${API_URL}/api/users/transactions`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 

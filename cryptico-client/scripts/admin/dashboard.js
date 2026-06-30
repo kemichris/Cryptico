@@ -23,7 +23,7 @@ if (logoutBtn) {
 
 const loadDashboardData = async () => {
     try {
-        const res = await fetch("/api/admin/dashboard", {
+        const res = await fetch(`${API_URL}/api/admin/dashboard`, {
             headers: { Authorization: `Bearer ${Auth.getToken()}` },
         });
 
