@@ -1,6 +1,4 @@
-const kycForm = document.getElementById("kyc-form");
-const submitBtn = document.getElementById("submit-btn")
-
+// loading kyc cards 
 const idType = document.getElementById("idType");
 
 const backImageWrapper =
@@ -67,3 +65,40 @@ const loadKycStatus = async () => {
 }
 
 loadKycStatus()
+
+// sendkyc application
+const kycForm = document.getElementById("kyc-form");
+const submitBtn = document.getElementById("submit-btn")
+
+kycForm.addEventListener("submit", async(e)=> {
+    e.preventDefault()
+
+    const formData = new FormData(kycForm)
+    
+    try {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "sending Application..."
+
+        const res = await fetch("/api/users/kyc", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}`},
+            body: formData
+        })
+
+        const data = await res.json();
+
+        if (res.ok) {
+            showToast(data.message);
+            formData.reset();
+            loadKycStatus()
+        } else {
+            showToast(data.message || "Failed to create payment method");
+            console.log(data.message)
+        }
+    } catch (error) {
+        console.error(error)
+    }finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit KYC"
+    }
+})

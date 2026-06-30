@@ -818,6 +818,7 @@ const deleteInvestment = async (req, res) => {
 const kycApplications = async (req, res) => {
   try {
     const kyc = await Kyc.find()
+      .populate('user', 'fullName')
       .sort({ createdAt: -1 });
     return res.status(200).json(kyc);
   } catch (err) {
@@ -826,16 +827,15 @@ const kycApplications = async (req, res) => {
 };
 
 // get User application
-const singleKycApplication = async(req, res) => {
+const singleKycApplication = async (req, res) => {
   try {
     const kycApplication = await Kyc.findById(req.params.id).populate('user', 'email userName kycStatus');
-    if(!kycApplication) {
-      return res.status(404).json({ message: 'user application not found'});
+    if (!kycApplication) {
+      return res.status(404).json({ message: 'user application not found' });
     }
-
     res.status(200).json(kycApplication)
   } catch (err) {
-    return res.status(500).json({message: err.message})
+    return res.status(500).json({ message: err.message })
   }
 }
 

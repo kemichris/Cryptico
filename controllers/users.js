@@ -3,7 +3,9 @@ const Transaction = require('../models/Transaction');
 const Investment = require('../models/Investment');
 const Plan = require('../models/Plan');
 const WithdrawalInfo = require('../models/WithdrawalInfo')
+const Kyc = require('../models/Kyc')
 
+//////////////// USER SECTION  /////////////////
 const getUserDashboard = async (req, res)=> {
   try {
     const user = await User.findById(req.user._id)
@@ -66,6 +68,8 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+
+//////////////// DEPOSIT AND WITHDRAWAL SECTION   /////////////////
 const saveWithdrawalInfo = async (req, res) => {
   try {
     const { 
@@ -162,6 +166,7 @@ const getUserTransactions = async (req, res) => {
   }
 };
 
+//////////////// PLAN SECTION  /////////////////
 const getPlans = async (req, res) => {
   try {
     const plans = await Plan.find({ isActive: true }).sort({ price: 1 });
@@ -283,6 +288,83 @@ const getUserActiveInvestment = async (req, res) => {
   }
 }
 
+//////////////// KYC SECTION  /////////////////
+const kycApplication = async (req, res) => {
+  try {
+    const {
+      fullName,
+      dateOfBirth,
+      country,
+      idType,
+      idNumber
+    } = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found."
+      });
+    }
+
+    // Already verified
+    if (user.kycStatus === "verified") {
+      return res.status(400).json({
+        message: "Your account has already been verified."
+      });
+    }
+
+    // Check for pending application
+    const pendingApplication = await Kyc.findOne({
+      user: user._id,
+      applicationStatus: "pending"
+    });
+
+    if (pendingApplication) {
+      return res.status(400).json({
+        message: "You already have a pending KYC application."
+      });
+    }
+
+    // Uploaded images
+    const frontImage = req.files?.frontImage
+      ? `/assets/uploads/${req.files.frontImage[0].filename}`
+      : "";
+
+    const backImage = req.files?.backImage
+      ? `/assets/uploads/${req.files.backImage[0].filename}`
+      : "";
+
+    // Create application
+    const application = await Kyc.create({
+      user: user._id,
+      fullName,
+      dateOfBirth,
+      country,
+      idType,
+      idNumber,
+      frontImage,
+      backImage,
+      applicationStatus: "pending"
+    });
+
+    // Update user status
+    user.kycStatus = "pending";
+    await user.save();
+
+    return res.status(201).json({
+      message: "KYC application submitted successfully.",
+      application
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
+
 module.exports = {
   getUserDashboard,
   getUserProfile,
@@ -296,4 +378,5 @@ module.exports = {
   createInvestment,
   getUserInvestments,
   getUserActiveInvestment,
+  kycApplication
 };

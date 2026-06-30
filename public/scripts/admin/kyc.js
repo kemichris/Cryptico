@@ -90,7 +90,7 @@ const getKycApplications = async () => {
             tr.innerHTML = `
                 <td>${kyc.user.fullName}</td>
                 <td>${kyc.applicationStatus}</td>
-                <td><button class="table-action-confirm" data-id="${kyc._id}">View Application</button></td>
+                <td class="deposit-action"><button class="table-action-confirm view-application" data-id="${kyc._id}">View Application</button></td>
             `;
 
             tbBody.appendChild(tr);
@@ -105,5 +105,17 @@ const getKycApplications = async () => {
         hideLoader();
     }
 };
+
+
+// handle manage button click using event delegation
+tbBody.addEventListener('click', (e) => {
+    const viewApplicationBtn = e.target.closest('.view-application');
+
+    if (viewApplicationBtn) {
+        const applicationId = viewApplicationBtn.dataset.id;
+        sessionStorage.setItem("kycId", applicationId);
+        window.location.href = `/admin/kyc-application.html?id=${applicationId}`;
+    }
+});
 
 getKycApplications()

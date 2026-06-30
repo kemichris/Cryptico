@@ -41,6 +41,12 @@ const loadKyc = async () => {
             }
         });
 
+        if(!res.ok) {
+            window.location.href = "/admin/kyc.html";
+        } else {
+            hideLoader()
+        }
+
         const kyc = await res.json();
 
         fullName.textContent = kyc.fullName;
@@ -70,12 +76,9 @@ const loadKyc = async () => {
         // Lock reviewed applications
         // -----------------------------
         if (kyc.applicationStatus !== "pending") {
-            approveBtn.disabled = true;
-            rejectBtn.disabled = true;
-            rejectionReason.disabled = true;
-
-            approveBtn.textContent = "Already Approved";
-            rejectBtn.textContent = "Already Rejected";
+            approveBtn.style.display = "none";
+            rejectBtn.style.display = "none";
+            rejectionReason.style.display = "none";
 
             if (kyc.applicationStatus === "approved") {
                 approveBtn.textContent = "Approved";
@@ -90,8 +93,6 @@ const loadKyc = async () => {
 
     } catch (error) {
         console.error(error);
-    } finally {
-        hideLoader()
     }
 };
 
