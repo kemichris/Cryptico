@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",          // Live Server
+      "http://localhost:5500",          // Live Server
       "http://127.0.0.1:5500",
       "https://cryptico.vercel.app",    // Replace with your Vercel URL
       "https://cryptico.com"            // Your future domain
