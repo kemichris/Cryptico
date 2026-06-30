@@ -45,7 +45,7 @@ form.addEventListener("submit", async (e) => {
     btn.disabled = true;
     btn.textContent = "Verifying...";
 
-    const res = await fetch(`${API_URL}/api/auth/verify-email", {
+    const res = await fetch(`${API_URL}/api/auth/verify-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
