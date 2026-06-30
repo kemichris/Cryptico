@@ -964,9 +964,7 @@ const createPaymentMethod = async (req, res) => {
     } = req.body;
 
     // Uploaded QR code image
-    const qrCode = req.file
-      ? `/assets/uploads/${req.file.filename}`
-      : "";
+    const qrCode = req.file ? req.file.path : null;
 
     // Validate withdrawal limits
     if (
@@ -1001,7 +999,7 @@ const editPaymentMethod = async (req, res) => {
   try {
     // If a new QR code was uploaded, add it to the update data
     if (req.file) {
-      req.body.qrCode = `/assets/uploads/${req.file.filename}`;
+      req.body.qrCode = req.file ? req.file.path : null;
     }
 
     const paymentMethod = await PaymentMethod.findByIdAndUpdate(

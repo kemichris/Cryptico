@@ -112,8 +112,8 @@ const createDeposit = async (req, res) => {
   try {
     const { amount, method, reference } = req.body;
 
-    // get file path from multer — req.file is set by upload.single('proof')
-    const proofImage = req.file ? `/assets/uploads/${req.file.filename}` : null;
+    // Cloudinary returns the image URL
+    const proofImage = req.file ? req.file.path : null;
 
     const transaction = await Transaction.create({
       user: req.user._id,
@@ -328,13 +328,10 @@ const kycApplication = async (req, res) => {
     }
 
     // Uploaded images
-    const frontImage = req.files?.frontImage
-      ? `/assets/uploads/${req.files.frontImage[0].filename}`
-      : "";
+    // Cloudinary returns the image URL
 
-    const backImage = req.files?.backImage
-      ? `/assets/uploads/${req.files.backImage[0].filename}`
-      : "";
+    const frontImage = req.files?.frontImage?.[0]?.path || "";
+    const backImage = req.files?.backImage?.[0]?.path || "";
 
     // Create application
     const application = await Kyc.create({
