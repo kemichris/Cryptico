@@ -16,7 +16,8 @@ const {
   createInvestment,
   getUserInvestments,
   getUserActiveInvestment,
-  kycApplication
+  kycApplication,
+  getPaymentMethods
 } = require('../controllers/users');
 
 router.get('/dashboard', protect, getUserDashboard);
@@ -35,5 +36,7 @@ router.post('/kyc', protect,
   upload.fields([{ name: "frontImage", maxCount: 1 },
   { name: "backImage", maxCount: 1 }]), kycApplication)
   ;
+
+router.get('/payment-method', protect, getPaymentMethods );
 
 module.exports = router;

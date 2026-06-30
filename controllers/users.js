@@ -4,9 +4,10 @@ const Investment = require('../models/Investment');
 const Plan = require('../models/Plan');
 const WithdrawalInfo = require('../models/WithdrawalInfo')
 const Kyc = require('../models/Kyc')
+const PaymentMethod = require('../models/PaymentMethod')
 
 //////////////// USER SECTION  /////////////////
-const getUserDashboard = async (req, res)=> {
+const getUserDashboard = async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
       .select('-password');
@@ -72,9 +73,9 @@ const updateUserProfile = async (req, res) => {
 //////////////// DEPOSIT AND WITHDRAWAL SECTION   /////////////////
 const saveWithdrawalInfo = async (req, res) => {
   try {
-    const { 
+    const {
       bankName, accountName, accountNumber,
-      cryptoType, cryptoNetwork, walletAddress  
+      cryptoType, cryptoNetwork, walletAddress
     } = req.body;
 
     const withdrawalInfo = await WithdrawalInfo.findOneAndUpdate(
@@ -83,9 +84,9 @@ const saveWithdrawalInfo = async (req, res) => {
       { new: true, upsert: true }
     );
 
-    res.status(200).json({ 
+    res.status(200).json({
       message: 'Withdrawal info saved successfully',
-      withdrawalInfo 
+      withdrawalInfo
     });
 
   } catch (err) {
@@ -95,15 +96,15 @@ const saveWithdrawalInfo = async (req, res) => {
 
 const getWithdrawalInfo = async (req, res) => {
   try {
-    const withdrawalInfo = await WithdrawalInfo.findOne({user: req.user._id});
+    const withdrawalInfo = await WithdrawalInfo.findOne({ user: req.user._id });
 
-    if(!withdrawalInfo) {
-      return res.status(404).json({message: 'No withdrawal information found'});
+    if (!withdrawalInfo) {
+      return res.status(404).json({ message: 'No withdrawal information found' });
     }
-    res.status(200).json({withdrawalInfo});
+    res.status(200).json({ withdrawalInfo });
 
   } catch (err) {
-    res.status(500).json({message: err.message})
+    res.status(500).json({ message: err.message })
   }
 }
 
@@ -124,9 +125,9 @@ const createDeposit = async (req, res) => {
       status: 'pending',
     });
 
-    res.status(201).json({ 
+    res.status(201).json({
       message: 'Deposit request submitted, awaiting approval',
-      transaction 
+      transaction
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -147,9 +148,9 @@ const createWithdrawal = async (req, res) => {
       walletAddress,
       status: 'pending',
     });
-    res.status(201).json({ 
+    res.status(201).json({
       message: 'Withdrawal request submitted, awaiting approval',
-      transaction 
+      transaction
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -275,16 +276,16 @@ const getUserInvestments = async (req, res) => {
 
 const getUserActiveInvestment = async (req, res) => {
   try {
-    const investments = await Investment.find({user: req.user._id, status: 'active'})
-    .populate('plan', 'name duration')
-    .sort({createdAt: -1});
+    const investments = await Investment.find({ user: req.user._id, status: 'active' })
+      .populate('plan', 'name duration')
+      .sort({ createdAt: -1 });
 
     if (!investments) return res.status(404).json({ message: 'no active investment found' });
 
     res.status(200).json(investments)
 
   } catch (err) {
-    rest.status(500).json({message: err.message})
+    rest.status(500).json({ message: err.message })
   }
 }
 
@@ -364,6 +365,20 @@ const kycApplication = async (req, res) => {
   }
 };
 
+//////////////// PAYMENT METHOD SECTION  /////////////////
+
+const getPaymentMethods = async (req, res) => {
+  try {
+    const paymentMethods = await PaymentMethod.find({
+      status: "enabled",
+      availableFor: { $in: ["withdrawal", "both"] }
+    });
+    return res.status(200).json(paymentMethods);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
 
 module.exports = {
   getUserDashboard,
@@ -378,5 +393,6 @@ module.exports = {
   createInvestment,
   getUserInvestments,
   getUserActiveInvestment,
-  kycApplication
+  kycApplication,
+  getPaymentMethods
 };

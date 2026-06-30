@@ -40,6 +40,7 @@ const loadPaymentMethod = async () => {
         console.error(error.message);
     } finally {
         hideLoader()
+        toggleFields()
     }
 };
 
@@ -79,7 +80,7 @@ function toggleFields() {
 
 paymentType.addEventListener("change", toggleFields);
 
-toggleFields();
+
 
 
 

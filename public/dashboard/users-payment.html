@@ -141,35 +141,38 @@
                 <div class="payment-section">
                     <p class="payment-p">You are to make payment of $<span id="paymentAmount">0</span> using your
                         preferred mode of payment below. Screenshot the proof of payment</p>
-                    <div class="payment-mode">
-                        <div class="bank-mode">
+                    <div class="payment-mode" id="payment-mode">
+                        <div class="payment-method">
                             <h3>Bank Deposti/Transfer</h3>
-                            <div class="bank-details">
+                            <div class="payment-method-details">
                                 <p><strong>Bank Name:</strong> <Span>International Bank</Span></p>
                                 <p><strong>Account Name:</strong> <Span>charles</Span></p>
                                 <p><strong>Account Number:</strong> <Span>8479398393k</Span></p>
                             </div>
                         </div>
-                        <div class="crypto-mode">
+                        <div class="payment-method">
                             <h3>Bitcoin</h3>
-                            <div class="crypto-details ">
+                            <div class="payment-method-details ">
                                 <p><strong>BTC Address:</strong> <Span>bcksdsjldfdj8393kdjfdkdk</Span></p>
                             </div>
                         </div>
                     </div>
 
                     <form id="depositForm" class="deposit-form">
-                        <label>Amount</label>
+                        <label for="">Amount</label>
                         <input id="deposit-value" type="number" name="amount" value="0" readonly>
                         <label for="">Upload Payment proof after payment. (Ignore if paid with card).</label>
                         <input type="file" name="proof" id="" required>
                         <label for="">Payment mode used</label>
-                        <select name="method" id="" required>
+                        <select name="method" required>
                             <option selected disabled="">Select payment method</option>
-                            <option value="Bank Transfer">Bank Transfer</option>
-                            <option value="Bitcoin">Bitcoin</option>
-                            <option value="Etheereum">Ethereum</option>
-                            <option value="Litecoin">Litecoin</option>
+                            <div id="select-method">
+                                <option value="Bank">Bank Transfer</option>
+                                <option value="Bitcoin">Bitcoin</option>
+                                <option value="Etheereum">Ethereum</option>
+                                <option value="Litecoin">Litecoin</option>
+                            </div>
+
                         </select>
 
                         <button class="payment-btn" type="submit">Submit Payment</button>
@@ -180,6 +183,7 @@
             </div>
         </div>
     </main>
+    <script src="/scripts/dashboard/main.js"></script>
     <script src="/scripts/dashboard/users-dashboard.js"></script>
     <script src="/scripts/dashboard/payment.js"></script>
 </body>

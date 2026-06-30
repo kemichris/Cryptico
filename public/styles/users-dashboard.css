@@ -762,9 +762,7 @@ td {
     margin: 1rem 0 5rem;
 }
 
-.bank-mode,
-.crypto-mode,
-.withdraw-card {
+.payment-method, .withdraw-card {
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -778,8 +776,7 @@ td {
 
 }
 
-.bank-details,
-.crypto-details {
+.payment-method-details{
     margin-top: 1rem;
     visibility: hidden;
     max-height: 0;
@@ -787,13 +784,16 @@ td {
     transition: transform 0.5s ease;
 }
 
-.bank-details p,
-.crypto-details p {
+.payment-method-details p {
     font-size: 1rem;
 }
 
-.bank-details.inactive,
-.crypto-details.inactive {
+.qr-code img {
+    width: 10rem;
+    height: auto;
+}
+
+.payment-method-details.inactive {
     visibility: visible;
     max-height: fit-content;
     transition: opacity 0.5s ease;

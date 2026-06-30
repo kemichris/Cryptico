@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const paymentMethodSchema = new mongoose.Schema({
-    // BTC, ETH, Bank Transfer, USDT TRC20...
+    // BTC, ETH, Bank Transfer, USDT....
     name: {
         type: String,
         required: true,
         trim: true
     },
 
-    // bitcoin, ethereum, bank...
+    // bitcoin, ethereum, erc20, trc20
     network: {
         type: String,
         default: ''
@@ -22,7 +22,7 @@ const paymentMethodSchema = new mongoose.Schema({
         required: true
     },
 
-    // Wallet address or bank account number
+    // Wallet address
     walletAddress: {
         type: String,
         default: '',
