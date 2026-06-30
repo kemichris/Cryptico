@@ -18,6 +18,7 @@ app.use(
     origin: [
       "http://localhost:5500",          // Live Server
       "http://127.0.0.1:5500",
+      "https://cryptico-prvml51wo-kemichris-projects.vercel.app",
       "https://cryptico.vercel.app",    // Replace with your Vercel URL
       "https://cryptico.com"            // Your future domain
     ],
