@@ -41,7 +41,7 @@ const loadKyc = async () => {
             }
         });
 
-        if(!res.ok) {
+        if (!res.ok) {
             window.location.href = "/admin/kyc.html";
         } else {
             hideLoader()
@@ -78,7 +78,9 @@ const loadKyc = async () => {
         if (kyc.applicationStatus !== "pending") {
             approveBtn.style.display = "none";
             rejectBtn.style.display = "none";
-            rejectionReason.style.display = "none";
+            rejectionReason.readOnly = true;
+            rejectionReason.style.backgroundColor = "#f5f5f5";
+            rejectionReason.style.cursor = "not-allowed";
 
             if (kyc.applicationStatus === "approved") {
                 approveBtn.textContent = "Approved";

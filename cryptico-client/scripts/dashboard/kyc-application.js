@@ -91,7 +91,7 @@ kycForm.addEventListener("submit", async(e)=> {
             loadKycStatus()
             kycForm.reset();
         } else {
-            showToast(data.message || "Failed to create payment method");
+            showToast(data.message || "Failed to submit kyc application");
             console.log(data.message)
         }
     } catch (error) {
