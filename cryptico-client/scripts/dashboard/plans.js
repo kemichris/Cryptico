@@ -50,13 +50,8 @@ const getPlans = async () => {
                 </div>
 
                 <div>
-                    <p>Minimum Return:</p>
-                    <p>$${plan.minRoi}</p>
-                </div>
-
-                <div>
-                    <p>Maximum Return:</p>
-                    <p>$${plan.maxRoi}</p>
+                    <p>Expected return:</p>
+                    <p>$${plan.totalExpectedReturn}</p>
                 </div>
 
                 <div>
