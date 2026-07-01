@@ -86,7 +86,7 @@ const loadKyc = async () => {
 
             if (kyc.applicationStatus === "rejected") {
                 rejectBtn.textContent = "Rejected";
-                rejectionReason.value = kyc.rejectionReason || "";
+                rejectionReason.value = kyc.reviewComment || "";
             }
 
         }
@@ -169,7 +169,7 @@ rejectBtn.addEventListener("click", async () => {
             },
             body: JSON.stringify({
                 applicationStatus: "rejected",
-                rejectionReason: reason
+                reviewComment: reason
             })
         });
 
