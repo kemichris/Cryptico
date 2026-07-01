@@ -102,3 +102,13 @@ kycForm.addEventListener("submit", async(e)=> {
         submitBtn.innerText = "Submit KYC"
     }
 })
+
+// resubmit kyc button 
+const resubmitBtn = document.getElementById("resubmit-kyc-Btn")
+
+if(resubmitBtn) {
+    resubmitBtn.addEventListener("click", ()=> {
+        rejectedCard.style.display = "none";
+        kycForm.style.display = "block";
+    })
+}
