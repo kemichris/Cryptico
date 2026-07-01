@@ -2,13 +2,24 @@ const nodemailer = require("nodemailer");
 
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // STARTTLS
+  requireTLS: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
 
+(async () => {
+  try {
+    await transporter.verify();
+    console.log("✅ SMTP server is ready");
+  } catch (error) {
+    console.error("❌ SMTP verification failed:", error);
+  }
+})();
 // const transporter = nodemailer.createTransport({
 //     host: process.env.SMTP_HOST,
 //     port: process.env.SMTP_PORT,
