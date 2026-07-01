@@ -50,6 +50,16 @@ if (logoutBtn) {
   });
 }
 
+const logoutBtnSideMenu = document.getElementById('logoutBtnSide');
+if (logoutBtnSideMenu) {
+  logoutBtnSideMenu.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/pages/login.html';
+  });
+}
+
+
 /* ////// LOAD DASHBOARD DATA ////// */
 const loadDashboard = async () => {
   try {
