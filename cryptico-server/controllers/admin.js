@@ -875,7 +875,7 @@ const verifyUserKyc = async (req, res) => {
 // Review KYC application
 const reviewKycApplication = async (req, res) => {
   try {
-    const { applicationStatus, rejectionReason } = req.body;
+    const { applicationStatus, reviewComment } = req.body;
 
     // Only approved or rejected are allowed
     const validStatuses = ["approved", "rejected"];
@@ -914,7 +914,7 @@ const reviewKycApplication = async (req, res) => {
     // Require rejection reason
     if (
       applicationStatus === "rejected" &&
-      (!rejectionReason || !rejectionReason.trim())
+      (!reviewComment || !reviewComment.trim())
     ) {
       return res.status(400).json({
         message: "Rejection reason is required."
@@ -930,10 +930,10 @@ const reviewKycApplication = async (req, res) => {
     kyc.reviewedAt = new Date();
 
     if (applicationStatus === "rejected") {
-      kyc.rejectionReason = rejectionReason;
+      kyc.reviewComment = reviewComment;
       user.kycStatus = "rejected";
     } else {
-      kyc.rejectionReason = "";
+      kyc.reviewComment = reviewComment || '';
       user.kycStatus = "verified";
     }
 
