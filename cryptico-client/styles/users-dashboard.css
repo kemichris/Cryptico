@@ -144,6 +144,14 @@ nav ul {
     cursor: pointer;
 }
 
+.logout-side-menu {
+    background-color: #D1DDEB;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    display: none;
+}
+
 .nav-menu-icon,
 .remove-nav-icon {
     display: none;
@@ -1059,6 +1067,10 @@ td {
     /* ////// NAV BAR SECTION ////// */
     .sign-out-btn {
         display: none;
+    }
+
+    .logout-side-menu {
+        display: flex;
     }
 
     .nav-menu-icon,
