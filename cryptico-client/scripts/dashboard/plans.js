@@ -61,7 +61,7 @@ const getPlans = async () => {
 
                 <div>
                     <p>Duration:</p>
-                    <p>${plan.duration} days</p>
+                    <p>${plan.duration > 1 ? `${inv.plan.duration} days` : `${plan.duration} day`}</p>
                 </div>
 
                 <div>
