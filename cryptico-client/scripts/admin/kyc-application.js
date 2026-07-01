@@ -78,17 +78,18 @@ const loadKyc = async () => {
         if (kyc.applicationStatus !== "pending") {
             approveBtn.style.display = "none";
             rejectBtn.style.display = "none";
-            rejectionReason.readOnly = true;
-            rejectionReason.style.backgroundColor = "#f5f5f5";
-            rejectionReason.style.cursor = "not-allowed";
 
             if (kyc.applicationStatus === "approved") {
                 approveBtn.textContent = "Approved";
+                rejectionReason.style.display = "none";
             }
 
             if (kyc.applicationStatus === "rejected") {
                 rejectBtn.textContent = "Rejected";
                 rejectionReason.value = kyc.reviewComment || "";
+                rejectionReason.readOnly = true;
+                rejectionReason.style.backgroundColor = "#f5f5f5";
+                rejectionReason.style.cursor = "not-allowed";
             }
 
         }
