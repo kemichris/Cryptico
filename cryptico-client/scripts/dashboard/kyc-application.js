@@ -24,7 +24,6 @@ function hideAllCards() {
     rejectedCard.style.display = "none";
 }
 
-const resubmitBtn = document.getElementById("resubmitBtn");
 
 const loadKycStatus = async () => {
     try {
