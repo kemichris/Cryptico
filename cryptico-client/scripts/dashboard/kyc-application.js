@@ -54,7 +54,6 @@ const loadKycStatus = async () => {
 
             case "rejected":
                 rejectedCard.style.display = "block";
-                reason.textContent = data.rejectionReason;
                 break;
         }
     } catch (error) {
