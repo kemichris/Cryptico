@@ -1,7 +1,7 @@
 // Get deposit amount and display
 const amount = localStorage.getItem("depositAmount");
 if (!amount) {
-    alert("No deposit amount found");
+    showToast("No deposit amount found");
     window.location.href = "/dashboard/users-deposits.html";
 }
 // display it
@@ -22,6 +22,8 @@ const showPaymentMethods = async () => {
         if (!res.ok) {
             window.location.href = "/dashboard/users-deposits.html";
             return
+        }else {
+            hideLoader()
         }
         const paymentMethods = await res.json()
 
@@ -82,8 +84,6 @@ paymentModeContainer.addEventListener("click", (e) => {
     const details = card.querySelector(".payment-method-details");
     details.classList.toggle("inactive");
 })
-
-
 
 
 /* ////// USER MAKING DEPOSIT ////// */

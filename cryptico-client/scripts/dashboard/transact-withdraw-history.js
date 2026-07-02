@@ -69,9 +69,10 @@ const loadWithdrawalHistory = async () => {
 
     // check ok BEFORE parsing
     if (!res.ok) {
-      localStorage.clear();
-      window.location.href = '/pages/login.html';
+      window.location.href = '/dashboard/users-dashboard.html';
       return;
+    } else {
+      hideLoader()
     }
 
     const data = await res.json();
@@ -115,7 +116,7 @@ const loadWithdrawalHistory = async () => {
 
   } catch (error) {
     console.error('Withdrawal history error:', error);
-  }finally {
+  } finally {
     // ALWAYS runs — hide loader and show content
     // whether fetch succeeded or failed
     const loader = document.getElementById('pageLoader');

@@ -17,8 +17,10 @@ const loadWithdrawalCards = async () => {
         });
 
         if (!res.ok) {
-            window.location.href = "/pages/login.html";
-            return
+            window.location.href = '/dashboard/users-dashboard.html';
+            return;
+        } else {
+            hideLoader()
         }
 
         const withdrawCardData = await res.json();

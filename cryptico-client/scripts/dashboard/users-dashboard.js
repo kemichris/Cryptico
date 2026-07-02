@@ -37,6 +37,8 @@ const loadDashboard = async () => {
       localStorage.clear();
       window.location.href = '/pages/login.html';
       return;
+    } else {
+      hideLoader()
     }
 
     const welcomeEl = document.getElementById('welcomeName');
@@ -55,10 +57,6 @@ const loadDashboard = async () => {
 
   } catch (err) {
     console.error('Dashboard error:', err);
-  }finally {
-    const loader = document.getElementById('pageLoader');
-    if (loader) loader.style.display = 'none';
-    
   }
 };
 

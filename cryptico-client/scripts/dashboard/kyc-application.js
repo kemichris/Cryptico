@@ -33,8 +33,14 @@ const loadKycStatus = async () => {
             }
         });
 
-        const data = await res.json();
+        if (!res.ok) {
+            window.location.href = '/dashboard/users-dashboard.html';
+            return;
+        } else {
+            hideLoader()
+        }
 
+        const data = await res.json();
 
         hideAllCards();
 

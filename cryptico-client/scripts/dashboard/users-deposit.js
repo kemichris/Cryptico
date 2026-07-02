@@ -52,11 +52,11 @@ const loadDeposits = async () => {
             headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
         });
 
-        // if token expired or invalid redirect to login
         if (!res.ok) {
-            localStorage.clear();
-            window.location.href = '/pages/login.html';
+            window.location.href = '/dashboard/users-dashboard.html';
             return;
+        } else {
+            hideLoader()
         }
 
         const transactions = await res.json();

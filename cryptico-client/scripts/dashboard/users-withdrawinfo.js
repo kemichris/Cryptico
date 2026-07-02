@@ -7,28 +7,28 @@ const cryptoForm = document.querySelector(".crypto-form")
 
 // open dropdowns 
 openWithdrawInfo[0].addEventListener("click", () => {
-    bankForm.classList.add("active");
-    openWithdrawInfo[0].classList.add("inactive");
-    closeWithdrawInfo[0].classList.remove("inactive");
+  bankForm.classList.add("active");
+  openWithdrawInfo[0].classList.add("inactive");
+  closeWithdrawInfo[0].classList.remove("inactive");
 });
 
 openWithdrawInfo[1].addEventListener("click", () => {
-    cryptoForm.classList.add("active");
-    openWithdrawInfo[1].classList.add("inactive");
-    closeWithdrawInfo[1].classList.remove("inactive");
+  cryptoForm.classList.add("active");
+  openWithdrawInfo[1].classList.add("inactive");
+  closeWithdrawInfo[1].classList.remove("inactive");
 });
 
 // close dropdowns
 closeWithdrawInfo[0].addEventListener("click", () => {
-    bankForm.classList.remove("active");
-    closeWithdrawInfo[0].classList.add("inactive");
-    openWithdrawInfo[0].classList.remove("inactive");
+  bankForm.classList.remove("active");
+  closeWithdrawInfo[0].classList.add("inactive");
+  openWithdrawInfo[0].classList.remove("inactive");
 });
 
 closeWithdrawInfo[1].addEventListener("click", () => {
-    cryptoForm.classList.remove("active");
-    closeWithdrawInfo[1].classList.add("inactive");
-    openWithdrawInfo[1].classList.remove("inactive");
+  cryptoForm.classList.remove("active");
+  closeWithdrawInfo[1].classList.add("inactive");
+  openWithdrawInfo[1].classList.remove("inactive");
 });
 
 
@@ -46,8 +46,10 @@ const loadWithdrawalInfo = async () => {
 
     // STEP 2: If request failed or no data exists, stop here
     if (!res.ok) {
-      console.log("No withdrawal info found or request failed");
+      window.location.href = '/dashboard/users-dashboard.html';
       return;
+    } else {
+      hideLoader()
     }
 
     // STEP 3: Convert response to JSON
@@ -106,44 +108,44 @@ editBtn.addEventListener('click', () => {
 });
 
 // Add withdrawal Info
-withdrawalInfoForm.addEventListener('submit',  async (e) => {
-    e.preventDefault()
+withdrawalInfoForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
 
-    const formData = new FormData(withdrawalInfoForm);
-    const dataObject = Object.fromEntries(formData.entries());
+  const formData = new FormData(withdrawalInfoForm);
+  const dataObject = Object.fromEntries(formData.entries());
 
-    const hasBankInfo = dataObject.bankName && dataObject.accountName && dataObject.accountNumber;
-    const hasCryptoInfo = dataObject.cryptoType && dataObject.cryptoNetwork && dataObject.walletAddress;
+  const hasBankInfo = dataObject.bankName && dataObject.accountName && dataObject.accountNumber;
+  const hasCryptoInfo = dataObject.cryptoType && dataObject.cryptoNetwork && dataObject.walletAddress;
 
-    if (!hasBankInfo && !hasCryptoInfo) {
-        alert('Please fill in at least one withdrawal method');
-        return;
+  if (!hasBankInfo && !hasCryptoInfo) {
+    alert('Please fill in at least one withdrawal method');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/api/users/withdrawal-info`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${Auth.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataObject)
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      showToast( data.message || 'Withdrawal info saved successfully!');
+    } else {
+      alert(data.message);
     }
 
-    try {
-        const res = await fetch(`${API_URL}/api/users/withdrawal-info`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${Auth.getToken()}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataObject)
-        });
-        const data = await res.json();
+  } catch (err) {
+    console.error('Error:', err);
+    alert('Something went wrong: ' + err.message);
+  }
 
-        if (res.ok) {
-            alert('Withdrawal info saved successfully!');
-        } else {
-            alert(data.message);
-        }
-
-    } catch (err) {
-        console.error('Error:', err);
-        alert('Something went wrong: ' + err.message);
-    }
-
-    editBtn.hidden = false;
-    saveBtn.hidden = true;
+  editBtn.hidden = false;
+  saveBtn.hidden = true;
 
 });
 

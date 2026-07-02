@@ -11,9 +11,10 @@ const profile = async () => {
 
         // check ok BEFORE parsing
         if (!res.ok) {
-            localStorage.clear();
-            window.location.href = '/pages/login.html';
+            window.location.href = '/dashboard/users-dashboard.html';
             return;
+        } else {
+            hideLoader()
         }
 
         const data = await res.json()

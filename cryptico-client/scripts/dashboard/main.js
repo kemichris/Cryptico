@@ -32,7 +32,10 @@ if (account) account.addEventListener("click", () => accountDropdown.classList.t
 if (depWith) depWith.addEventListener("click", () => depWithDropdown.classList.toggle("inactive"));
 if (packages) packages.addEventListener("click", () => packagesDropdown.classList.toggle("inactive"));
 
-
+function hideLoader() {
+    const loader = document.getElementById("pageLoader");
+    if (loader) loader.style.display = "none";
+}
 
 // Modal and toaster
 const toast = document.getElementById("toast");
@@ -83,3 +86,7 @@ function showConfirm(message) {
         };
     });
 }
+
+window.hideLoader = hideLoader;
+window.showToast = showToast;
+window.showConfirm = showConfirm;

@@ -11,9 +11,10 @@ const getPlans = async () => {
         });
 
         if (!res.ok) {
-            localStorage.clear();
-            window.location.href = "/pages/login.html";
+            window.location.href = '/dashboard/users-dashboard.html';
             return;
+        } else {
+            hideLoader()
         }
 
         const planData = await res.json();

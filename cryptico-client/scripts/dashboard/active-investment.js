@@ -67,6 +67,14 @@ const loadActiveInvestment = async () => {
             headers: { "Authorization": `Bearer ${Auth.getToken()}` }
         });
 
+        if (!res.ok) {
+            window.location.href = '/dashboard/users-dashboard.html';
+            return;
+        } else {
+            hideLoader()
+        }
+
+
         const invData = await res.json()
         console.log(invData)
 
