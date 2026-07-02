@@ -28,7 +28,6 @@ const showPaymentMethods = async () => {
         const paymentMethods = await res.json()
 
         paymentModeContainer.innerHTML = ""
-        paymentSelect.innerHTML = ""
 
 
         paymentMethods.forEach(method => {
