@@ -1,4 +1,6 @@
 const loginForm = document.getElementById('admin-login');
+const loginBtn = document.getElementById("login-btn")
+
 
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -7,6 +9,8 @@ loginForm.addEventListener('submit', async (e) => {
   const dataObject = Object.fromEntries(formData.entries());
 
   try {
+    loginBtn.disabled = true;
+    loginBtn.innerText = "signing in..."
     const res = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -37,5 +41,8 @@ loginForm.addEventListener('submit', async (e) => {
   } catch (err) {
     console.error('Login error:', err);
     alert('Something went wrong: ' + err.message);
+  } finally {
+    loginBtn.disabled = false;
+    loginBtn.innerText = "Login"
   }
 });
