@@ -29,7 +29,7 @@ const loadKycStatus = async () => {
     try {
         const res = await fetch(`${API_URL}/api/users/profile`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${Auth.getToken()}`
             }
         });
 
@@ -79,7 +79,7 @@ kycForm.addEventListener("submit", async(e)=> {
 
         const res = await fetch(`${API_URL}/api/users/kyc`, {
             method: "POST",
-            headers: { Authorization: `Bearer ${token}`},
+            headers: { Authorization: `Bearer ${Auth.getToken()}`},
             body: formData
         })
 

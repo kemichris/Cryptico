@@ -64,7 +64,7 @@ function updatePaginationButtons(rows) {
 const loadActiveInvestment = async () => {
     try {
         const res = await fetch(`${API_URL}/api/users/active-investments`, {
-            headers: { "Authorization": `Bearer ${token}` }
+            headers: { "Authorization": `Bearer ${Auth.getToken()}` }
         });
 
         const invData = await res.json()

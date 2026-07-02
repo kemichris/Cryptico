@@ -40,7 +40,7 @@ const loadWithdrawalInfo = async () => {
     // STEP 1: Call backend API to get withdrawal info
     const res = await fetch(`${API_URL}/api/users/withdrawal-info`, {
       headers: {
-        Authorization: `Bearer ${token}` // send login token for auth
+        Authorization: `Bearer ${Auth.getToken()}` // send login token for auth
       }
     });
 
@@ -124,7 +124,7 @@ withdrawalInfoForm.addEventListener('submit',  async (e) => {
         const res = await fetch(`${API_URL}/api/users/withdrawal-info`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${Auth.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataObject)

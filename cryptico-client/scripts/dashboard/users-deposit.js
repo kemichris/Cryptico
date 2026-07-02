@@ -49,7 +49,7 @@ const loadDeposits = async () => {
     try {
         // fetch all transactions for this user
         const res = await fetch(`${API_URL}/api/users/transactions`, {
-            headers: { 'Authorization': `Bearer ${token}` }
+            headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
         });
 
         // if token expired or invalid redirect to login

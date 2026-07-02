@@ -6,7 +6,7 @@ const profile = async () => {
 
     try {
         const res = await fetch(`${API_URL}/api/users/profile`, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${Auth.getToken()}` }
         });
 
         // check ok BEFORE parsing
@@ -69,7 +69,7 @@ userForm.addEventListener('submit', async (e) => {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${Auth.getToken()}`
             },
             body: JSON.stringify({
                 userName: userForm.querySelector('[name="userName"]').value,

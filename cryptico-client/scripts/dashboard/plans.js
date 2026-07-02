@@ -6,7 +6,7 @@ const getPlans = async () => {
     try {
         const res = await fetch(`${API_URL}/api/users/plans`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${Auth.getToken()}`
             }
         });
 
@@ -144,7 +144,7 @@ planContainer.addEventListener("click", async (e) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${Auth.getToken()}`
             },
             body: JSON.stringify({
                 planId,

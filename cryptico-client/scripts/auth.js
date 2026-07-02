@@ -24,7 +24,7 @@ const API = async (url, options = {}) => {
 
         ... spreads (merges) the object into headers.
       */
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(token && { Authorization: `Bearer ${Auth.getToken()}` }),
 
       /*
         Allow custom headers passed when calling API()

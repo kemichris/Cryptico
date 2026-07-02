@@ -1,42 +1,5 @@
-/* ////// SIDE BAR VARs ////// */
-const account = document.querySelector(".account");
-const depWith = document.querySelector(".dep-with");
-const packages = document.querySelector(".packages");
-
-const accountDropdown = document.querySelector(".account-dropdown");
-const depWithDropdown = document.querySelector(".dep-with-dropdown");
-const packagesDropdown = document.querySelector(".packages-dropdown");
-
-/* ////// NAV BAR ////// */
-const sideBar = document.querySelector(".user-side-bar");
-const NavIcon = document.querySelector(".nav-menu-icon");
-const removeNav = document.querySelector(".remove-nav-icon");
-
-if (NavIcon) {
-  NavIcon.addEventListener("click", () => {
-    sideBar.classList.remove("active");
-    NavIcon.classList.add("inactive");
-    removeNav.classList.remove("inactive");
-  });
-}
-
-if (removeNav) {
-  removeNav.addEventListener("click", () => {
-    sideBar.classList.add("active");
-    removeNav.classList.add("inactive");
-    NavIcon.classList.remove("inactive");
-  });
-}
-
-if (account) account.addEventListener("click", () => accountDropdown.classList.toggle("inactive"));
-if (depWith) depWith.addEventListener("click", () => depWithDropdown.classList.toggle("inactive"));
-if (packages) packages.addEventListener("click", () => packagesDropdown.classList.toggle("inactive"));
-
 /* ////// AUTH CHECK ////// */
-const token = localStorage.getItem('token');
-const user = JSON.parse(localStorage.getItem('user'));
-
-if (!token || !user) {
+if (!Auth.getToken() || !Auth.getUser()) {
   window.location.href = '/pages/login.html';
 }
 
@@ -64,7 +27,7 @@ if (logoutBtnSideMenu) {
 const loadDashboard = async () => {
   try {
     const res = await fetch(`${API_URL}/api/users/dashboard`, {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     });
 
     const data = await res.json();
@@ -103,7 +66,7 @@ const loadDashboard = async () => {
 const loadTransactions = async () => {
   try {
     const res = await fetch(`${API_URL}/api/users/transactions`, {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     });
 
     const transactions = await res.json();

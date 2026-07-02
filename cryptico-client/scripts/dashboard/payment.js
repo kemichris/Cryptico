@@ -16,7 +16,7 @@ const paymentSelect = document.getElementById("select-method")
 const showPaymentMethods = async () => {
     try {
         const res = await fetch(`${API_URL}/api/users/payment-method/deposit`, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${Auth.getToken()}` }
         });
 
         if (!res.ok) {
@@ -102,7 +102,7 @@ depositForm.addEventListener("submit", async (e) => {
         const res = await fetch(`${API_URL}/api/users/deposit`, {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${Auth.getToken()}`
             },
             body: formData
         });

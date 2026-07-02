@@ -13,7 +13,7 @@ const withdrawalCardsContainer = document.getElementById(
 const loadWithdrawalCards = async () => {
     try {
         const res = await fetch(`${API_URL}/api/users/payment-method/withdrawal`, {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${Auth.getToken()}` },
         });
 
         if (!res.ok) {
@@ -91,7 +91,7 @@ withdrawalForm.addEventListener("submit", async (e) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${Auth.getToken()}`,
             },
             body: JSON.stringify(formObject),
         });
