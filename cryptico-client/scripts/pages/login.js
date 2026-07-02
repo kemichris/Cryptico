@@ -1,4 +1,5 @@
 const form = document.getElementById("login");
+const loginBtn = document.getElementById("login-btn")
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault()
@@ -10,6 +11,8 @@ form.addEventListener("submit", async (e) => {
     console.log('Sending:', dataObject);
 
     try {
+        loginBtn.disabled = true;
+        loginBtn.innerText = "signing in..."
         const res = await fetch(`${API_URL}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -29,5 +32,8 @@ form.addEventListener("submit", async (e) => {
         // this will show if fetch itself fails
         console.error('Fetch error:', err);
         alert('Something went wrong: ' + err.message);
+    } finally {
+        loginBtn.disabled = false;
+        loginBtn.innerText = "Login"
     }
 })
