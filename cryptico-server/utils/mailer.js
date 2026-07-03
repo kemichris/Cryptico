@@ -102,7 +102,7 @@ const sendProfitTopupEmail = async (
 
     <p>A profit of <strong>$${profit.toFixed(2)}</strong> has just been credited to your investment.</p>
 
-    <p><strong>Investment:</strong> ${investment.plan.name}</p>
+    <p><strong>Investment Plan:</strong> ${investment.plan.name}</p>
 
     <p>You can log in to your Cryptico dashboard to monitor your investment performance.</p>
 
