@@ -163,7 +163,7 @@ planContainer.addEventListener("click", async (e) => {
         showToast(data.message || "Investment successful!", "success");
         // Optional: reset amount back to minimum
         amountInput.value = min;
-        loadPlans()
+        getPlans()
 
     } catch (error) {
         console.error("Investment Error:", error);
