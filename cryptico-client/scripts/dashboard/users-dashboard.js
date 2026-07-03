@@ -3,26 +3,6 @@ if (!Auth.getToken() || !Auth.getUser()) {
   window.location.href = '/pages/login.html';
 }
 
-/* ////// LOGOUT ////// */
-const logoutBtn = document.getElementById('logoutBtn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/pages/login.html';
-  });
-}
-
-const logoutBtnSideMenu = document.getElementById('logoutBtnSide');
-if (logoutBtnSideMenu) {
-  logoutBtnSideMenu.addEventListener('click', () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/pages/login.html';
-  });
-}
-
-
 /* ////// LOAD DASHBOARD DATA ////// */
 const loadDashboard = async () => {
   try {

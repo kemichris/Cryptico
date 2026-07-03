@@ -32,6 +32,25 @@ if (account) account.addEventListener("click", () => accountDropdown.classList.t
 if (depWith) depWith.addEventListener("click", () => depWithDropdown.classList.toggle("inactive"));
 if (packages) packages.addEventListener("click", () => packagesDropdown.classList.toggle("inactive"));
 
+/* ////// LOGOUT ////// */
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/pages/login.html';
+  });
+}
+
+const logoutBtnSideMenu = document.getElementById('logoutBtnSide');
+if (logoutBtnSideMenu) {
+  logoutBtnSideMenu.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/pages/login.html';
+  });
+}
+
 function hideLoader() {
     const loader = document.getElementById("pageLoader");
     if (loader) loader.style.display = "none";
