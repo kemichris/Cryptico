@@ -87,6 +87,7 @@ paymentModeContainer.addEventListener("click", (e) => {
 
 /* ////// USER MAKING DEPOSIT ////// */
 const depositForm = document.getElementById("depositForm")
+const paymentBtn = document.getElementById("payment-dep-btn")
 
 depositForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -98,6 +99,8 @@ depositForm.addEventListener("submit", async (e) => {
     console.log("📤 Sending to backend:", preview);
 
     try {
+        paymentBtn.disabled = true;
+        paymentBtn.innerText = "Processing..."
         const res = await fetch(`${API_URL}/api/users/deposit`, {
             method: 'POST',
             headers: {
@@ -124,6 +127,9 @@ depositForm.addEventListener("submit", async (e) => {
 
     } catch (error) {
         console.error("❌ Frontend error:", error);
+    }finally {
+        paymentBtn.disabled = false;
+        paymentBtn.innerText = "Submit Payment"
     }
 });
 
