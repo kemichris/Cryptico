@@ -1,6 +1,7 @@
 const cron = require('node-cron');
 const Investment = require('../models/Investment');
 const User = require('../models/User');
+const { sendProfitTopupEmail, sendInvestmentCompletedEmail } = require('../utils/mailer')
 
 const intervalMap = {
   '10 minutes': 10,
@@ -25,6 +26,9 @@ const runTopUp = async () => {
 
       const plan = investment.plan;
       if (!plan) continue;
+
+      const user = await User.findById(investment.user);
+      if (!user) continue;
 
       // -------------------------
       // VALIDATION GUARDS
@@ -86,6 +90,18 @@ const runTopUp = async () => {
       investment.processedIntervals =
         (investment.processedIntervals || 0) + intervalsToProcess;
 
+      await investment.save();
+
+      // Send profit top-up email
+      sendProfitTopupEmail(
+        user.email,
+        user.fullName,
+        investment,
+        singleTopUp
+      ).catch(err => {
+        console.error("Profit email failed:", err);
+      });
+
       // -------------------------
       // CHECK MATURITY
       // -------------------------
@@ -105,12 +121,23 @@ const runTopUp = async () => {
 
         investment.status = 'completed';
 
+        await investment.save();
+
+        // Send investment completion email
+        sendInvestmentCompletedEmail(
+          user.email,
+          user.fullName,
+          investment,
+          payout,
+          accrued
+        ).catch(err => {
+          console.error("Completion email failed:", err);
+        });
+
         console.log(
           `✅ MATURED ${investment._id} | Paid ${payout}`
         );
       }
-
-      await investment.save();
 
       console.log(
         `💰 Processed ${intervalsToProcess} intervals | ${investment._id}`
@@ -118,7 +145,7 @@ const runTopUp = async () => {
     }
 
   } catch (err) {
-    console.error('❌Cron Error:', err);
+    console.error('❌ Cron Error:', err);
   }
 };
 
@@ -126,7 +153,7 @@ const startCronJobs = () => {
   runTopUp();
   cron.schedule('*/10 * * * *', runTopUp);
 
-  console.log('🚀cron system started');
+  console.log('🚀 Cron system started');
 };
 
 module.exports = { startCronJobs };

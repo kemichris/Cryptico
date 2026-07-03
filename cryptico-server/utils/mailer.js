@@ -14,6 +14,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 //     }
 // });
 
+// Send email verification code
 const sendVerificationEmail = async (email, name, code) => {
   try {
     await resend.emails.send({
@@ -40,6 +41,7 @@ const sendVerificationEmail = async (email, name, code) => {
   }
 };
 
+// Send email to users
 const sendMail = async ({ to, subject, html }) => {
   try {
     const { data, error } = await resend.emails.send({
@@ -59,6 +61,7 @@ const sendMail = async ({ to, subject, html }) => {
   }
 };
 
+// send password reset mail 
 const sendPasswordResetMail = async (email, name, code) => {
   try {
     await resend.emails.send({
@@ -85,6 +88,72 @@ const sendPasswordResetMail = async (email, name, code) => {
   }
 };
 
+// send Investment topUp mail 
+const sendProfitTopupEmail = async (
+  email,
+  fullName,
+  investment,
+  profit
+) => {
+  const subject = "Profit Top up";
+
+  const html = `
+    <p>Hi ${fullName},</p>
+
+    <p>A profit of <strong>$${profit.toFixed(2)}</strong> has just been credited to your investment.</p>
+
+    <p><strong>Investment:</strong> ${investment.plan.name}</p>
+
+    <p>You can log in to your Cryptico dashboard to monitor your investment performance.</p>
+
+    <p>Thank you for choosing <strong>Cryptico</strong>.</p>
+
+    <hr>
+
+    <small>
+      This is an automated email. Please do not reply to this message.
+    </small>
+  `;
+
+  await sendMail({
+    to: email,
+    subject,
+    html,
+  });
+};
+
+// send complete investment mail 
+const sendInvestmentCompletedEmail = async (
+  email,
+  fullName,
+  investment
+) => {
+  const subject = "Investment Completed";
+
+  const html = `
+    <p>Hi ${fullName},</p>
+
+    <p>Your investment has been completed successfully.</p>
+
+    <p><strong>Investment:</strong> ${investment.plan.name}</p>
+
+    <p>You can now review your investment details and returns from your Cryptico dashboard.</p>
+
+    <p>Thank you for investing with <strong>Cryptico</strong>.</p>
+
+    <hr>
+
+    <small>
+      This is an automated email. Please do not reply to this message.
+    </small>
+  `;
+
+  await sendMail({
+    to: email,
+    subject,
+    html,
+  });
+};
 
 
-module.exports = { sendVerificationEmail, sendMail, sendPasswordResetMail };
+module.exports = { sendVerificationEmail, sendMail, sendPasswordResetMail, sendProfitTopupEmail, sendInvestmentCompletedEmail };
