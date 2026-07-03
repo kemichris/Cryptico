@@ -3,6 +3,7 @@ const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 
+
 // const transporter = nodemailer.createTransport({
 //     host: process.env.SMTP_HOST,
 //     port: process.env.SMTP_PORT,
@@ -58,6 +59,32 @@ const sendMail = async ({ to, subject, html }) => {
   }
 };
 
+const sendPasswordResetMail = async (email, name, code) => {
+  try {
+    await resend.emails.send({
+      from: "Cryptico <onboarding@resend.dev>",
+      to: email,
+      subject: "Account Reset",
+      html: `
+        <div style="font-family: Arial;">
+          <h2>Hello ${name}</h2>
+
+          <p>Your Account reset code is:</p>
+
+          <h1 style="color:#1e88e5">${code}</h1>
+
+          <p>This code expires in 10 minutes.</p>
+        </div>
+      `,
+    });
+
+    console.log("✅ Verification email sent");
+  } catch (error) {
+    console.error("❌ Email failed:", error);
+    throw error;
+  }
+};
 
 
-module.exports = { sendVerificationEmail, sendMail };
+
+module.exports = { sendVerificationEmail, sendMail, sendPasswordResetMail };

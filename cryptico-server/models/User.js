@@ -68,6 +68,15 @@ const userSchema = new mongoose.Schema({
     emailVerificationCode: String,
     emailVerificationExpires: Date,
     emailVerificationLastSent: Date,
+    resetPasswordCode: {
+        type: String,
+        default: null,
+    },
+
+    resetPasswordExpires: {
+        type: Date,
+        default: null,
+    },
     lastLogin: {
         type: Date,
         default: null

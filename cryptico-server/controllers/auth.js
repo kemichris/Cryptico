@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const { sendVerificationEmail } = require("../utils/mailer");
+const { sendVerificationEmail, sendPasswordResetMail } = require("../utils/mailer");
+const generateCode = require("./generateCode");
 
 // ─── REGISTER  USER ────────────────────────────────
 const register = async (req, res) => {
@@ -39,9 +40,7 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Generate 6-digit verification code
-    const verificationCode = Math.floor(
-      100000 + Math.random() * 900000
-    ).toString();
+    const verificationCode = generateCode();
 
     // Create the user
     const user = await User.create({
@@ -300,9 +299,7 @@ const resendVerificationCode = async (req, res) => {
     }
 
     // Generate new 6-digit code
-    const verificationCode = Math.floor(
-      100000 + Math.random() * 900000
-    ).toString();
+    const verificationCode = generateCode();
 
     user.emailVerificationCode = verificationCode;
     user.emailVerificationExpires =
@@ -329,6 +326,187 @@ const resendVerificationCode = async (req, res) => {
   }
 };
 
+// ─── RESET PASSWORD ────────────────────────────
+const forgotPassword = async (req, res) => {
+  try {
+    const email = req.body.email?.toLowerCase().trim();
 
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required",
+      });
+    }
 
-module.exports = { register, login, verifyEmail, registerAdmin, resendVerificationCode }
+    const user = await User.findOne({ email });
+
+    // Don't reveal whether the email exists
+    if (!user) {
+      return res.status(200).json({
+        message:
+          "If an account with that email exists, a reset code has been sent.",
+      });
+    }
+
+    // Generate 6-digit code
+    const resetCode = generateCode()
+
+    // Save code and expiry
+    user.resetPasswordCode = resetCode;
+    user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    await user.save();
+
+    // Send email
+    await sendPasswordResetMail(
+      user.email,
+      user.fullName,
+      resetCode
+    );
+
+    return res.status(200).json({
+      message: "Password reset code sent successfully.",
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Something went wrong.",
+    });
+  }
+};
+
+const verifyResetCode = async (req, res) => {
+  try {
+    const { email, code } = req.body;
+
+    if (!email || !code) {
+      return res.status(400).json({
+        message: "Email and verification code are required.",
+      });
+    }
+
+    const user = await User.findOne({
+      email: email.toLowerCase().trim(),
+      resetPasswordCode: code,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid or expired verification code.",
+      });
+    }
+
+    // Clear the code immediately
+    user.resetPasswordCode = null;
+    user.resetPasswordExpires = null;
+    await user.save();
+
+    // Create temporary reset token
+    const resetToken = jwt.sign(
+      {
+        id: user._id,
+        purpose: "password-reset",
+      },
+      process.env.RESET_PASSWORD_SECRET,
+      {
+        expiresIn: "10m",
+      }
+    );
+
+    return res.status(200).json({
+      message: "Verification successful.",
+      resetToken,
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Something went wrong.",
+    });
+  }
+};
+
+const passwordReset = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    // Check if token exists
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        message: "Reset token is missing.",
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    let decoded;
+
+    try {
+      decoded = jwt.verify(token, process.env.RESET_PASSWORD_SECRET);
+    } catch (err) {
+      return res.status(401).json({
+        message: "Reset session has expired or is invalid.",
+      });
+    }
+
+    // Extra security check
+    if (decoded.purpose !== "password-reset") {
+      return res.status(401).json({
+        message: "Invalid reset token.",
+      });
+    }
+
+    const { password, confirmPassword } = req.body;
+
+    if (!password || !confirmPassword) {
+      return res.status(400).json({
+        message: "Password and confirm password are required.",
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        message: "Passwords do not match.",
+      });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({
+        message: "Password must be at least 8 characters.",
+      });
+    }
+
+    const user = await User.findById(decoded.id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found.",
+      });
+    }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    // Clear any old reset code
+    user.resetPasswordCode = null;
+    user.resetPasswordExpires = null;
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Password reset successful. You can now log in.",
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Internal server error.",
+    });
+  }
+};
+
+module.exports = { register, login, verifyEmail, registerAdmin, resendVerificationCode,forgotPassword, passwordReset, verifyResetCode }
