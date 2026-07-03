@@ -60,16 +60,13 @@ form.addEventListener("submit", async (e) => {
 
     if (res.ok) {
       alert("Email verified successfully 🎉");
-
-      sessionStorage.removeItem("verifyEmail");
-
-      window.location.href = "/pages/login.html";
+      window.location.href = "/pages/verify-reset-code.html";
     } else {
       alert(data.message || "Verification failed");
     }
 
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     alert("Server error. Try again.");
   } finally {
     const btn = form.querySelector(".verify-btn");

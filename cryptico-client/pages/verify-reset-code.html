@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email</title>
+    <link rel="stylesheet" href="/styles/verify-email.css">
+</head>
+<body>
+
+    <div class="verify-container">
+        <div class="verify-card">
+            <h1>Verify Your Email</h1>
+
+            <p class="description">
+                We've sent a <strong>6-digit verification code</strong> to
+                <span id="user-email">example@email.com</span>.
+                Please enter it below to reset your password.
+            </p>
+
+            <form id="verify-form">
+                <div class="otp-container">
+                    <input type="text" maxlength="1" class="otp-input" required>
+                    <input type="text" maxlength="1" class="otp-input" required>
+                    <input type="text" maxlength="1" class="otp-input" required>
+                    <input type="text" maxlength="1" class="otp-input" required>
+                    <input type="text" maxlength="1" class="otp-input" required>
+                    <input type="text" maxlength="1" class="otp-input" required>
+                </div>
+                <button type="submit" class="verify-btn">
+                    Verify Email
+                </button>
+
+            </form>
+
+            <p class="resend-text">
+                Didn't receive the code?
+                <button id="resend-btn" type="button">
+                    Verify Code
+                </button>
+            </p>
+
+        </div>
+    </div>
+    <script src="/scripts/utils/config.js"></script>
+    <script src="/scripts/pages/verify-reset-code.js"></script>
+
+</body>
+</html>
