@@ -155,5 +155,37 @@ const sendInvestmentCompletedEmail = async (
   });
 };
 
+const sendDepositApprovedEmail = async (email, fullName, deposit, status)=> {
+  const subject = `Deposit ${status.charAt(0).toUpperCase() + status.slice(1)}`;
+  const html = `
+    <p>Hi ${fullName},</p>
 
-module.exports = { sendVerificationEmail, sendMail, sendPasswordResetMail, sendProfitTopupEmail, sendInvestmentCompletedEmail };
+    <p>Your deposit of <strong>$${Number(deposit.amount).toFixed(2)}</strong> has been <strong>${status}</strong>.</p>
+
+    <p>Please log in to your Cryptico account to view more details about your deposit.</p>
+
+    <p>Thank you for trusting <strong>Cryptico</strong>.</p>
+
+    <hr>
+
+    <small>
+      This is an automated email. Please do not reply to this message.
+    </small>
+  `;
+
+  await sendMail({
+    to: email,
+    subject,
+    html,
+  })
+
+}
+
+module.exports = { 
+  sendVerificationEmail,
+  sendMail,
+  sendPasswordResetMail,
+  sendProfitTopupEmail,
+  sendInvestmentCompletedEmail,
+  sendDepositApprovedEmail
+};

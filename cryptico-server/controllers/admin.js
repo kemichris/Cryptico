@@ -6,7 +6,7 @@ const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
 const PaymentMethod = require('../models/PaymentMethod')
 const Kyc = require('../models/Kyc')
-const { sendMail } = require('../utils/mailer')
+const { sendMail, sendDepositApprovedEmail } = require('../utils/mailer')
 
 
 //////////////// USER SECTION  /////////////////
@@ -368,13 +368,22 @@ const getAllDeposits = async (req, res) => {
 const approveOrRejectDeposit = async (req, res) => {
   try {
     const deposit = await Transaction.findById(req.params.id);
+    const user = await User.findById(deposit.user);
 
     if (!deposit) {
       return res.status(404).json({ message: 'Deposit not found' });
     }
 
+
     if (deposit.status === 'approved' || deposit.status === 'rejected') {
       return res.status(400).json({ message: 'Deposit already processed' });
+    }
+
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
     }
 
     const { status } = req.body;
@@ -406,6 +415,15 @@ const approveOrRejectDeposit = async (req, res) => {
     return res.status(200).json({
       message: `Deposit ${status} successfully`,
       deposit
+    });
+
+    sendDepositApprovedEmail(
+      user.email,
+      user.fullName,
+      deposit,
+      status
+    ).catch(err => {
+      console.error("Deposit email failed:", err);
     });
 
   } catch (err) {
