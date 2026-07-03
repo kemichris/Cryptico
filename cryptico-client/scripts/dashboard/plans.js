@@ -161,9 +161,9 @@ planContainer.addEventListener("click", async (e) => {
         }
 
         showToast(data.message || "Investment successful!", "success");
-
         // Optional: reset amount back to minimum
         amountInput.value = min;
+        loadPlans()
 
     } catch (error) {
         console.error("Investment Error:", error);
@@ -171,7 +171,6 @@ planContainer.addEventListener("click", async (e) => {
             "Something went wrong. Please try again.",
             "error"
         );
-
     } finally {
         // Enable button again
         joinBtn.disabled = false;
