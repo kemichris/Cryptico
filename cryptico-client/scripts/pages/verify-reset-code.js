@@ -15,18 +15,42 @@ if (!email) {
 emailText.textContent = email;
 
 // ─── AUTO MOVE BETWEEN INPUTS ───────────────
-inputs.forEach((input, index) => {
-    input.addEventListener("input", () => {
-        if (input.value.length === 1 && index < inputs.length - 1) {
-            inputs[index + 1].focus();
-        }
-    });
+// inputs.forEach((input, index) => {
+//     input.addEventListener("input", () => {
+//         if (input.value.length === 1 && index < inputs.length - 1) {
+//             inputs[index + 1].focus();
+//         }
+//     });
 
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Backspace" && !input.value && index > 0) {
-            inputs[index - 1].focus();
-        }
-    });
+//     input.addEventListener("keydown", (e) => {
+//         if (e.key === "Backspace" && !input.value && index > 0) {
+//             inputs[index - 1].focus();
+//         }
+//     });
+// });
+inputs.forEach((input, index) => {
+  input.addEventListener("input", () => {
+    // Only allow numbers
+    input.value = input.value.replace(/\D/g, "");
+
+    // Move to the next input
+    if (input.value.length === 1 && index < inputs.length - 1) {
+      inputs[index + 1].focus();
+    }
+
+    // Auto-submit when all 6 digits are entered
+    const code = Array.from(inputs).map(i => i.value).join("");
+
+    if (code.length === 6) {
+      form.requestSubmit();
+    }
+  });
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Backspace" && !input.value && index > 0) {
+      inputs[index - 1].focus();
+    }
+  });
 });
 
 // ─── SUBMIT OTP ──────────────────────────────

@@ -7,17 +7,22 @@
     <link rel="stylesheet" href="/styles/verify-email.css">
 </head>
 <body>
-    <div class="verify-container">
-        <div class="verify-card">
-            <h2>Confirm Email to reset Password</h2>
+    <main>
+        <div class="sing-up-section">
+            <img src="/assets/icons/crypt-logo.jpg" alt="">
 
-            <form id="forget-form">
-                <input type="email" name="email" class="forget-input" id="forget-email">
-                <button type="submit" class="verify-btn" id="forget-btn">
-                    Reset
-                </button>
-            </form>
-
+            <div class="form-container">
+                <h2>Confirm Email to reset Password</h2>
+                <form id="login" >
+                    <span>Email</span>
+                     <input type="email" name="email" class="forget-input" id="forget-email">
+                    <span>Confirm Password</span>
+                    <input class="input" type="password" name="confirmPassword" placeholder="Enter Password" id="" required>
+                     <button type="submit" class="verify-btn" id="forget-btn">
+                        Reset
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="/scripts/utils/config.js"></script>
