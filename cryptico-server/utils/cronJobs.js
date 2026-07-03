@@ -97,7 +97,7 @@ const runTopUp = async () => {
         user.email,
         user.fullName,
         investment,
-        singleTopUp
+        totalProfit
       ).catch(err => {
         console.error("Profit email failed:", err);
       });
