@@ -420,7 +420,7 @@ const approveOrRejectDeposit = async (req, res) => {
     sendDepositApprovedEmail(
       user.email,
       user.fullName,
-      deposit,
+      deposit.amount,
       status
     ).catch(err => {
       console.error("Deposit email failed:", err);

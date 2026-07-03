@@ -156,11 +156,12 @@ const sendInvestmentCompletedEmail = async (
 };
 
 const sendDepositApprovedEmail = async (email, fullName, deposit, status)=> {
+  console.log("Sending deposit email to:", email);
   const subject = `Deposit ${status.charAt(0).toUpperCase() + status.slice(1)}`;
   const html = `
     <p>Hi ${fullName},</p>
 
-    <p>Your deposit of <strong>$${Number(deposit.amount).toFixed(2)}</strong> has been <strong>${status}</strong>.</p>
+    <p>Your deposit of <strong>$${Number(deposit).toFixed(2)}</strong> has been <strong>${status}</strong>.</p>
 
     <p>Please log in to your Cryptico account to view more details about your deposit.</p>
 
