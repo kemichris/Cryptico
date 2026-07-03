@@ -155,14 +155,15 @@ planContainer.addEventListener("click", async (e) => {
 
         const data = await res.json();
 
-        if (res.ok) {
-            showToast(data.message || "Investment successful!", "success");
-            setTimeout(() => {
-                window.location.reload();
-            }, 5000);
-        } else {
+        if (!res.ok) {
             showToast(data.message || "Investment failed.", "error");
+            return;
         }
+
+        showToast(data.message || "Investment successful!", "success");
+
+        // Optional: reset amount back to minimum
+        amountInput.value = min;
 
     } catch (error) {
         console.error("Investment Error:", error);
@@ -170,6 +171,7 @@ planContainer.addEventListener("click", async (e) => {
             "Something went wrong. Please try again.",
             "error"
         );
+
     } finally {
         // Enable button again
         joinBtn.disabled = false;
