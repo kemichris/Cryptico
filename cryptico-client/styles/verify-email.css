@@ -101,3 +101,8 @@ body {
 #resend-btn:hover {
     text-decoration: underline;
 }
+
+.forget-input {
+    width: 90%;
+    margin-bottom: 1rem;
+}
