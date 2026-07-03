@@ -156,7 +156,6 @@ const sendInvestmentCompletedEmail = async (
 };
 
 const sendDepositApprovedEmail = async (email, fullName, deposit, status)=> {
-  console.log("Sending deposit email to:", email);
   const subject = `Deposit ${status.charAt(0).toUpperCase() + status.slice(1)}`;
   const html = `
     <p>Hi ${fullName},</p>
