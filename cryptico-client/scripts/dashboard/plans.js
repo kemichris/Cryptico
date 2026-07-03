@@ -155,15 +155,14 @@ planContainer.addEventListener("click", async (e) => {
 
         const data = await res.json();
 
-        if (!res.ok) {
+        if (res.ok) {
+            showToast(data.message || "Investment successful!", "success");
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000);
+        } else {
             showToast(data.message || "Investment failed.", "error");
-            return;
         }
-
-        showToast(data.message || "Investment successful!", "success");
-        // Optional: reset amount back to minimum
-        amountInput.value = min;
-        getPlans()
 
     } catch (error) {
         console.error("Investment Error:", error);
