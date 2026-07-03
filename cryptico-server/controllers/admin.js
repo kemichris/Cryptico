@@ -412,6 +412,15 @@ const approveOrRejectDeposit = async (req, res) => {
 
     await deposit.save();
 
+    sendDepositApprovedEmail(
+      user.email,
+      user.fullName,
+      deposit,
+      status
+    ).catch(err => {
+      console.error("Deposit email failed:", err);
+    });
+
     return res.status(200).json({
       message: `Deposit ${status} successfully`,
       deposit

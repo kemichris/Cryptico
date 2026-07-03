@@ -161,7 +161,7 @@ const sendDepositApprovedEmail = async (email, fullName, deposit, status)=> {
   const html = `
     <p>Hi ${fullName},</p>
 
-    <p>Your deposit of <strong>$${Number(deposit).toFixed(2)}</strong> has been <strong>${status}</strong>.</p>
+    <p>Your deposit of <strong>$${Number(deposit.amount).toFixed(2)}</strong> has been <strong>${status}</strong>.</p>
 
     <p>Please log in to your Cryptico account to view more details about your deposit.</p>
 
