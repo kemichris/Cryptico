@@ -18,7 +18,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const sendVerificationEmail = async (email, name, code) => {
   try {
     await resend.emails.send({
-      from: "Cryptico <onboarding@resend.dev>",
+      from: "Cryptico <cryptico@flareglobal.online>",
       to: email,
       subject: "Email Verification Code",
       html: `
@@ -45,7 +45,7 @@ const sendVerificationEmail = async (email, name, code) => {
 const sendMail = async ({ to, subject, html }) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: "Cryptico <onboarding@resend.dev>",
+      from: "Cryptico <cryptico@flareglobal.online>",
       to,
       subject,
       html,
@@ -65,7 +65,7 @@ const sendMail = async ({ to, subject, html }) => {
 const sendPasswordResetMail = async (email, name, code) => {
   try {
     await resend.emails.send({
-      from: "Cryptico <onboarding@resend.dev>",
+      from: "Cryptico <cryptico@flareglobal.online>",
       to: email,
       subject: "Account Reset",
       html: `
