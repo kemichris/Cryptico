@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { sendVerificationEmail, sendPasswordResetMail } = require("../utils/mailer");
-const generateCode = require("./generateCode");
+const generateCode = require("../utils/generateCode");
 
 // ─── REGISTER  USER ────────────────────────────────
 const register = async (req, res) => {
