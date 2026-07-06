@@ -24,7 +24,10 @@ passwordForm.addEventListener("submit", async (e) => {
         const res = await fetch(`${API_URL}/api/auth/change-password`, {
             method: "PUT",
 
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${Auth.getToken()}`
+             },
             body: JSON.stringify(formObject)
         });
 
