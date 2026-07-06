@@ -6,13 +6,6 @@ const resendBtn = document.getElementById("resend-btn");
 // Get email from session storage
 const email = sessionStorage.getItem("verifyEmail");
 
-if (!email) {
-  alert("No verification session found. Please register again.");
-  window.location.href = "/pages/sign-up.html";
-} else {
-  checkEmailVerificationStatus();
-}
-
 const checkEmailVerificationStatus = async () => {
   try {
     const res = await fetch(
@@ -31,6 +24,15 @@ const checkEmailVerificationStatus = async () => {
     console.error(error);
   }
 };
+
+if (!email) {
+  alert("No verification session found. Please register again.");
+  window.location.href = "/pages/sign-up.html";
+} else {
+  checkEmailVerificationStatus();
+}
+
+
 
 // show email on UI
 emailText.textContent = email;
