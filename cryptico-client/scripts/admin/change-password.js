@@ -42,5 +42,8 @@ passwordForm.addEventListener("submit", async (e) => {
     } catch (error) {
         console.error(error)
         // showToast("something went wrong")
+    } finally {
+        pwdBtn.disabled = false;
+        pwdBtn.innerText = "Submit"
     }
 })
