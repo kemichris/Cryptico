@@ -21,7 +21,7 @@ passwordForm.addEventListener("submit", async (e) => {
         pwdBtn.disabled = true;
         pwdBtn.innerText = "Saving password..."
 
-        const res = await fetch(`${API_URL}/api/auth//change-password`, {
+        const res = await fetch(`${API_URL}/api/auth/change-password`, {
             method: "PUT",
 
             headers: { 'Content-Type': 'application/json' },
