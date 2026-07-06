@@ -523,4 +523,78 @@ const passwordReset = async (req, res) => {
   }
 };
 
-module.exports = { register, login, verifyEmail, checkVerification, registerAdmin, resendVerificationCode, forgotPassword, passwordReset, verifyResetCode }
+// ─── CHANGE PASSWORD ────────────────────────────
+const changePassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        message: "Current password and new password are required."
+      });
+    }
+
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found."
+      });
+    }
+
+    // Check current password
+    const isMatch = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Current password is incorrect."
+      });
+    }
+
+    // Prevent using the same password again
+    const samePassword = await bcrypt.compare(
+      newPassword,
+      user.password
+    );
+
+    if (samePassword) {
+      return res.status(400).json({
+        message: "New password must be different from your current password."
+      });
+    }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+
+    user.password = await bcrypt.hash(newPassword, salt);
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Password changed successfully."
+    });
+
+  } catch (err) {
+    console.error(err);
+
+    return res.status(500).json({
+      message: "Something went wrong."
+    });
+  }
+};
+
+module.exports = { 
+  register, 
+  login, 
+  verifyEmail, 
+  checkVerification, 
+  registerAdmin, 
+  resendVerificationCode, 
+  forgotPassword, 
+  passwordReset, 
+  verifyResetCode, 
+  changePassword 
+}
