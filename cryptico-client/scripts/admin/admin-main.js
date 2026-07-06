@@ -107,6 +107,13 @@ if (adminLogout) {
     });
 }
 
+// CHANGE PASSWORD LINk
+const changePasswordBtn = document.getElementById("change-password");
+
+changePasswordBtn.addEventListener("click", ()=> {
+    window.location.href = "/admin/change-password.html"
+})
+
 window.hideLoader = hideLoader;
 window.showToast = showToast;
 window.showConfirm = showConfirm;
