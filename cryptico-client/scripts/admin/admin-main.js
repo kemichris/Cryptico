@@ -114,6 +114,13 @@ changePasswordBtn.addEventListener("click", ()=> {
     window.location.href = "/admin/change-password.html"
 });
 
+// ACCOUNT SETTING LINk
+const accSettingBtn = document.getElementById("account-setting");
+
+accSettingBtn.addEventListener("click", ()=> {
+    window.location.href = "/admin/account-setting.html"
+});
+
 window.hideLoader = hideLoader;
 window.showToast = showToast;
 window.showConfirm = showConfirm;
