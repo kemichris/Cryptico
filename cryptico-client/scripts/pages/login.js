@@ -22,11 +22,18 @@ form.addEventListener("submit", async (e) => {
         const data = await res.json();
         console.log('Response:', data);
         if (res.ok) {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-            window.location.href = '/dashboard/users-dashboard.html';
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            window.location.href = "/dashboard/users-dashboard.html";
         } else {
-            alert(data.message);
+            // Handle unverified email specifically
+            if (res.status === 403 && data.emailVerified === false) {
+                sessionStorage.setItem("verifyEmail", data.email);
+                window.location.href = "/pages/verify-email.html";
+                return;
+            }
+            // Handle all other errors
+            alert(data.message || "Login failed");
         }
     } catch (err) {
         // this will show if fetch itself fails

@@ -165,7 +165,9 @@ const login = async (req, res) => {
 
     if (!user.emailVerified) {
       return res.status(403).json({
-        message: "Please verify your email before logging in"
+        message: "Please verify your email before logging in",
+        email: user.email,
+        emailVerified: false
       });
     }
 
@@ -255,6 +257,18 @@ const verifyEmail = async (req, res) => {
       message: err.message
     });
   }
+};
+
+const checkVerification = async (req, res) => {
+  const user = await User.findOne({ email: req.params.email });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  return res.json({
+    emailVerified: user.emailVerified
+  });
 };
 
 // ─── RESEND EMAIL VERIFICATION CODE ────────────────────────────
@@ -423,7 +437,7 @@ const verifyResetCode = async (req, res) => {
     console.error(error);
 
     return res.status(500).json({
-      message: "Something went wrong.", 
+      message: "Something went wrong.",
     });
   }
 };
@@ -509,4 +523,4 @@ const passwordReset = async (req, res) => {
   }
 };
 
-module.exports = { register, login, verifyEmail, registerAdmin, resendVerificationCode,forgotPassword, passwordReset, verifyResetCode }
+module.exports = { register, login, verifyEmail, checkVerification, registerAdmin, resendVerificationCode, forgotPassword, passwordReset, verifyResetCode }

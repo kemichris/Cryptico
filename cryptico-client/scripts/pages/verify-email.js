@@ -9,7 +9,28 @@ const email = sessionStorage.getItem("verifyEmail");
 if (!email) {
   alert("No verification session found. Please register again.");
   window.location.href = "/pages/sign-up.html";
+} else {
+  checkEmailVerificationStatus();
 }
+
+const checkEmailVerificationStatus = async () => {
+  try {
+    const res = await fetch(
+      `${API_URL}/api/auth/check-verification/${email}`
+    );
+
+    const data = await res.json();
+
+    if (data.emailVerified) {
+      alert("Email already verified")
+      sessionStorage.removeItem("verifyEmail");
+      window.location.href = "/pages/login.html";
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // show email on UI
 emailText.textContent = email;
@@ -59,8 +80,9 @@ form.addEventListener("submit", async (e) => {
     const data = await res.json();
 
     if (res.ok) {
+      sessionStorage.removeItem("verifyEmail");
       alert("Email verified successfully 🎉");
-      window.location.href = "/pages/verify-reset-code.html";
+      window.location.href = "/pages/login.html";
     } else {
       alert(data.message || "Verification failed");
     }
