@@ -1313,7 +1313,7 @@ const getAllAdmins = async (req, res) => {
 // get one admin
 const getAdmin = async (req, res) => {
   try {
-    const admin = await User.findById(req.admin._id)
+    const admin = await User.findById(req.user._id)
 
     if (!admin) {
       return res.status(404).json({ message: 'user not found' })
@@ -1333,7 +1333,7 @@ const updateAdmin = async (req, res) => {
   try {
     const { userName, fullName, email, phoneNumber } = req.body;
 
-    const admin = await User.findById(req.admin._id);
+    const admin = await User.findById(req.user._id);
 
     if (!admin) {
       return res.status(404).json({
