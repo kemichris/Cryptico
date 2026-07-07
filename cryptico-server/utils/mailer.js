@@ -156,7 +156,7 @@ const sendInvestmentCompletedEmail = async (
 };
 
 // Deposit status mail
-const depositStatusMail = async (email, fullName, deposit, status)=> {
+const depositStatusMail = async (email, fullName, deposit, status) => {
   const subject = `Deposit ${status.charAt(0).toUpperCase() + status.slice(1)}`;
   const html = `
     <p>Hi ${fullName},</p>
@@ -183,7 +183,7 @@ const depositStatusMail = async (email, fullName, deposit, status)=> {
 }
 
 // Withdrawal status mail 
-const withdrawalStatusMail = async (email, fullName, withdrawal, status)=> {
+const withdrawalStatusMail = async (email, fullName, withdrawal, status) => {
   const subject = `Withdrawal ${status.charAt(0).toUpperCase() + status.slice(1)}`;
   const html = `
     <p>Hi ${fullName},</p>
@@ -201,9 +201,15 @@ const withdrawalStatusMail = async (email, fullName, withdrawal, status)=> {
     </small>
   `;
 
+  await sendMail({
+    to: email,
+    subject,
+    html,
+  })
+
 }
 
-module.exports = { 
+module.exports = {
   sendVerificationEmail,
   sendMail,
   sendPasswordResetMail,
