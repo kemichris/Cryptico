@@ -1310,6 +1310,59 @@ const getAllAdmins = async (req, res) => {
   }
 }
 
+// get one admin
+const getAdmin = async (req, res) => {
+  try {
+    const admin = await User.findById(req.admin._id)
+
+    if (!admin) {
+      return res.status(404).json({ message: 'user not found' })
+    }
+
+    return res.status(200).json(admin)
+
+  } catch (error) {
+    return res.status(500).json({
+      message: 'error getting user',
+      error: error.message })
+  }
+}
+
+// upate admin 
+const updateAdmin = async (req, res) => {
+  try {
+    const { userName, fullName, email, phoneNumber } = req.body;
+
+    const admin = await User.findById(req.admin._id);
+
+    if (!admin) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    // Update only provided fields
+    if (userName !== undefined) admin.userName = userName;
+    if (fullName !== undefined) admin.fullName = fullName;
+    if (email !== undefined) admin.email = email.toLowerCase().trim();
+    if (phoneNumber !== undefined) admin.phoneNumber = phoneNumber;
+
+    await admin.save();
+
+    return res.status(200).json({
+      message: "Profile updated successfully",
+      admin
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Error updating profile",
+      error: error.message
+    });
+  }
+};
 
 
 module.exports = {
@@ -1348,6 +1401,8 @@ module.exports = {
   sendEmail,
   verifyEmail,
   getAllAdmins,
+  getAdmin,
+  updateAdmin,
   createPaymentMethod,
   editPaymentMethod,
   togglePaymentMethodStatus,

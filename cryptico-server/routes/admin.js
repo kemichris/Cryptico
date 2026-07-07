@@ -38,6 +38,8 @@ const {
   sendEmail,
   verifyEmail,
   getAllAdmins,
+  getAdmin,
+  updateAdmin,
   createPaymentMethod,
   editPaymentMethod,
   togglePaymentMethodStatus,
@@ -113,6 +115,7 @@ router.patch("/users/:id/verify-email", verifyEmail);
 
 // ─── ADMIN ─────────────────────────────────────
 router.get('/manage-admin', protect, adminOnly, getAllAdmins);
-
+router.get('/profile', protect, adminOnly, getAdmin);
+router.patch('/profile', protect, adminOnly, updateAdmin);
 
 module.exports = router;
