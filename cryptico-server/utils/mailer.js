@@ -155,7 +155,8 @@ const sendInvestmentCompletedEmail = async (
   });
 };
 
-const sendDepositApprovedEmail = async (email, fullName, deposit, status)=> {
+// Deposit status mail
+const depositStatusMail = async (email, fullName, deposit, status)=> {
   const subject = `Deposit ${status.charAt(0).toUpperCase() + status.slice(1)}`;
   const html = `
     <p>Hi ${fullName},</p>
@@ -181,11 +182,33 @@ const sendDepositApprovedEmail = async (email, fullName, deposit, status)=> {
 
 }
 
+// Withdrawal status mail 
+const withdrawalStatusMail = async (email, fullName, withdrawal, status)=> {
+  const subject = `Withdrawal ${status.charAt(0).toUpperCase() + status.slice(1)}`;
+  const html = `
+    <p>Hi ${fullName},</p>
+
+    <p>Your withdrawal of <strong>$${Number(withdrawal.amount).toFixed(2)}</strong> has been <strong>${status}</strong>.</p>
+
+    <p>Please log in to your Cryptico account to view more details about your Withdrawal.</p>
+
+    <p>Thank you for trusting <strong>Cryptico</strong>.</p>
+
+    <hr>
+
+    <small>
+      This is an automated email. Please do not reply to this message.
+    </small>
+  `;
+
+}
+
 module.exports = { 
   sendVerificationEmail,
   sendMail,
   sendPasswordResetMail,
   sendProfitTopupEmail,
   sendInvestmentCompletedEmail,
-  sendDepositApprovedEmail
+  depositStatusMail,
+  withdrawalStatusMail
 };

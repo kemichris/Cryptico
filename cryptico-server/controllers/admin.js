@@ -6,7 +6,7 @@ const Transaction = require('../models/Transaction');
 const Plan = require('../models/Plan');
 const PaymentMethod = require('../models/PaymentMethod')
 const Kyc = require('../models/Kyc')
-const { sendMail, sendDepositApprovedEmail } = require('../utils/mailer')
+const { sendMail, depositStatusMail, withdrawalStatusMail } = require('../utils/mailer')
 
 
 //////////////// USER SECTION  /////////////////
@@ -412,7 +412,7 @@ const approveOrRejectDeposit = async (req, res) => {
 
     await deposit.save();
 
-    sendDepositApprovedEmail(
+    depositStatusMail(
       user.email,
       user.fullName,
       deposit,
@@ -469,6 +469,7 @@ const getAllWithdrawals = async (req, res) => {
 const approveOrRejectWithdrawal = async (req, res) => {
   try {
     const withdrawal = await Transaction.findById(req.params.id);
+    const user = await User.findById(withdrawal.user);
 
     if (!withdrawal) {
       return res.status(404).json({ message: "Withdrawal not found" })
@@ -476,6 +477,12 @@ const approveOrRejectWithdrawal = async (req, res) => {
 
     if (withdrawal.status === 'approved' || withdrawal.status === 'rejected') {
       return res.status(400).json({ message: 'Withdrawal already processed' })
+    }
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
     }
 
     const { status } = req.body
@@ -489,6 +496,15 @@ const approveOrRejectWithdrawal = async (req, res) => {
     withdrawal.status = status;
     withdrawal.approvedBy = req.user._id;
     await withdrawal.save();
+
+    withdrawalStatusMail(
+      user.email,
+      user.fullName,
+      withdrawal,
+      status
+    ).catch(err => {
+      console.error("Deposit email failed:", err);
+    });
 
     return res.status(200).json({
       message: `Withdrawal ${status} successfully`,
